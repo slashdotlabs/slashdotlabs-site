@@ -1,4 +1,0 @@
-[submodule "cwhoiscart"]
-	path = cwhoiscart
-	url = ./cwhoiscart
-	ignore = dirty
