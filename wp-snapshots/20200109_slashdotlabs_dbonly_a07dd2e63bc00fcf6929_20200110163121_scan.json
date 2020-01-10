@@ -1,0 +1,696 @@
+{
+    "RPT": {
+        "ScanTime": "0.11 sec.",
+        "ScanFile": "20200109_slashdotlabs_dbonly_a07dd2e63bc00fcf6929_20200110163121_scan.json",
+        "Warnings": 0,
+        "Success": 6
+    },
+    "SRV": {
+        "PHP": {
+            "websrv": true,
+            "openbase": true,
+            "maxtime": true,
+            "mysqli": true,
+            "version": true,
+            "ALL": "Good"
+        },
+        "WP": {
+            "version": true,
+            "core": true,
+            "ismu": false,
+            "ALL": "Good"
+        }
+    },
+    "ARC": {
+        "Size": "0B",
+        "DirCount": "0",
+        "FileCount": "0",
+        "FullCount": "0",
+        "WarnFileCount": 0,
+        "WarnDirCount": 0,
+        "UnreadableDirCount": 0,
+        "UnreadableFileCount": 0,
+        "FilterDirsAll": [
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/ai1wm-backups",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/backups-dup-pro",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/backupwordpress",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/cache",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/content\/cache",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/contents\/cache",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/infinitewp\/backups",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/managewp\/backups",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/old-cache",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/plugins\/all-in-one-wp-migration\/storage",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/updraft",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/aiowps_backups",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/backupbuddy_backups",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/backupbuddy_temp",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/ithemes-security\/backups",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/mainwp\/backup",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/pb_backupbuddy",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/snapshots",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/sucuri",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/wp-clone",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/wp_all_backup",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/wpbackitup_backups",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/wfcache",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/wishlist-backup",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-snapshots"
+        ],
+        "FilterFilesAll": [
+            "error_log",
+            "error.log",
+            "debug_log",
+            "ws_ftp.log",
+            "dbcache",
+            "pgcache",
+            "objectcache",
+            ".DS_Store",
+            "\/home\/steekam\/public_html\/slashdot_beta\/.htaccess",
+            "\/home\/steekam\/public_html\/slashdot_beta\/web.config",
+            "\/home\/steekam\/public_html\/slashdot_beta\/wp-config.php"
+        ],
+        "FilterExtsAll": [],
+        "FilterInfo": {
+            "Dirs": {
+                "Warning": [],
+                "Unreadable": [],
+                "Core": [
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-snapshots",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/backups-dup-pro",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/ai1wm-backups",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/backupwordpress",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/content\/cache",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/contents\/cache",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/infinitewp\/backups",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/managewp\/backups",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/old-cache",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/plugins\/all-in-one-wp-migration\/storage",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/updraft",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/wishlist-backup",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/wfcache",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/cache",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/aiowps_backups",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/backupbuddy_temp",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/backupbuddy_backups",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/ithemes-security\/backups",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/mainwp\/backup",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/pb_backupbuddy",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/snapshots",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/sucuri",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/wp-clone",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/wp_all_backup",
+                    "\/home\/steekam\/public_html\/slashdot_beta\/wp-content\/uploads\/wpbackitup_backups"
+                ],
+                "Global": [],
+                "Instance": []
+            },
+            "Files": {
+                "Size": [],
+                "Warning": [],
+                "Unreadable": [],
+                "Core": [],
+                "Global": [
+                    "error_log",
+                    "error.log",
+                    "debug_log",
+                    "ws_ftp.log",
+                    "dbcache",
+                    "pgcache",
+                    "objectcache",
+                    ".DS_Store"
+                ],
+                "Instance": []
+            },
+            "Exts": {
+                "Core": [],
+                "Global": [],
+                "Instance": []
+            },
+            "UDirCount": 0,
+            "UFileCount": 0,
+            "UExtCount": 0,
+            "TreeSize": [],
+            "TreeWarning": []
+        },
+        "RecursiveLinks": [],
+        "UnreadableItems": [],
+        "Status": {
+            "Size": "Good",
+            "Names": "Good",
+            "UnreadableItems": "Good",
+            "MigratePackage": "Good",
+            "CanbeMigratePackage": true,
+            "showCreateProcStatus": "Good",
+            "showCreateProc": true,
+            "AddonSites": "Good"
+        },
+        "Dirs": [],
+        "Files": []
+    },
+    "DB": {
+        "Status": {
+            "Success": true,
+            "DB_Case": "Good",
+            "DB_Rows": "Good",
+            "DB_Size": "Good",
+            "TBL_Case": "Good",
+            "TBL_Rows": "Good",
+            "TBL_Size": "Good"
+        },
+        "Size": "29.65MB",
+        "Rows": "28,614",
+        "TableCount": 87,
+        "TableList": {
+            "domaincart_hosting": {
+                "Case": 0,
+                "Rows": "17",
+                "Size": "3.04KB",
+                "USize": 3112
+            },
+            "domaincart_orders": {
+                "Case": 0,
+                "Rows": "14",
+                "Size": "2.75KB",
+                "USize": 2816
+            },
+            "domaincart_user": {
+                "Case": 0,
+                "Rows": "8",
+                "Size": "14.89KB",
+                "USize": 15244
+            },
+            "slashd_apsl_users_social_profile_details": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_brizy_logs": {
+                "Case": 0,
+                "Rows": "115",
+                "Size": "5.03MB",
+                "USize": 5279324
+            },
+            "slashd_commentmeta": {
+                "Case": 0,
+                "Rows": "12",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_comments": {
+                "Case": 0,
+                "Rows": "610",
+                "Size": "208KB",
+                "USize": 212992
+            },
+            "slashd_cp_orders": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "16KB",
+                "USize": 16384
+            },
+            "slashd_duplicator_packages": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_links": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "32KB",
+                "USize": 32768
+            },
+            "slashd_ms_snippets": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_options": {
+                "Case": 0,
+                "Rows": "2,522",
+                "Size": "7.73MB",
+                "USize": 8110080
+            },
+            "slashd_postmeta": {
+                "Case": 0,
+                "Rows": "2,452",
+                "Size": "6.75MB",
+                "USize": 7077888
+            },
+            "slashd_posts": {
+                "Case": 0,
+                "Rows": "647",
+                "Size": "4.77MB",
+                "USize": 4997120
+            },
+            "slashd_rm_fields": {
+                "Case": 0,
+                "Rows": "3",
+                "Size": "19.49KB",
+                "USize": 19956
+            },
+            "slashd_rm_forms": {
+                "Case": 0,
+                "Rows": "1",
+                "Size": "4.04KB",
+                "USize": 4132
+            },
+            "slashd_rm_front_users": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_rm_login": {
+                "Case": 0,
+                "Rows": "10",
+                "Size": "8.42KB",
+                "USize": 8624
+            },
+            "slashd_rm_login_log": {
+                "Case": 0,
+                "Rows": "2",
+                "Size": "2.29KB",
+                "USize": 2344
+            },
+            "slashd_rm_notes": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_rm_paypal_fields": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_rm_paypal_logs": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_rm_rules": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_rm_sent_mails": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_rm_sessions": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "4KB",
+                "USize": 4096
+            },
+            "slashd_rm_stats": {
+                "Case": 0,
+                "Rows": "2",
+                "Size": "2.3KB",
+                "USize": 2352
+            },
+            "slashd_rm_submission_fields": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_rm_submissions": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_rm_task_exe_log": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_rm_tasks": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_signups": {
+                "Case": 0,
+                "Rows": "1",
+                "Size": "9.32KB",
+                "USize": 9540
+            },
+            "slashd_smush_dir_images": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_snippets": {
+                "Case": 0,
+                "Rows": "5",
+                "Size": "3.5KB",
+                "USize": 3580
+            },
+            "slashd_term_relationships": {
+                "Case": 0,
+                "Rows": "546",
+                "Size": "64KB",
+                "USize": 65536
+            },
+            "slashd_term_taxonomy": {
+                "Case": 0,
+                "Rows": "102",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_termmeta": {
+                "Case": 0,
+                "Rows": "33",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_terms": {
+                "Case": 0,
+                "Rows": "102",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_usermeta": {
+                "Case": 0,
+                "Rows": "293",
+                "Size": "45.45KB",
+                "USize": 46540
+            },
+            "slashd_users": {
+                "Case": 0,
+                "Rows": "7",
+                "Size": "8.84KB",
+                "USize": 9052
+            },
+            "slashd_wc_admin_note_actions": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wc_admin_notes": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wc_customer_lookup": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "2KB",
+                "USize": 2048
+            },
+            "slashd_wc_download_log": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_wc_order_coupon_lookup": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wc_order_product_lookup": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wc_order_stats": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "4KB",
+                "USize": 4096
+            },
+            "slashd_wc_order_tax_lookup": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wc_product_meta_lookup": {
+                "Case": 0,
+                "Rows": "43",
+                "Size": "11.98KB",
+                "USize": 12264
+            },
+            "slashd_wc_tax_rate_classes": {
+                "Case": 0,
+                "Rows": "2",
+                "Size": "9.07KB",
+                "USize": 9288
+            },
+            "slashd_wc_webhooks": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "32KB",
+                "USize": 32768
+            },
+            "slashd_wfblockediplog": {
+                "Case": 0,
+                "Rows": "8",
+                "Size": "2.31KB",
+                "USize": 2364
+            },
+            "slashd_wfblocks7": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wfconfig": {
+                "Case": 0,
+                "Rows": "260",
+                "Size": "1.15MB",
+                "USize": 1202804
+            },
+            "slashd_wfcrawlers": {
+                "Case": 0,
+                "Rows": "6",
+                "Size": "2.49KB",
+                "USize": 2552
+            },
+            "slashd_wffilechanges": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wffilemods": {
+                "Case": 0,
+                "Rows": "9,033",
+                "Size": "1.69MB",
+                "USize": 1772856
+            },
+            "slashd_wfhits": {
+                "Case": 0,
+                "Rows": "74",
+                "Size": "32.99KB",
+                "USize": 33780
+            },
+            "slashd_wfhoover": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wfissues": {
+                "Case": 0,
+                "Rows": "19",
+                "Size": "24.46KB",
+                "USize": 25044
+            },
+            "slashd_wfknownfilelist": {
+                "Case": 0,
+                "Rows": "9,039",
+                "Size": "835.68KB",
+                "USize": 855736
+            },
+            "slashd_wflivetraffichuman": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wflocs": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "2.07KB",
+                "USize": 2116
+            },
+            "slashd_wflogins": {
+                "Case": 0,
+                "Rows": "68",
+                "Size": "14.31KB",
+                "USize": 14656
+            },
+            "slashd_wfls_2fa_secrets": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "32KB",
+                "USize": 32768
+            },
+            "slashd_wfls_settings": {
+                "Case": 0,
+                "Rows": "19",
+                "Size": "16KB",
+                "USize": 16384
+            },
+            "slashd_wfnotifications": {
+                "Case": 0,
+                "Rows": "6",
+                "Size": "3KB",
+                "USize": 3068
+            },
+            "slashd_wfpendingissues": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wfreversecache": {
+                "Case": 0,
+                "Rows": "1",
+                "Size": "2.09KB",
+                "USize": 2140
+            },
+            "slashd_wfsnipcache": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "slashd_wfstatus": {
+                "Case": 0,
+                "Rows": "945",
+                "Size": "141.91KB",
+                "USize": 145312
+            },
+            "slashd_wftrafficrates": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "2.05KB",
+                "USize": 2100
+            },
+            "slashd_woocommerce_api_keys": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_woocommerce_attribute_taxonomies": {
+                "Case": 0,
+                "Rows": "2",
+                "Size": "32KB",
+                "USize": 32768
+            },
+            "slashd_woocommerce_downloadable_product_permissions": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "80KB",
+                "USize": 81920
+            },
+            "slashd_woocommerce_log": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "32KB",
+                "USize": 32768
+            },
+            "slashd_woocommerce_order_itemmeta": {
+                "Case": 0,
+                "Rows": "113",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_woocommerce_order_items": {
+                "Case": 0,
+                "Rows": "12",
+                "Size": "32KB",
+                "USize": 32768
+            },
+            "slashd_woocommerce_payment_tokenmeta": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_woocommerce_payment_tokens": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "32KB",
+                "USize": 32768
+            },
+            "slashd_woocommerce_sessions": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "32KB",
+                "USize": 32768
+            },
+            "slashd_woocommerce_shipping_zone_locations": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_woocommerce_shipping_zone_methods": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "16KB",
+                "USize": 16384
+            },
+            "slashd_woocommerce_shipping_zones": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "16KB",
+                "USize": 16384
+            },
+            "slashd_woocommerce_tax_rate_locations": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "48KB",
+                "USize": 49152
+            },
+            "slashd_woocommerce_tax_rates": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "80KB",
+                "USize": 81920
+            },
+            "slashd_yoast_seo_links": {
+                "Case": 0,
+                "Rows": "166",
+                "Size": "18.91KB",
+                "USize": 19368
+            },
+            "slashd_yoast_seo_meta": {
+                "Case": 0,
+                "Rows": "1,294",
+                "Size": "45.48KB",
+                "USize": 46574
+            }
+        },
+        "RawSize": 31089262
+    },
+    "LL": {
+        "TotalSize": "29.65MB",
+        "Status": {
+            "TotalSize": "Good"
+        }
+    }
+}
