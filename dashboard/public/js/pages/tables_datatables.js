@@ -160,7 +160,7 @@ jQuery(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/steekam/public_html/slashdot_beta/dashboard/resources/js/pages/tables_datatables.js */"./resources/js/pages/tables_datatables.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\slashdotlabs-site\dashboard\resources\js\pages\tables_datatables.js */"./resources/js/pages/tables_datatables.js");
 
 
 /***/ })
