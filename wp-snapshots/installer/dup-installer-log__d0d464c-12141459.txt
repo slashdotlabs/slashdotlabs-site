@@ -1,0 +1,1139 @@
+********************************************************************************
+* DUPLICATOR-PRO: Install-Log
+* STEP-1 START @ 02:50:51
+* VERSION: 1.3.24
+* NOTICE: Do NOT post to public sites or forums!!
+********************************************************************************
+PACKAGE INFO________ CURRENT SERVER                         |ORIGINAL SERVER
+PHP VERSION_________: 7.3.8                                 |7.3.13
+OS__________________: Linux                                 |Linux
+CREATED_____________: 2020-01-12 14:14:59
+WP VERSION__________: 5.3.2
+DUP VERSION_________: 1.3.24
+DB__________________: 5.7.23
+DB TABLES___________: 87
+DB ROWS_____________: 28,528
+DB FILE SIZE________: 43.55MB
+********************************************************************************
+SERVER INFO
+PHP_________________: 7.3.13 | SAPI: fpm-fcgi
+PHP MEMORY__________: 4294967296 | SUHOSIN: disabled
+SERVER______________: Apache/2.4.41 (Fedora) OpenSSL/1.1.1d mod_perl/2.0.11 Perl/v5.28.2
+DOC ROOT____________: "/home/steekam/public_html/slashdot_site"
+DOC ROOT 755________: true
+LOG FILE 644________: true
+REQUEST URL_________: "http://slashdotlabs.local/dup-installer/main.installer.php"
+********************************************************************************
+USER INPUTS
+ARCHIVE ENGINE______: "shellexec_unzip"
+SET DIR PERMS_______: 1
+DIR PERMS VALUE_____: 1363
+SET FILE PERMS______: 1
+FILE PERMS VALUE____: 1204
+SAFE MODE___________: "0"
+LOGGING_____________: "1"
+CONFIG MODE_________: "NEW"
+FILE TIME___________: "current"
+********************************************************************************
+
+
+--------------------------------------
+ARCHIVE SETUP
+--------------------------------------
+NAME________________: "20200112_slashdotlabs_d0d464caeeabb57c1837_20200112141459_archive.zip"
+SIZE________________: 400.59MB
+
+PRE-EXTRACT-CHECKS
+- PASS: Apache '.htaccess' not found - no backup needed.
+- PASS: Microsoft IIS 'web.config' not found - no backup needed.
+- PASS: WordFence '.user.ini' not found - no backup needed.
+
+
+START ZIP FILE EXTRACTION SHELLEXEC >>> 
+>>> Starting Shell-Exec Unzip:
+Command: unzip -o -qq '/home/steekam/public_html/slashdot_site/20200112_slashdotlabs_d0d464caeeabb57c1837_20200112141459_archive.zip' -d '/home/steekam/public_html/slashdot_site' 2>&1
+<<< Shell-Exec Unzip Complete.
+--------------------------------------
+POST-EXTACT-CHECKS
+--------------------------------------
+PERMISSION UPDATES:
+    -DIRS:  '755'
+    -FILES: '644'
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/description' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/HEAD' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/refs' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/refs/remotes' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/refs/remotes/origin' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/refs/remotes/origin/beta' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/refs/remotes/origin/feature-dashboard' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/refs/tags' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/refs/heads' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/FETCH_HEAD' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/info' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/info/exclude' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/branches' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/objects' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/objects/pack' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/objects/pack/pack-0f0e86bbb0507a2f53d949346090ae0e8e9f2730.pack' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/objects/pack/pack-0f0e86bbb0507a2f53d949346090ae0e8e9f2730.idx' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/objects/info' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/logs' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/logs/refs' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/logs/refs/remotes' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/logs/refs/remotes/origin' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/logs/refs/remotes/origin/beta' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/logs/refs/remotes/origin/feature-dashboard' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on directory '/home/steekam/public_html/slashdot_site/.git/hooks' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/commit-msg.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/post-update.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/pre-push.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/pre-commit.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/pre-receive.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/prepare-commit-msg.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/fsmonitor-watchman.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/update.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/pre-rebase.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/pre-applypatch.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/hooks/applypatch-msg.sample' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/.git/config' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/installer.php' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+[PHP ERR][WARN] MSG:chmod(): Operation not permitted [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/lib/snaplib/class.snaplib.u.io.php|LINE:479]
+Permissions setting on file '/home/steekam/public_html/slashdot_site/20200112_slashdotlabs_d0d464caeeabb57c1837_20200112141459_archive.zip' failed
+[PHP ERR][WARN] MSG:touch(): Utime failed: Permission denied [CODE:2|FILE:/home/steekam/public_html/slashdot_site/dup-installer/ctrls/ctrl.s1.php|LINE:404]
+- PASS: Existing WordFence '.user.ini' was removed
+
+STEP-1 COMPLETE @ 02:51:28 - RUNTIME: 37.6927 sec.
+
+
+
+********************************************************************************
+* DUPLICATOR-LITE INSTALL-LOG
+* STEP-2 START @ 02:52:13
+* NOTICE: Do NOT post to public sites or forums!!
+********************************************************************************
+USER INPUTS
+VIEW MODE___________: "basic"
+DB ACTION___________: "empty"
+DB HOST_____________: "**OBSCURED**"
+DB NAME_____________: "**OBSCURED**"
+DB PASS_____________: "**OBSCURED**"
+DB PORT_____________: "**OBSCURED**"
+NON-BREAKING SPACES_: false
+MYSQL MODE__________: "DEFAULT"
+MYSQL MODE OPTS_____: ""
+CHARSET_____________: "utf8"
+COLLATE_____________: "utf8_general_ci"
+COLLATE FB__________: false
+VIEW CREATION_______: true
+STORED PROCEDURE____: true
+********************************************************************************
+
+--------------------------------------
+DATABASE-ENVIRONMENT
+--------------------------------------
+MYSQL VERSION:	This Server: 10.3.20 -- Build Server: 5.7.23
+FILE SIZE:	dup-database__d0d464c-12141459.sql (23.42MB)
+TIMEOUT:	5000
+MAXPACK:	268435456
+SQLMODE:	STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+NEW SQL FILE:	[/home/steekam/public_html/slashdot_site/dup-installer/dup-installer-data__d0d464c-12141459.sql]
+COLLATE FB:	Off
+--------------------------------------
+DATABASE RESULTS
+--------------------------------------
+DB VIEWS:	enabled
+DB PROCEDURES:	enabled
+ERRORS FOUND:	0
+DROPPED TABLES:	87
+RENAMED TABLES:	0
+QUERIES RAN:	771
+
+domaincart_hosting: (17)
+domaincart_orders: (14)
+domaincart_user: (8)
+slashd_apsl_users_social_profile_details: (0)
+slashd_brizy_logs: (115)
+slashd_commentmeta: (12)
+slashd_comments: (610)
+slashd_cp_orders: (0)
+slashd_duplicator_packages: (0)
+slashd_links: (0)
+slashd_ms_snippets: (0)
+slashd_options: (2232)
+slashd_postmeta: (2372)
+slashd_posts: (786)
+slashd_rm_fields: (3)
+slashd_rm_forms: (1)
+slashd_rm_front_users: (0)
+slashd_rm_login: (10)
+slashd_rm_login_log: (2)
+slashd_rm_notes: (0)
+slashd_rm_paypal_fields: (0)
+slashd_rm_paypal_logs: (0)
+slashd_rm_rules: (0)
+slashd_rm_sent_mails: (0)
+slashd_rm_sessions: (0)
+slashd_rm_stats: (2)
+slashd_rm_submission_fields: (0)
+slashd_rm_submissions: (0)
+slashd_rm_task_exe_log: (0)
+slashd_rm_tasks: (0)
+slashd_signups: (1)
+slashd_smush_dir_images: (0)
+slashd_snippets: (5)
+slashd_term_relationships: (546)
+slashd_term_taxonomy: (102)
+slashd_termmeta: (33)
+slashd_terms: (102)
+slashd_usermeta: (293)
+slashd_users: (7)
+slashd_wc_admin_note_actions: (0)
+slashd_wc_admin_notes: (0)
+slashd_wc_customer_lookup: (0)
+slashd_wc_download_log: (0)
+slashd_wc_order_coupon_lookup: (0)
+slashd_wc_order_product_lookup: (0)
+slashd_wc_order_stats: (0)
+slashd_wc_order_tax_lookup: (0)
+slashd_wc_product_meta_lookup: (43)
+slashd_wc_tax_rate_classes: (2)
+slashd_wc_webhooks: (0)
+slashd_wfblockediplog: (7)
+slashd_wfblocks7: (0)
+slashd_wfconfig: (260)
+slashd_wfcrawlers: (6)
+slashd_wffilechanges: (0)
+slashd_wffilemods: (9040)
+slashd_wfhits: (71)
+slashd_wfhoover: (0)
+slashd_wfissues: (10)
+slashd_wfknownfilelist: (9040)
+slashd_wflivetraffichuman: (0)
+slashd_wflocs: (16)
+slashd_wflogins: (68)
+slashd_wfls_2fa_secrets: (0)
+slashd_wfls_settings: (19)
+slashd_wfnotifications: (7)
+slashd_wfpendingissues: (0)
+slashd_wfreversecache: (0)
+slashd_wfsnipcache: (0)
+slashd_wfstatus: (955)
+slashd_wftrafficrates: (1)
+slashd_woocommerce_api_keys: (0)
+slashd_woocommerce_attribute_taxonomies: (2)
+slashd_woocommerce_downloadable_product_permissions: (0)
+slashd_woocommerce_log: (0)
+slashd_woocommerce_order_itemmeta: (113)
+slashd_woocommerce_order_items: (12)
+slashd_woocommerce_payment_tokenmeta: (0)
+slashd_woocommerce_payment_tokens: (0)
+slashd_woocommerce_sessions: (1)
+slashd_woocommerce_shipping_zone_locations: (0)
+slashd_woocommerce_shipping_zone_methods: (0)
+slashd_woocommerce_shipping_zones: (0)
+slashd_woocommerce_tax_rate_locations: (0)
+slashd_woocommerce_tax_rates: (0)
+slashd_yoast_seo_links: (166)
+slashd_yoast_seo_meta: (1294)
+Removed '62' cache/transient rows
+
+INSERT DATA RUNTIME: 32.3550 sec.
+STEP-2 COMPLETE @ 02:52:45 - RUNTIME: 32.4200 sec.
+
+====================================
+SET SEARCH AND REPLACE LIST
+====================================
+
+
+********************************************************************************
+DUPLICATOR PRO INSTALL-LOG
+STEP-3 START @ 02:53:17
+NOTICE: Do NOT post to public sites or forums
+********************************************************************************
+CHARSET SERVER:	"utf8"
+CHARSET CLIENT:	"utf8"
+********************************************************************************
+OPTIONS:
+blogname______________: "slashdotlabs"
+postguid______________: false
+fullsearch____________: false
+path_old______________: "/home/slashdotpro/www/beta/"
+path_new______________: "/home/steekam/public_html/slashdot_site/"
+siteurl_______________: "http://slashdotlabs.local"
+url_old_______________: "https://beta.slashdotlabsprojects.com"
+url_new_______________: "http://slashdotlabs.local"
+maxSerializeStrlen____: 4000000
+replaceMail___________: false
+dbhost________________: "localhost"
+dbuser________________: "root"
+dbname________________: "slashdotpro_beta"
+dbcharset_____________: "utf8"
+dbcollate_____________: "utf8_general_ci"
+wp_username___________: ""
+wp_mail_______________: ""
+wp_nickname___________: ""
+wp_first_name_________: ""
+wp_last_name__________: ""
+ssl_admin_____________: false
+cache_wp______________: false
+cache_path____________: false
+exe_safe_mode_________: false
+config_mode___________: "NEW"
+********************************************************************************
+
+
+====================================
+RUN SEARCH AND REPLACE
+====================================
+
+EVALUATE TABLE: "domaincart_hosting"______________________________[ROWS:    17][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "domaincart_orders"_______________________________[ROWS:    14][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "domaincart_user"_________________________________[ROWS:     8][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_apsl_users_social_profile_details"________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_brizy_logs"_______________________________[ROWS:   115][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_commentmeta"______________________________[ROWS:    12][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_comments"_________________________________[ROWS:   610][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_cp_orders"________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_duplicator_packages"______________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_links"____________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_ms_snippets"______________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_options"__________________________________[ROWS:  2232][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_postmeta"_________________________________[ROWS:  2372][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_posts"____________________________________[ROWS:   786][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_rm_fields"________________________________[ROWS:     3][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_rm_forms"_________________________________[ROWS:     1][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_rm_front_users"___________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_login"_________________________________[ROWS:    10][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_rm_login_log"_____________________________[ROWS:     2][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_rm_notes"_________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_paypal_fields"_________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_paypal_logs"___________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_rules"_________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_sent_mails"____________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_sessions"______________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_stats"_________________________________[ROWS:     2][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_rm_submission_fields"_____________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_submissions"___________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_task_exe_log"__________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_rm_tasks"_________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_signups"__________________________________[ROWS:     1][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_smush_dir_images"_________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_snippets"_________________________________[ROWS:     5][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_term_relationships"_______________________[ROWS:   546][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_term_taxonomy"____________________________[ROWS:   102][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_termmeta"_________________________________[ROWS:    33][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_terms"____________________________________[ROWS:   102][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_usermeta"_________________________________[ROWS:   293][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_users"____________________________________[ROWS:     7][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wc_admin_note_actions"____________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wc_admin_notes"___________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wc_customer_lookup"_______________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wc_download_log"__________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wc_order_coupon_lookup"___________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wc_order_product_lookup"__________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wc_order_stats"___________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wc_order_tax_lookup"______________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wc_product_meta_lookup"___________________[ROWS:    43][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wc_tax_rate_classes"______________________[ROWS:     2][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wc_webhooks"______________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wfblockediplog"___________________________[ROWS:     7][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wfblocks7"________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wfconfig"_________________________________[ROWS:   260][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wfcrawlers"_______________________________[ROWS:     6][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wffilechanges"____________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wffilemods"_______________________________[ROWS:  9040][PG:   3][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wfhits"___________________________________[ROWS:    71][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wfhoover"_________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wfissues"_________________________________[ROWS:    10][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wfknownfilelist"__________________________[ROWS:  9040][PG:   3][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wflivetraffichuman"_______________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wflocs"___________________________________[ROWS:    16][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wflogins"_________________________________[ROWS:    68][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wfls_2fa_secrets"_________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wfls_settings"____________________________[ROWS:    19][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wfnotifications"__________________________[ROWS:     7][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wfpendingissues"__________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wfreversecache"___________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wfsnipcache"______________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_wfstatus"_________________________________[ROWS:   955][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_wftrafficrates"___________________________[ROWS:     1][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_woocommerce_api_keys"_____________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_woocommerce_attribute_taxonomies"_________[ROWS:     2][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_woocommerce_downloadable_product_permissions"[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_woocommerce_log"__________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_woocommerce_order_itemmeta"_______________[ROWS:   113][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_woocommerce_order_items"__________________[ROWS:    12][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_woocommerce_payment_tokenmeta"____________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_woocommerce_payment_tokens"_______________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_woocommerce_sessions"_____________________[ROWS:     1][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_woocommerce_shipping_zone_locations"______[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_woocommerce_shipping_zone_methods"________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_woocommerce_shipping_zones"_______________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_woocommerce_tax_rate_locations"___________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_woocommerce_tax_rates"____________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "slashd_yoast_seo_links"__________________________[ROWS:   166][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+
+EVALUATE TABLE: "slashd_yoast_seo_meta"___________________________[ROWS:  1294][PG:   1][SCAN:text columns]
+	SEARCH  1:"/home/slashdotpro/www/beta/" =====================> "/home/steekam/public_html/slashdot_site/"
+	SEARCH  2:"\/home\/slashdotpro\/www\/beta\/" ================> "\/home\/steekam\/public_html\/slashdot_site\/"
+	SEARCH  3:"%2Fhome%2Fslashdotpro%2Fwww%2Fbeta%2F" ===========> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site%2F"
+	SEARCH  4:"\home\slashdotpro\www\beta" ======================> "/home/steekam/public_html/slashdot_site"
+	SEARCH  5:"\\home\\slashdotpro\\www\\beta" ==================> "\/home\/steekam\/public_html\/slashdot_site"
+	SEARCH  6:"%5Chome%5Cslashdotpro%5Cwww%5Cbeta" ==============> "%2Fhome%2Fsteekam%2Fpublic_html%2Fslashdot_site"
+	SEARCH  7:"//beta.slashdotlabsprojects.com" =================> "//slashdotlabs.local"
+	SEARCH  8:"\/\/beta.slashdotlabsprojects.com" ===============> "\/\/slashdotlabs.local"
+	SEARCH  9:"%2F%2Fbeta.slashdotlabsprojects.com" =============> "%2F%2Fslashdotlabs.local"
+	SEARCH 10:"https://slashdotlabs.local" ======================> "http://slashdotlabs.local"
+	SEARCH 11:"https:\/\/slashdotlabs.local" ====================> "http:\/\/slashdotlabs.local"
+	SEARCH 12:"https%3A%2F%2Fslashdotlabs.local" ================> "http%3A%2F%2Fslashdotlabs.local"
+--------------------------------------
+SCANNED:	Tables:87 	|	 Rows:28406 	|	 Cells:163727 
+UPDATED:	Tables:10 	|	 Rows:1288 	|	 Cells:1517 
+ERRORS:		0 
+RUNTIME:	4.418000 sec
+
+====================================
+REMOVE LICENSE KEY
+====================================
+
+====================================
+CREATE NEW ADMIN USER
+====================================
+
+====================================
+CONFIGURATION FILE UPDATES
+====================================
+	UPDATE DB_NAME ""slashdotpro_beta""
+	UPDATE DB_USER ""root""
+	UPDATE DB_PASSWORD "** OBSCURED **"
+	UPDATE DB_HOST ""localhost""
+	REMOVE WPCACHEHOME
+	
+*** UPDATED WP CONFIG FILE ***
+
+====================================
+HTACCESS UPDATE MODE: "NEW"
+====================================
+- PASS: Successfully created a new .htaccess file.
+- PASS: Existing Apache 'htaccess.orig' was removed
+
+====================================
+GENERAL UPDATES & CLEANUP
+====================================
+
+====================================
+DEACTIVATE PLUGINS CHECK
+====================================
+Deactivated plugins list here: Array
+(
+    [0] => really-simple-ssl/rlrsssl-really-simple-ssl.php
+    [1] => simple-google-recaptcha/simple-google-recaptcha.php
+    [2] => js_composer/js_composer.php
+)
+
+
+====================================
+NOTICES TEST
+====================================
+No General Notices Found
+
+
+====================================
+CLEANUP TMP FILES
+====================================
+
+====================================
+FINAL REPORT NOTICES
+====================================
+
+STEP-3 COMPLETE @ 02:53:22 - RUNTIME: 4.5406 sec. 
+
+
+====================================
+FINAL REPORT NOTICES LIST
+====================================
+-----------------------
+[INFO] No general notices
+	SECTIONS: general
+
+-----------------------
+[INFO] No errors in database
+	SECTIONS: database
+
+-----------------------
+[INFO] No search and replace data errors
+	SECTIONS: search_replace
+
+-----------------------
+[INFO] No files extraction errors
+	SECTIONS: files
+
+====================================
