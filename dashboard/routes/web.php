@@ -11,4 +11,4 @@
 |
 */
 Route::resource('/', 'DashboardController');
-Route::get('/', array('as' => 'links', 'uses' => 'DashboardController@index'));
+
