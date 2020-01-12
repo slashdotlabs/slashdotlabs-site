@@ -1,0 +1,6 @@
+{
+    "require": {
+        "elastic-email/web-api-client": "^1.0",
+        "phpmailer/phpmailer": "^6.1"
+    }
+}
