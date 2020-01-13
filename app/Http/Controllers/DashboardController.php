@@ -9,7 +9,7 @@ use Illuminate\View\View;
 class DashboardController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display dashboard
      *
      * @return Factory|View
      */

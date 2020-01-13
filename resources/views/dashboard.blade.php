@@ -1,10 +1,10 @@
-@extends('layouts.index')
+@extends('layouts.master_dashboard')
 
 @section('content')
 <!-- Page Content -->
 <div class="content content-full">
-    @include('layouts.hero')
-    @include('layouts.overview')
+    @include('partials.hero')
+    @include('partials.overview')
 
     <!-- Tables -->
 
@@ -147,14 +147,13 @@
         <div class="block-content block-content-full">
             <!-- DataTables functionality is initialized with .js-dataTable-full-pagination class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
-                    <h4 class="block-title"><small>You have no packages yet.</small></h3>
-                </tbody>
+                    <small class="block-title">You have no packages yet.</small>
             </table>
         </div>
     </div>
 
     <!-- User Settings Tables -->
-    @include('layouts.settings')
+    @include('partials.settings')
 
     <!-- END Tables -->
 <!-- END Page Content -->

@@ -1,0 +1,1 @@
+<?php // email verified notice

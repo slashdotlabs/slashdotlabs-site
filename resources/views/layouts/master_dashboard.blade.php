@@ -55,6 +55,6 @@
         @yield('js_after')
     </body>
 
-    @include('layouts.modal')
+    @include('partials.modal')
 
 </html>
