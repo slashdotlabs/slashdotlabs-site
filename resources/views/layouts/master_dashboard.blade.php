@@ -33,7 +33,7 @@
     <body>
         <div id="page-container" class="sidebar-inverse side-scroll page-header-fixed page-header-inverse main-content-boxed">
            <!-- Header -->
-            @include('layouts.header')
+            @include('dashboard.partials.header')
 
          <!-- Main Container -->
             <main id="main-container">
@@ -42,7 +42,7 @@
             <!-- END Main Container -->
 
             <!-- Footer -->
-            @include('layouts.footer')
+            @include('dashboard.partials.footer')
         </div>
         <!-- END Page Container -->
 
@@ -55,6 +55,6 @@
         @yield('js_after')
     </body>
 
-    @include('partials.modal')
+    @include('dashboard.partials.modal')
 
 </html>

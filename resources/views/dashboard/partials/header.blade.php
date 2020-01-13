@@ -1,15 +1,13 @@
-  <!-- Header -->
-  <header id="page-header">
+<!-- Header -->
+<header id="page-header">
     <!-- Header Content -->
     <div class="content-header">
         <!-- Left Section -->
         <div class="content-header-section">
             <!-- Logo -->
             <div class="content-header-item">
-                <a class="font-w700 mr-5" href="#">
-                  <img src="{{ asset('media/favicons/favicon-32x31.png') }}" alt="">
-                  <span class="font-size-xl text-dual-primary-dark">Slash Dot Labs</span>
-                </a>
+                <a class="font-w700 mr-5" href="#"> <img src="{{ asset('media/favicons/favicon-32x31.png') }}" alt="">
+                    <span class="font-size-xl text-dual-primary-dark">Slash Dot Labs</span> </a>
             </div>
             <!-- END Logo -->
         </div>
@@ -20,27 +18,27 @@
             <!-- Header Navigation -->
             <!--Desktop Navigation, mobile navigation can be found in #sidebar-->
             <ul class="nav-main-header">
-              <li>
-                  <a href="#"><i class="si si-compass"></i>Dashboard</a>
-              </li>
-              <li>
-                  <a href="#"><i class=""></i>Home</a>
-              </li>
-              <li>
-                  <a href="#"><i class=""></i>About</a>
-              </li>
-              <li>
-                  <a href="#"><i class=""></i>Services</a>
-              </li>
-              <li>
-                  <a href="#"><i class=""></i>Hosting</a>
-              </li>
-              <li>
-                  <a href="#"><i class=""></i>Contact</a>
-              </li>
-              <li>
-                  <a href="#"><i class="fa fa-sign-out"></i>Log Out</a>
-              </li>
+                <li>
+                    <a href="#"><i class="si si-compass"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="#"><i class=""></i>Home</a>
+                </li>
+                <li>
+                    <a href="#"><i class=""></i>About</a>
+                </li>
+                <li>
+                    <a href="#"><i class=""></i>Services</a>
+                </li>
+                <li>
+                    <a href="#"><i class=""></i>Hosting</a>
+                </li>
+                <li>
+                    <a href="#"><i class=""></i>Contact</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-sign-out"></i>Log Out</a>
+                </li>
             </ul>
             <!-- END Header Navigation -->
         </div>
@@ -64,5 +62,4 @@
         </div>
     </div>
     <!-- END Header Loader -->
-</header>
-<!-- END Header -->
+</header><!-- END Header -->

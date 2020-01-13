@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,6 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * TODO: Look at how to deal with this differently
      * Where to redirect users after registration.
      * @var string
      */
@@ -80,5 +80,18 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         // TODO: use this when you don't want to redirect, signup prompt
+    }
+
+//    TODO: this is only temporary
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        die;
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 }

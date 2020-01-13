@@ -3,8 +3,8 @@
 @section('content')
 <!-- Page Content -->
 <div class="content content-full">
-    @include('partials.hero')
-    @include('partials.overview')
+    @include('dashboard.partials.hero')
+    @include('dashboard.partials.overview')
 
     <!-- Tables -->
 
@@ -153,7 +153,7 @@
     </div>
 
     <!-- User Settings Tables -->
-    @include('partials.settings')
+    @include('dashboard.partials.settings')
 
     <!-- END Tables -->
 <!-- END Page Content -->

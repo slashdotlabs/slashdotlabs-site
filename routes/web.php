@@ -12,8 +12,6 @@
 */
 
 use Illuminate\Support\Facades\Auth;
-Route::view('/signup', 'auth/signup');
-Route::view('/signin', 'auth/signin');
 
 // Dashboard routes
 Route::get('/', 'DashboardController@index')->name('dashboard');
