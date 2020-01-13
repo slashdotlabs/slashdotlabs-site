@@ -12,4 +12,5 @@
 */
 Route::resource('/', 'DashboardController');
 Route::view('/signup', 'auth/signup');
+Route::view('/signin', 'auth/signin');
 
