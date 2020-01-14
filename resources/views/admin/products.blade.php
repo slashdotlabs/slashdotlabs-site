@@ -17,7 +17,7 @@
     <div class="bg-body-light border-b">
         <div class="content py-5 text-center">
             <nav class="breadcrumb bg-body-light mb-0">
-                <a class="breadcrumb-item" href="admin_dashboard.html">Home</a>
+                <a class="breadcrumb-item" href="/admin/dashboard">Home</a>
                 <span class="breadcrumb-item active">Products</span>
             </nav>
         </div>
