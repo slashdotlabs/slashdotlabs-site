@@ -32,8 +32,11 @@
     </head>
     <body>
         <div id="page-container" class="sidebar-inverse side-scroll page-header-fixed page-header-inverse main-content-boxed">
-           <!-- Header -->
+           <!-- Sideoverlay -->
+            @include('dashboard.partials.sideoverlay')
+            <!-- Header -->
             @include('dashboard.partials.header')
+
 
          <!-- Main Container -->
             <main id="main-container">
@@ -43,6 +46,8 @@
 
             <!-- Footer -->
             @include('dashboard.partials.footer')
+
+            @include('dashboard.partials.modal')
         </div>
         <!-- END Page Container -->
 
@@ -52,9 +57,9 @@
         <!-- Laravel Scaffolding JS -->
         <script src="{{ mix('js/laravel.app.js') }}"></script>
 
+        <!-- Sweetalert -->
+        @include('sweetalert::alert')
+
         @yield('js_after')
     </body>
-
-    @include('dashboard.partials.modal')
-
 </html>

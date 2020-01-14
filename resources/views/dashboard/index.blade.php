@@ -3,10 +3,7 @@
 @section('content')
 <!-- Page Content -->
 <div class="content content-full">
-    @include('dashboard.partials.hero')
     @include('dashboard.partials.overview')
-
-    <!-- Tables -->
 
     <!-- Domains -->
     <div class="block" >
