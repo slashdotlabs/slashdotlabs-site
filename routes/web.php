@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 // Dashboard routes
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
+Route::redirect('/home', wordpress_url('/'));
+
 // Authentication routes
 Auth::routes(['verify' => true]);
 
