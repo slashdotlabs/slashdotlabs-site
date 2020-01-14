@@ -29,7 +29,7 @@
     <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
 </head>
 <body>
-<div id="page-container" class="main-content-boxed">
+<div id="page-container">
 <!-- Main Container -->
     <main id="main-container">
         @yield('content')
@@ -46,6 +46,9 @@
 
 <!-- Laravel Scaffolding JS -->
 <script src="{{ mix('js/laravel.app.js') }}"></script>
+
+<!-- Sweetalert -->
+@include('sweetalert::alert')
 
 @yield('js_after')
 </body>

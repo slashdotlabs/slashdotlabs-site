@@ -2,6 +2,7 @@
 // cWhois Domain Cart English language V3.9
 
 // Search section
+global $lang;
 $lang['CheckButton'] = "Check";
 // The next two tip lines can be left blank "" if you wish
 $lang['TipLine1'] = "Type your domain name. If no extension is selected, .com is assumed";
@@ -107,10 +108,10 @@ $lang['IdealBankList'] = "Select your bank";
 // If you require a password to be entered use filenames password and verifypassword.
 
 $cform[] = "org,Organisation,";
-$cform[] = "fname,Name,Fill out the registration form to complete your purchase";
+$cform[] = "fname,First Name,Fill out the registration form to complete your purchase";
 $cform[] = "lname,Last Name,Enter your last name";
-$cform[] = "password,Password,Please enter a strong password";
-$cform[] = "verifypassword,Verify Password, Passwords do not match";
+//$cform[] = "password,Password,Please enter a strong password";
+//$cform[] = "verifypassword,Verify Password, Passwords do not match";
 $cform[] = "str1,Address,You must enter your address";
 $cform[] = "city,City,You must enter your city";
 $cform[] = "country,Country,You must enter your country";

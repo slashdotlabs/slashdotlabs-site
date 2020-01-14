@@ -1,4 +1,4 @@
- <!-- Header Content -->
+<!-- Header Content -->
  <div class="content-header">
     <!-- Left Section -->
     <div class="content-header-section">

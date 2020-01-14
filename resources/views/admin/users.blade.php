@@ -29,7 +29,7 @@
         <h2 class="content-heading">Overview</h2>
         <div class="row gutters-tiny">
             <!-- Orders -->
-            <div class="col-md-6 col-xl-3">
+            <div class="col-md-6">
                 <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
@@ -38,8 +38,8 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0" data-toggle="countTo" data-to="39">0</div>
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">Orders</div>
+                            <div class="font-size-h2 font-w700 mb-0" data-toggle="countTo" data-to="11">0</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Customers</div>
                         </div>
                     </div>
                 </a>
@@ -47,7 +47,7 @@
             <!-- END Orders -->
 
             <!-- In Cart -->
-            <div class="col-md-6 col-xl-3">
+           <!--  <div class="col-md-6 col-xl-3">
                 <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
@@ -61,11 +61,11 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> -->
             <!-- END In Cart -->
 
             <!-- Edit Customer -->
-            <div class="col-md-6 col-xl-3">
+          <!--   <div class="col-md-6 col-xl-3">
                 <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
@@ -81,11 +81,11 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> -->
             <!-- END Edit Customer -->
 
             <!-- Remove Customer -->
-            <div class="col-md-6 col-xl-3">
+            <div class="col-md-6">
                 <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
@@ -106,257 +106,110 @@
         </div>
         <!-- END Overview -->
 
-        <!-- Addresses -->
-        <h2 class="content-heading">Addresses</h2>
-        <div class="row row-deck gutters-tiny">
-            <!-- Billing Address -->
-            <div class="col-md-6">
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Billing Address</h3>
-                    </div>
-                    <div class="block-content">
-                        <div class="font-size-lg text-black mb-5">John Smith</div>
-                        <address>
-                            5110 8th Ave<br>
-                            New York 11220<br>
-                            United States<br><br>
-                            <i class="fa fa-phone mr-5"></i> (999) 111-222222<br>
-                            <i class="fa fa-envelope-o mr-5"></i> <a href="javascript:void(0)">company@example.com</a>
-                        </address>
-                    </div>
-                </div>
-            </div>
-            <!-- END Billing Address -->
-
-            <!-- Shipping Address -->
-            <div class="col-md-6">
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Shipping Address</h3>
-                    </div>
-                    <div class="block-content">
-                        <div class="font-size-lg text-black mb-5">John Smith</div>
-                        <address>
-                            5110 8th Ave<br>
-                            New York 11220<br>
-                            United States<br><br>
-                            <i class="fa fa-phone mr-5"></i> (999) 111-222222<br>
-                            <i class="fa fa-envelope-o mr-5"></i> <a href="javascript:void(0)">company@example.com</a>
-                        </address>
-                    </div>
-                </div>
-            </div>
-            <!-- END Shipping Address -->
-        </div>
-        <!-- END Addresses -->
-
         <!-- Cart -->
-        <h2 class="content-heading">Cart</h2>
+        <h2 class="content-heading">Users</h2>
         <div class="block block-rounded">
+            <div class="block-content bg-body-light">
+
+                <!-- Search -->
+                <form action="#" method="post" onsubmit="return false;">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search Users..">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-secondary">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Search -->
+
+            </div>
+
             <div class="block-content">
-                <!-- Products Table -->
+                <!-- Orders Table -->
                 <table class="table table-borderless table-striped">
                     <thead>
                         <tr>
-                            <th style="width: 100px;">ID</th>
-                            <th class="d-none d-sm-table-cell" style="width: 120px;">Status</th>
-                            <th class="d-none d-sm-table-cell" style="width: 120px;">Submitted</th>
-                            <th>Product</th>
-                            <th class="d-none d-md-table-cell">Category</th>
-                            <th class="text-right">Value</th>
+                            <th class="d-none d-sm-table-cell">ID</th>
+                            <th class="d-none d-sm-table-cell">First Name</th>
+                            <th class="d-none d-sm-table-cell">Last Name</th>
+                            <th class="d-none d-sm-table-cell">Email</th>
+                            <th class="d-none d-sm-table-cell">Organisation</th>
+                            <th class="text-right">Remove</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.424</a>
+                            <td class="d-none d-sm-table-cell">
+                                109403
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                <span class="badge badge-danger">Out of Stock</span>
+                                Allan
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                2017/09/27                        </td>
-                            <td>
-                                <a href="be_pages_ecom_product_edit.html">Product #24</a>
+                               Vikiru
                             </td>
-                            <td class="d-none d-md-table-cell">
-                                <a href="be_pages_ecom_products.html">Hobby</a>
+                            <td class="d-none d-sm-table-cell">
+                                Allan@gmail.com
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                General Motors
                             </td>
                             <td class="text-right">
-                                <span class="text-black">$25</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.423</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                <span class="badge badge-success">Available</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                2017/09/26                        </td>
-                            <td>
-                                <a href="be_pages_ecom_product_edit.html">Product #23</a>
-                            </td>
-                            <td class="d-none d-md-table-cell">
-                                <a href="be_pages_ecom_products.html">Mobile Phones</a>
-                            </td>
-                            <td class="text-right">
-                                <span class="text-black">$71</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.422</a>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                <span class="badge badge-success">Available</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                2017/09/25                        </td>
-                            <td>
-                                <a href="be_pages_ecom_product_edit.html">Product #22</a>
-                            </td>
-                            <td class="d-none d-md-table-cell">
-                                <a href="be_pages_ecom_products.html">Auto - Moto</a>
-                            </td>
-                            <td class="text-right">
-                                <span class="text-black">$90</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- END Products Table -->
-            </div>
-        </div>
-        <!-- END Cart -->
-
-        <!-- Past Orders -->
-        <h2 class="content-heading">Past Orders</h2>
-        <div class="block block-rounded">
-            <div class="block-content">
-                <!-- Orders Table -->
-                <table class="table table-borderless table-sm table-striped">
-                    <thead>
-                        <tr>
-                            <th style="width: 100px;">ID</th>
-                            <th style="width: 120px;">Status</th>
-                            <th class="d-none d-sm-table-cell" style="width: 120px;">Submitted</th>
-                            <th class="d-none d-sm-table-cell">Customer</th>
-                            <th class="text-right">Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_order.html">ORD.245</a>
-                            </td>
-                            <td>
-                                <span class="badge badge-success">Completed</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                2017/10/27                        </td>
-                            <td class="d-none d-sm-table-cell">
-                                <a href="be_pages_ecom_customer.html">John Smith</a>
-                            </td>
-                            <td class="text-right">
-                                <span class="text-black">$830</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_order.html">ORD.907</a>
-                            </td>
-                            <td>
-                                <span class="badge badge-success">Completed</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                2017/10/26                        </td>
-                            <td class="d-none d-sm-table-cell">
-                                <a href="be_pages_ecom_customer.html">John Smith</a>
-                            </td>
-                            <td class="text-right">
-                                <span class="text-black">$943</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_order.html">ORD.613</a>
-                            </td>
-                            <td>
-                                <span class="badge badge-success">Completed</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                2017/10/25                        </td>
-                            <td class="d-none d-sm-table-cell">
-                                <a href="be_pages_ecom_customer.html">John Smith</a>
-                            </td>
-                            <td class="text-right">
-                                <span class="text-black">$688</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_order.html">ORD.206</a>
-                            </td>
-                            <td>
-                                <span class="badge badge-success">Completed</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                2017/10/24                        </td>
-                            <td class="d-none d-sm-table-cell">
-                                <a href="be_pages_ecom_customer.html">John Smith</a>
-                            </td>
-                            <td class="text-right">
-                                <span class="text-black">$635</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_order.html">ORD.835</a>
-                            </td>
-                            <td>
-                                <span class="badge badge-success">Completed</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                2017/10/23                        </td>
-                            <td class="d-none d-sm-table-cell">
-                                <a href="be_pages_ecom_customer.html">John Smith</a>
-                            </td>
-                            <td class="text-right">
-                                <span class="text-black">$306</span>
+                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-order" >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <!-- END Orders Table -->
-            </div>
-        </div>
-        <!-- END Past Orders -->
 
-        <!-- Private Notes -->
-        <h2 class="content-heading">Private Notes</h2>
-        <div class="block block-rounded">
-            <div class="block-content">
-                <div class="alert alert-info alert-dismissable" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <p class="mb-0"><i class="fa fa-info-circle mr-5"></i> This note is only for internal use and will not be displayed to the customer.</p>
-                </div>
-                <form action="be_pages_ecom_customer.html" method="post" onsubmit="return false;">
-                    <div class="form-group row mb-10">
-                        <div class="col-12">
-                            <textarea class="form-control" id="ecom-customer-note" name="ecom-customer-note" placeholder="Add a private note.." rows="4"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-alt-primary">Submit</button>
-                    </div>
-                </form>
+                <!-- Navigation -->
+                <nav aria-label="Orders navigation">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)" aria-label="Previous">
+                                <span aria-hidden="true">
+                                    <i class="fa fa-angle-left"></i>
+                                </span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="javascript:void(0)">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">2</a>
+                        </li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="javascript:void(0)">...</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">8</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">9</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)" aria-label="Next">
+                                <span aria-hidden="true">
+                                    <i class="fa fa-angle-right"></i>
+                                </span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- END Navigation -->
             </div>
         </div>
-        <!-- END Private Notes -->
+        <!-- END Orders -->
+        <!-- END Cart -->
+
+
     </div>
 @endsection

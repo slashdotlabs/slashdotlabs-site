@@ -106,7 +106,7 @@ $dtd[]=".trd.br,whois.nic.br,no match,0";
 $dtd[]=".vet.br,whois.nic.br,no match,0";
 $dtd[]=".zlg.br,whois.nic.br,no match,0";
 $dtd[]=".br,whois.nic.br,no match,0";
-$dtd[]=".by,*bywhois,is available for registration,0"; 
+$dtd[]=".by,*bywhois,is available for registration,0";
 $dtd[]=".com.bz,whois.belizenic.bz,nomatch,0";
 $dtd[]=".net.bz,whois.belizenic.bz,nomatch,0";
 $dtd[]=".org.bz,whois.belizenic.bz,nomatch,0";
@@ -666,13 +666,13 @@ $dtd[]=".abogado,ns,not found,0";
 $dtd[]=".academy,whois.donuts.co,domain not found,0";
 $dtd[]=".accountants,whois.donuts.co,domain not found,0";
 $dtd[]=".actor,whois.unitedtld.com,domain not found,0";
-$dtd[]=".agency,whois.donuts.co,domain not found,0"; 
-$dtd[]=".airforce,whois.unitedtld.com,domain not found,0"; 
-$dtd[]=".alsace,whois-alsace.nic.fr,object does not exist,0"; 
-$dtd[]=".amsterdam,whois.nic.amsterdam,domain status: free,0"; 
-$dtd[]=".apartments,whois.donuts.co,domain not found,0"; 
-$dtd[]=".archi,whois.ksregistry.net,object does not exist,0"; 
-$dtd[]=".army,whois.rightside.co,domain not found,0"; 
+$dtd[]=".agency,whois.donuts.co,domain not found,0";
+$dtd[]=".airforce,whois.unitedtld.com,domain not found,0";
+$dtd[]=".alsace,whois-alsace.nic.fr,object does not exist,0";
+$dtd[]=".amsterdam,whois.nic.amsterdam,domain status: free,0";
+$dtd[]=".apartments,whois.donuts.co,domain not found,0";
+$dtd[]=".archi,whois.ksregistry.net,object does not exist,0";
+$dtd[]=".army,whois.rightside.co,domain not found,0";
 $dtd[]=".associates,whois.donuts.co,domain not found,0";
 $dtd[]=".auction,whois.unitedtld.com,domain not found,0";
 $dtd[]=".audio,whois.uniregistry.net,is available for registration,0";
@@ -680,20 +680,20 @@ $dtd[]=".bar,whois.nic.bar,domain not found,0";
 $dtd[]=".bargains,whois.donuts.co,domain not found,0";
 $dtd[]=".beer,whois-dub.mm-registry.com,not registered,0";
 $dtd[]=".bid,whois.nic.bid,not found,0";
-$dtd[]=".bike,whois.donuts.co,domain not found,0";   
-$dtd[]=".brussels,whois.nic.brussels,does not exist,0";   
-$dtd[]=".build,whois.nic.build,no data found,0";    
+$dtd[]=".bike,whois.donuts.co,domain not found,0";
+$dtd[]=".brussels,whois.nic.brussels,does not exist,0";
+$dtd[]=".build,whois.nic.build,no data found,0";
 $dtd[]=".builders,whois.donuts.co,domain not found,0";
-$dtd[]=".cab,whois.donuts.co,domain not found,0";    
-$dtd[]=".camera,whois.donuts.co,domain not found,0"; 
-$dtd[]=".camp,whois.donuts.co,domain not found,0";   
+$dtd[]=".cab,whois.donuts.co,domain not found,0";
+$dtd[]=".camera,whois.donuts.co,domain not found,0";
+$dtd[]=".camp,whois.donuts.co,domain not found,0";
 $dtd[]=".cards,whois.donuts.co,domain not found,0";
 $dtd[]=".care,whois.donuts.co,domain not found,0";
 $dtd[]=".careers,whois.donuts.co,domain not found,0";
 $dtd[]=".cash,whois.donuts.co,domain not found,0";
 $dtd[]=".cat,whois.cat,not found,0";
 $dtd[]=".catering,whois.donuts.co,domain not found,0";
-$dtd[]=".center,whois.donuts.co,domain not found,0"; 
+$dtd[]=".center,whois.donuts.co,domain not found,0";
 $dtd[]=".cheap,whois.donuts.co,domain not found,0";
 $dtd[]=".christmas,whois.uniregistry.net,is available for registration,0";
 $dtd[]=".church,whois.donuts.co,domain not found,0";
@@ -705,8 +705,8 @@ $dtd[]=".clinic,whois.donuts.co,domain not found,0";
 $dtd[]=".clothing,whois.donuts.co,domain not found,0";
 $dtd[]=".club,whois.nic.club,not found,0";
 $dtd[]=".cologne,whois-fe1.pdt.cologne.tango.knipp.de,no matching objects found,0";
-$dtd[]=".codes,whois.donuts.co,domain not found,0";  
-$dtd[]=".coffee,whois.donuts.co,domain not found,0"; 
+$dtd[]=".codes,whois.donuts.co,domain not found,0";
+$dtd[]=".coffee,whois.donuts.co,domain not found,0";
 $dtd[]=".company,whois.donuts.co,domain not found,0";
 $dtd[]=".community,whois.donuts.co,domain not found,0";
 $dtd[]=".computer,whois.donuts.co,domain not found,0";
@@ -732,23 +732,23 @@ $dtd[]=".directory,whois.donuts.co,domain not found,0";
 $dtd[]=".discount,whois.donuts.co,domain not found,0";
 $dtd[]=".domains,whois.donuts.co,domain not found,0";
 $dtd[]=".education,whois.donuts.co,domain not found,0";
-$dtd[]=".email,whois.donuts.co,domain not found,0";  
+$dtd[]=".email,whois.donuts.co,domain not found,0";
 $dtd[]=".engineer,whois.rightside.co,domain not found,0";
-$dtd[]=".engineering,whois.donuts.co,domain not found,0";  
+$dtd[]=".engineering,whois.donuts.co,domain not found,0";
 $dtd[]=".enterprises,whois.donuts.co,domain not found,0";
 $dtd[]=".equipment,whois.donuts.co,domain not found,0";
-$dtd[]=".estate,whois.donuts.co,domain not found,0"; 
-$dtd[]=".events,whois.donuts.co,domain not found,0";  
-$dtd[]=".exchange,whois.donuts.co,domain not found,0";  
-$dtd[]=".expert,whois.donuts.co,domain not found,0"; 
+$dtd[]=".estate,whois.donuts.co,domain not found,0";
+$dtd[]=".events,whois.donuts.co,domain not found,0";
+$dtd[]=".exchange,whois.donuts.co,domain not found,0";
+$dtd[]=".expert,whois.donuts.co,domain not found,0";
 $dtd[]=".exposed,whois.donuts.co,domain not found,0";
-$dtd[]=".fail,whois.donuts.co,domain not found,0";  
-$dtd[]=".farm,whois.donuts.co,domain not found,0";   
-$dtd[]=".finance,whois.donuts.co,domain not found,0";  
-$dtd[]=".financial,whois.donuts.co,domain not found,0";  
-$dtd[]=".fish,whois.donuts.co,domain not found,0";  
+$dtd[]=".fail,whois.donuts.co,domain not found,0";
+$dtd[]=".farm,whois.donuts.co,domain not found,0";
+$dtd[]=".finance,whois.donuts.co,domain not found,0";
+$dtd[]=".financial,whois.donuts.co,domain not found,0";
+$dtd[]=".fish,whois.donuts.co,domain not found,0";
 $dtd[]=".fishing,whois-dub.mm-registry.com,not registered,0";
-$dtd[]=".fitness,whois.donuts.co,domain not found,0";  
+$dtd[]=".fitness,whois.donuts.co,domain not found,0";
 $dtd[]=".flights,whois.donuts.co,domain not found,0";
 $dtd[]=".florist,whois.donuts.co,domain not found,0";
 $dtd[]=".forsale,whois.rightside.co,domain not found,0";
@@ -759,27 +759,27 @@ $dtd[]=".futbol,whois.unitedtld.com,domain not found,0";
 $dtd[]=".gallery,whois.donuts.co,domain not found,0";
 $dtd[]=".gifts,whois.uniregistry.net,is available for registration,0";
 $dtd[]=".gives,whois.rightside.co,domain not found,0";
-$dtd[]=".glass,whois.donuts.co,domain not found,0";  
-$dtd[]=".global,whois.afilias-srs.net,not found,0";  
+$dtd[]=".glass,whois.donuts.co,domain not found,0";
+$dtd[]=".global,whois.afilias-srs.net,not found,0";
 $dtd[]=".graphics,whois.donuts.co,domain not found,0";
 $dtd[]=".gratis,whois.donuts.co,domain not found,0";
 $dtd[]=".gripe,whois.donuts.co,domain not found,0";
 $dtd[]=".guide,whois.donuts.co,domain not found,0";
-$dtd[]=".guru,whois.donuts.co,domain not found,0";   
+$dtd[]=".guru,whois.donuts.co,domain not found,0";
 $dtd[]=".haus,whois.unitedtld.com,domain not found,0";
-$dtd[]=".healthcare,whois.donuts.co,domain not found,0";   
+$dtd[]=".healthcare,whois.donuts.co,domain not found,0";
 $dtd[]=".help,whois.uniregistry.net,is available for registration,0";
 $dtd[]=".hiphop,whois.uniregistry.net,is available for registration,0";
-$dtd[]=".hiv,whois.afilias-srs.net,not found,0";  
+$dtd[]=".hiv,whois.afilias-srs.net,not found,0";
 $dtd[]=".holdings,whois.donuts.co,domain not found,0";
 $dtd[]=".holiday,whois.donuts.co,domain not found,0";
 $dtd[]=".horse,whois-dub.mm-registry.com,not registered,0";
 $dtd[]=".host,whois.nic.host,domain not found,0";
 $dtd[]=".hosting,whois.uniregistry.net,is available for registration,0";
-$dtd[]=".house,whois.donuts.co,domain not found,0";  
-$dtd[]=".how,domain-registry-whois.l.google.com,domain not found,0";  
+$dtd[]=".house,whois.donuts.co,domain not found,0";
+$dtd[]=".how,domain-registry-whois.l.google.com,domain not found,0";
 $dtd[]=".industries,whois.donuts.co,domain not found,0";
-$dtd[]=".ink,whois.donuts.co,domain not found,0";    
+$dtd[]=".ink,whois.donuts.co,domain not found,0";
 $dtd[]=".institute,whois.donuts.co,domain not found,0";
 $dtd[]=".international,whois.donuts.co,domain not found,0";
 $dtd[]=".insure,whois.donuts.co,domain not found,0";
@@ -787,39 +787,39 @@ $dtd[]=".investments,whois.donuts.co,domain not found,0";
 $dtd[]=".joburg,joburg-whois.registry.net.za,available,0";
 $dtd[]=".kitchen,whois.donuts.co,domain not found,0";
 $dtd[]=".kiwi,whois.nic.kiwi,not registered,0";
-$dtd[]=".land,whois.donuts.co,domain not found,0";   
+$dtd[]=".land,whois.donuts.co,domain not found,0";
 $dtd[]=".lawyer,whois.rightside.co,domain not found,0";
 $dtd[]=".lease,whois.donuts.co,domain not found,0";
 $dtd[]=".legal,whois.donuts.co,domain not found,0";
 $dtd[]=".life,whois.donuts.co,domain not found,0";
 $dtd[]=".lighting,whois.donuts.co,domain not found,0";
 $dtd[]=".limited,whois.donuts.co,domain not found,0";
-$dtd[]=".limo,whois.donuts.co,domain not found,0";   
+$dtd[]=".limo,whois.donuts.co,domain not found,0";
 $dtd[]=".loans,whois.donuts.co,domain not found,0";
-$dtd[]=".london,whois-lon.mm-registry.com,not registered,0";   
-$dtd[]=".luxury,whois.donuts.co,domain not found,0"; 
-$dtd[]=".maison,whois.donuts.co,domain not found,0"; 
+$dtd[]=".london,whois-lon.mm-registry.com,not registered,0";
+$dtd[]=".luxury,whois.donuts.co,domain not found,0";
+$dtd[]=".maison,whois.donuts.co,domain not found,0";
 $dtd[]=".management,whois.donuts.co,domain not found,0";
 $dtd[]=".market,whois.rightside.co,domain not found,0";
 $dtd[]=".marketing,whois.donuts.co,domain not found,0";
 $dtd[]=".media,whois.donuts.co,domain not found,0";
 $dtd[]=".melbourne,whois.aridnrs.net.au,no data found,0";
-$dtd[]=".menu,whois.nic.menu,no data found,0";      
-$dtd[]=".money,whois.donuts.co,domain not found,0";  
+$dtd[]=".menu,whois.nic.menu,no data found,0";
+$dtd[]=".money,whois.donuts.co,domain not found,0";
 $dtd[]=".mortgage,whois.rightside.co,domain not found,0";
-$dtd[]=".network,whois.donuts.co,domain not found,0";  
-$dtd[]=".ninja,whois.donuts.co,domain not found,0";  
-$dtd[]=".nyc,whois.nic.nyc,not found,0";  
-$dtd[]=".paris,whois-paris.nic.fr,requested domain cannot be found,0";  
+$dtd[]=".network,whois.donuts.co,domain not found,0";
+$dtd[]=".ninja,whois.donuts.co,domain not found,0";
+$dtd[]=".nyc,whois.nic.nyc,not found,0";
+$dtd[]=".paris,whois-paris.nic.fr,requested domain cannot be found,0";
 $dtd[]=".partners,whois.donuts.co,domain not found,0";
 $dtd[]=".parts,whois.donuts.co,domain not found,0";
 $dtd[]=".physio,whois.nic.physio,no data found,0";
-$dtd[]=".pictures,whois.donuts.co,domain not found,0";   
-$dtd[]=".pink,whois.donuts.co,domain not found,0";   
-$dtd[]=".pizza,whois.donuts.co,domain not found,0";   
+$dtd[]=".pictures,whois.donuts.co,domain not found,0";
+$dtd[]=".pink,whois.donuts.co,domain not found,0";
+$dtd[]=".pizza,whois.donuts.co,domain not found,0";
 $dtd[]=".photography,whois.donuts.co,domain not found,0";
-$dtd[]=".photos,whois.donuts.co,domain not found,0"; 
-$dtd[]=".place,whois.donuts.co,domain not found,0";   
+$dtd[]=".photos,whois.donuts.co,domain not found,0";
+$dtd[]=".place,whois.donuts.co,domain not found,0";
 $dtd[]=".plumbing,whois.donuts.co,domain not found,0";
 $dtd[]=".press,whois.nic.press,domain not found,0";
 $dtd[]=".productions,whois.donuts.co,domain not found,0";
@@ -829,22 +829,22 @@ $dtd[]=".pub,whois.unitedtld.com,domain not found,0";
 $dtd[]=".quebec,whois.nic.quebec,no matching objects found,0";
 $dtd[]=".recipes,whois.donuts.co,domain not found,0";
 $dtd[]=".rehab,whois.rightside.co,domain not found,0";
-$dtd[]=".rentals,whois.donuts.co,domain not found,0";   
-$dtd[]=".repair,whois.donuts.co,domain not found,0"; 
-$dtd[]=".report,whois.donuts.co,domain not found,0";   
+$dtd[]=".rentals,whois.donuts.co,domain not found,0";
+$dtd[]=".repair,whois.donuts.co,domain not found,0";
+$dtd[]=".report,whois.donuts.co,domain not found,0";
 $dtd[]=".republican,whois.rightside.co,domain not found,0";
 $dtd[]=".rest,whois.centralnic.com,domain not found,0";
-$dtd[]=".restaurant,whois.donuts.co,domain not found,0";   
+$dtd[]=".restaurant,whois.donuts.co,domain not found,0";
 $dtd[]=".reviews,whois.unitedtld.com,domain not found,0";
 $dtd[]=".rocks,whois.unitedtld.com,domain not found,0";
 $dtd[]=".rodeo,whois-dub.mm-registry.com,not registered,0";
-$dtd[]=".services,whois.donuts.co,domain not found,0";   
+$dtd[]=".services,whois.donuts.co,domain not found,0";
 $dtd[]=".sexy,whois.uniregistry.net,is available for registration,0";
-$dtd[]=".shoes,whois.donuts.co,domain not found,0";  
+$dtd[]=".shoes,whois.donuts.co,domain not found,0";
 $dtd[]=".singles,whois.donuts.co,domain not found,0";
 $dtd[]=".social,whois.unitedtld.com,domain not found,0";
 $dtd[]=".software,whois.rightside.co,domain not found,0";
-$dtd[]=".solar,whois.donuts.co,domain not found,0";  
+$dtd[]=".solar,whois.donuts.co,domain not found,0";
 $dtd[]=".solutions,whois.donuts.co,domain not found,0";
 $dtd[]=".supplies,whois.donuts.co,domain not found,0";
 $dtd[]=".supply,whois.donuts.co,domain not found,0";
@@ -855,55 +855,55 @@ $dtd[]=".systems,whois.donuts.co,domain not found,0";
 $dtd[]=".tattoo,whois.uniregistry.net,is available for registration,0";
 $dtd[]=".tax,whois.donuts.co,domain not found,0";
 $dtd[]=".technology,whois.donuts.co,domain not found,0";
-$dtd[]=".tips,whois.donuts.co,domain not found,0";   
-$dtd[]=".today,whois.donuts.co,domain not found,0";  
-$dtd[]=".tokyo,whois.nic.tokyo,domain not found,0";  
+$dtd[]=".tips,whois.donuts.co,domain not found,0";
+$dtd[]=".today,whois.donuts.co,domain not found,0";
+$dtd[]=".tokyo,whois.nic.tokyo,domain not found,0";
 $dtd[]=".tools,whois.donuts.co,domain not found,0";
 $dtd[]=".town,whois.donuts.co,domain not found,0";
 $dtd[]=".toys,whois.donuts.co,domain not found,0";
 $dtd[]=".trade,whois.nic.trade,not found,0";
 $dtd[]=".training,whois.donuts.co,domain not found,0";
 $dtd[]=".university,whois.donuts.co,domain not found,0";
-$dtd[]=".uno,whois.uno.nic,not found,0";             
+$dtd[]=".uno,whois.uno.nic,not found,0";
 $dtd[]=".vacations,whois.donuts.co,domain not found,0";
-$dtd[]=".vegas,whois.afilias-srs.net,not found,0";  
+$dtd[]=".vegas,whois.afilias-srs.net,not found,0";
 $dtd[]=".ventures,whois.donuts.co,domain not found,0";
 $dtd[]=".vet,whois.rightside.co,domain not found,0";
-$dtd[]=".viajes,whois.donuts.co,domain not found,0"; 
-$dtd[]=".villas,whois.donuts.co,domain not found,0"; 
+$dtd[]=".viajes,whois.donuts.co,domain not found,0";
+$dtd[]=".villas,whois.donuts.co,domain not found,0";
 $dtd[]=".video,whois.rightside.co,domain not found,0";
-$dtd[]=".vision,whois.donuts.co,domain not found,0"; 
-$dtd[]=".vlaanderen,whois.nic.vlaanderen,does not exist,0"; 
+$dtd[]=".vision,whois.donuts.co,domain not found,0";
+$dtd[]=".vlaanderen,whois.nic.vlaanderen,does not exist,0";
 $dtd[]=".vodka,whois-dub.mm-registry.com,not registered,0";
-$dtd[]=".voyage,whois.donuts.co,domain not found,0"; 
-$dtd[]=".wales,whois.nic.wales,not been registered,0"; 
-$dtd[]=".watch,whois.donuts.co,domain not found,0"; 
-$dtd[]=".webcam,whois.nic.webcam,not found,0"; 
-$dtd[]=".website,whois.nic.website,domain not found,0"; 
+$dtd[]=".voyage,whois.donuts.co,domain not found,0";
+$dtd[]=".wales,whois.nic.wales,not been registered,0";
+$dtd[]=".watch,whois.donuts.co,domain not found,0";
+$dtd[]=".webcam,whois.nic.webcam,not found,0";
+$dtd[]=".website,whois.nic.website,domain not found,0";
 $dtd[]=".wedding,whois-dub.mm-registry.com,not registered,0";
-$dtd[]=".wiki,whois.nic.wiki,domain not found,0"; 
-$dtd[]=".work,whois-dub.mm-registry.com,not registered,0"; 
-$dtd[]=".works,whois.donuts.co,domain not found,0"; 
-$dtd[]=".world,whois.donuts.co,domain not found,0"; 
-$dtd[]=".wtf,whois.donuts.co,domain not found,0"; 
-$dtd[]=".xxx,whois.nic.xxx,not found,0";             
-$dtd[]=".xyz,whois.nic.xyz,domain not found,0";             
-$dtd[]=".zone,whois.donuts.co,domain not found,0"; 
-$dtd[]=".gift,whois.uniregistry.net,is available,0"; 
+$dtd[]=".wiki,whois.nic.wiki,domain not found,0";
+$dtd[]=".work,whois-dub.mm-registry.com,not registered,0";
+$dtd[]=".works,whois.donuts.co,domain not found,0";
+$dtd[]=".world,whois.donuts.co,domain not found,0";
+$dtd[]=".wtf,whois.donuts.co,domain not found,0";
+$dtd[]=".xxx,whois.nic.xxx,not found,0";
+$dtd[]=".xyz,whois.nic.xyz,domain not found,0";
+$dtd[]=".zone,whois.donuts.co,domain not found,0";
+$dtd[]=".gift,whois.uniregistry.net,is available,0";
 $dtd[]=".guitars,whois.uniregistry.net,is available,0";
-$dtd[]=".link,whois.uniregistry.net,is available,0"; 
+$dtd[]=".link,whois.uniregistry.net,is available,0";
 $dtd[]=".photo,whois.uniregistry.net,is available,0";
-$dtd[]=".pics,whois.uniregistry.net,is available,0"; 
+$dtd[]=".pics,whois.uniregistry.net,is available,0";
 $dtd[]=".tattoo,whois.uniregistry.net,is available,0";
-$dtd[]=".sexy,whois.uniregistry.net,is available,0"; 
-$dtd[]=".buzz,whois.nic.buzz,not found,0";           
-$dtd[]=".blue,whois.afilias.net,not found,0";        
-$dtd[]=".red,whois.afilias.net,not found,0";         
-$dtd[]=".pink,whois.afilias.net,not found,0";        
-$dtd[]=".black,whois.afilias.net,not found,0";       
-$dtd[]=".kim,whois.afilias.net,not found,0";         
-$dtd[]=".meet,whois.afilias.net,not found,0";        
-$dtd[]=".shiksha,whois.afilias.net,not found,0"; 
+$dtd[]=".sexy,whois.uniregistry.net,is available,0";
+$dtd[]=".buzz,whois.nic.buzz,not found,0";
+$dtd[]=".blue,whois.afilias.net,not found,0";
+$dtd[]=".red,whois.afilias.net,not found,0";
+$dtd[]=".pink,whois.afilias.net,not found,0";
+$dtd[]=".black,whois.afilias.net,not found,0";
+$dtd[]=".kim,whois.afilias.net,not found,0";
+$dtd[]=".meet,whois.afilias.net,not found,0";
+$dtd[]=".shiksha,whois.afilias.net,not found,0";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @error_reporting(E_ERROR);
@@ -945,7 +945,7 @@ function cWhois($dom,$domt,&$RegDetails,$turing="",$turingused=1)
     $verifyhash=md5($_SESSION['ses_cwhoishashkey'].$dom.$domt);
     if ($turing==$verifyhash)
     {
-      $turingmatch=true; 
+      $turingmatch=true;
     }
     if (!$turingmatch)
       return(4);
@@ -989,7 +989,7 @@ function cWhois($dom,$domt,&$RegDetails,$turing="",$turingused=1)
           break;
         }
       }
-    }    
+    }
     if ($found==0)
     {
       return(2); // Domain extension not recognised
@@ -1014,7 +1014,7 @@ function cWhois($dom,$domt,&$RegDetails,$turing="",$turingused=1)
   // Check for valid domain name
   // If domain supports idn then only check if not IDN type
   //  $dom = utf8_encode($dom);
-  $idndom = $IDN->encode($dom.$domt);	
+  $idndom = $IDN->encode($dom.$domt);
   if ( substr(strtolower($idndom),0,4) != "xn--" )
   {
     if (1!=CheckValidDomain($dom,$domt))
@@ -1028,7 +1028,7 @@ function cWhois($dom,$domt,&$RegDetails,$turing="",$turingused=1)
   if (substr($serv,0,1)=="*")
   {
     $func=substr($serv,1,strlen($serv)-1);
-    return($func($dom,$domt,$RegDetails)); // Return direct from handling function    
+    return($func($dom,$domt,$RegDetails)); // Return direct from handling function
   }
   // If no whois server we can try a DNS check for a name server.
   if (strtolower(substr($serv,0,2))=="ns")
@@ -1037,7 +1037,7 @@ function cWhois($dom,$domt,&$RegDetails,$turing="",$turingused=1)
       $RegDetails[]="Whois data not available";
     if (@checkdnsrr($dom.$domt,"NS")==false)
       return(0);
-    return(1);  
+    return(1);
   }
   // Connect using normal whois server method
   $noserv2=0;
@@ -1142,7 +1142,7 @@ function wh($serv,$dom,$domt,&$regdet,&$buf,$fulllookup=true)
     $port=3434;
   $connection=@fsockopen($serv,$port,$errorno,$errordesc,$timeout);
   if ($connection)
-  {   
+  {
 //		stream_set_timeout($connection, $timeout);
     // If necessary create punycode from domain name
     if (($domt==".no") || ($domt==".ch") || ($domt==".li") || ($domt==".at") || ($domt==".ac.at") || ($domt==".co.at") || ($domt==".gv.at") || ($domt==".or.at") || ($domt==".se") || ($domt==".com") || ($domt==".net") || ($domt==".name"))
@@ -1152,7 +1152,7 @@ function wh($serv,$dom,$domt,&$regdet,&$buf,$fulllookup=true)
 //	  	exit;
 	  if ((($domt==".com") || ($domt==".net")) && ($serv=="whois.crsnic.net"))
     	fputs($connection,"=$idndom\r\n");
-    else	
+    else
     	fputs($connection,"$idndom\r\n");
     	$handled=true;
     }
@@ -1165,17 +1165,17 @@ function wh($serv,$dom,$domt,&$regdet,&$buf,$fulllookup=true)
 //    {
 //    	$handled=true;
 //    	fputs($connection,"=$dom$domt\r\n");
-//    }	
+//    }
     if((substr($domt,strlen($domt)-3,3)==".jp") && ($forceenglish==true))
     {
     	fputs($connection,"$dom$domt /e\r\n");
       $handled=true;
-  	} 
+  	}
     if((substr($domt,strlen($domt)-3,3)==".dk") && ($fulllookup==true))
     {
     	fputs($connection," --show-handles $dom$domt\r\n");
       $handled=true;
-  	} 
+  	}
     if ($handled==false)
     {
     	fputs($connection,"$dom$domt\r\n");
@@ -1296,7 +1296,7 @@ function CheckValidDomain($dom,$domt)
     if (strlen($dom)<=2)
       return(0);
     if (strlen($dom)>63)
-      return(0);      
+      return(0);
   }
   // generic string of allowed characters
  	$validmask="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
@@ -1397,7 +1397,7 @@ function sendToHost2($host,$method,$path,$data,&$buf,$useragent=0)
  	 }
    $buf .= $buf1;
 	}
- 	while (true);  	
+ 	while (true);
   fclose($fp);
   return $buf;
 }
@@ -1496,7 +1496,7 @@ function eswhois($dom,$domt,&$regdet)
   $xmlcheck.="<clTRID>AR-12340</clTRID>\n";
   $xmlcheck.="</command>\n";
   $xmlcheck.="</epp>\n";
-  
+
   $xmlinfo ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
   $xmlinfo.="<epp xmlns=\"urn:ietf:params:xml:ns:epp-1.0\"\n";
   $xmlinfo.="xmlns:domain=\"urn:ietf:params:xml:ns:domain-1.0\"\n";
@@ -1516,7 +1516,7 @@ function eswhois($dom,$domt,&$regdet)
   $xmlinfo.="<clTRID>AR-12340</clTRID>\n";
   $xmlinfo.="</command>\n";
   $xmlinfo.="</epp>\n";
-  if ($regdet=="*")	
+  if ($regdet=="*")
   {
     $regdet="";
     if (postxml('ar.nic.es','/agente/servlet/ws_esnic',$xmlcheck,$buf))
@@ -1526,18 +1526,18 @@ function eswhois($dom,$domt,&$regdet)
       if (is_integer(strpos(strtolower($a),"avail=\"false\"")))
         return(1); // Domain is registered
       else
-        return(0); // Domain available; 
+        return(0); // Domain available;
     }
     else
-      return(5); 
-  }    
+      return(5);
+  }
   else
-  {    
+  {
     $regdet="";
     if (postxml('ar.nic.es','/agente/servlet/ws_esnic',$xmlcheck,$buf))
     {
       $a=getxmldata($buf,"domain:chkData");
-      $a=getxmldata($a,"domain:cd");  
+      $a=getxmldata($a,"domain:cd");
       if (is_integer(strpos(strtolower($a),"avail=\"false\"")))
       {
         if (postxml('ar.nic.es','/agente/servlet/ws_esnic',$xmlinfo,$buf))
@@ -1548,9 +1548,9 @@ function eswhois($dom,$domt,&$regdet)
         }
         else
           return(5);  // Info xml request failed
-      }  
+      }
       else
-        return(0); // Domain available; 
+        return(0); // Domain available;
     }
     else
       return(5);  // Check xml request failed
@@ -1570,7 +1570,7 @@ function postxml($host,$path,$data,&$buf)
   fputs($fp, $data);
  	$buf=fread($fp,100000);
   fclose($fp);
-  return (true);  
+  return (true);
 }
 
 function fmwhois($dom,$domt,&$regdet)
@@ -1597,7 +1597,7 @@ function fmwhois($dom,$domt,&$regdet)
     if (!($fh=@fopen("http://www.dot.fm/whois.cfm?domain=".$dom.$domt,"r")))
     {
       $regdet[]="Whois data not available";
-      return(1);   
+      return(1);
     }
     $buf="";
     do
@@ -1615,7 +1615,7 @@ function fmwhois($dom,$domt,&$regdet)
 	  $buf=strip_tags($buf);
 	  $buf=trim($buf);
 	  $regdet=explode("\n",$buf);
-    return(1);    
+    return(1);
   }
   if (false!==$pos=strpos(strtolower($buf),"1st year* ="))
   {
@@ -1753,7 +1753,7 @@ function bewhois($dom,$domt,&$regdet)
 {
   $IDN = new idna_convert();
 //  $dom = utf8_encode($dom);
-  $idndom = $IDN->encode($dom.$domt);	
+  $idndom = $IDN->encode($dom.$domt);
   if ($regdet=="*")
   {
 	  $regdet="";
@@ -2106,7 +2106,7 @@ function euwhois($dom,$domt,&$regdet)
 function ukwhois($dom,$domt,&$regdet)
 {
   $regdet="";
-  $clientip=trim(strtok($_SERVER['REMOTE_ADDR'],",")); 
+  $clientip=trim(strtok($_SERVER['REMOTE_ADDR'],","));
   $hostname=gethostbyaddr(trim(strtok($_SERVER['REMOTE_ADDR'],",")));
   if ($hostname==$clientip)
     $hostname="unresolvable";
@@ -2142,7 +2142,7 @@ function ukwhois($dom,$domt,&$regdet)
   }
   else
     return(5);
-} 
+}
 
 function bawhois($dom,$domt,&$regdet)
 {
@@ -2152,7 +2152,7 @@ function bawhois($dom,$domt,&$regdet)
   if ($domt==".gov.ba") $domtnum="4";
   if ($domt==".mil.ba") $domtnum="5";
   if ($domt==".edu.ba") $domtnum="6";
-  if ($domt==".unsa.ba") $domtnum="7"; 
+  if ($domt==".unsa.ba") $domtnum="7";
   $regdet="";
   if (!($fh=@fopen("http://www.nic.ba/lat/whois/index.php?wun=1&naziv=".$dom."&ekstenzija=".$domtnum,"r")))
   {
@@ -2177,25 +2177,25 @@ function bawhois($dom,$domt,&$regdet)
     return(0);
   }
   else
-  {    
+  {
 		$regdet[]=$dom.$domt." is registered";
 		$regdet[]="Full whois contact data not available for $domt domains";
-    return(1);    
-  }        
+    return(1);
+  }
 }
 
 function dewhois($dom,$domt,&$regdet)
 {
   $IDN = new idna_convert();
 //  $dom = utf8_encode($dom);
-  $idndom = $IDN->encode($dom.$domt);	
+  $idndom = $IDN->encode($dom.$domt);
   if ($regdet=="*")
   {
 	  $regdet="";
 	  $connection=@fsockopen("whois.denic.de",43,$errorno,$errordesc);
 	  if ($connection)
 	  {
-	    // -- patch 18.01.06-1; 
+	    // -- patch 18.01.06-1;
 	    // @reason UTF-8 encoding is default character set ( see http://www.denic.de/en/domains/technik/denic_whois-server/ )
 	    if ( substr(strtolower($idndom),0,4) == "xn--" )
 	    {
@@ -2204,14 +2204,14 @@ function dewhois($dom,$domt,&$regdet)
 	    else
 	    {
 	    	fputs($connection,$idndom."\r\n");
-	    }	    
+	    }
 	    /* -- obsolete --
 	    // Force UTF-8 encoding instead of ISO-8859-1
-      fputs($connection,"-C UTF-8 ".$dom.$domt."\r\n"); // 
+      fputs($connection,"-C UTF-8 ".$dom.$domt."\r\n"); //
 	    //fputs($connection,"-C ISO-8859-1 ".$dom.$domt."\r\n");
 	       --------------  */
 	    // -- end patch 18.01.06-1 --
-	    
+
 	    while(!feof($connection))
 	    {
 	      $regdet[]=fgets($connection,255);
@@ -2246,7 +2246,7 @@ function dewhois($dom,$domt,&$regdet)
 	  $connection=@fsockopen("whois.denic.de",43,$errorno,$errordesc);
 	  if ($connection)
 	  {
-	    // -- patch 18.01.06-2; 
+	    // -- patch 18.01.06-2;
 	    // @reason UTF-8 conversion and IDN domain handling (ACE-form option)
 	    if ( substr(strtolower($idndom),0,4) == "xn--" )
 	    {
@@ -2526,7 +2526,7 @@ function grwhois($dom,$domt,&$regdet)
   	$contents = fread ($fh, 100000);
   	fclose ($fh);
   	if (is_integer(strpos(strtolower($contents),"object exists")))
-  	  return(1); // Domain not available  
+  	  return(1); // Domain not available
     return(0); // Domain available
   }
   else
@@ -2550,9 +2550,9 @@ function grwhois($dom,$domt,&$regdet)
   	}
   	$regdet=explode("<br />",$contents);
   	if (is_integer(strpos(strtolower($contents),"domain does not exist")))
-  	  return(0); // Domain available  
+  	  return(0); // Domain available
     return(1); // domain not available
-  }  
+  }
 }
 
 function phwhois($dom,$domt,&$regdet)
@@ -2629,10 +2629,10 @@ function cymcowhois($dom,$domt,&$regdet)
         $regdet[$c]=$tempregdet[$k];
         $c++;
         $lastwasblank=false;
-      } 
+      }
       if (trim($tempregdet[$k])=="")
-        $lastwasblank=true;         
-    } 
+        $lastwasblank=true;
+    }
     return(1); // Not available
   }
   return(0); // Available
@@ -2725,7 +2725,7 @@ function getxmldata($contents,$tag)
  * simple strings and complete email addresses as well. That means, that you might
  * use any of the following notations:
  *
- * - www.nörgler.com
+ * - www.nï¿½rgler.com
  * - xn--nrgler-wxa
  * - xn--brse-5qa.xn--knrz-1ra.info
  *

@@ -31,7 +31,7 @@ class RegisterController extends Controller
      * Where to redirect users after registration.
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/register';
 
     /**
      * Create a new controller instance.
@@ -56,7 +56,8 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:domaincart_users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'user_type' => ['required', Rule::in(['customer','admin','employee'])]
+            'user_type' => ['required', Rule::in(['customer','admin','employee'])],
+            'signup-terms' => 'required'
         ]);
     }
 
@@ -77,21 +78,13 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function registered(Request $request, $user)
-    {
-        // TODO: use this when you don't want to redirect, signup prompt
-    }
-
-//    TODO: this is only temporary
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-        die;
+
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
-
         return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+            ?: redirect($this->redirectPath())->with('success_msg', 'An email has been sent to you to verify your account :)');
     }
 }
