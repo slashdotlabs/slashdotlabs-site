@@ -37,8 +37,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    protected $table = "domaincart_users";
-
     public function get_name()
     {
         return ($this->first_name)[0].". ".$this->last_name;

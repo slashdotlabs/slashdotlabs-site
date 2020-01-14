@@ -13,13 +13,14 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('domaincart_orders', function (Blueprint $table) {
-            $table->bigInteger('order_id');
+        Schema::create('orders', function (Blueprint $table) {
+            $table->bigIncrements('order_id');
             $table->bigInteger("customer_id");
-            $table->bigInteger("product_id");
-            $table->decimal("amount");
+            $table->decimal("total_amount");
             $table->string("currency");
-            $table->dateTime("expiry_date");
+            $table->boolean("paid")->default(false);
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domaincart_orders');
+        Schema::dropIfExists('orders');
     }
 }

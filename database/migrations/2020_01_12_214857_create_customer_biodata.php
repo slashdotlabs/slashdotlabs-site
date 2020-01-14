@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateCustomerBiodata extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('customer_biodata', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('product_name');
-            $table->string('product_description')->nullable();
-            $table->enum('product_type', ['hosting', 'ssl_certificate', 'domain']);
-            $table->decimal('price');
-
-            $table->boolean('suspended')->default(false);
+            $table->bigInteger('customer_id');
+            $table->string('phone_number');
+            $table->string('address');
+            $table->string('city');
+            $table->string('country');
+            $table->string('organization');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('customer_biodata');
     }
 }

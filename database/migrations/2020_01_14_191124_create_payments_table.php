@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DomaincartCustomersBiodata extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class DomaincartCustomersBiodata extends Migration
      */
     public function up()
     {
-        Schema::create('domaincart_customers_biodata', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('customer_id');
-            $table->string('phone_number');
-            $table->string('address');
-            $table->string('city');
-            $table->string('country');
-            $table->string('organization');
+            $table->bigInteger('order_id');
+            $table->string('payment_type');
+            $table->string('payment_ref');
+            $table->decimal('amount');
+            $table->string('currency');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ class DomaincartCustomersBiodata extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domaincart_customers_biodata');
+        Schema::dropIfExists('payments');
     }
 }

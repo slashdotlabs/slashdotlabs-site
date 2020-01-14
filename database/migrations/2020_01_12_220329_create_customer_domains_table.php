@@ -13,9 +13,9 @@ class CreateCustomerDomainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('domaincart_customer_domains', function (Blueprint $table) {
+        Schema::create('customer_domains', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("domain_name");
+            $table->string("domain_name"); // remember to strip http https www from name
             $table->bigInteger("domain_tld_id"); //this will be product_id
             $table->bigInteger("customer_id"); // user_id
 
@@ -31,6 +31,6 @@ class CreateCustomerDomainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domaincart_customer_domains');
+        Schema::dropIfExists('customer_domains');
     }
 }

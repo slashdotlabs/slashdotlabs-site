@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Order extends Model
+class OrderItem extends Model
 {
     use SoftDeletes;
 
-    public function order_items()
+    public function order()
     {
-        return $this->hasMany('App\Models\OrderItem','order_id', 'order_id');
+        return $this->belongsTo('App\Models\Order', 'order_id', 'order_id');
     }
 }

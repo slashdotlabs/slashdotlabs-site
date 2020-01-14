@@ -13,12 +13,12 @@ class CreateNameserversTable extends Migration
      */
     public function up()
     {
-        Schema::create('domaincart_nameservers', function (Blueprint $table) {
+        Schema::create('nameservers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger("domain_id");
             $table->string("ip_address");
 
-            $table->boolean("suspended")->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateNameserversTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domaincart_nameservers');
+        Schema::dropIfExists('nameservers');
     }
 }

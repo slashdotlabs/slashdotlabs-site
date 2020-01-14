@@ -123,6 +123,6 @@ class ProductsSeeder extends Seeder
             $product['updated_at'] = Carbon::now();
             return $product;
         }, $products);
-        DB::table('domaincart_products')->insert($products);
+        DB::table('products')->insert($products);
     }
 }
