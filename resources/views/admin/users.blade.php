@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Hero -->
-    <div class="bg-image" style="background-image: url('../media/photos/animals.jpg');">
+    <div class="bg-image" style="background-image: url('../media/photos/users.jpg');">
         <div class="bg-black-op-75">
             <div class="content content-top content-full text-center">
                 <div class="py-20">
@@ -17,7 +17,7 @@
     <div class="bg-body-light border-b">
         <div class="content py-5 text-center">
             <nav class="breadcrumb bg-body-light mb-0">
-                <a class="breadcrumb-item" href="admin_dashboard.html">Home</a>
+                <a class="breadcrumb-item" href="/admin/dashboard">Home</a>
                 <span class="breadcrumb-item active">System Users</span>
             </nav>
         </div>
