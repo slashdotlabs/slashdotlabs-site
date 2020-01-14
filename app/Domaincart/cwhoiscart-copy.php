@@ -5,14 +5,14 @@
 // For further information email support@vibralogix.com
 // session_id();
 // session_start();
-include(app_path("Domaincart/cwhois.php"));
+@error_reporting(E_ERROR);
+include $FilePath."cwhois.php";
 if (!empty($_GET)) while(list($name, $value) = each($_GET)) $$name = $value;
 if (!isset($_SESSION['numberofitems']))
 	$_SESSION['numberofitems']=0;
 if (!isset($_SESSION['numberremoved']))
 	$_SESSION['numberremoved']=0;
 $_SESSION['loginerrors'] = [];
-global $numdomreg,$numdomtran, $numdomren, $numhost;
 $numdomreg=count($register);
 $numdomtran=count($transfer);
 $numdomren=count($renew);
@@ -122,7 +122,7 @@ if ($cwhoismode==0)
 	print "<!-- JavaScript\n";
 	print "function whois(domain)\n";
 	print "{\n";
-	print "  window.open(\"".url('/domaincart')."?cwaction=lookup&domain=\"+domain,\"whois\",\"width=500,height=300,resizable=yes,scrollbars=yes\")\n";
+	print "  window.open(\"".$FilePath."cwhoiscart.php?cwaction=lookup&domain=\"+domain,\"whois\",\"width=500,height=300,resizable=yes,scrollbars=yes\")\n";
 	print "}\n";
 	print "\n";
 	print "function CheckIt(form)\n";
@@ -3203,7 +3203,7 @@ if ($cwaction=="order")
 			  if ((isset($paymethod)) && ($paymethod!=""))
 			  {
 		      $mailBody.="<tr><td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">&nbsp;Payment Method</p></td>\n";
-          $mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">$paymethod</p></td></tr>\n";
+		      $mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">$paymethod</p></td></tr>\n";
 				}
 	    }
       else

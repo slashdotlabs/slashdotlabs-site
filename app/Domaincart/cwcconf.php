@@ -6,6 +6,7 @@
 
 // Add list of extensions you support for registering. See domains.txt for full list of supported domains.
 // domain extension,list of years allowed seperated by :, list of prices seperated by :
+global $register;
 $register[]=".com,1";
 $register[]=".net,1";
 $register[]=".org,1";
@@ -18,6 +19,7 @@ $register[]=".biz,1";
 
 // Optional list of extensions you support for transfers.
 // domain extension,list of years allowed seperated by :, list of prices seperated by :
+global $transfer;
 $transfer[]=".com,1";
 $transfer[]=".net,1";
 $transfer[]=".org,1";
@@ -30,6 +32,7 @@ $transfer[]=".biz,1";
 
 // Optional list of extensions you support for renewals.
 // domain extension,list of years allowed seperated by :, list of prices seperated by :
+//global $renew;
 // $renew[]=".com,1,0";
 // $renew[]=".net,1,0";
 // $renew[]=".org,1,0";
@@ -49,6 +52,7 @@ $transfer[]=".biz,1";
 // $host[]="PRO700 1 year,0,329,S";
 // $host[]="PRO700 monthly,0,29.99,R";
 
+global $host;
 $host[]="test package, 0.00,1,S";
 $host[]="Baby Slash (512MB + A2 hosting),0.00,3500,S";
 $host[]="Savanna (1GB  A2 hosting),0.00,5500,S";
@@ -73,17 +77,20 @@ $hostagree="";
 
 // Other settings
 
-include "english.php";													 // Set shopping cart language
+
+include(app_path("Domaincart/english.php"));	 // Set shopping cart language
 $vendoremail="info@slashdotlabs.com";               // Your email to receive orders
 $vendoremail2="accounts@ipayafrica.com";                                // Optional second admin email address
 $vendorcompany="Slash Dot Labs Ltd.";
 $columns=3;                                      // Number of columns in domain extensions table
+global $csymbol, $csymbol;
 $csymbol="KES "; 		                               // Symbol to use for currency. Displayed before amount.
 $csymbol2="";                                    // Currency symbol to display after amount (leave as "" if not required)
 $decimalplaces=2;																 // Most currencies have 2 but some like Yen have 0.
 $backcolor="grey";                            // Background color
 $cwhoismode=0;                   								 // Set to 1 to use simple hosting mode
 // $checkoutpage="democheck.php";                // Set if you wish to use a different template for the order details page
+global $AllowHostingOnly, $AllowNoHosting, $AssumeAll;
 $AllowNoHosting=false;														 // Set to false to force hosting plan to be selected
 $AllowHostingOnly=false;												 	 // Set to false to force domain purchase or transfer
 $AssumeAll=true;																 // When true if no check boxes ticked and no extension typed then check all
