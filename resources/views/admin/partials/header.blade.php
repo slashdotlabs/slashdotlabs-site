@@ -21,7 +21,7 @@
                 <i class="fa fa-angle-down ml-5"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
+                <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">Settings</h5>
                 <a class="dropdown-item" href="be_pages_generic_profile.html">
                     <i class="si si-user mr-5"></i> My Profile
                 </a>

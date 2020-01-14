@@ -63,6 +63,8 @@
 <script src="{{ mix('js/laravel.app.js') }}"></script>
 
 @yield('js_after')
+
+@include('admin.partials.modals')
 </body>
 
 </html>
