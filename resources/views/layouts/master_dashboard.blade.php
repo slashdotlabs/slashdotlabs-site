@@ -32,8 +32,11 @@
     </head>
     <body>
         <div id="page-container" class="sidebar-inverse side-scroll page-header-fixed page-header-inverse main-content-boxed">
-           <!-- Header -->
+           <!-- Sideoverlay -->
+            @include('dashboard.partials.sideoverlay')
+            <!-- Header -->
             @include('dashboard.partials.header')
+
 
          <!-- Main Container -->
             <main id="main-container">
