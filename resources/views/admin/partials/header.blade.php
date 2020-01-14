@@ -1,4 +1,4 @@
- <!-- Header Content -->
+<!-- Header Content -->
  <div class="content-header">
     <!-- Left Section -->
     <div class="content-header-section">
@@ -21,17 +21,12 @@
                 <i class="fa fa-angle-down ml-5"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-<<<<<<< HEAD
-                <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
-                <a class="dropdown-item" href="#">
-=======
                 <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">Settings</h5>
                 <a class="dropdown-item" href="be_pages_generic_profile.html">
->>>>>>> a62bb26e11de39ebc3e1c924444e5e3be8d62e4b
                     <i class="si si-user mr-5"></i> My Profile
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="op_auth_signin.html">
                     <i class="si si-logout mr-5"></i> Sign Out
                 </a>
             </div>
