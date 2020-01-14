@@ -21,3 +21,9 @@ Auth::routes(['verify' => true]);
 
 // DomainCart routes
 Route::get('/domaincart', 'DomainCartController@index')->name('domaincart');
+
+//Admin Test Routes
+Route::view('/admin/dashboard', 'admin.dashboard');
+Route::view('/admin/products', 'admin.products');
+Route::view('/admin/orders', 'admin.orders');
+Route::view('/admin/users', 'admin.users');
