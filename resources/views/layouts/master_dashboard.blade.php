@@ -43,6 +43,8 @@
 
             <!-- Footer -->
             @include('dashboard.partials.footer')
+
+            @include('dashboard.partials.modal')
         </div>
         <!-- END Page Container -->
 
@@ -52,9 +54,9 @@
         <!-- Laravel Scaffolding JS -->
         <script src="{{ mix('js/laravel.app.js') }}"></script>
 
+        <!-- Sweetalert -->
+        @include('sweetalert::alert')
+
         @yield('js_after')
     </body>
-
-    @include('dashboard.partials.modal')
-
 </html>

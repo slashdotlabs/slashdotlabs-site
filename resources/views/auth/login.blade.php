@@ -18,28 +18,37 @@
 
                     <!-- Sign In Form -->
                     <form action="{{ url('login')  }}" method="post">
+                        @csrf
                         <div class="block block-themed block-rounded block-shadow">
                             <div class="block-header">
                                 <h3 class="block-title font-size-md">Welcome to Your Dashboard  -  <small class="font-size-sm">It’s a great day today!</small></h3>
                             </div>
 
                             <div class="block-content">
+                                @error('email')
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <label for="login-email">Email</label>
-                                        <input type="email" class="form-control" id="login-email" name="email">
+                                        <input type="email" class="form-control" id="login-email" name="email" value="{{ old('email') }}" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <label for="login-password">Password</label>
-                                        <input type="password" class="form-control" id="login-password" name="password">
+                                        <input type="password" class="form-control" id="login-password" name="password" required>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-sm-6 d-sm-flex align-items-center push">
                                         <div class="custom-control custom-checkbox mr-auto ml-0 mb-0">
-                                            <input type="checkbox" class="custom-control-input" id="login-remember-me" name="login-remember-me">
+                                            <input type="checkbox" class="custom-control-input" id="login-remember-me" name="remember">
                                             <label class="custom-control-label" for="login-remember-me">Remember Me</label>
                                         </div>
                                     </div>

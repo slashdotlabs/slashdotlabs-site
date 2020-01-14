@@ -7,7 +7,7 @@
             <!-- Logo -->
             <div class="content-header-item">
                 <a class="font-w700 mr-5" href="#"> <img src="{{ asset('media/favicons/favicon-32x31.png') }}" alt="">
-                    <span class="font-size-xl text-dual-primary-dark">Slash Dot Labs</span> </a>
+                    <span class="font-size-xl text-dual-primary-dark">{{ config('app.name') }}</span> </a>
             </div>
             <!-- END Logo -->
         </div>
@@ -19,25 +19,28 @@
             <!--Desktop Navigation, mobile navigation can be found in #sidebar-->
             <ul class="nav-main-header">
                 <li>
-                    <a href="#"><i class="si si-compass"></i>Dashboard</a>
+                    <a href="{{ url('/') }}"><i class="si si-compass"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"><i class=""></i>Home</a>
+                    <a href="{{ wordpress_url('/') }}"><i class=""></i>Home</a>
                 </li>
                 <li>
-                    <a href="#"><i class=""></i>About</a>
+                    <a href="{{ wordpress_url('/about') }}"><i class=""></i>About</a>
                 </li>
                 <li>
-                    <a href="#"><i class=""></i>Services</a>
+                    <a href="{{ wordpress_url('/services') }}"><i class=""></i>Services</a>
                 </li>
                 <li>
-                    <a href="#"><i class=""></i>Hosting</a>
+                    <a href="{{ wordpress_url('/domain-creation') }}"><i class=""></i>Hosting</a>
                 </li>
                 <li>
-                    <a href="#"><i class=""></i>Contact</a>
+                    <a href="{{ wordpress_url('/contact') }}"><i class=""></i>Contact</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-sign-out"></i>Log Out</a>
+                    <form action="{{ url('/logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-out"></i>Log Out</button>
+                    </form>
                 </li>
             </ul>
             <!-- END Header Navigation -->

@@ -1,5 +1,5 @@
   <!-- Overview -->
-  <h2 class="h4 font-w300 mt-50">Overview</h2>
+  <h2 class="h4 font-w300">Overview</h2>
   <div class="row">
       <div class="col-md-6 col-xl-3">
           <a class="block block-link-shadow" href="#domains">
