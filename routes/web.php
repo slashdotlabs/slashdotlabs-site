@@ -26,6 +26,9 @@ Auth::routes(['verify' => true]);
 Route::get('/domaincart', 'DomainCartController@index')->name('domaincart');
 Route::get('/domaincart/order_checkout', 'DomainCartController@order_checkout')->name('domaincart.order_checkout');
 
+//OrderController routes
+Route::resource('orders', 'OrdersController')->only(['index']);
+
 //Admin Test Routes
 Route::view('/admin/dashboard', 'admin.dashboard');
 Route::view('/admin/products', 'admin.products');

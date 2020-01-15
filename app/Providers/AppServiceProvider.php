@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use App\Billing\IpayPaymentGateway;
+use App\Billing\PaymentGatewayContract;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //PaymentGateway
+        $this->app->singleton(PaymentGatewayContract::class, function ($app) {
+            return new IpayPaymentGateway;
+        });
     }
 
     /**

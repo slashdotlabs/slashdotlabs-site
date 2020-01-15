@@ -1,7 +1,7 @@
 <?php include(app_path("Domaincart/cwcconf.php")); ?>
 
 @extends('layouts.master_dashboard')
-@section("css_after")
+@section("css_before")
     <link href="{{ asset("css/cwhoisstyles.css")  }}" rel="stylesheet" type="text/css">
 @endsection
 
