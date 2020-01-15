@@ -11,9 +11,9 @@
                         </button>
                     </div>
                 </div>
-                <div class="block-content">
+            <div class="block-content">
                 <div class="form-group">
-                    <label for="hosting-settings-profile-email">Name Server</label>
+                    <label for="hosting-settings-profile-nameserver">Name Server</label>
                     <input type="text" class="form-control form-control-lg" id="hosting-settings-nameserver" name="hosting-settings-nameserver" placeholder="Enter your new nameserver.." value="allanvikiru.org">
                 </div>
                 </div>
