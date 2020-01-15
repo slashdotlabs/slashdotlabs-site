@@ -31,3 +31,12 @@ Route::view('/admin/dashboard', 'admin.dashboard');
 Route::view('/admin/products', 'admin.products');
 Route::view('/admin/orders', 'admin.orders');
 Route::view('/admin/users', 'admin.users');
+
+//Products Resource Route
+Route::resource('products', 'ProductsController');
+
+//Orders Resource Route
+Route::resource('orders', 'OrdersController');
+
+//Users Resource Route
+Route::resource('users', 'UsersController');
