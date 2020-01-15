@@ -148,11 +148,6 @@
             </table>
         </div>
     </div>
-
-    <!-- User Settings Tables -->
-    @include('dashboard.partials.settings')
-
-    <!-- END Tables -->
 <!-- END Page Content -->
 @endsection
 

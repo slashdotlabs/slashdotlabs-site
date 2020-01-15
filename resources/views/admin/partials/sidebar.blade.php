@@ -48,7 +48,7 @@
             </a>
             <ul class="list-inline mt-10">
                 <li class="list-inline-item">
-                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase">John Doe</a>
+                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" data-toggle="layout" data-action="side_overlay_toggle">{{ Auth::user()->get_name() }}</a>
                 </li>
             </ul>
         </div>

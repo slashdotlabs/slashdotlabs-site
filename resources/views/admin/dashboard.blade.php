@@ -7,7 +7,7 @@
             <div class="content content-top content-full text-center">
                 <div class="py-20">
                     <h1 class="h2 font-w700 text-white mb-10">Dashboard</h1>
-                    <h2 class="h4 font-w400 text-white-op mb-0">Welcome, John Doe!</h2>
+                    <h2 class="h4 font-w400 text-white-op mb-0">Welcome, {{ Auth::user()->get_name() }}!</h2>
                 </div>
             </div>
         </div>

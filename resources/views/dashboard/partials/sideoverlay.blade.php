@@ -24,10 +24,7 @@
 
     <!-- Side Content -->
     <div class="content-side">
-        <p>
-{{--            TODO: fill this area--}}
-            Content..
-        </p>
+        @include('dashboard.partials.settings')
     </div>
     <!-- END Side Content -->
 </aside>
