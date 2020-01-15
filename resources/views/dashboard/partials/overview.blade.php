@@ -11,8 +11,8 @@
 
                   </p>
                   <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                      Active Domains
-                  </p>
+                      Active Domains <!-- TODO: count of domain records -->
+                </p>
               </div>
           </a>
       </div>
@@ -25,7 +25,7 @@
                   <p class="font-size-lg font-w600 mb-0">
                   </p>
                   <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                      SSL Certificates
+                      SSL Certificates <!-- TODO: count of ssl certificates -->
                   </p>
               </div>
           </a>
@@ -40,13 +40,13 @@
 
                 </p>
                 <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                    Hosting Packages
+                    Hosting Packages    <!-- TODO: count of hosting packages -->
                 </p>
             </div>
         </a>
     </div>
     <div class="col-md-6 col-xl-3">
-        <a class="block block-link-shadow" href="#profile">
+        <a class="block block-link-shadow"  href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
             <div class="block-content block-content-full text-center">
                 <div class="p-20 mb-5">
                     <i class="fa fa-3x fa-user text-success"></i>

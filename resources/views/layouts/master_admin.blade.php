@@ -43,6 +43,9 @@
     </header>
     <!-- END Header -->
 
+    <!-- Sideoverlay -->
+    @include('admin.partials.overlay')
+
     <!-- Main Container -->
     <main id="main-container">
         @yield('content')
