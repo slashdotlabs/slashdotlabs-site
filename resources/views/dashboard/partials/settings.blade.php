@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="hosting-settings-profile-email">Email Address</label>
-                                <input type="email" class="form-control form-control-lg" id="hosting-settings-email" name="hosting-settings-email" placeholder="Enter your email.." value="hosting@example.com">
+                                <input type="email" class="form-control form-control-lg" id="hosting-settings-email" name="hosting-settings-email" placeholder="Enter your email.." value="exampl@example.com">
                             </div>
                             <div class="form-group">
                                 <label for="hosting-settings-profile-email">Phone Number</label>
