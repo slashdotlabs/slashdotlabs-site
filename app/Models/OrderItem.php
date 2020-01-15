@@ -13,4 +13,9 @@ class OrderItem extends Model
     {
         return $this->belongsTo('App\Models\Order', 'order_id', 'order_id');
     }
+
+    public function product()
+    {
+        return $this->morphTo();
+    }
 }

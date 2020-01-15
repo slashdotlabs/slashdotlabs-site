@@ -39,6 +39,26 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function get_name()
     {
-        return ($this->first_name)[0].". ".$this->last_name;
+        return ($this->first_name)[0] . ". " . $this->last_name;
+    }
+
+    public function customer_biodata()
+    {
+        return $this->hasOne('App\Models\CustomerBiodata', 'customer_id');
+    }
+
+    public function customer_domains()
+    {
+        return $this->hasMany('App\Models\CustomerDomain','customer_id');
+    }
+
+    public function customer_orders()
+    {
+        return $this->hasMany('App\Models\Order', 'customer_id');
+    }
+
+    public function customer_payments()
+    {
+        return $this->hasMany('App\Models\Payment', 'customer_id');
     }
 }
