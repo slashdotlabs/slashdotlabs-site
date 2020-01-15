@@ -9,8 +9,20 @@ class Order extends Model
 {
     use SoftDeletes;
 
+    protected $guarded = [];
+
     public function order_items()
     {
         return $this->hasMany('App\Models\OrderItem','order_id', 'order_id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Models\User', 'customer_id');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne('App\Models\Payment', 'order_id');
     }
 }

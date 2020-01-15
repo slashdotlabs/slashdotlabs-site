@@ -12,7 +12,10 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 2)->state('customer')->create();
+        factory(User::class, 2)->state('customer')->create()
+            ->each(function (User $customer) {
+                $customer->customer_biodata()->save(factory(App\Models\CustomerBiodata::class)->make());
+            });
         factory(User::class, 2)->state('admin')->create();
         factory(User::class, 2)->state('employee')->create();
     }
