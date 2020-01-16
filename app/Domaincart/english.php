@@ -108,16 +108,16 @@ $lang['IdealBankList'] = "Select your bank";
 // If you require a password to be entered use filenames password and verifypassword.
 
 $cform[] = "org,Organisation,";
-$cform[] = "fname,First Name,Fill out the registration form to complete your purchase";
-$cform[] = "lname,Last Name,Enter your last name";
+//$cform[] = "fname,First Name,Fill out the registration form to complete your purchase";
+//$cform[] = "lname,Last Name,Enter your last name";
 //$cform[] = "password,Password,Please enter a strong password";
 //$cform[] = "verifypassword,Verify Password, Passwords do not match";
 $cform[] = "str1,Address,You must enter your address";
 $cform[] = "city,City,You must enter your city";
 $cform[] = "country,Country,You must enter your country";
 $cform[] = "tel,Telephone,You must enter your telephone number";
-$cform[] = "email,Email,You must enter your valid email address";
-$cform[] = "curr,Currency,Please select a currency,KES,USD";
+//$cform[] = "email,Email,You must enter your valid email address";
+$cform[] = "curr,Currency,Please select a currency,KES";
 $cform[] = "total, Total, Enter Value";
 
 // Customer email

@@ -40,7 +40,8 @@
             <div class="form-group mb-15">
                 <label for="side-overlay-profile-email">Email</label>
                 <div class="input-group">
-                    <input type="email" class="form-control" id="user-settings-email" name="user-settings-email" placeholder="Enter your email.." value="hosting@example.com">
+                    <input type="email" class="form-control" id="user-settings-email" name="user-settings-email" placeholder="Enter your email.." value="{{
+                    Auth::user()->email }}">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fa fa-envelope"></i>
@@ -142,13 +143,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="hosting-settings-address-firstname">First Name</label>
-                            <input type="text" class="form-control form-control-lg" id="address-settings-firstname" name="address-settings-firstname" value="Allan" disabled>
+                            <input type="text" class="form-control form-control-lg" id="address-settings-firstname" name="address-settings-firstname" value="{{ $user->first_name }}" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="hosting-settings-address-lastname">Last Name</label>
-                            <input type="text" class="form-control form-control-lg" id="address-settings-lastname" name="address-settings-lastname" value="Vikiru" disabled>
+                            <input type="text" class="form-control form-control-lg" id="address-settings-lastname" name="address-settings-lastname" value="{{ $user->last_name}}" disabled>
                         </div>
                     </div>
                 </div>

@@ -7,28 +7,31 @@
 // Add list of extensions you support for registering. See domains.txt for full list of supported domains.
 // domain extension,list of years allowed seperated by :, list of prices seperated by :
 global $register;
-$register[]=".com,1";
-$register[]=".net,1";
-$register[]=".org,1";
-$register[]=".ke,1";
-$register[]=".co.ke,1";
-$register[]=".co.ug,1";
-$register[]=".me,1";
-$register[]=".info,1";
-$register[]=".biz,1";
+$register = $domain_products;
+
+//$register[]=".com,1,1";
+//$register[]=".net,1,2";
+//$register[]=".org,1,2";
+//$register[]=".ke,1,2";
+//$register[]=".co.ke,1,2";
+//$register[]=".co.ug,1,2";
+//$register[]=".me,1,2";
+//$register[]=".info,1,2";
+//$register[]=".biz,1,2";
 
 // Optional list of extensions you support for transfers.
 // domain extension,list of years allowed seperated by :, list of prices seperated by :
 global $transfer;
-$transfer[]=".com,1";
-$transfer[]=".net,1";
-$transfer[]=".org,1";
-$transfer[]=".ke,1";
-$transfer[]=".co.ke,1";
-$transfer[]=".co.ug,1";
-$transfer[]=".me,1";
-$transfer[]=".info,1";
-$transfer[]=".biz,1";
+$transfer = $domain_products;
+//$transfer[]=".com,1,1";
+//$transfer[]=".net,1,2";
+//$transfer[]=".org,1,2";
+//$transfer[]=".ke,1,2";
+//$transfer[]=".co.ke,1,2";
+//$transfer[]=".co.ug,1,2";
+//$transfer[]=".me,1,2";
+//$transfer[]=".info,1,2";
+//$transfer[]=".biz,1,2";
 
 // Optional list of extensions you support for renewals.
 // domain extension,list of years allowed seperated by :, list of prices seperated by :
@@ -51,22 +54,22 @@ $transfer[]=".biz,1";
 // $host[]="PRO350 monthly,0,19.99,R";
 // $host[]="PRO700 1 year,0,329,S";
 // $host[]="PRO700 monthly,0,29.99,R";
-
 global $host;
-$host[]="test package, 0.00,1,S";
-$host[]="Baby Slash (512MB + A2 hosting),0.00,3500,S";
-$host[]="Savanna (1GB  A2 hosting),0.00,5500,S";
-$host[]="Rift Valley (5GB + A2 hosting),0.00,7000,S";
-$host[]="Longonot (10GB + A2 hosting),0.00,8500,S";
-$host[]="Elgon (20GB + A2 hosting),0.00,10500,S";
-$host[]="Kenya (40GB + A2 hosting),0.00,11000,S";
-$host[]="Kilimanjaro (50GB + A2 hosting),0.00,11500,S";
-$host[]="Everest (75GB + A2 hosting),0.00,18000,S";
-$host[]="Indian Ocean (1GB + ICDSoft hosting),0.00,6900,S";
-$host[]="Atlantic Ocean (10GB + ICDSoft hosting),0.00,9000,S";
-$host[]="Pacific Ocean (15GB + ICDSoft hosting),0.00,13500,S";
-$host[]="Southern Ocean (50GB + ICDSoft hosting),0.00,32000,S";
-$host[]="Global Boss (200GB + ICDSoft hosting),0.00,55000,S";
+$host = $hosting_packages;
+//$host[]="test package, 0.00,1,S";
+//$host[]="Baby Slash (512MB + A2 hosting),0.00,3500,S";
+//$host[]="Savanna (1GB  A2 hosting),0.00,5500,S";
+//$host[]="Rift Valley (5GB + A2 hosting),0.00,7000,S";
+//$host[]="Longonot (10GB + A2 hosting),0.00,8500,S";
+//$host[]="Elgon (20GB + A2 hosting),0.00,10500,S";
+//$host[]="Kenya (40GB + A2 hosting),0.00,11000,S";
+//$host[]="Kilimanjaro (50GB + A2 hosting),0.00,11500,S";
+//$host[]="Everest (75GB + A2 hosting),0.00,18000,S";
+//$host[]="Indian Ocean (1GB + ICDSoft hosting),0.00,6900,S";
+//$host[]="Atlantic Ocean (10GB + ICDSoft hosting),0.00,9000,S";
+//$host[]="Pacific Ocean (15GB + ICDSoft hosting),0.00,13500,S";
+//$host[]="Southern Ocean (50GB + ICDSoft hosting),0.00,32000,S";
+//$host[]="Global Boss (200GB + ICDSoft hosting),0.00,55000,S";
 
 // Optional agreements for domain register, transfer and hosting. Set to "" if not required
 $overallagree="";
@@ -91,8 +94,8 @@ $backcolor="grey";                            // Background color
 $cwhoismode=0;                   								 // Set to 1 to use simple hosting mode
 // $checkoutpage="democheck.php";                // Set if you wish to use a different template for the order details page
 global $AllowHostingOnly, $AllowNoHosting, $AssumeAll;
-$AllowNoHosting=false;														 // Set to false to force hosting plan to be selected
-$AllowHostingOnly=false;												 	 // Set to false to force domain purchase or transfer
+$AllowNoHosting=true;														 // Set to false to force hosting plan to be selected
+$AllowHostingOnly=true;												 	 // Set to false to force domain purchase or transfer
 $AssumeAll=true;																 // When true if no check boxes ticked and no extension typed then check all
 																								 // When false first extension (check box) is assumed
 $SimpleHostingOnly=false;                        // When true hosting only.(Removes radio boxes from simple hosting mode)
