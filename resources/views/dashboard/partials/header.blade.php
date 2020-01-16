@@ -65,8 +65,6 @@
                 </div>
             </div>
             <!-- END User Dropdown -->
-
-            @include('dashboard.partials.notifications')
         </div>
         <!-- END Right Section -->
     </div>

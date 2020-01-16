@@ -52,9 +52,20 @@
                     </div>
                 </div>
                 <div class="form-group mb-15">
+                    <label for="side-overlay-profile-password">Current Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="admin-current-password" name="admin-current-password" placeholder="New Password..">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-asterisk"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-15">
                     <label for="side-overlay-profile-password">New Password</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" id="admin-settings-password" name="user-settings-password" placeholder="New Password..">
+                        <input type="password" class="form-control" id="admin-new-password" name="admin-new-password" placeholder="New Password..">
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fa fa-asterisk"></i>
@@ -65,7 +76,7 @@
                 <div class="form-group mb-15">
                     <label for="side-overlay-profile-password-confirm">Confirm New Password</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" id="admin-password-confirm" name="user-password-confirm" placeholder="Confirm New Password..">
+                        <input type="password" class="form-control" id="admin-password-confirm" name="admin-password-confirm" placeholder="Confirm New Password..">
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fa fa-asterisk"></i>

@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use DataTables;
 
 class ProductsController extends Controller
@@ -12,9 +13,11 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
+        $products = DB::table('products')->get();
+        return view('admin.products', [
+            'products' => $products]);
     }
     /**
      * Show the form for creating a new resource.
@@ -34,7 +37,11 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::updateOrCreate(['id' => $request->product_id],
+        ['product_name' => $request->product_name, 'product_description' => $request->product_description,
+        'product_type' => $request->product_type, 'price' => $request->product_price]);
+
+        return response()->json(['success'=>'Product saved successfully.']);
     }
 
     /**

@@ -44,8 +44,11 @@
     </header>
     <!-- END Header -->
 
-    <!-- Sideoverlay -->
+    <!-- Side Cverlay -->
     @include('admin.partials.overlay')
+
+    <!-- Toasts -->
+
 
     <!-- Main Container -->
     <main id="main-container">
@@ -69,9 +72,10 @@
 @yield('js_after')
 
 @include('admin.partials.modals')
+
 </body>
-</html>
 
 @yield('products_ajax')
 @yield('users_ajax')
 @yield('orders_ajax')
+</html>

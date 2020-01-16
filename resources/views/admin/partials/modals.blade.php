@@ -50,7 +50,9 @@
                         </button>
                     </div>
                 </div>
+            <form id="productForm">
                 <div class="block-content">
+                    <input type="hidden" name="product_id" id="product_id"> <!-- Hidden Product ID -->
                 <div class="form-group">
                     <div class="form-group">
                         <label for="product-name">Product Name</label>
@@ -78,8 +80,9 @@
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-alt-success" data-dismiss="modal">Add Product</button>
+                    <button type="button" class="btn btn-alt-success" data-dismiss="modal" id="saveBtn">Add Product</button>
             </div>
+        </form>
         </div>
     </div>
 </div>

@@ -14,11 +14,22 @@
         <p class="text-muted">
             Your account’s vital information.
         </p>
-        <form action="be_pages_dashboard.html" method="post" onsubmit="return false;">
+        <form action="#" method="post" onsubmit="return false;">
             <div class="form-group mb-15">
-                <label for="side-overlay-profile-name">Name</label>
+                <label for="side-overlay-profile-name">First Name</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="user-settings-name" name="user-settings-name" placeholder="Enter your name.." value="Allan Vikiru">
+                    <input type="text" class="form-control" id="user-settings-firstname" name="user-settings-firstname" placeholder="Enter your first name.." value="Allan">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-15">
+                <label for="side-overlay-profile-name">Last Name</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="user-settings-lastname" name="user-settings-lastname" placeholder="Enter your last name.." value="Vikiru">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fa fa-user"></i>
@@ -37,10 +48,49 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group row">
+                <div class="col-6"> </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-block btn-alt-primary">
+                        <i class="fa fa-refresh mr-5"></i> Update
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+ </div>
+<!--END User Account Settings -->
+
+<!--User Password Settings -->
+<div class="block pull-r-l">
+    <div class="block-header bg-body-light">
+        <h3 class="block-title">
+            <i class="fa fa-fw fa-lock font-size-default mr-5"></i>Password
+        </h3>
+        <div class="block-options">
+            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+        </div>
+    </div>
+    <div class="block-content">
+        <p class="text-muted">
+            Your account password.
+        </p>
+        <form action="#" method="post" onsubmit="return false;">
+            <div class="form-group mb-15">
+                <label for="side-overlay-profile-password">Current Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="user-current-password" name="user-current-password" placeholder="Current Password..">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="fa fa-asterisk"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div class="form-group mb-15">
                 <label for="side-overlay-profile-password">New Password</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" id="user-settings-password" name="user-settings-password" placeholder="New Password..">
+                    <input type="password" class="form-control" id="user-settings-new-password" name="user-settings-new-password" placeholder="New Password..">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fa fa-asterisk"></i>
@@ -60,6 +110,7 @@
                 </div>
             </div>
             <div class="form-group row">
+                <div class="col-6"> </div>
                 <div class="col-6">
                     <button type="submit" class="btn btn-block btn-alt-primary">
                         <i class="fa fa-refresh mr-5"></i> Update
@@ -69,13 +120,13 @@
         </form>
     </div>
  </div>
-<!--END User Account Settings -->
+<!--END User Password Settings -->
 
 <!--User Address Settings -->
 <div class="block pull-r-l">
     <div class="block-header bg-body-light">
         <h3 class="block-title">
-            <i class="fa fa-fw fa-address-book font-size-default mr-5"></i>Address
+            <i class="fa fa-fw fa-credit-card-alt font-size-default mr-5"></i>Billing Information
         </h3>
         <div class="block-options">
             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
@@ -85,7 +136,7 @@
         <p class="text-muted">
             This information is only used for invoicing.
         </p>
-        <form action="be_pages_dashboard.html" method="post" onsubmit="return false;">
+        <form action="#" method="post" onsubmit="return false;">
             <div class="block-content block-content-full block-content-sm">
                 <div class="row">
                     <div class="col-6">
@@ -147,6 +198,7 @@
                 </div>
             </div>
             <div class="form-group row">
+                <div class="col-6"> </div>
                 <div class="col-6">
                     <button type="submit" class="btn btn-block btn-alt-primary">
                         <i class="fa fa-refresh mr-5"></i> Update
