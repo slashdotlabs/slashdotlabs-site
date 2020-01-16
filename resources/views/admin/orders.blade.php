@@ -1,5 +1,19 @@
 @extends('layouts.master_admin')
 
+@section('css_before')
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.css') }}">
+@endsection
+
+@section('js_after')
+    <!-- Page JS Plugins -->
+    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page JS Code -->
+    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+@endsection
+
 @section('content')
     <!-- Hero -->
     <div class="bg-image" style="background-image: url('../media/photos/orders.jpg');">
@@ -55,32 +69,12 @@
                 </div>
             </div>
             End Sort Orders by Duration -->
-
-            Orders (2) <!-- 35: count of all orders -->
+            Orders
         </div>
         <div class="block block-rounded">
-            <div class="block-content bg-body-light">
-
-                <!-- Search -->
-                <form action="#" method="post" onsubmit="return false;">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search orders..">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-secondary">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <!-- END Search -->
-
-            </div>
-
             <div class="block-content">
                 <!-- Orders Table -->
-                <table class="table table-borderless table-striped">
+                <table class="table table-borderless table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr>
                             <th class="d-none d-sm-table-cell">Order ID</th>
@@ -93,99 +87,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="d-none d-sm-table-cell">
-                                109403
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                Kilimanjaro Package
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                Allan Vikiru
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                4500
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                KES
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                2020-12-01
-                            </td>
-                            <td class="text-right">
-                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-order" >
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="d-none d-sm-table-cell">
-                                295609
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                Geotrust RapidSSL Essential Certificate
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                Allan Vikiru
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                78
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                USD
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                2020-09-01
-                            </td>
-                            <td class="text-right">
-                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-order" >
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
                 <!-- END Orders Table -->
-
-                <!-- Navigation -->
-                <nav aria-label="Orders navigation">
-                    <ul class="pagination justify-content-end">
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                <span aria-hidden="true">
-                                    <i class="fa fa-angle-left"></i>
-                                </span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">2</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="javascript:void(0)">...</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">8</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">9</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                <span aria-hidden="true">
-                                    <i class="fa fa-angle-right"></i>
-                                </span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- END Navigation -->
             </div>
         </div>
         <!-- END Orders -->
     </div>
+@endsection
+@section('orders_ajax')
+<!--Products AJAX Script -->
+<script type="text/javascript">
+    $(document).ready(function(){
+
+    });
+    </script>
 @endsection

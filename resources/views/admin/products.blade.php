@@ -1,5 +1,19 @@
 @extends('layouts.master_admin')
 
+@section('css_before')
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.css') }}">
+@endsection
+
+@section('js_after')
+    <!-- Page JS Plugins -->
+    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page JS Code -->
+    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+@endsection
+
 @section('content')
     <!-- Hero -->
     <div class="bg-image" style="background-image: url('../media/photos/products.jpg');">
@@ -107,28 +121,12 @@
 
         <!-- Products -->
         <div class="content-heading">
-            Products (43) <!--count of all products -->
+            Products
         </div>
         <div class="block block-rounded">
-            <div class="block-content bg-body-light">
-                <!-- Search -->
-                <form action="be_pages_ecom_products.html" method="post" onsubmit="return false;">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search products..">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-secondary">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <!-- END Search -->
-            </div>
             <div class="block-content">
                 <!-- Products Table -->
-                <table class="table table-borderless table-striped">
+                <table class="table table-borderless table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr>
                             <th class="d-none d-sm-table-cell">Product ID</th>
@@ -140,157 +138,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="d-none d-sm-table-cell">
-                                179203
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                .com Domain
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                Domain
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                Domain name with .com extension.
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                7500
-                            </td>
-                            <td class="text-right">
-                                <div class="form-group row">
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit-product" >
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-product" >
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="d-none d-sm-table-cell">
-                                202429
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                Indian Ocean
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                Hosting Package
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                10 GB Storage with Domain plus ICDSoft hosting.
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                5500
-                            </td>
-                            <td class="text-right">
-                                <div class="form-group row">
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit-product" >
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-product" >
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="d-none d-sm-table-cell">
-                                278464
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-								Geotrust QuickSSL Premium Certificate
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                SSL Certificate
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                For protecting online transactions and applications with SSL.
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                14900
-                            </td>
-                            <td class="text-right">
-                                <div class="form-group row">
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit-product" >
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-product" >
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
                 <!-- END Products Table -->
-
-                <!-- Navigation -->
-                <nav aria-label="Products navigation">
-                    <ul class="pagination justify-content-end">
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                <span aria-hidden="true">
-                                    <i class="fa fa-angle-left"></i>
-                                </span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">2</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="javascript:void(0)">...</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">39</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">40</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                <span aria-hidden="true">
-                                    <i class="fa fa-angle-right"></i>
-                                </span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- END Navigation -->
             </div>
         </div>
         <!-- END Products -->
     </div>
+@endsection
+@section('products_ajax')
+<!--Products AJAX Script -->
+<script type="text/javascript">
+    $(document).ready(function(){
+
+    });
+    </script>
 @endsection
