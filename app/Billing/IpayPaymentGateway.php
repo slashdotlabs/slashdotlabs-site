@@ -46,7 +46,7 @@ class IpayPaymentGateway implements PaymentGatewayContract
         })->join('&');
 
         // Log
-        Log::channel('ipay')->debug(['fields' => $fields->toArray(), 'url' => $ipay_base_url.'?'.$fields_string]);
+        Log::channel('ipay')->debug(['fields' => $fields->toArray(), 'generated_hash' => $generated_hash, 'url' => $ipay_base_url.'?'.$fields_string]);
 
         return redirect($ipay_base_url.'?'.$fields_string);
     }
