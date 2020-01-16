@@ -68,6 +68,8 @@ class PaymentsController extends Controller
         $res = $request->all();
 
         $order = Order::with('customer')->findOrFail($res['id']);
+        $order->update(['paid' => true]);
+        $order->save();
 
         $payment_details = [
             'payment_type' => $res['channel'],

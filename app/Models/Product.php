@@ -27,7 +27,7 @@ class Product extends Model
     }
 
     /**
-     * Scope a query to only include users of a given type.
+     * Scope a query to only include products of a given type.
      *
      * @param Builder $query
      * @param mixed $type

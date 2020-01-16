@@ -26,9 +26,10 @@
                     <i class="si si-user mr-5"></i> My Profile
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="op_auth_signin.html">
-                    <i class="si si-logout mr-5"></i> Sign Out
-                </a>
+                <form action="{{ url('/logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="dropdown-item"><i class="si si-logout mr-5"></i> Sign Out</button>
+                </form>
             </div>
         </div>
         <!-- END User Dropdown -->

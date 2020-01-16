@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -60,5 +61,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function customer_payments()
     {
         return $this->hasMany('App\Models\Payment', 'customer_id');
+    }
+
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param Builder $query
+     * @param mixed $type
+     * @return Builder
+     */
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('user_type', $type);
     }
 }
