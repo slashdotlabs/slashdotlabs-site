@@ -54,15 +54,15 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label for="product-name">Product Name</label>
-                        <input type="text" class="form-control form-control-m" id="product-name" name="product-name" placeholder="Enter the product name.." value="">
+                        <input type="text" class="form-control form-control-m" id="product_name" name="product_name" placeholder="Enter the product name.." value="">
                     </div>
                     <div class="form-group">
                         <label for="product-description">Description</label>
-                        <textarea class="form-control" id="product-description" name="product-description" rows="4" placeholder="Enter the product description.."></textarea>
+                        <textarea class="form-control" id="product_description" name="product_description" rows="4" placeholder="Enter the product description.."></textarea>
                     </div>
                     <div class="form-group">
                         <label for="product-type">Type</label>
-                        <select class="form-control form-control-m" id="product-type" name="product-type">
+                        <select class="form-control form-control-m" id="product_type" name="product_type">
                             <option value="0">Select a product type</option>
                             <option value="1">Domain</option>
                             <option value="2">Hosting Package</option>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group">
                         <label for="product-price">Price</label>
-                        <input type="text" class="form-control form-control-m" id="product-price" name="product-price" placeholder="Enter the price in KES" value="">
+                        <input type="text" class="form-control form-control-m" id="product_price" name="product_price" placeholder="Enter the price in KES" value="">
                     </div>
                 </div>
                 </div>

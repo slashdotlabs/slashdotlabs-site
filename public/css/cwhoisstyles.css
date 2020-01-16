@@ -364,11 +364,24 @@ input.cwhoissimplestep2b {
 table.cwhoissimplestep2b {
 	position: static;
 }
-[type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled), button:not(:disabled).cwhoissearch {
+[type="button"]:not(:disabled).cwhois,
+[type="reset"]:not(:disabled).cwhois,
+[type="submit"]:not(:disabled).cwhois,
+[type="button"]:not(:disabled).cwhoisshop,
+[type="reset"]:not(:disabled).cwhoisshop,
+[type="submit"]:not(:disabled).cwhoisshop,
+[type="button"]:not(:disabled).cwhoisresults,
+[type="reset"]:not(:disabled).cwhoisresults,
+[type="submit"]:not(:disabled).cwhoisresults,
+button:not(:disabled).cwhoissearch,
+[type="submit"]:not(:disabled).cwhoissearch{
     cursor: pointer;
     width: 20%;
     background-color:#f1894c;
     padding: 18px;
+}
+.bg-orange {
+    background-color:#f1894c;
 }
 [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled), button:not(:disabled).cwhoisresults {
     padding: 18px;

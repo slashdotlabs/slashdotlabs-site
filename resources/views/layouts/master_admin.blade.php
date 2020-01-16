@@ -22,11 +22,12 @@
     <link rel="stylesheet" id="css-main" href="{{ mix('/css/codebase.css') }}">
 
     <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
-<!-- <link rel="stylesheet" id="css-theme" href="{{ mix('/css/themes/corporate.css') }}"> -->
-@yield('css_after')
+    <!-- <link rel="stylesheet" id="css-theme" href="{{ mix('/css/themes/corporate.css') }}"> -->
+    @yield('css_after')
 
 <!-- Scripts -->
     <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
+
 </head>
 <body>
 <div id="page-container" class="sidebar-o sidebar-inverse enable-page-overlay side-scroll page-header-glass page-header-inverse main-content-boxed">
@@ -69,5 +70,8 @@
 
 @include('admin.partials.modals')
 </body>
-
 </html>
+
+@yield('products_ajax')
+@yield('users_ajax')
+@yield('orders_ajax')

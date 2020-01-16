@@ -30,18 +30,18 @@
         <!-- CountTo ([data-toggle="countTo"] is initialized in Helpers.coreAppearCountTo()) -->
         <!-- For more info and examples you can check out https://github.com/mhuggins/jquery-countTo -->
         <div class="row gutters-tiny">
-            <!-- Earnings -->
-            <div class="col-md-6 col-xl-3">
-                <a class="block block-rounded block-transparent bg-gd-elegance" href="javascript:void(0)">
+            <!-- Products -->
+            <div class="col-md-6 col-xl-4">
+                <a class="block block-rounded block-transparent bg-gd-elegance" href="/admin/products">
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
                             <div class="block-options-item">
-                                <i class="fa fa-area-chart text-white-op"></i>
+                                <i class="fa fa-tags text-white-op"></i>
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="2420" data-before="$">0</div>
-                            <div class="font-size-sm font-w600 text-uppercase text-white-op">Domains</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="35">0</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-white-op">Products</div>
                         </div>
                     </div>
                 </a>
@@ -49,16 +49,16 @@
             <!-- END Earnings -->
 
             <!-- Orders -->
-            <div class="col-md-6 col-xl-3">
-                <a class="block block-rounded block-transparent bg-gd-dusk" href="be_pages_ecom_orders.html">
+            <div class="col-md-6 col-xl-4">
+                <a class="block block-rounded block-transparent bg-gd-dusk" href="/admin/orders">
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
                             <div class="block-options-item">
-                                <i class="fa fa-archive text-white-op"></i>
+                                <i class="fa fa-shopping-bag text-white-op"></i>
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="35">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="2">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-white-op">Orders</div>
                         </div>
                     </div>
@@ -67,8 +67,8 @@
             <!-- END Orders -->
 
             <!-- New Customers -->
-            <div class="col-md-6 col-xl-3">
-                <a class="block block-rounded block-transparent bg-gd-sea" href="javascript:void(0)">
+            <div class="col-md-6 col-xl-4">
+                <a class="block block-rounded block-transparent bg-gd-sea" href="/admin/users">
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
                             <div class="block-options-item">
@@ -77,30 +77,12 @@
                         </div>
                         <div class="py-20 text-center">
                             <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="15">0</div>
-                            <div class="font-size-sm font-w600 text-uppercase text-white-op">New Customers</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-white-op">System Users</div>
                         </div>
                     </div>
                 </a>
             </div>
-            <!-- END New Customers -->
-
-            <!-- Conversion Rate -->
-            <div class="col-md-6 col-xl-3">
-                <a class="block block-rounded block-transparent bg-gd-aqua" href="javascript:void(0)">
-                    <div class="block-content block-content-full block-sticky-options">
-                        <div class="block-options">
-                            <div class="block-options-item">
-                                <i class="fa fa-cart-arrow-down text-white-op"></i>
-                            </div>
-                        </div>
-                        <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-white">5.6%</div>
-                            <div class="font-size-sm font-w600 text-uppercase text-white-op">Conversion</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!-- END Conversion Rate -->
+            <!-- END System Users -->
         </div>
         <!-- END Statistics -->
     </div>

@@ -36,40 +36,70 @@ class ProductsSeeder extends Seeder
             ],
             [
                 "product_name" => 'Rift Valley',
-                "product_description" => '',
+                "product_description" => '5 GB storage plus A2 hosting',
                 "product_type" => 'hosting',
                 "price" => '7000'
             ],
             [
                 "product_name" => 'Longonot',
-                "product_description" => '',
+                "product_description" => '10 GB storage plus A2 hosting',
                 "product_type" => 'hosting',
-                "price" => '3500'
+                "price" => '8500'
             ],
             [
                 "product_name" => 'Elgon',
-                "product_description" => '',
+                "product_description" => '20 GB storage plus A2 hosting',
                 "product_type" => 'hosting',
                 "price" => '10500'
             ],
             [
                 "product_name" => 'Kenya',
-                "product_description" => '',
+                "product_description" => '40 GB storage plus A2 hosting',
                 "product_type" => 'hosting',
                 "price" => '11000'
             ],
             [
                 "product_name" => 'Kilimanjaro',
-                "product_description" => '',
+                "product_description" => '50 GB storage plus A2 hosting',
                 "product_type" => 'hosting',
                 "price" => '11500'
+            ],
+            [
+                "product_name" => 'Indian Ocean',
+                "product_description" => '1 GB storage plus ICDSoft hosting',
+                "product_type" => 'hosting',
+                "price" => '6000'
+            ],
+            [
+                "product_name" => 'Atlantic Ocean',
+                "product_description" => '10 GB storage plus ICDSoft hosting',
+                "product_type" => 'hosting',
+                "price" => '9000'
+            ],
+            [
+                "product_name" => 'Pacific Ocean',
+                "product_description" => '15 GB storage plus ICDSoft hosting',
+                "product_type" => 'hosting',
+                "price" => '13500'
+            ],
+            [
+                "product_name" => 'Southern Ocean',
+                "product_description" => '50 GB storage plus ICDSoft hosting',
+                "product_type" => 'hosting',
+                "price" => '32000'
+            ],
+            [
+                "product_name" => 'Global Boss',
+                "product_description" => '200 GB storage plus ICDSoft hosting',
+                "product_type" => 'hosting',
+                "price" => '55000'
             ],
             [
                 "product_name" => 'test package',
                 "product_description" => 'test',
                 "product_type" => 'hosting',
                 "price" => '1'
-            ]
+            ],
         ];
         $ssl_certs = [
             [
@@ -112,6 +142,42 @@ class ProductsSeeder extends Seeder
             ],
             [
                 "product_name" => '.ke',
+                "product_description" => 'Domain',
+                "product_type" => 'domain',
+                "price" => '1500' //per year
+            ],
+            [
+                "product_name" => '.org',
+                "product_description" => 'Domain',
+                "product_type" => 'domain',
+                "price" => '1500' //per year
+            ],
+            [
+                "product_name" => '.net',
+                "product_description" => 'Domain',
+                "product_type" => 'domain',
+                "price" => '1500' //per year
+            ],
+            [
+                "product_name" => '.co.ug',
+                "product_description" => 'Domain',
+                "product_type" => 'domain',
+                "price" => '1500' //per year
+            ],
+            [
+                "product_name" => '.me',
+                "product_description" => 'Domain',
+                "product_type" => 'domain',
+                "price" => '1500' //per year
+            ],
+            [
+                "product_name" => '.info',
+                "product_description" => 'Domain',
+                "product_type" => 'domain',
+                "price" => '1500' //per year
+            ],
+            [
+                "product_name" => '.biz',
                 "product_description" => 'Domain',
                 "product_type" => 'domain',
                 "price" => '1500' //per year

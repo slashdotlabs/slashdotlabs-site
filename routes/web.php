@@ -27,8 +27,29 @@ Auth::routes(['verify' => true]);
 Route::get('/domaincart', 'DomainCartController@index')->name('domaincart');
 Route::get('/domaincart/order_checkout', 'DomainCartController@order_checkout')->name('domaincart.order_checkout');
 
+Route::get('/destroycart', function(){
+    session_start();
+    session_destroy();
+    return redirect('/domaincart');
+});
+
+//Payment routes
+Route::get('/payment/process', 'PaymentsController@create');
+
+//OrderController routes
+Route::resource('orders', 'OrdersController')->only(['index']);
+
 //Admin Test Routes
 Route::view('/admin/dashboard', 'admin.dashboard');
 Route::view('/admin/products', 'admin.products');
 Route::view('/admin/orders', 'admin.orders');
 Route::view('/admin/users', 'admin.users');
+
+//Products Resource Route
+Route::resource('products', 'ProductsController');
+
+//Orders Resource Route
+Route::resource('orders', 'OrdersController');
+
+//Users Resource Route
+Route::resource('users', 'UsersController');

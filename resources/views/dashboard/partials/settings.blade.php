@@ -86,7 +86,7 @@
         <p class="text-muted">
             This information is only used for invoicing.
         </p>
-        <form method="post" action="" onsubmit="return false;">
+        <form method="" action="" onsubmit="return false;">
             <div class="block-content block-content-full block-content-sm">
                 <div class="row">
                     <div class="col-6">

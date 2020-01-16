@@ -4,7 +4,7 @@
 // You are licensed to use this on one domain only
 // For further information email support@vibralogix.com
 // session_id();
-// session_start();
+// session_destroy();
 include(app_path("Domaincart/cwhois.php"));
 if (!empty($_GET)) while(list($name, $value) = each($_GET)) $$name = $value;
 if (!isset($_SESSION['numberofitems']))
@@ -699,7 +699,7 @@ if (($cwaction=="hoststep2") && ($domexists=="register")&& ($cwhoismode==1))
     else
 	    print "<option value=\"$dt\">$dt</option>\n";
   }
-	print "</select><input class=\"form-control btn cwhoissimplestep2\" type=\"button\" name=\"Check\" value=\"".$lang['CheckButton']."\" OnClick=\"Check2a(this.form);\">\n";
+	print "</select><input class=\"form-control btn cwhois cwhoissimplestep2\" type=\"button\" name=\"Check\" value=\"".$lang['CheckButton']."\" OnClick=\"Check2a(this.form);\">\n";
 	print "</td>\n";
 	print "</tr>\n";
   if ($d1!="")
@@ -992,7 +992,7 @@ if (($cwaction=="hoststep2") && ($domexists=="exists")&& ($cwhoismode==1))
   {
   	print "<tr>\n";
 	  print "<td  class=\"cwhoissimplestep2b\"><p class=\"cwhoissimplestep2b\">".$lang['LookupOptional']."</p></td>\n";
-    print "<td  class=\"cwhoissimplestep2b\"><input class=\"form-control cwhoissimplestep2b\" type=\"button\" onClick=\"javascript: void whois(form.d1.value)\" value=\"".$lang['Lookup']."\"></td>\n";
+    print $lang['Lookup']."\"></td>\n";
 	  print "</tr>\n";
   }
 	print "<tr><td  class=\"cwhoissimplestep2b\">&nbsp;</td><td  class=\"cwhoissimplestep2b\" class=\"cwhoissimplestep2\">&nbsp;</td></tr>\n";
@@ -1349,11 +1349,11 @@ if (($cwaction=="check") || ($cwaction=="remove") || ($cwaction=="add")  || (($c
       print (">All</option>\n");
 	  }
     print ("</select>&nbsp\n");
-	  print("<input type=\"submit\" name=\"Check\" value=\"".$lang['CheckButton']."\" class=\"cwhoissearch\">\n");
+	  print("<input type=\"submit\" name=\"Check\" value=\"".$lang['CheckButton']."\" class=\"cwhois cwhoissearch\">\n");
 	}
 	else
 	{
-	  print("<input type=\"text\" name=\"domain\" value=\"$domain$domainext\"size=\"30\" class=\"cwhoissearch\">&nbsp;&nbsp;<input type=\"submit\" name=\"Check\" value=\"".$lang['CheckButton']."\" class=\"cwhoissearch\">\n");
+	  print("<input type=\"text\" name=\"domain\" value=\"$domain$domainext\"size=\"30\" class=\"cwhois cwhoissearch\">&nbsp;&nbsp;<input type=\"submit\" name=\"Check\" value=\"".$lang['CheckButton']."\" class=\"cwhoissearch\">\n");
 	}
 	print("</td>\n");
 	print("</tr>\n");
@@ -1836,7 +1836,7 @@ function displaydomain($k,$domain,$dt,$checkbuy)
       if ($AllowNoHosting==true)
       {
 	      if ((($i==0) && ($registersupported!=-1)) || (($i==6) && ($premium!="")))
-	        print "<option disabled value=\"-1\">".$lang['NoHosting']."</option>\n";
+	        print "<option  value=\"-1\">".$lang['NoHosting']."</option>\n";
       }
       // We need to add an option for each hosting package
       for ($j=0;$j<$numhost;$j++)
@@ -2166,7 +2166,7 @@ if (($cwaction=="checkout") || ($cwaction=="addout"))
     }
 	  print("<tr>\n");
 	  print("<td   class=\"cwhoisverify\" align=\"right\" colspan=\"5\">\n");
-	  print("<input class=\"form-control cwhoisverify\" type=\"submit\" value=\"".$lang['ModifyButton']."\" >\n");
+	  print("<input class=\"cwhoisverify cwhois\" type=\"submit\" value=\"".$lang['ModifyButton']."\" >\n");
 	  print("</td>");
 	  print("</TR>\n");
 	  print("<tr>\n");
@@ -3072,7 +3072,7 @@ if (($cwaction=="checkout") || ($cwaction=="addout"))
 	print "<br/>";
 
   print "  <tr>\n";
-	print "  <td   class=\"cwhoiscontact\">&nbsp;</td><td   class=\"cwhoiscontact\" align=\"right\"><input class=\"form-control btn cwhoiscontact\" type=\"submit\" name=\"button2\" value=\" ".$lang['CheckoutButton']." \" ></td>\n";
+	print "  <td   class=\"cwhoiscontact\">&nbsp;</td><td   class=\"cwhoiscontact\" align=\"right\"><input class=\"form-control btn cwhois cwhoiscontact\" type=\"submit\" name=\"button2\" value=\" ".$lang['CheckoutButton']." \" ></td>\n";
 	print "  </tr>\n";
 	print "  </table>\n";
 	if ($ra_paymenttypefield)
@@ -3090,6 +3090,19 @@ if (($cwaction=="checkout") || ($cwaction=="addout"))
 }
 if ($cwaction=="order")
 {
+    // Get all form variables
+    reset($_GET);
+    $formvalues = [];
+    foreach ($_GET as $namepair => $valuepair) {
+        $$namepair = $valuepair;
+        if (substr($namepair,0,2)=="cf")
+        {
+            $formvalues[substr($namepair,2,strlen($namepair)-2)] = $valuepair;
+        }
+    }
+    $_SESSION['contact_form_values'] = $formvalues;
+    header("Location: ".url('/domaincart/order_checkout'));
+    die;
 	// This is the final step where we call the credit card handling service.
 	// Send email to vendor with order details. As this happens before the purchasers
 	// credit card is approved we should warn the vendor to verify order goes through.
@@ -3142,302 +3155,303 @@ if ($cwaction=="order")
   }
   // Get all form variables
   reset($_GET);
-  while(list($namepair, $valuepair) = each($_GET))
-  {
-    $$namepair = $valuepair;
-    if (substr($namepair,0,2)=="cf")
-    {
-      $formname[]=substr($namepair,2,strlen($namepair)-2);
-      $formvalue[]=$valuepair;
+  $formvalues = [];
+    foreach ($_GET as $namepair => $valuepair) {
+        $$namepair = $valuepair;
+        if (substr($namepair,0,2)=="cf")
+        {
+          $formname[]=substr($namepair,2,strlen($namepair)-2);
+          $formvalue[]=$valuepair;
+          $formvalues[substr($namepair,2,strlen($namepair)-2)] = $valuepair;
+        }
     }
-  }
+
   // Create text for order details and get totals.
   // $total=0.00;
 	$total = $_SESSION['ipaytotal'];
   $recurringtotal=0.00;
-  if ($HTMLEmail=="Y")
-  {
-		$cotextcolor="#000000";
-		$cotextsize="10pt";
-    $orderdetails="</p><table class=\"table table-borderless cwhoisemail\" border=\"0\" cellpadding=\"0\" cellspacing=\"10\" bgcolor=\"#FFFFFF\">\n";
-    $couponcode=$cfcouponcode;
-	  $orderdetails.=orderdetailshtml($total,$recurringtotal,"cwhoisemail");
-	  $orderdetails.="</table><p class=\"cwhoisemail\">\n";
-	}
-	else
-	{
-    $couponcode=$cfcouponcode;
-	  $orderdetails=orderdetailstext($total,$recurringtotal);
-  }
-  // Email for vendor
-  $mailBody="";
-  for ($i=0;$i<count($vemail);$i++)
-  {
-    $lne=$vemail[$i];
-    if (is_integer(strpos($lne,"!!!orderdetails!!!")))
-    {
-      // Insert order details here
-      $mailBody.=$orderdetails;
-      $mailBody.="\n";
-      continue;
-    }
-    if (is_integer(strpos($lne,"!!!formfields!!!")))
-    {
-		  if ($HTMLEmail=="Y")
-		    $mailBody.="</p><table class=\"table table-borderless cwhoisemail\" bgcolor=\"#FFFFFF\">\n";
-      // Insert form fields here
-      for ($j=0;$j<count($formname);$j++)
-      {
-			  if ($HTMLEmail=="Y")
-			  {
-			  	$mailBody.="<tr><td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">&nbsp;&nbsp;$formname[$j]</p></td>\n";
-			  	$mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">$formvalue[$j]</p></td></tr>\n";
-			  }
-        else
-        	$mailBody.=$formname[$j].": ".$formvalue[$j]."\n";
-      }
-		  if ($HTMLEmail=="Y")
-		  {
-	      $mailBody.="<tr><td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">&nbsp;&nbsp;ipaddress</p></td>\n";
-	      $mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">".trim(strtok($_SERVER['REMOTE_ADDR'],","))."</p></td></tr>\n";
-			  if ((isset($paymethod)) && ($paymethod!=""))
-			  {
-		      $mailBody.="<tr><td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">&nbsp;Payment Method</p></td>\n";
-          $mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">$paymethod</p></td></tr>\n";
-				}
-	    }
-      else
-      {
-	      $mailBody.="ipaddress: ".trim(strtok($_SERVER['REMOTE_ADDR'],","))."\n";
-			  if ((isset($paymethod)) && ($paymethod!=""))
-		      $mailBody.="Payment Method: $paymethod\n";
-	    }
-		  if ($HTMLEmail=="Y")
-		    $mailBody.="</table><p class=\"cwhoisemail\">\n";
-      continue;
-    }
-    $lne=str_replace("!!!vendorcompany!!!",$vendorcompany,$lne);
-    $lne=str_replace("!!!vendoremail!!!",$vendoremail,$lne);
-    $lne=str_replace("!!!ordnum!!!",$ordnum,$lne);
-    $lne=str_replace("!!!ipaddress!!!",$_SERVER['REMOTE_ADDR'],$lne);
-    $lne=str_replace("!!!useragent!!!",$_SERVER['HTTP_USER_AGENT'],$lne);
-    $lne=str_replace("!!!servername!!!",$_SERVER['HTTP_HOST'],$lne);
-    $lne=str_replace("!!!scriptname!!!",$_SERVER['SCRIPT_NAME'],$lne);
-    $datetime=date("D M j G:i:s T Y");
-    $lne=str_replace("!!!datetime!!!",$datetime,$lne);
-    for ($j=0;$j<count($formname);$j++)
-      $lne=str_replace("!!!".$formname[$j]."!!!",$formvalue[$j],$lne);
-    if ($i==0)
-      $subject=$lne;
-    else
-    {
-		  if ($HTMLEmail=="Y")
-	      $mailBody.="&nbsp;&nbsp;".$lne."<br>\n";
-	    else
-	      $mailBody.=$lne."\n";
-    }
-  }
-  if ($HTMLEmail=="Y")
-  {
-    $styles.="<style type=\"text/css\">\n";
-    $styles.="p.cwhoisemail {\n";
-    $styles.="	font-family: Arial, Helvetica, sans-serif;\n";
-    $styles.="	font-size: 10pt;\n";
-    $styles.="	color: #000000;\n";
-    $styles.="	font-weight: normal;\n";
-    $styles.="	position: static;\n";
-    $styles.="}\n";
-    $styles.="b.cwhoisemail {\n";
-    $styles.="	font-family: Arial, Helvetica, sans-serif;\n";
-    $styles.="	font-size: 10pt;\n";
-    $styles.="	color: #000000;\n";
-    $styles.="	font-weight: bold;\n";
-    $styles.="	position: static;\n";
-    $styles.="}\n";
-    $styles.="a.cwhoisemail {\n";
-    $styles.="    position: static;\n";
-    $styles.="}\n";
-    $styles.="table.cwhoisemail {\n";
-    $styles.="    position: static;\n";
-    $styles.="}\n";
-    $styles.="</style>\n";
-    $mailBody ="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n<HTML>\n<HEAD>\n".$styles."<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>$subject</TITLE>\n</HEAD>\n<BODY>\n<p class=\"cwhoisemail\">".$mailBody;
-    $mailBody.="</p></BODY>\n</HTML>\n";
-  }
-    // If cc number used then hide it in emails which are not secure
-  $ccnumber="";
-  for ($j=0;$j<count($formname);$j++)
-  {
-    if ($formname[$j]=="cc_number")
-      $ccnumber=$formvalue[$j];
-    if ($formname[$j]=="ba_accountnumber")
-      $banumber=$formvalue[$j];
-  }
-  // If required create a file copy of the order details and store on server
-  if ($orderfolder!="")
-  {
-    if ($HTMLEmail=="Y")
-      $fname=$orderfolder.$ordnum.".html";
-    else
-      $fname=$orderfolder.$ordnum.".txt";
-    $fh=fopen($fname,"w");
-    if ($fh!=false)
-    {
-      fputs($fh,$mailBody);
-      fclose($fh);
-    }
-  }
-  if ($ccnumber!="")
-    $mailBody=str_replace($ccnumber,"************".substr($ccnumber,strlen($ccnumber)-4),$mailBody);
-  if (($banumber!="") && (strlen($banumber>6)))
-    $mailBody=str_replace($banumber,"************".substr($banumber,strlen($banumber)-4),$mailBody);
+//  if ($HTMLEmail=="Y")
+//  {
+//		$cotextcolor="#000000";
+//		$cotextsize="10pt";
+//    $orderdetails="</p><table class=\"table table-borderless cwhoisemail\" border=\"0\" cellpadding=\"0\" cellspacing=\"10\" bgcolor=\"#FFFFFF\">\n";
+//    $couponcode=$cfcouponcode;
+//	  $orderdetails.=orderdetailshtml($total,$recurringtotal,"cwhoisemail");
+//	  $orderdetails.="</table><p class=\"cwhoisemail\">\n";
+//	}
+//	else
+//	{
+//    $couponcode=$cfcouponcode;
+//	  $orderdetails=orderdetailstext($total,$recurringtotal);
+//  }
+//  // Email for vendor
+//  $mailBody="";
+//  for ($i=0;$i<count($vemail);$i++)
+//  {
+//    $lne=$vemail[$i];
+//    if (is_integer(strpos($lne,"!!!orderdetails!!!")))
+//    {
+//      // Insert order details here
+//      $mailBody.=$orderdetails;
+//      $mailBody.="\n";
+//      continue;
+//    }
+//    if (is_integer(strpos($lne,"!!!formfields!!!")))
+//    {
+//		  if ($HTMLEmail=="Y")
+//		    $mailBody.="</p><table class=\"table table-borderless cwhoisemail\" bgcolor=\"#FFFFFF\">\n";
+//      // Insert form fields here
+//      for ($j=0;$j<count($formname);$j++)
+//      {
+//			  if ($HTMLEmail=="Y")
+//			  {
+//			  	$mailBody.="<tr><td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">&nbsp;&nbsp;$formname[$j]</p></td>\n";
+//			  	$mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">$formvalue[$j]</p></td></tr>\n";
+//			  }
+//        else
+//        	$mailBody.=$formname[$j].": ".$formvalue[$j]."\n";
+//      }
+//		  if ($HTMLEmail=="Y")
+//		  {
+//	      $mailBody.="<tr><td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">&nbsp;&nbsp;ipaddress</p></td>\n";
+//	      $mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">".trim(strtok($_SERVER['REMOTE_ADDR'],","))."</p></td></tr>\n";
+//			  if ((isset($paymethod)) && ($paymethod!=""))
+//			  {
+//		      $mailBody.="<tr><td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">&nbsp;Payment Method</p></td>\n";
+//          $mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">$paymethod</p></td></tr>\n";
+//				}
+//	    }
+//      else
+//      {
+//	      $mailBody.="ipaddress: ".trim(strtok($_SERVER['REMOTE_ADDR'],","))."\n";
+//			  if ((isset($paymethod)) && ($paymethod!=""))
+//		      $mailBody.="Payment Method: $paymethod\n";
+//	    }
+//		  if ($HTMLEmail=="Y")
+//		    $mailBody.="</table><p class=\"cwhoisemail\">\n";
+//      continue;
+//    }
+//    $lne=str_replace("!!!vendorcompany!!!",$vendorcompany,$lne);
+//    $lne=str_replace("!!!vendoremail!!!",$vendoremail,$lne);
+//    $lne=str_replace("!!!ordnum!!!",$ordnum,$lne);
+//    $lne=str_replace("!!!ipaddress!!!",$_SERVER['REMOTE_ADDR'],$lne);
+//    $lne=str_replace("!!!useragent!!!",$_SERVER['HTTP_USER_AGENT'],$lne);
+//    $lne=str_replace("!!!servername!!!",$_SERVER['HTTP_HOST'],$lne);
+//    $lne=str_replace("!!!scriptname!!!",$_SERVER['SCRIPT_NAME'],$lne);
+//    $datetime=date("D M j G:i:s T Y");
+//    $lne=str_replace("!!!datetime!!!",$datetime,$lne);
+//    for ($j=0;$j<count($formname);$j++)
+//      $lne=str_replace("!!!".$formname[$j]."!!!",$formvalue[$j],$lne);
+//    if ($i==0)
+//      $subject=$lne;
+//    else
+//    {
+//		  if ($HTMLEmail=="Y")
+//	      $mailBody.="&nbsp;&nbsp;".$lne."<br>\n";
+//	    else
+//	      $mailBody.=$lne."\n";
+//    }
+//  }
+//  if ($HTMLEmail=="Y")
+//  {
+//    $styles.="<style type=\"text/css\">\n";
+//    $styles.="p.cwhoisemail {\n";
+//    $styles.="	font-family: Arial, Helvetica, sans-serif;\n";
+//    $styles.="	font-size: 10pt;\n";
+//    $styles.="	color: #000000;\n";
+//    $styles.="	font-weight: normal;\n";
+//    $styles.="	position: static;\n";
+//    $styles.="}\n";
+//    $styles.="b.cwhoisemail {\n";
+//    $styles.="	font-family: Arial, Helvetica, sans-serif;\n";
+//    $styles.="	font-size: 10pt;\n";
+//    $styles.="	color: #000000;\n";
+//    $styles.="	font-weight: bold;\n";
+//    $styles.="	position: static;\n";
+//    $styles.="}\n";
+//    $styles.="a.cwhoisemail {\n";
+//    $styles.="    position: static;\n";
+//    $styles.="}\n";
+//    $styles.="table.cwhoisemail {\n";
+//    $styles.="    position: static;\n";
+//    $styles.="}\n";
+//    $styles.="</style>\n";
+//    $mailBody ="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n<HTML>\n<HEAD>\n".$styles."<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>$subject</TITLE>\n</HEAD>\n<BODY>\n<p class=\"cwhoisemail\">".$mailBody;
+//    $mailBody.="</p></BODY>\n</HTML>\n";
+//  }
+//    // If cc number used then hide it in emails which are not secure
+//  $ccnumber="";
+//  for ($j=0;$j<count($formname);$j++)
+//  {
+//    if ($formname[$j]=="cc_number")
+//      $ccnumber=$formvalue[$j];
+//    if ($formname[$j]=="ba_accountnumber")
+//      $banumber=$formvalue[$j];
+//  }
+//  // If required create a file copy of the order details and store on server
+//  if ($orderfolder!="")
+//  {
+//    if ($HTMLEmail=="Y")
+//      $fname=$orderfolder.$ordnum.".html";
+//    else
+//      $fname=$orderfolder.$ordnum.".txt";
+//    $fh=fopen($fname,"w");
+//    if ($fh!=false)
+//    {
+//      fputs($fh,$mailBody);
+//      fclose($fh);
+//    }
+//  }
+//  if ($ccnumber!="")
+//    $mailBody=str_replace($ccnumber,"************".substr($ccnumber,strlen($ccnumber)-4),$mailBody);
+//  if (($banumber!="") && (strlen($banumber>6)))
+//    $mailBody=str_replace($banumber,"************".substr($banumber,strlen($banumber)-4),$mailBody);
+//
+//  // Add referrer details from cookie if available
+//  $reflinklokcookie=$_COOKIE['REFLINKLOK'];
+//  $sesreflinklokcookie=$_COOKIE['SESREFLINKLOK'];
+//  if ((isset($reflinklokcookie)) && ($reflinklokcookie!=""))
+//  {
+//    $cookiefound=true;
+//    $reflinklokvals=explode("|",$reflinklokcookie);
+//    if ($HTMLEmail=="Y")
+//    {
+//      $mailBody.="Date of first visit: ".$reflinklokvals[0]." ".$reflinklokvals[2]."<br>\n";
+//      $mailBody.="Time of first visit: ".$reflinklokvals[1]." ".$reflinklokvals[2]."<br>\n";
+//      $mailBody.="Entry page first visit: ".$reflinklokvals[3]."<br>\n";
+//      $mailBody.="Referer first visit: ".$reflinklokvals[4]."<br>\n";
+//    }
+//    else
+//    {
+//      $mailBody.="Date of first visit: ".$reflinklokvals[0]." ".$reflinklokvals[2]."\n";
+//      $mailBody.="Time of first visit: ".$reflinklokvals[1]." ".$reflinklokvals[2]."\n";
+//      $mailBody.="Entry page first visit: ".$reflinklokvals[3]."\n";
+//      $mailBody.="Referer first visit: ".$reflinklokvals[4]."\n";
+//    }
+//  }
+//  if ((isset($sesreflinklokcookie)) && ($sesreflinklokcookie!=""))
+//  {
+//    $cookiefound=true;
+//    $sesreflinklokvals=explode("|",$sesreflinklokcookie);
+//    if ($HTMLEmail=="Y")
+//    {
+//      $mailBody.="Date of session start: ".$sesreflinklokvals[0]." ".$sesreflinklokvals[2]."<br>\n";
+//      $mailBody.="Time of session start: ".$sesreflinklokvals[1]." ".$sesreflinklokvals[2]."<br>\n";
+//      $mailBody.="Entry page this session: ".$sesreflinklokvals[3]."<br>\n";
+//      $mailBody.="Referer this session: ".$sesreflinklokvals[4]."<br>\n\n";
+//    }
+//    else
+//    {
+//      $mailBody.="Date of session start: ".$sesreflinklokvals[0]." ".$sesreflinklokvals[2]."\n";
+//      $mailBody.="Time of session start: ".$sesreflinklokvals[1]." ".$sesreflinklokvals[2]."\n";
+//      $mailBody.="Entry page this session: ".$sesreflinklokvals[3]."\n";
+//      $mailBody.="Referer this session: ".$sesreflinklokvals[4]."\n\n";
+//    }
+//  }
+//
+//  cwc_SendEmailOut($vendoremail, $vendoremail, $vendorcompany, $subject, $mailBody, $HTMLEmail);
+//  if ($vendoremail2!="")
+//    cwc_SendEmailOut($vendoremail2, $vendoremail, $vendorcompany, $subject, $mailBody, $HTMLEmail);
+//	// Send email to buyer confirming order.
+//  $subject=$cemail[0];
+//  $mailBody="";
+//  for ($i=0;$i<count($cemail);$i++)
+//  {
+//    $lne=$cemail[$i];
+//    if (is_integer(strpos($lne,"!!!orderdetails!!!")))
+//    {
+//      // Insert order details here
+//      $mailBody.=$orderdetails."\n";
+//      continue;
+//    }
+//    if (is_integer(strpos($lne,"!!!formfields!!!")))
+//    {
+//		  if ($HTMLEmail=="Y")
+//		    $mailBody.="</p><table bgcolor=\"#FFFFFF\">\n";
+//      // Insert form fields here
+//      for ($j=0;$j<count($formname);$j++)
+//      {
+//			  if ($HTMLEmail=="Y")
+//			  {
+//			  	$mailBody.="<tr><td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">&nbsp;&nbsp;$formname[$j]</p></td>\n";
+//			  	$mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">$formvalue[$j]</p></td></tr>\n";
+//			  }
+//        else
+//        	$mailBody.=$formname[$j].": ".$formvalue[$j]."\n";
+//      }
+//		  if ($HTMLEmail=="Y")
+//		    $mailBody.="</table><p class=\"cwhoisemail\">\n";
+//      continue;
+//    }
+//    $lne=str_replace("!!!vendorcompany!!!",$vendorcompany,$lne);
+//    $lne=str_replace("!!!vendoremail!!!",$vendoremail,$lne);
+//    $lne=str_replace("!!!ordnum!!!",$ordnum,$lne);
+//		$lne=str_replace("!!!ipaddress!!!",$_SERVER['REMOTE_ADDR'],$lne);
+//    $lne=str_replace("!!!useragent!!!",$_SERVER['HTTP_USER_AGENT'],$lne);
+//    $lne=str_replace("!!!servername!!!",$_SERVER['HTTP_HOST'],$lne);
+//    $lne=str_replace("!!!scriptname!!!",$_SERVER['SCRIPT_NAME'],$lne);
+//    $datetime=date("D M j G:i:s T Y");
+//    $lne=str_replace("!!!datetime!!!",$datetime,$lne);
+//    for ($j=0;$j<count($formname);$j++)
+//      $lne=str_replace("!!!".$formname[$j]."!!!",$formvalue[$j],$lne);
+//    if ($i==0)
+//      $subject=$lne;
+//    else
+//    {
+//		  if ($HTMLEmail=="Y")
+//	      $mailBody.="&nbsp;&nbsp;".$lne."<br>\n";
+//	    else
+//	      $mailBody.=$lne."\n";
+//    }
+//  }
+//  if ($HTMLEmail=="Y")
+//  {
+//	  $mailBody="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n<HTML>\n<HEAD>\n".$styles."<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>$subject</TITLE>\n</HEAD>\n<BODY>\n<p class=\"cwhoisemail\">".$mailBody;
+//	  $mailBody.="</p></BODY>\n</HTML>\n";
+//  }
+//  if ($ccnumber!="")
+//    $mailBody=str_replace($ccnumber,"************".substr($ccnumber,strlen($ccnumber)-4),$mailBody);
+//  if (($banumber!="") && (strlen($banumber>6)))
+//    $mailBody=str_replace($banumber,"************".substr($banumber,strlen($banumber)-4),$mailBody);
+//  cwc_SendEmailOut($cfemail, $vendoremail, $vendorcompany, $subject, $mailBody, $HTMLEmail);
+//
+//	// Send SMS via Clickatel if required.
+//	if (($clickatell_api_id!="") && ($clickatell_user!="") && ($clickatell_password!="") && ($clickatell_to!=""))
+//	{
+//	  $fh=fopen("http://api.clickatell.com/http/sendmsg?api_id=".$clickatell_api_id."&user=".$clickatell_user."&password=".$clickatell_password."&to=".$clickatell_to."&from=".$clickatell_to."&text=".urlencode("cWhois order ".$ordnum." from ".$cffname." ".$cflname." (".$cfemail.")"),"rb");
+//	}
 
-  // Add referrer details from cookie if available
-  $reflinklokcookie=$_COOKIE['REFLINKLOK'];
-  $sesreflinklokcookie=$_COOKIE['SESREFLINKLOK'];
-  if ((isset($reflinklokcookie)) && ($reflinklokcookie!=""))
-  {
-    $cookiefound=true;
-    $reflinklokvals=explode("|",$reflinklokcookie);
-    if ($HTMLEmail=="Y")
-    {
-      $mailBody.="Date of first visit: ".$reflinklokvals[0]." ".$reflinklokvals[2]."<br>\n";
-      $mailBody.="Time of first visit: ".$reflinklokvals[1]." ".$reflinklokvals[2]."<br>\n";
-      $mailBody.="Entry page first visit: ".$reflinklokvals[3]."<br>\n";
-      $mailBody.="Referer first visit: ".$reflinklokvals[4]."<br>\n";
-    }
-    else
-    {
-      $mailBody.="Date of first visit: ".$reflinklokvals[0]." ".$reflinklokvals[2]."\n";
-      $mailBody.="Time of first visit: ".$reflinklokvals[1]." ".$reflinklokvals[2]."\n";
-      $mailBody.="Entry page first visit: ".$reflinklokvals[3]."\n";
-      $mailBody.="Referer first visit: ".$reflinklokvals[4]."\n";
-    }
-  }
-  if ((isset($sesreflinklokcookie)) && ($sesreflinklokcookie!=""))
-  {
-    $cookiefound=true;
-    $sesreflinklokvals=explode("|",$sesreflinklokcookie);
-    if ($HTMLEmail=="Y")
-    {
-      $mailBody.="Date of session start: ".$sesreflinklokvals[0]." ".$sesreflinklokvals[2]."<br>\n";
-      $mailBody.="Time of session start: ".$sesreflinklokvals[1]." ".$sesreflinklokvals[2]."<br>\n";
-      $mailBody.="Entry page this session: ".$sesreflinklokvals[3]."<br>\n";
-      $mailBody.="Referer this session: ".$sesreflinklokvals[4]."<br>\n\n";
-    }
-    else
-    {
-      $mailBody.="Date of session start: ".$sesreflinklokvals[0]." ".$sesreflinklokvals[2]."\n";
-      $mailBody.="Time of session start: ".$sesreflinklokvals[1]." ".$sesreflinklokvals[2]."\n";
-      $mailBody.="Entry page this session: ".$sesreflinklokvals[3]."\n";
-      $mailBody.="Referer this session: ".$sesreflinklokvals[4]."\n\n";
-    }
-  }
+	// Add cart variables to session data in case an external app needs them ??session cart
+//    global $carttax;
+//  $_SESSION['domaincart']['carttax']=$carttax;
+//  $_SESSION['domaincart']['carttaxglobal']=$carttaxglobal;
+//  $_SESSION['domaincart']['cartrecurringtaxglobal']=$cartrecurringtaxglobal;
+//  $_SESSION['domaincart']['carttax1']=$carttax1;
+//  $_SESSION['domaincart']['carttax2']=$carttax2;
+//  $_SESSION['domaincart']['cartrecurringtax']=$cartrecurringtax;
+//  $_SESSION['domaincart']['cartrecurringtax1']=$cartrecurringtax1;
+//  $_SESSION['domaincart']['cartrecurringtax2']=$cartrecurringtax2;
+//  $_SESSION['domaincart']['carttaxrate']=$taxrate;
+//  $_SESSION['domaincart']['carttaxrate1']=$carttaxrate1;
+//  $_SESSION['domaincart']['carttaxrate2']=$carttaxrate2;
+//  $_SESSION['domaincart']['cartextrafee']=$cartextrafee;
+//  $_SESSION['domaincart']['cartsubtotal']=$cartsubtotal;
+//  $_SESSION['domaincart']['cartrecurringsubtotal']=$cartrecurringsubtotal;
+//  $_SESSION['domaincart']['carttotal']=$carttotal;
+//  $_SESSION['domaincart']['cartrecurringtotal']=$cartrecurringtotal;
+//  $_SESSION['domaincart']['cartdomain']=$cartdomain;
+//  $_SESSION['domaincart']['cartdomainopt']=$cartdomainopt;
+//  $_SESSION['domaincart']['cartdomaintime']=$cartdomaintime;
+//  $_SESSION['domaincart']['cartdomainprice']=$cartdomainprice;
+//  $_SESSION['domaincart']['carthosting']=$carthosting;
+//  $_SESSION['domaincart']['carthostingrecurr']=$carthostingrecurr;
+//  $_SESSION['domaincart']['carthostingprice']=$carthostingprice;
+//  $_SESSION['domaincart']['carthostingsetup']=$carthostingsetup;
+//  $_SESSION['domaincart']['cartitemtotal']=$cartitemtotal;
+//  $_SESSION['domaincart']['cartitemrecurringtotal']=$cartitemrecurringtotal;
+//  $_SESSION['domaincart']['cartpayprocess']=$payprocess;
+//  $_SESSION['domaincart']['contact_formvalues'] = $formvalues;
 
-  cwc_SendEmailOut($vendoremail, $vendoremail, $vendorcompany, $subject, $mailBody, $HTMLEmail);
-  if ($vendoremail2!="")
-    cwc_SendEmailOut($vendoremail2, $vendoremail, $vendorcompany, $subject, $mailBody, $HTMLEmail);
-	// Send email to buyer confirming order.
-  $subject=$cemail[0];
-  $mailBody="";
-  for ($i=0;$i<count($cemail);$i++)
-  {
-    $lne=$cemail[$i];
-    if (is_integer(strpos($lne,"!!!orderdetails!!!")))
-    {
-      // Insert order details here
-      $mailBody.=$orderdetails."\n";
-      continue;
-    }
-    if (is_integer(strpos($lne,"!!!formfields!!!")))
-    {
-		  if ($HTMLEmail=="Y")
-		    $mailBody.="</p><table bgcolor=\"#FFFFFF\">\n";
-      // Insert form fields here
-      for ($j=0;$j<count($formname);$j++)
-      {
-			  if ($HTMLEmail=="Y")
-			  {
-			  	$mailBody.="<tr><td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">&nbsp;&nbsp;$formname[$j]</p></td>\n";
-			  	$mailBody.="<td   class=\"cwhoisemail\"><p class=\"cwhoisemail\">$formvalue[$j]</p></td></tr>\n";
-			  }
-        else
-        	$mailBody.=$formname[$j].": ".$formvalue[$j]."\n";
-      }
-		  if ($HTMLEmail=="Y")
-		    $mailBody.="</table><p class=\"cwhoisemail\">\n";
-      continue;
-    }
-    $lne=str_replace("!!!vendorcompany!!!",$vendorcompany,$lne);
-    $lne=str_replace("!!!vendoremail!!!",$vendoremail,$lne);
-    $lne=str_replace("!!!ordnum!!!",$ordnum,$lne);
-		$lne=str_replace("!!!ipaddress!!!",$_SERVER['REMOTE_ADDR'],$lne);
-    $lne=str_replace("!!!useragent!!!",$_SERVER['HTTP_USER_AGENT'],$lne);
-    $lne=str_replace("!!!servername!!!",$_SERVER['HTTP_HOST'],$lne);
-    $lne=str_replace("!!!scriptname!!!",$_SERVER['SCRIPT_NAME'],$lne);
-    $datetime=date("D M j G:i:s T Y");
-    $lne=str_replace("!!!datetime!!!",$datetime,$lne);
-    for ($j=0;$j<count($formname);$j++)
-      $lne=str_replace("!!!".$formname[$j]."!!!",$formvalue[$j],$lne);
-    if ($i==0)
-      $subject=$lne;
-    else
-    {
-		  if ($HTMLEmail=="Y")
-	      $mailBody.="&nbsp;&nbsp;".$lne."<br>\n";
-	    else
-	      $mailBody.=$lne."\n";
-    }
-  }
-  if ($HTMLEmail=="Y")
-  {
-	  $mailBody="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\">\n<HTML>\n<HEAD>\n".$styles."<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>$subject</TITLE>\n</HEAD>\n<BODY>\n<p class=\"cwhoisemail\">".$mailBody;
-	  $mailBody.="</p></BODY>\n</HTML>\n";
-  }
-  if ($ccnumber!="")
-    $mailBody=str_replace($ccnumber,"************".substr($ccnumber,strlen($ccnumber)-4),$mailBody);
-  if (($banumber!="") && (strlen($banumber>6)))
-    $mailBody=str_replace($banumber,"************".substr($banumber,strlen($banumber)-4),$mailBody);
-  cwc_SendEmailOut($cfemail, $vendoremail, $vendorcompany, $subject, $mailBody, $HTMLEmail);
-
-	// Send SMS via Clickatel if required.
-	if (($clickatell_api_id!="") && ($clickatell_user!="") && ($clickatell_password!="") && ($clickatell_to!=""))
-	{
-	  $fh=fopen("http://api.clickatell.com/http/sendmsg?api_id=".$clickatell_api_id."&user=".$clickatell_user."&password=".$clickatell_password."&to=".$clickatell_to."&from=".$clickatell_to."&text=".urlencode("cWhois order ".$ordnum." from ".$cffname." ".$cflname." (".$cfemail.")"),"rb");
-	}
-	// Add cart variables to session data in case an externalapp needs them
-  $_SESSION['carttax']=$carttax;
-  $_SESSION['carttaxglobal']=$carttaxglobal;
-  $_SESSION['cartrecurringtaxglobal']=$cartrecurringtaxglobal;
-  $_SESSION['carttax1']=$carttax1;
-  $_SESSION['carttax2']=$carttax2;
-  $_SESSION['cartrecurringtax']=$cartrecurringtax;
-  $_SESSION['cartrecurringtax1']=$cartrecurringtax1;
-  $_SESSION['cartrecurringtax2']=$cartrecurringtax2;
-  $_SESSION['carttaxrate']=$taxrate;
-  $_SESSION['carttaxrate1']=$carttaxrate1;
-  $_SESSION['carttaxrate2']=$carttaxrate2;
-  $_SESSION['cartextrafee']=$cartextrafee;
-  $_SESSION['cartsubtotal']=$cartsubtotal;
-  $_SESSION['cartrecurringsubtotal']=$cartrecurringsubtotal;
-  $_SESSION['carttotal']=$carttotal;
-	$_SESSION['cartrecurringtotal']=$cartrecurringtotal;
-  $_SESSION['cartdomain']=$cartdomain;
-  $_SESSION['cartdomainopt']=$cartdomainopt;
-  $_SESSION['cartdomaintime']=$cartdomaintime;
-  $_SESSION['cartdomainprice']=$cartdomainprice;
-  $_SESSION['carthosting']=$carthosting;
-  $_SESSION['carthostingrecurr']=$carthostingrecurr;
-  $_SESSION['carthostingprice']=$carthostingprice;
-  $_SESSION['carthostingsetup']=$carthostingsetup;
-  $_SESSION['cartitemtotal']=$cartitemtotal;
-  $_SESSION['cartitemrecurringtotal']=$cartitemrecurringtotal;
-  $_SESSION['cartpayprocess']=$payprocess;
-	for ($k=0;$k<count($cform);$k++)
- 	{
-   	$formv=explode(",",$cform[$k]);
- 	  $_SESSION[$formv[0]]=$_REQUEST["cf".$formv[0]];
- 	}
   if ($UseMySQL)
   {
 	//StoreOrderMysql();
@@ -3490,1088 +3504,1088 @@ if ($cwaction=="order")
       print "</script>\n";
 
 	}
-
+	// END iPay Payment Processing
 	// OTHER PAYMENT GATEWAYS...SKIP TO LINE 4517
 
-	// 2checkout.com payment processing
-	if (strcasecmp($payprocess,"2CO")==0)
-	{
-		$recurringhandled=0;
-		if ($recurringtotal>0)
-    {
-			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-      // See if an existing 2CO product exists for combination of initial and monthly charge
-      for ($k=0; $k<count($recprodid2co);$k++)
-      {
-       	$pid=strtok($recprodid2co[$k],",");
-       	$initcost=strtok(",");
-       	$monthlycost=strtok(",");
-        $firstcharge=sprintf("%01.".$decimalplaces."f",$initcost+$monthlycost);
-        if (($recurringtotal==$monthlycost) && ($total==$firstcharge))
-        {
-          $recurringhandled=1;
-          break;
-        }
-      }
-      if ($recurringhandled==1)
-      {
-        // There is a recurring product setup on 2CO to handle this order combination
-        print "<form action=\"https://www2.2checkout.com/2co/buyer/purchase\" method=\"POST\" name=\"order2co\">\n";
-        print "<input type=\"hidden\" name=\"sid\" value=\"$vendorid2co\">\n";
-        print "<input type=\"hidden\" name=\"product_id\" value=\"$pid\">\n";
-        print "<input type=\"hidden\" name=\"merchant_order_id\" value=\"$ordnum\">\n";
-	      if ($demo2co=="Y")
-          print "<input type=\"hidden\" name=\"demo\" value=\"Y\">\n";
-        print "<input type=\"hidden\" name=\"card_holder_name\" value=\"$cffname\">\n";
-        print "<input type=\"hidden\" name=\"street_address\" value=\"$cfstr1\">\n";
-        print "<input type=\"hidden\" name=\"street_address2\" value=\"$cfstr2\">\n";
-        print "<input type=\"hidden\" name=\"city\" value=\"$cfcity\">\n";
-        print "<input type=\"hidden\" name=\"state\" value=\"$cfstate\">\n";
-        print "<input type=\"hidden\" name=\"zip\" value=\"$cfzip\">\n";
-        print "<input type=\"hidden\" name=\"country\" value=\"$cfcountry\">\n";
-        print "<input type=\"hidden\" name=\"email\" value=\"$cfemail\">\n";
-        print "<input type=\"hidden\" name=\"phone\" value=\"$cftel\">\n";
-        print "</form>\n";
-        print "<script language=\"JavaScript\">\n";
-        print "document.order2co.submit()\n";
-        print "</script>\n";
-      }
-    }
-		if (($recurringtotal==0) || ($recurringhandled==0))
-    {
-    	// For new 2CO rules we need to specify each product ordered
-			//*************************************************************************
-      $cco_domain=explode(",",$cartdomain);
-      $cco_domainopt=explode(",",$cartdomainopt);
-      $cco_domaintime=explode(",",$cartdomaintime);
-      $cco_domainprice=explode(",",$cartdomainprice);
-			$cco_hosting=explode(",",$carthosting);
-			$cco_hostingprice=explode(",",$carthostingprice);
-			$cco_hostingrecurr=explode(",",$carthostingrecurr);
-      $prodcount=1;
-      for ($k=0;$k<count($cco_domain);$k++)
-      {
-      	if ($cco_domainprice[$k]>0.00)
-      	{
-      		// Domain product purchased
-      		$cprod[$prodcount]="";
-      		$cname[$prodcount]="";
-          $cdescription[$prodcount]="";
-          $cprice[$prodcount]=$cco_domainprice[$k];
-          $cprice[$prodcount]=sprintf("%01.".$decimalplaces."f",$cprice[$prodcount]);
-      		if ($cco_domainopt[$k]=="R")
-      		{
-      		  $cprod[$prodcount]="Reg_";
-      		  $cname[$prodcount]="Register .";
-      		}
-      		if ($cco_domainopt[$k]=="T")
-      		{
-      		  $cprod[$prodcount]="Tran_";
-      		  $cname[$prodcount]="Transfer .";
-      		}
-      		if ($cco_domainopt[$k]=="N")
-      		{
-      		  $cprod[$prodcount]="Ren_";
-      		  $cname[$prodcount]="Renew .";
-      		}
-	        if (substr($cco_domain[$k],strlen($cco_domain[$k])-5,5)==".name")
-	        {
-	          $cprod[$prodcount].="name_";
-	          $cname[$prodcount].="name ";
-	        }
-	        else
-	        {
-	          // Get domain extension by taking everything from first '.'
-	          $pos=strpos($cco_domain[$k],".");
-	          if (is_integer($pos))
-	          {
-	            $cprod[$prodcount].=substr($cco_domain[$k],$pos+1,strlen($cco_domain[$k])-$pos-1)."_";
-	            $cname[$prodcount].=substr($cco_domain[$k],$pos+1,strlen($cco_domain[$k])-$pos-1)." ";
-	          }
-      		}
-          $cprod[$prodcount].=$cco_domaintime[$k];
-          $cname[$prodcount].="for ".$cco_domaintime[$k]." year(s)";
-          $cdescription[$prodcount]=$cname[$prodcount];
-          $prodcount++;
-      	}
-      	if ($cco_hostingprice[$k]>0.00)
-      	{
-          // Hosting product purchased
-      		$cprod[$prodcount]="";
-      		$cname[$prodcount]="";
-          $cdescription[$prodcount]="";
-          $cprice[$prodcount]=$cco_hostingprice[$k];
-          $cprice[$prodcount]=sprintf("%01.".$decimalplaces."f",$cprice[$prodcount]);
-      		$cprod[$prodcount]="Host_".$cco_hosting[$k];
-      		$cprod[$prodcount]=str_replace(" ","_",$cprod[$prodcount]);
-      		$cname[$prodcount]="Hosting ".$cco_hosting[$k];
-          $cdescription[$prodcount]=$cname[$prodcount];
-          $prodcount++;
-      	}
-      }
-      print "<form action=\"https://www2.2checkout.com/2co/buyer/purchase\" method=\"POST\" name=\"order2co\">\n";
-      print "<input type=\"hidden\" name=\"sid\" value=\"$vendorid2co\">\n";
-      print "<input type=\"hidden\" name=\"total\" value=\"$total\">\n";
-      print "<input type=\"hidden\" name=\"cart_order_id\" value=\"$ordnum\">\n";
-      print "<input type=\"hidden\" name=\"id_type\" value=\"1\">\n";
-      if ($demo2co=="Y")
-        print "<input type=\"hidden\" name=\"demo\" value=\"Y\">\n";
-      for ($k=1;$k<$prodcount;$k++)
-      {
-	      print "<input type=\"hidden\" name=\"c_prod_$k\" value=\"".$cprod[$k]."\">\n";
-	      print "<input type=\"hidden\" name=\"c_name_$k\" value=\"".$cname[$k]."\">\n";
-	      print "<input type=\"hidden\" name=\"c_description_$k\" value=\"".$cdescription[$k]."\">\n";
-	      print "<input type=\"hidden\" name=\"c_price_$k\" value=\"".$cprice[$k]."\">\n";
-	      print "<input type=\"hidden\" name=\"c_tangible_$k\" value=\"N\">\n";
-      }
-      // Prepopulate contact details
-      print "<input type=\"hidden\" name=\"card_holder_name\" value=\"$cffname\">\n";
-      print "<input type=\"hidden\" name=\"street_address\" value=\"$cfstr1\">\n";
-      print "<input type=\"hidden\" name=\"street_address2\" value=\"$cfstr2\">\n";
-      print "<input type=\"hidden\" name=\"city\" value=\"$cfcity\">\n";
-      print "<input type=\"hidden\" name=\"state\" value=\"$cfstate\">\n";
-      print "<input type=\"hidden\" name=\"zip\" value=\"$cfzip\">\n";
-      print "<input type=\"hidden\" name=\"country\" value=\"$cfcountry\">\n";
-      print "<input type=\"hidden\" name=\"email\" value=\"$cfemail\">\n";
-      print "<input type=\"hidden\" name=\"phone\" value=\"$cftel\">\n";
-
-      print "</form>\n";
-      print "<script language=\"JavaScript\">\n";
-      print "document.order2co.submit()\n";
-      print "</script>\n";
-//*************************************************************************
-    }
-	}
-// 	// PayPal payment processing
-// 	if (strcasecmp($payprocess,"PayPal")==0)
-// 	{
-// 		// See if we need to do one off or recurring billing
-// 		if ($recurringtotal>0)
-// 		{
-// 			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-//       print "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" name=\"paypalbuy\">\n";
-//       print "<input type=\"hidden\" name=\"cmd\" value=\"_xclick-subscriptions\">\n";
-//       print "<input type=\"hidden\" name=\"business\" value=\"$paypalemail\">\n";
-//       print "<input type=\"hidden\" name=\"item_name\" value=\"$paypaldesc\">\n";
-//       print "<input type=\"hidden\" name=\"item_number\" value=\"$ordnum\">\n";
-//       print "<input type=\"hidden\" name=\"no_note\" value=\"1\">\n";
-//       print "<input type=\"hidden\" name=\"currency_code\" value=\"$paypalcurrency\">\n";
-//       print "<input type=\"hidden\" name=\"return\" value=\"$paypalreturn\">\n";
-//       print "<input type=\"hidden\" name=\"cancel_return\" value=\"$paypalcancel\">\n";
-//       print "<input type=\"hidden\" name=\"invoice\" value=\"$ordnum\">\n";
-//       print "<input type=\"hidden\" name=\"a1\" value=\"$total\">\n";
-//       print "<input type=\"hidden\" name=\"p1\" value=\"1\">\n";
-//       print "<input type=\"hidden\" name=\"t1\" value=\"M\">\n";
-//       print "<input type=\"hidden\" name=\"a3\" value=\"$recurringtotal\">\n";
-//       print "<input type=\"hidden\" name=\"p3\" value=\"1\">\n";
-//       print "<input type=\"hidden\" name=\"t3\" value=\"M\">\n";
-//       print "<input type=\"hidden\" name=\"src\" value=\"1\">\n";
-//       print "<input type=\"hidden\" name=\"sra\" value=\"1\">\n";
-//       print "<input type=\"hidden\" name=\"custom\" value=\"".session_id()."\">\n";
+//	// 2checkout.com payment processing
+//	if (strcasecmp($payprocess,"2CO")==0)
+//	{
+//		$recurringhandled=0;
+//		if ($recurringtotal>0)
+//    {
+//			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//      // See if an existing 2CO product exists for combination of initial and monthly charge
+//      for ($k=0; $k<count($recprodid2co);$k++)
+//      {
+//       	$pid=strtok($recprodid2co[$k],",");
+//       	$initcost=strtok(",");
+//       	$monthlycost=strtok(",");
+//        $firstcharge=sprintf("%01.".$decimalplaces."f",$initcost+$monthlycost);
+//        if (($recurringtotal==$monthlycost) && ($total==$firstcharge))
+//        {
+//          $recurringhandled=1;
+//          break;
+//        }
+//      }
+//      if ($recurringhandled==1)
+//      {
+//        // There is a recurring product setup on 2CO to handle this order combination
+//        print "<form action=\"https://www2.2checkout.com/2co/buyer/purchase\" method=\"POST\" name=\"order2co\">\n";
+//        print "<input type=\"hidden\" name=\"sid\" value=\"$vendorid2co\">\n";
+//        print "<input type=\"hidden\" name=\"product_id\" value=\"$pid\">\n";
+//        print "<input type=\"hidden\" name=\"merchant_order_id\" value=\"$ordnum\">\n";
+//	      if ($demo2co=="Y")
+//          print "<input type=\"hidden\" name=\"demo\" value=\"Y\">\n";
+//        print "<input type=\"hidden\" name=\"card_holder_name\" value=\"$cffname\">\n";
+//        print "<input type=\"hidden\" name=\"street_address\" value=\"$cfstr1\">\n";
+//        print "<input type=\"hidden\" name=\"street_address2\" value=\"$cfstr2\">\n";
+//        print "<input type=\"hidden\" name=\"city\" value=\"$cfcity\">\n";
+//        print "<input type=\"hidden\" name=\"state\" value=\"$cfstate\">\n";
+//        print "<input type=\"hidden\" name=\"zip\" value=\"$cfzip\">\n";
+//        print "<input type=\"hidden\" name=\"country\" value=\"$cfcountry\">\n";
+//        print "<input type=\"hidden\" name=\"email\" value=\"$cfemail\">\n";
+//        print "<input type=\"hidden\" name=\"phone\" value=\"$cftel\">\n";
+//        print "</form>\n";
+//        print "<script language=\"JavaScript\">\n";
+//        print "document.order2co.submit()\n";
+//        print "</script>\n";
+//      }
+//    }
+//		if (($recurringtotal==0) || ($recurringhandled==0))
+//    {
+//    	// For new 2CO rules we need to specify each product ordered
+//			//*************************************************************************
+//      $cco_domain=explode(",",$cartdomain);
+//      $cco_domainopt=explode(",",$cartdomainopt);
+//      $cco_domaintime=explode(",",$cartdomaintime);
+//      $cco_domainprice=explode(",",$cartdomainprice);
+//			$cco_hosting=explode(",",$carthosting);
+//			$cco_hostingprice=explode(",",$carthostingprice);
+//			$cco_hostingrecurr=explode(",",$carthostingrecurr);
+//      $prodcount=1;
+//      for ($k=0;$k<count($cco_domain);$k++)
+//      {
+//      	if ($cco_domainprice[$k]>0.00)
+//      	{
+//      		// Domain product purchased
+//      		$cprod[$prodcount]="";
+//      		$cname[$prodcount]="";
+//          $cdescription[$prodcount]="";
+//          $cprice[$prodcount]=$cco_domainprice[$k];
+//          $cprice[$prodcount]=sprintf("%01.".$decimalplaces."f",$cprice[$prodcount]);
+//      		if ($cco_domainopt[$k]=="R")
+//      		{
+//      		  $cprod[$prodcount]="Reg_";
+//      		  $cname[$prodcount]="Register .";
+//      		}
+//      		if ($cco_domainopt[$k]=="T")
+//      		{
+//      		  $cprod[$prodcount]="Tran_";
+//      		  $cname[$prodcount]="Transfer .";
+//      		}
+//      		if ($cco_domainopt[$k]=="N")
+//      		{
+//      		  $cprod[$prodcount]="Ren_";
+//      		  $cname[$prodcount]="Renew .";
+//      		}
+//	        if (substr($cco_domain[$k],strlen($cco_domain[$k])-5,5)==".name")
+//	        {
+//	          $cprod[$prodcount].="name_";
+//	          $cname[$prodcount].="name ";
+//	        }
+//	        else
+//	        {
+//	          // Get domain extension by taking everything from first '.'
+//	          $pos=strpos($cco_domain[$k],".");
+//	          if (is_integer($pos))
+//	          {
+//	            $cprod[$prodcount].=substr($cco_domain[$k],$pos+1,strlen($cco_domain[$k])-$pos-1)."_";
+//	            $cname[$prodcount].=substr($cco_domain[$k],$pos+1,strlen($cco_domain[$k])-$pos-1)." ";
+//	          }
+//      		}
+//          $cprod[$prodcount].=$cco_domaintime[$k];
+//          $cname[$prodcount].="for ".$cco_domaintime[$k]." year(s)";
+//          $cdescription[$prodcount]=$cname[$prodcount];
+//          $prodcount++;
+//      	}
+//      	if ($cco_hostingprice[$k]>0.00)
+//      	{
+//          // Hosting product purchased
+//      		$cprod[$prodcount]="";
+//      		$cname[$prodcount]="";
+//          $cdescription[$prodcount]="";
+//          $cprice[$prodcount]=$cco_hostingprice[$k];
+//          $cprice[$prodcount]=sprintf("%01.".$decimalplaces."f",$cprice[$prodcount]);
+//      		$cprod[$prodcount]="Host_".$cco_hosting[$k];
+//      		$cprod[$prodcount]=str_replace(" ","_",$cprod[$prodcount]);
+//      		$cname[$prodcount]="Hosting ".$cco_hosting[$k];
+//          $cdescription[$prodcount]=$cname[$prodcount];
+//          $prodcount++;
+//      	}
+//      }
+//      print "<form action=\"https://www2.2checkout.com/2co/buyer/purchase\" method=\"POST\" name=\"order2co\">\n";
+//      print "<input type=\"hidden\" name=\"sid\" value=\"$vendorid2co\">\n";
+//      print "<input type=\"hidden\" name=\"total\" value=\"$total\">\n";
+//      print "<input type=\"hidden\" name=\"cart_order_id\" value=\"$ordnum\">\n";
+//      print "<input type=\"hidden\" name=\"id_type\" value=\"1\">\n";
+//      if ($demo2co=="Y")
+//        print "<input type=\"hidden\" name=\"demo\" value=\"Y\">\n";
+//      for ($k=1;$k<$prodcount;$k++)
+//      {
+//	      print "<input type=\"hidden\" name=\"c_prod_$k\" value=\"".$cprod[$k]."\">\n";
+//	      print "<input type=\"hidden\" name=\"c_name_$k\" value=\"".$cname[$k]."\">\n";
+//	      print "<input type=\"hidden\" name=\"c_description_$k\" value=\"".$cdescription[$k]."\">\n";
+//	      print "<input type=\"hidden\" name=\"c_price_$k\" value=\"".$cprice[$k]."\">\n";
+//	      print "<input type=\"hidden\" name=\"c_tangible_$k\" value=\"N\">\n";
+//      }
+//      // Prepopulate contact details
+//      print "<input type=\"hidden\" name=\"card_holder_name\" value=\"$cffname\">\n";
+//      print "<input type=\"hidden\" name=\"street_address\" value=\"$cfstr1\">\n";
+//      print "<input type=\"hidden\" name=\"street_address2\" value=\"$cfstr2\">\n";
+//      print "<input type=\"hidden\" name=\"city\" value=\"$cfcity\">\n";
+//      print "<input type=\"hidden\" name=\"state\" value=\"$cfstate\">\n";
+//      print "<input type=\"hidden\" name=\"zip\" value=\"$cfzip\">\n";
+//      print "<input type=\"hidden\" name=\"country\" value=\"$cfcountry\">\n";
+//      print "<input type=\"hidden\" name=\"email\" value=\"$cfemail\">\n";
+//      print "<input type=\"hidden\" name=\"phone\" value=\"$cftel\">\n";
 //
-// //      print "<input type=\"hidden\" name=\"no_shipping\" value=\"0\">\n";
-// //      print "<input type=\"hidden\" name=\"email\" value=\"$cfemail\">\n";
-// //      print "<input type=\"hidden\" name=\"address1\" value=\"$cfstr1\">\n";
-// //      print "<input type=\"hidden\" name=\"address2\" value=\"$cfstr2\">\n";
-// //      print "<input type=\"hidden\" name=\"city\" value=\"$cfcity\">\n";
-// //      print "<input type=\"hidden\" name=\"state\" value=\"$cfstate\">\n";
-// //      print "<input type=\"hidden\" name=\"zip\" value=\"$cfzip\">\n";
-// //      print "<input type=\"hidden\" name=\"country\" value=\"$cfcountry\">\n";
+//      print "</form>\n";
+//      print "<script language=\"JavaScript\">\n";
+//      print "document.order2co.submit()\n";
+//      print "</script>\n";
+////*************************************************************************
+//    }
+//	}
+//// 	// PayPal payment processing
+//// 	if (strcasecmp($payprocess,"PayPal")==0)
+//// 	{
+//// 		// See if we need to do one off or recurring billing
+//// 		if ($recurringtotal>0)
+//// 		{
+//// 			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+////       print "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" name=\"paypalbuy\">\n";
+////       print "<input type=\"hidden\" name=\"cmd\" value=\"_xclick-subscriptions\">\n";
+////       print "<input type=\"hidden\" name=\"business\" value=\"$paypalemail\">\n";
+////       print "<input type=\"hidden\" name=\"item_name\" value=\"$paypaldesc\">\n";
+////       print "<input type=\"hidden\" name=\"item_number\" value=\"$ordnum\">\n";
+////       print "<input type=\"hidden\" name=\"no_note\" value=\"1\">\n";
+////       print "<input type=\"hidden\" name=\"currency_code\" value=\"$paypalcurrency\">\n";
+////       print "<input type=\"hidden\" name=\"return\" value=\"$paypalreturn\">\n";
+////       print "<input type=\"hidden\" name=\"cancel_return\" value=\"$paypalcancel\">\n";
+////       print "<input type=\"hidden\" name=\"invoice\" value=\"$ordnum\">\n";
+////       print "<input type=\"hidden\" name=\"a1\" value=\"$total\">\n";
+////       print "<input type=\"hidden\" name=\"p1\" value=\"1\">\n";
+////       print "<input type=\"hidden\" name=\"t1\" value=\"M\">\n";
+////       print "<input type=\"hidden\" name=\"a3\" value=\"$recurringtotal\">\n";
+////       print "<input type=\"hidden\" name=\"p3\" value=\"1\">\n";
+////       print "<input type=\"hidden\" name=\"t3\" value=\"M\">\n";
+////       print "<input type=\"hidden\" name=\"src\" value=\"1\">\n";
+////       print "<input type=\"hidden\" name=\"sra\" value=\"1\">\n";
+////       print "<input type=\"hidden\" name=\"custom\" value=\"".session_id()."\">\n";
+////
+//// //      print "<input type=\"hidden\" name=\"no_shipping\" value=\"0\">\n";
+//// //      print "<input type=\"hidden\" name=\"email\" value=\"$cfemail\">\n";
+//// //      print "<input type=\"hidden\" name=\"address1\" value=\"$cfstr1\">\n";
+//// //      print "<input type=\"hidden\" name=\"address2\" value=\"$cfstr2\">\n";
+//// //      print "<input type=\"hidden\" name=\"city\" value=\"$cfcity\">\n";
+//// //      print "<input type=\"hidden\" name=\"state\" value=\"$cfstate\">\n";
+//// //      print "<input type=\"hidden\" name=\"zip\" value=\"$cfzip\">\n";
+//// //      print "<input type=\"hidden\" name=\"country\" value=\"$cfcountry\">\n";
+////
+////       print "</form>\n";
+//// 		  print "<script language=\"JavaScript\">\n";
+//// 		  print "<!-- JavaScript\n";
+//// 		  print "document.paypalbuy.submit()\n";
+//// 		  print "// - JavaScript - -->\n";
+//// 		  print "</script>\n";
+//// 		}
+//// 		else
+//// 		{
+////       print "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" name=\"paypalbuy\">\n";
+////       print "<input type=\"hidden\" name=\"cmd\" value=\"_xclick\">\n";
+////       print "<input type=\"hidden\" name=\"business\" value=\"$paypalemail\">\n";
+////       print "<input type=\"hidden\" name=\"item_name\" value=\"$paypaldesc\">\n";
+////       print "<input type=\"hidden\" name=\"item_number\" value=\"$ordnum\">\n";
+////       print "<input type=\"hidden\" name=\"amount\" value=\"$total\">\n";
+////       print "<input type=\"hidden\" name=\"no_note\" value=\"1\">\n";
+////       print "<input type=\"hidden\" name=\"currency_code\" value=\"$paypalcurrency\">\n";
+////       print "<input type=\"hidden\" name=\"return\" value=\"$paypalreturn\">\n";
+////       print "<input type=\"hidden\" name=\"cancel_return\" value=\"$paypalcancel\">\n";
+////       print "<input type=\"hidden\" name=\"invoice\" value=\"$ordnum\">\n";
+////       print "<input type=\"hidden\" name=\"custom\" value=\"".session_id()."\">\n";
+////
+//// //      print "<input type=\"hidden\" name=\"no_shipping\" value=\"0\">\n";
+//// //      print "<input type=\"hidden\" name=\"email\" value=\"$cfemail\">\n";
+//// //      print "<input type=\"hidden\" name=\"address1\" value=\"$cfstr1\">\n";
+//// //      print "<input type=\"hidden\" name=\"address2\" value=\"$cfstr2\">\n";
+//// //      print "<input type=\"hidden\" name=\"city\" value=\"$cfcity\">\n";
+//// //      print "<input type=\"hidden\" name=\"state\" value=\"$cfstate\">\n";
+//// //      print "<input type=\"hidden\" name=\"zip\" value=\"$cfzip\">\n";
+//// //      print "<input type=\"hidden\" name=\"country\" value=\"$cfcountry\">\n";
+////
+////       print "</form>\n";
+//// 		  print "<script language=\"JavaScript\">\n";
+//// 		  print "<!-- JavaScript\n";
+//// 		  print "document.paypalbuy.submit()\n";
+//// 		  print "// - JavaScript - -->\n";
+//// 		  print "</script>\n";
+//// 		}
+////     // End of mod
+//// 	}
 //
-//       print "</form>\n";
-// 		  print "<script language=\"JavaScript\">\n";
-// 		  print "<!-- JavaScript\n";
-// 		  print "document.paypalbuy.submit()\n";
-// 		  print "// - JavaScript - -->\n";
-// 		  print "</script>\n";
-// 		}
-// 		else
-// 		{
-//       print "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" name=\"paypalbuy\">\n";
-//       print "<input type=\"hidden\" name=\"cmd\" value=\"_xclick\">\n";
-//       print "<input type=\"hidden\" name=\"business\" value=\"$paypalemail\">\n";
-//       print "<input type=\"hidden\" name=\"item_name\" value=\"$paypaldesc\">\n";
-//       print "<input type=\"hidden\" name=\"item_number\" value=\"$ordnum\">\n";
-//       print "<input type=\"hidden\" name=\"amount\" value=\"$total\">\n";
-//       print "<input type=\"hidden\" name=\"no_note\" value=\"1\">\n";
-//       print "<input type=\"hidden\" name=\"currency_code\" value=\"$paypalcurrency\">\n";
-//       print "<input type=\"hidden\" name=\"return\" value=\"$paypalreturn\">\n";
-//       print "<input type=\"hidden\" name=\"cancel_return\" value=\"$paypalcancel\">\n";
-//       print "<input type=\"hidden\" name=\"invoice\" value=\"$ordnum\">\n";
-//       print "<input type=\"hidden\" name=\"custom\" value=\"".session_id()."\">\n";
+//	// Revecom / Paysystems processing
+//	if (strcasecmp($payprocess,"Paysystems")==0)
+//	{
+//    $paysysdesc=urlencode($paysysdesc);
+//	  // See if we need to do one off or recurring billing
+//	  if ($recurringtotal>0)
+//	  {
+//	    $recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "window.location.replace(\"https://secure.paysystems1.com/cgi-v310/payment/onlinesale-tpppro.asp?companyid=$paysysid&product1=$paysysdesc&total=$total&redirect=$paysysreturn&redirectfail=$paysyscancel&option1=$ordnum&reoccur=Y&cycle=$paysyscycle&totalperiod=$paysystotalperiod&repeatamount=$recurringtotal\")\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//	  }
+//	  else
+//	  {
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "window.location.replace(\"https://secure.paysystems1.com/cgi-v310/payment/onlinesale-tpppro.asp?companyid=$paysysid&product1=$paysysdesc&total=$total&redirect=$paysysreturn&redirectfail=$paysyscancel&option1=$ordnum\")\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//		}
+//	}
+//	// Worldpay Futurepay payment processing
+//	if (strcasecmp($payprocess,"WpFuturepay")==0)
+//	{
+//		// See if we need to do one off or recurring billing
+//		if ($recurringtotal>0)
+//		{
+//			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//			$wpfppaldesc=urlencode($wpfpdesc);
+//			print "<script language=\"JavaScript\">\n";
+//			print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://select.worldpay.com/wcc/purchase?instId=$wpfpinstid&cartId=$wpfpcartid&amount=$total&normalAmount=$recurringtotal&currency=$wpfpcurrency&desc=$wpfpdesc&testMode=$wpfptest&futurePayType=regular&startDelayUnit=3&startDelayMult=1&intervalUnit=3&intervalMult=1&option=$wpfpoption&hideCurrency\")\n";
+//			print "// - JavaScript - -->\n";
+//			print "</script>\n";
+//		}
+//		else
+//		{
+//			$wpfpdesc=urlencode($paypaldesc);
+//			print "<script language=\"JavaScript\">\n";
+//			print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://select.worldpay.com/wcc/purchase?instId=$wpfpinstid&cartId=$wpfpcartid&amount=$total&currency=$wpfpcurrency&desc=$wpfpdesc&authMode=E&hideCurrency\")\n";
+//			print "// - JavaScript - -->\n";
+//			print "</script>\n";
+//		}
+//	}
+//	// Worldpay standard payment processing
+//	if (strcasecmp($payprocess,"Worldpay")==0)
+//	{
+//    print "<form action=\"https://secure.wp3.rbsworldpay.com/wcc/purchase\" method=\"POST\"  name=\"worldpaybuy\">\n";
+//    print "<input type=\"hidden\" name=\"instId\" value=\"$wpinstid\" >\n";
+//    print "<input type=\"hidden\" name=\"cartId\" value=\"$wpcartid\" >\n";
+//    print "<input type=\"hidden\" name=\"amount\" value=\"$total\" >\n";
+//    print "<input type=\"hidden\" name=\"currency\" value=\"$wpcurrency\" >\n";
+//    print "<input type=\"hidden\" name=\"desc\" value=\"$wpdescid\" >\n";
+//    print "<input type=\"hidden\" name=\"testMode\" value=\"$wptestmode\" >\n";
+//	  print "</form>\n";
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "document.worldpaybuy.submit()\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
+//  // Stormpay payment processing
+//	if (strcasecmp($payprocess,"Stormpay")==0)
+//	{
+//		$paypaldesc=urlencode($paypaldesc);
+//		$paypalemail=urlencode($paypalemail);
+//	  // See if we need to do one off or recurring billing
+//	  if ($recurringtotal>0)
+//		{
+//			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//      $stormtotal=sprintf("%01.".$decimalplaces."f",$total-$recurringtotal);
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://www.stormpay.com/stormpay/handle_gen.php?generic=1&payee_email=$stormemail&product_name=$stormdesc&subscription=YES&setup_fee=$stormtotal&recurrent_charge=$recurringtotal&duration=$stormcycle&return_URL=$stormreturn&cancel_URL=$stormcancel&transaction_ref=$ordnum\")\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//    else
+//    {
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://www.stormpay.com/stormpay/handle_gen.php?generic=1&payee_email=$stormemail&product_name=$stormdesc&amount=$total&return_URL=$stormreturn&cancel_URL=$stormcancel&transaction_ref=$ordnum\")\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//  }
+//  // Nochex payment processing
+//	if (strcasecmp($payprocess,"Nochex")==0)
+//	{
+//		$nochexdesc=urlencode($nochexdesc);
+//		$nochexemail=urlencode($nochexemail);
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "window.location.replace(\"https://www.nochex.com/nochex.dll/checkout?email=$nochexemail&amount=$total&ordernumber=$ordnum&description=$nochexdesc&returnurl=$nochexreturn\")\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//  }
+//	// authorize.net payment processing
+//	if (strcasecmp($payprocess,"Authorize")==0)
+//	{
+//    $authdesc=urlencode($authdesc);
+//    // Calculate authentication code
+//    $tstamp = time ();
+//		srand(time());
+//		$sequence = rand(1, 1000);
+//		$fingerprint = hmac($authtxnkey, $authloginid . "^" . $sequence . "^" . $tstamp . "^" . $total . "^" . $authcurrency);
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "window.location.replace(\"https://secure.authorize.net/gateway/transact.dll?x_Login=$authloginid&x_Description=$authdesc&x_Amount=$total&x_show_form=PAYMENT_FORM&x_FP_Sequence=$sequence&x_FP_Timestamp=$tstamp&x_FP_Hash=$fingerprint&x_Invoice_Num=$ordnum&x_Currency_Code=$authcurrency\")\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
+//	// Network 1 payment processing
+//	if (strcasecmp($payprocess,"Network1")==0)
+//	{
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "window.location.replace(\"https://va.eftsecure.net/eftcart/forms/express.asp?M_id=$net1loginid&C_memo=$net1desc&T_amt=$total&T_ordernum=$ordnum\")\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
+//	// Centipaid payment processing
+//	if (strcasecmp($payprocess,"Centipaid")==0)
+//	{
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "window.location.replace(\"http://pay.centipaid.com/cart.php?x_Login=$centilogin&x_Amount=$total&x_Description=$centidesc&x_Invoice_Num=$ordnum\")\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
+//	// Moneybookers payment processing
+//	if (strcasecmp($payprocess,"Moneybookers")==0)
+//	{
+//	  if ($recurringtotal>0)
+//		{
+//			$startdate=date("d/m/Y",time()+(86400*$monbookcycle));
+//      $enddate=date("d/m/Y",time()+(86400*$monbookcycle*$monbooktotalperiod));
+//			print "<script language=\"JavaScript\">\n";
+//			print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://www.moneybookers.com/app/payment.pl?pay_to_email=$monbookemail&language=EN&transaction_id=$ordnum&currency=$monbookcurrency&amount=$total&detail1_description=Product:&detail1_text=$monbookdesc&return_url=$monbookreturn&cancel_url=$monbookcancel&rec_amount=$recurringtotal&rec_period=31&rec_start_date=$startdate&rec_end_date=$enddate\")\n";
+//			print "// - JavaScript - -->\n";
+//			print "</script>\n";
+//    }
+//    else
+//    {
+//			print "<script language=\"JavaScript\">\n";
+//			print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://www.moneybookers.com/app/payment.pl?pay_to_email=$monbookemail&language=EN&transaction_id=$ordnum&currency=$monbookcurrency&amount=$total&detail1_description=Product:&detail1_text=$monbookdesc&return_url=$monbookreturn&cancel_url=$monbookcancel\")\n";
+//			print "// - JavaScript - -->\n";
+//			print "</script>\n";
+//    }
+//	}
+//	// Bluepaid payment processing
+//	if (strcasecmp($payprocess,"Bluepaid")==0)
+//	{
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "window.location.replace(\"https://www.bluepaid.com/in.php?id_boutique=$blueidboutique&id_client=$blueidclient&devise=$bluedevise&langue=$bluelangue&montant=$total&divers=$ordnum\")\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
+//  //  Caixagalicia payment processing
+//	if (strcasecmp($payprocess,"Caixagalicia")==0)
+//	{
+//		$caixagdesc=urlencode($caixagdesc);
+//		$centamount=intval($total*100);
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "window.location.replace(\"http://sdicomercio.caixagalicia.es/tpv2/default.asp?pedido=$ordnum&comercio=$caixagcomercio&vuelta=$caixagvuelta&importe=$centamount&moneda=$caixagmoneda\")\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//  }
+//  // cdgcommerce payment processing
+//	if (strcasecmp($payprocess,"cdgcommerce")==0)
+//	{
+//		$cdgdesc=urlencode($cdgdesc);
+//	  // See if we need to do one off or recurring billing
+//	  if ($recurringtotal>0)
+//		{
+//			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://secure.paymentclearing.com/cgi-bin/mas/buynow.cgi?vendor_id=$cdgvendorid&home_page=$cdghome&showaddr=1&1-desc=$cdgdesc&1-cost=$total&1-qty=1&ret_addr=$cdgreturn&mername=$cdgmername&visaimage=1&mcimage=1&ameximage=1&discimage=1&dinerimage=1&acceptcards=1&recur_recipe=$cdgrecipe&recur_reps=999&recur_total=$recurringtotal&recur_desc=$cdgdesc\")\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//    else
+//    {
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://secure.paymentclearing.com/cgi-bin/mas/buynow.cgi?vendor_id=$cdgvendorid&home_page=$cdghome&showaddr=1&1-desc=$cdgdesc&1-cost=$total&1-qty=1&ret_addr=$cdgreturn&mername=$cdgmername&visaimage=1&mcimage=1&ameximage=1&discimage=1&dinerimage=1&acceptcards=1\")\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//  }
+//	// iKobo payment processing
+//	if (strcasecmp($payprocess,"iKobo")==0)
+//	{
+//	  print "<form action=\"https://www.iKobo.com/store/index.php\" method=\"post\" name=\"ikobobuy\">\n";
+//	  print "<input type=\"hidden\" name=\"cmd\" value=\"cart\">\n";
+//	  print "<input type=\"hidden\" name=\"poid\" value=\"$ikoboid\">\n";
+//	  print "<input type=\"hidden\" name=\"item\" value=\"$ikobodesc\">\n";
+//	  print "<input type=\"hidden\" name=\"price\" value=\"$total\">\n";
+//	  print "</form>\n";
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "document.forms[0].submit()\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
 //
-// //      print "<input type=\"hidden\" name=\"no_shipping\" value=\"0\">\n";
-// //      print "<input type=\"hidden\" name=\"email\" value=\"$cfemail\">\n";
-// //      print "<input type=\"hidden\" name=\"address1\" value=\"$cfstr1\">\n";
-// //      print "<input type=\"hidden\" name=\"address2\" value=\"$cfstr2\">\n";
-// //      print "<input type=\"hidden\" name=\"city\" value=\"$cfcity\">\n";
-// //      print "<input type=\"hidden\" name=\"state\" value=\"$cfstate\">\n";
-// //      print "<input type=\"hidden\" name=\"zip\" value=\"$cfzip\">\n";
-// //      print "<input type=\"hidden\" name=\"country\" value=\"$cfcountry\">\n";
+//  // Internet Secure payment processing
+//	if (strcasecmp($payprocess,"internetsecure")==0)
+//	{
+//		$insecdesc=urlencode($intsecdesc);
+//	  // See if we need to do one off or recurring billing
+//	  if ($recurringtotal>0)
+//		{
+//			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://secure.internetsecure.com/process.cgi?MerchantNumber=$intsecid&ReturnURL=$intsecreturn&Products=Price::Qty::Code::Description::Flags|$total::1::$intsecitem::$intsecdesc::$intsecflags {RB amount=$recurringtotal startmonth=%2B1 frequency=monthly duration=0 email=2}\")\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//    else
+//    {
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//			print "window.location.replace(\"https://secure.internetsecure.com/process.cgi?MerchantNumber=$intsecid&ReturnURL=$intsecreturn&Products=Price::Qty::Code::Description::Flags|$total::1::$intsecitem::$intsecdesc::$intsecflags\")\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//  }
+//  // ePN payment processing
+//	if (strcasecmp($payprocess,"epn")==0)
+//	{
+//	  // See if we need to do one off or recurring billing
+//	  if ($recurringtotal>0)
+//		{
+//			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//	    print "<FORM name=\"epnform\" ACTION=\"https://www.eProcessingNetwork.com/cgi-bin/dbe/order.pl\" METHOD=POST>\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ePNAccount\" VALUE=\"$epnid\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"Total\" VALUE=\"$total\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ID\" VALUE=\"$ordnum\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ApprovedURL\" VALUE=\"$epnreturn\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"DeclinedURL\" VALUE=\"$epndecline\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"BackgroundColor\" VALUE=\"FFFFFF\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"TextColor\" VALUE=\"000000\">\n";
+//	    print "<input type=\"hidden\" name=\"RecurAmountOverride\" value=\"$recurringtotal\">\n";
+//	    print "<input type=hidden name=RecurMethodID value=\"$epnrecurr\">\n";
+//	    print "</FORM>\n";
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.epnform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//    else
+//    {
+//	    print "<FORM name=\"epnform\" ACTION=\"https://www.eProcessingNetwork.com/cgi-bin/dbe/order.pl\" METHOD=POST>\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ePNAccount\" VALUE=\"$epnid\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"Total\" VALUE=\"$total\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ID\" VALUE=\"$ordnum\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ApprovedURL\" VALUE=\"$epnreturn\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"DeclinedURL\" VALUE=\"$epndecline\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"BackgroundColor\" VALUE=\"FFFFFF\">\n";
+//	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"TextColor\" VALUE=\"000000\">\n";
+//	    print "</FORM>\n";
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.epnform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//  }
+//  // MetaCharge payment processing
+//	if (strcasecmp($payprocess,"MetaCharge")==0)
+//	{
+//	  // See if we need to do one off or recurring billing
+//	  if ($recurringtotal>0)
+//		{
+//			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//	    print "<form  name=\"metaform\" action=\"https://secure.metacharge.com/mcpe/purser\" method=\"post\">\n";
+//	    print "<input type=\"hidden\" name=\"intInstID\" value=\"$metaid\">\n";
+//	    print "<input type=\"hidden\" name=\"strCartID\" value=\"$ordnum\">\n";
+//	    print "<input type=\"hidden\" name=\"strCurrency\" value=\"$metacurrency\">\n";
+//	    print "<input type=\"hidden\" name=\"strDesc\" value=\"$metadesc\">\n";
+//	    print "<input type=\"hidden\" name=\"fltSchAmount1\" value=\"$total\">\n";
+//	    print "<input type=\"hidden\" name=\"strSchPeriod1\" value=\"1M\">\n";
+//	    print "<input type=\"hidden\" name=\"fltSchAmount2\" value=\"$recurringtotal\">\n";
+//	    print "<input type=\"hidden\" name=\"strSchPeriod2\" value=\"1M\">\n";
+//	    print "<input type=\"hidden\" name=\"intRecurs\" value=\"1\">\n";
+//	    print "</FORM>\n";
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.metaform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//    else
+//    {
+//	    print "<form  name=\"metaform\" action=\"https://secure.metacharge.com/mcpe/purser\" method=\"post\">\n";
+//	    print "<input type=\"hidden\" name=\"intInstID\" value=\"$metaid\">\n";
+//	    print "<input type=\"hidden\" name=\"strCartID\" value=\"$ordnum\">\n";
+//	    print "<input type=\"hidden\" name=\"fltAmount\" value=\"$total\">\n";
+//	    print "<input type=\"hidden\" name=\"strCurrency\" value=\"$metacurrency\">\n";
+//	    print "<input type=\"hidden\" name=\"strDesc\" value=\"$metadesc\">\n";
+//	    print "</FORM>\n";
+//      print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.metaform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//  }
+//	// eGold payment processing
+//	if (strcasecmp($payprocess,"eGold")==0)
+//	{
+//	  print "<form name=\"egoldform\" action=\"https://www.e-gold.com/sci_asp/payments.asp\" method=\"POST\">\n";
+//	  print "<input type=\"hidden\" name=\"PAYEE_ACCOUNT\" value=\"$egoldid\">\n";
+//	  print "<input type=\"hidden\" name=\"PAYEE_NAME\" value=\"$egoldname\">\n";
+//	  print "<input type=\"hidden\" name=\"PAYMENT_AMOUNT\" value=\"$total\">\n";
+//	  print "<input type=\"hidden\" name=\"PAYMENT_UNITS\" value=\"$egoldunits\">\n";
+//	  print "<input type=\"hidden\" name=\"PAYMENT_METAL_ID\" value=\"$egoldmetalid\">\n";
+//	  print "<input type=\"hidden\" name=\"PAYMENT_URL\" value=\"$egoldreturn\">\n";
+//	  print "<input type=\"hidden\" name=\"NOPAYMENT_URL\" value=\"$egoldcancel\">\n";
+//	  print "<input type=\"hidden\" name=\"PAYMENT_URL_METHOD\" value=\"LINK\">\n";
+//	  print "<input type=\"hidden\" name=\"NOPAYMENT_URL_METHOD\" value=\"LINK\">\n";
+//	  print "<input type=\"hidden\" name=\"SUGGESTED_MEMO\" value=\"$egoldmemo\">\n";
+//	  print "<input type=\"hidden\" name=\"BAGGAGE_FIELDS\" value=\"\">\n";
+//	  print "</form>\n";
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "document.egoldform.submit()\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//	}
+//  	// OKO Banks payment processing
+//	if (strcasecmp($payprocess,"okobank")==0)
+//	{
+//		$viite=viite($ordnum);
+//	  print "<form name=\"okoform\" action=\"https://kultaraha.op.fi:443/cgi-bin/krcgi\" method=\"POST\">\n";
+//	  print "<input type=\"hidden\" name=\"action_id\" value=\"701\">\n";
+//	  print "<input type=\"hidden\" name=\"VERSIO\" value=\"1\">\n";
+//	  print "<input type=\"hidden\" name=\"MAKSUTUNNUS\" value=\"$ordnum\">\n";
+//	  print "<input type=\"hidden\" name=\"MYYJA\" value=\"$okoid\">\n";
+//	  print "<input type=\"hidden\" name=\"SUMMA\" value=\"$total\">\n";
+//	  print "<input type=\"hidden\" name=\"VIITE\" value=\"$viite\">\n";
+//	  print "<input type=\"hidden\" name=\"VIEST1\" value=\"$ordnum\">\n";
+//	  print "<input type=\"hidden\" name=\"VIEST2\" value=\"\">\n";
+//	  print "<input type=\"hidden\" name=\"VIESTI\" value=\"$okodesc-$ordnum\">\n";
+//	  print "<input type=\"hidden\" name=\"TARKISTE-VERSIO\" value=\"1\">\n";
+//	  print "<?php\n";
+//		$tarkiste=md5("1".$ordnum.$okoid.$total.$viite.$ordnum."".$okocurrency."1".$okokey);
+//		$tarkiste=strtoupper($tarkiste);
+/*	  print "?>\n";*/
+//	  print "<input type=\"hidden\" name=\"TARKISTE\" value=\"$tarkiste\">\n";
+//	  print "<input type=\"hidden\" name=\"PALUU-LINKKI\" value=\"$okoreturn\">\n";
+//	  print "<input type=\"hidden\" name=\"PERUUTUS-LINKKI\" value=\"$okocancel\">\n";
+//	  print "<input type=\"hidden\" name=\"VALUUTTALAJI\" value=\"$okocurrency\">\n";
+//	  print "</form>\n";
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "document.okoform.submit()\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
+//	// payson.se payment processing
+//	if (strcasecmp($payprocess,"payson")==0)
+//	{
+//	  $cost=$total;
+//	  $cost=str_replace(".",",",$cost);
+//		$paysonemail=urlencode($paysonemail);
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		//		print "window.location.replace(\"https://www.payson.se/prod/SendMoney/default.aspx?3m_m=2&Description=$ordnum&sellerEmail=$paysonemail&cost=$cost$paysonoption\")\n";
+//    print "window.location.replace(\"https://www.payson.se/SendMoney/?De=$ordnum&Se=$paysonemail&cost=$cost&ShippingAmount=0%2c00$paysonoption\")\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
+//	// Picpay payment processing
+//	if (strcasecmp($payprocess,"Picpay")==0)
+//	{
+//	  print "<form action=\"https://www.picpay.com/securepay.php\" method=\"post\" name=\"picpayform\">\n";
+//	  print "<input type=\"hidden\" name=\"member\" value=\"$picpaymember\">\n";
+//	  print "<input type=\"hidden\" name=\"memo\" value=\"$picpaydesc\">\n";
+//	  print "<input type=\"hidden\" name=\"amount\" value=\"$total\">\n";
+//	  print "<input type=\"hidden\" name=\"returnurl\" value=\"$picpayreturn\">\n";
+//	  print "<input type=\"hidden\" name=\"cancelurl\" value=\"$picpaycancel\">\n";
+//	  print "</form>\n";
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "document.picpayform.submit()\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
+//  // setcom.co.za payment processing
+//	if (strcasecmp($payprocess,"Setcom")==0)
+//	{
+//      print"<FORM NAME=\"setcomform\" METHOD=\"POST\" ACTION=\"https://www.setcom.com/secure/index.cfm\">\n";
+//      print"<INPUT TYPE=\"HIDDEN\" NAME=\"ButtonAction\" VALUE=\"buynow\">\n";
+//      print"<INPUT TYPE=\"HIDDEN\" NAME=\"MerchantIdentifier\" VALUE=\"$setcomid\">\n";
+//      print"<INPUT TYPE=\"HIDDEN\" NAME=\"CurrencyAlphaCode\" VALUE=\"$setcomcurrency\">\n";
+//      print"<INPUT TYPE=\"HIDDEN\" NAME=\"LIDSKU\" VALUE=\"$setcomsku\">\n";
+//      print" <INPUT TYPE=\"HIDDEN\" NAME=\"LIDDesc\" VALUE=\"$setcomdesc\">\n";
+//      print"<INPUT TYPE=\"HIDDEN\" NAME=\"LIDPrice\" VALUE=\"$total\">\n";
+//      print"<INPUT TYPE=\"HIDDEN\" NAME=\"LIDQty\" VALUE=\"1\">\n";
+//      print"<INPUT TYPE=\"HIDDEN\" NAME=\"ShippingRequired\" VALUE=\"0\">\n";
+//      print"<INPUT TYPE=\"HIDDEN\" NAME=\"MerchCustom\" VALUE=\"$ordnum\">\n";
+//      print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.setcomform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//  }
+//  // SecPay payment processing
+//	if (strcasecmp($payprocess,"SecPay")==0)
+//	{
+//	  // See if we need to do one off or recurring billing
+//	  if ($recurringtotal>0)
+//		{
+//			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//			$startdate=date("Ymd",time()+(86400*30));
+//      $secpaydigest=md5($ordnum.$total.$secpayremotepass);
+//      print "<form name=\"secpayform\" method=\"post\" action=\"https://www.secpay.com/java-bin/ValCard\">\n";
+//      if ($secpayremotepass!="")
+//        print "<input name=\"digest\" type=\"hidden\" value=\"$secpaydigest\" />\n";
+//      print "<input name=\"merchant\" type=\"hidden\" value=\"$secpaymerchant\" />\n";
+//      print "<input name=\"trans_id\" type=\"hidden\" value=\"$ordnum\" />\n";
+//      print "<input name=\"amount\" type=\"hidden\" value=\"$total\" />\n";
+//      print "<input name=\"callback\" type=\"hidden\" value=\"$secpayreturn\" />\n";
+//      print "<input name=\"currency\" type=\"hidden\" value=\"$secpaycurrency\" />\n";
+//      print "<input name=\"repeat\" type=\"hidden\" value=\"$startdate/monthly/-1:$recurringtotal\" />\n";
+//      if ($secpaytest=="true")
+//        print "<input type=\"hidden\" name=\"test_status\" value=\"true\">\n";
+//      if ($secpaytemplate!="")
+//        print "<input type=\"hidden\" name=\"template\" value=\"$secpaytemplate\">\n";
+//      print "<input type=\"hidden\" name=\"options\" value=\"cart=cwhoisdomaincart\" />\n";
+//      print "</form>\n";
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.secpayform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//    else
+//    {
+//      $secpaydigest=md5($ordnum.$total.$secpayremotepass);
+//      print "<form name=\"secpayform\" method=\"post\" action=\"https://www.secpay.com/java-bin/ValCard\">\n";
+//      if ($secpayremotepass!="")
+//        print "<input name=\"digest\" type=\"hidden\" value=\"$secpaydigest\" />\n";
+//      print "<input name=\"merchant\" type=\"hidden\" value=\"$secpaymerchant\" />\n";
+//      print "<input name=\"trans_id\" type=\"hidden\" value=\"$ordnum\" />\n";
+//      print "<input name=\"amount\" type=\"hidden\" value=\"$total\" />\n";
+//      print "<input name=\"callback\" type=\"hidden\" value=\"$secpayreturn\" />\n";
+//      print "<input name=\"currency\" type=\"hidden\" value=\"$secpaycurrency\" />\n";
+//      if ($secpaytest=="true")
+//        print "<input type=\"hidden\" name=\"test_status\" value=\"true\">\n";
+//      print "<input type=\"hidden\" name=\"options\" value=\"cart=cwhoisdomaincart\" />\n";
+//      print "</form>\n";
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.secpayform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//  }
+//  // mals-e payment processing
+//	if (strcasecmp($payprocess,"Mals")==0)
+//	{
+//      print "<form name=\"malsform\" action=\"$malsurl/cf/addmulti.cfm\" method=\"post\">\n";
+//      print "<input type=\"hidden\" name=\"userid\" value=\"$malsuserid\" />\n";
+//      print "<input type=\"hidden\" name=\"noqty\" value=\"1\" />\n";
+//      print "<input type=\"hidden\" name=\"product\" value=\"$malsdesc - $ordnum\" />\n";
+//      print "<input type=\"hidden\" name=\"price\" value=\"$total\" />\n";
+//      print "<input type=\"hidden\" name=\"return\" value=\"$malsreturn\" />\n";
+//      print "</form>\n";
+//      print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.malsform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//  }
+//  // Linkpoint payment processing
+//	if (strcasecmp($payprocess,"Linkpoint")==0)
+//	{
+//      print "<form name=\"lpform\" action=\"https://www.linkpointcentral.com/lpc/servlet/lppay\" method=\"post\">\n";
+//      print "<input type=\"hidden\" name=\"storename\" value=\"$lpstorename\">\n";
+//      print "<input type=\"hidden\" name=\"chargetotal\" value=\"$total\">\n";
+//      print "<input type=\"hidden\" name=\"txnorg\" value=\"eci\">\n";
+//      print "<input type=\"hidden\" name=\"mode\" value=\"payplus\">\n";
+//      print "<input type=\"hidden\" name=\"txntype\" value=\"sale\">\n";
+//      print "<input type=\"hidden\" name=\"oid\" value=\"$ordnum\">\n";
+//      print "<input type=\"hidden\" name=\"responseSuccessURL\" value=\"$lpreturn\">\n";
+//      print "<input type=\"hidden\" name=\"responseFailURL\" value=\"$lpcancel\">\n";
+//      print "</form>\n";
+//      print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.lpform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//  }
+//  // paymate.com.au payment processing
+//	if (strcasecmp($payprocess,"Paymate")==0)
+//	{
+//		$paymatedesc=urlencode($paymatedesc);
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "window.location.replace(\"https://www.paymate.com/PayMate/ExpressPayment?mid=$paymateid&amt=$total&ref=$paymatedesc&currency=$paymatecurrency&\")\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//  }
+//  // Google Checkout payment processing
+//	if (strcasecmp($payprocess,"GoogleCheckout")==0)
+//	{
+//      print "<form name=\"gcform\" action=\"https://checkout.google.com/cws/v2/Merchant/".$gcmerchantid."/checkoutForm\" id=\"BB_BuyButtonForm\" method=\"post\" name=\"BB_BuyButtonForm\">\n";
+//      print "<input name=\"item_name_1\" type=\"hidden\" value=\"".$ordnum."\"/>\n";
+//      print "<input name=\"item_description_1\" type=\"hidden\" value=\"".$gcdesc."\"/>\n";
+//      print "<input name=\"item_quantity_1\" type=\"hidden\" value=\"1\"/>\n";
+//      print "<input name=\"item_price_1\" type=\"hidden\" value=\"".$total."\"/>\n";
+//      print "<input name=\"item_currency_1\" type=\"hidden\" value=\"".$gccurrency."\"/>\n";
+//      print "<input name=\"_charset_\" type=\"hidden\" value=\"utf-8\"/>\n";
+//      print "</form>\n";
+//      print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.gcform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//  }
+//  // Pagseguro payment processing
+//	if (strcasecmp($payprocess,"Pagseguro")==0)
+//	{
+//    print "<form name='pgform' target='pagseguro' action='https://pagseguro.uol.com.br/security/webpagamentos/webpagto.aspx' method='post'>\n";
+//    print " <input type='hidden' name='email_cobranca' value='".$pgemailcobranca."' />\n";
+//    print "<input type='hidden' name='tipo' value='".$pgtipo."' />\n";
+//    print "<input type='hidden' name='moeda' value='".$pgmoeda."' />\n";
+//    print "<input type='hidden' name='item_id_1' value='".$total."' />\n";
+//    print "<input type='hidden' name='item_descr_1' value='".$pgdesc."' />\n";
+//    print "<input type='hidden' name='item_quant_1' value='1' />\n";
+//    print "<input type='hidden' name='item_valor_1' value='".$total."' />\n";
+//    print "<input type='hidden' name='item_frete_1' value='0' />\n";
+//    print "</form>\n";
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+////    print "document.pgform.submit()\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//	}
 //
-//       print "</form>\n";
-// 		  print "<script language=\"JavaScript\">\n";
-// 		  print "<!-- JavaScript\n";
-// 		  print "document.paypalbuy.submit()\n";
-// 		  print "// - JavaScript - -->\n";
-// 		  print "</script>\n";
-// 		}
-//     // End of mod
-// 	}
-
-	// Revecom / Paysystems processing
-	if (strcasecmp($payprocess,"Paysystems")==0)
-	{
-    $paysysdesc=urlencode($paysysdesc);
-	  // See if we need to do one off or recurring billing
-	  if ($recurringtotal>0)
-	  {
-	    $recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "window.location.replace(\"https://secure.paysystems1.com/cgi-v310/payment/onlinesale-tpppro.asp?companyid=$paysysid&product1=$paysysdesc&total=$total&redirect=$paysysreturn&redirectfail=$paysyscancel&option1=$ordnum&reoccur=Y&cycle=$paysyscycle&totalperiod=$paysystotalperiod&repeatamount=$recurringtotal\")\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-	  }
-	  else
-	  {
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "window.location.replace(\"https://secure.paysystems1.com/cgi-v310/payment/onlinesale-tpppro.asp?companyid=$paysysid&product1=$paysysdesc&total=$total&redirect=$paysysreturn&redirectfail=$paysyscancel&option1=$ordnum\")\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-		}
-	}
-	// Worldpay Futurepay payment processing
-	if (strcasecmp($payprocess,"WpFuturepay")==0)
-	{
-		// See if we need to do one off or recurring billing
-		if ($recurringtotal>0)
-		{
-			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-			$wpfppaldesc=urlencode($wpfpdesc);
-			print "<script language=\"JavaScript\">\n";
-			print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://select.worldpay.com/wcc/purchase?instId=$wpfpinstid&cartId=$wpfpcartid&amount=$total&normalAmount=$recurringtotal&currency=$wpfpcurrency&desc=$wpfpdesc&testMode=$wpfptest&futurePayType=regular&startDelayUnit=3&startDelayMult=1&intervalUnit=3&intervalMult=1&option=$wpfpoption&hideCurrency\")\n";
-			print "// - JavaScript - -->\n";
-			print "</script>\n";
-		}
-		else
-		{
-			$wpfpdesc=urlencode($paypaldesc);
-			print "<script language=\"JavaScript\">\n";
-			print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://select.worldpay.com/wcc/purchase?instId=$wpfpinstid&cartId=$wpfpcartid&amount=$total&currency=$wpfpcurrency&desc=$wpfpdesc&authMode=E&hideCurrency\")\n";
-			print "// - JavaScript - -->\n";
-			print "</script>\n";
-		}
-	}
-	// Worldpay standard payment processing
-	if (strcasecmp($payprocess,"Worldpay")==0)
-	{
-    print "<form action=\"https://secure.wp3.rbsworldpay.com/wcc/purchase\" method=\"POST\"  name=\"worldpaybuy\">\n";
-    print "<input type=\"hidden\" name=\"instId\" value=\"$wpinstid\" >\n";
-    print "<input type=\"hidden\" name=\"cartId\" value=\"$wpcartid\" >\n";
-    print "<input type=\"hidden\" name=\"amount\" value=\"$total\" >\n";
-    print "<input type=\"hidden\" name=\"currency\" value=\"$wpcurrency\" >\n";
-    print "<input type=\"hidden\" name=\"desc\" value=\"$wpdescid\" >\n";
-    print "<input type=\"hidden\" name=\"testMode\" value=\"$wptestmode\" >\n";
-	  print "</form>\n";
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "document.worldpaybuy.submit()\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-  // Stormpay payment processing
-	if (strcasecmp($payprocess,"Stormpay")==0)
-	{
-		$paypaldesc=urlencode($paypaldesc);
-		$paypalemail=urlencode($paypalemail);
-	  // See if we need to do one off or recurring billing
-	  if ($recurringtotal>0)
-		{
-			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-      $stormtotal=sprintf("%01.".$decimalplaces."f",$total-$recurringtotal);
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://www.stormpay.com/stormpay/handle_gen.php?generic=1&payee_email=$stormemail&product_name=$stormdesc&subscription=YES&setup_fee=$stormtotal&recurrent_charge=$recurringtotal&duration=$stormcycle&return_URL=$stormreturn&cancel_URL=$stormcancel&transaction_ref=$ordnum\")\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-    else
-    {
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://www.stormpay.com/stormpay/handle_gen.php?generic=1&payee_email=$stormemail&product_name=$stormdesc&amount=$total&return_URL=$stormreturn&cancel_URL=$stormcancel&transaction_ref=$ordnum\")\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-  }
-  // Nochex payment processing
-	if (strcasecmp($payprocess,"Nochex")==0)
-	{
-		$nochexdesc=urlencode($nochexdesc);
-		$nochexemail=urlencode($nochexemail);
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "window.location.replace(\"https://www.nochex.com/nochex.dll/checkout?email=$nochexemail&amount=$total&ordernumber=$ordnum&description=$nochexdesc&returnurl=$nochexreturn\")\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-  }
-	// authorize.net payment processing
-	if (strcasecmp($payprocess,"Authorize")==0)
-	{
-    $authdesc=urlencode($authdesc);
-    // Calculate authentication code
-    $tstamp = time ();
-		srand(time());
-		$sequence = rand(1, 1000);
-		$fingerprint = hmac($authtxnkey, $authloginid . "^" . $sequence . "^" . $tstamp . "^" . $total . "^" . $authcurrency);
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "window.location.replace(\"https://secure.authorize.net/gateway/transact.dll?x_Login=$authloginid&x_Description=$authdesc&x_Amount=$total&x_show_form=PAYMENT_FORM&x_FP_Sequence=$sequence&x_FP_Timestamp=$tstamp&x_FP_Hash=$fingerprint&x_Invoice_Num=$ordnum&x_Currency_Code=$authcurrency\")\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-	// Network 1 payment processing
-	if (strcasecmp($payprocess,"Network1")==0)
-	{
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "window.location.replace(\"https://va.eftsecure.net/eftcart/forms/express.asp?M_id=$net1loginid&C_memo=$net1desc&T_amt=$total&T_ordernum=$ordnum\")\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-	// Centipaid payment processing
-	if (strcasecmp($payprocess,"Centipaid")==0)
-	{
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "window.location.replace(\"http://pay.centipaid.com/cart.php?x_Login=$centilogin&x_Amount=$total&x_Description=$centidesc&x_Invoice_Num=$ordnum\")\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-	// Moneybookers payment processing
-	if (strcasecmp($payprocess,"Moneybookers")==0)
-	{
-	  if ($recurringtotal>0)
-		{
-			$startdate=date("d/m/Y",time()+(86400*$monbookcycle));
-      $enddate=date("d/m/Y",time()+(86400*$monbookcycle*$monbooktotalperiod));
-			print "<script language=\"JavaScript\">\n";
-			print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://www.moneybookers.com/app/payment.pl?pay_to_email=$monbookemail&language=EN&transaction_id=$ordnum&currency=$monbookcurrency&amount=$total&detail1_description=Product:&detail1_text=$monbookdesc&return_url=$monbookreturn&cancel_url=$monbookcancel&rec_amount=$recurringtotal&rec_period=31&rec_start_date=$startdate&rec_end_date=$enddate\")\n";
-			print "// - JavaScript - -->\n";
-			print "</script>\n";
-    }
-    else
-    {
-			print "<script language=\"JavaScript\">\n";
-			print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://www.moneybookers.com/app/payment.pl?pay_to_email=$monbookemail&language=EN&transaction_id=$ordnum&currency=$monbookcurrency&amount=$total&detail1_description=Product:&detail1_text=$monbookdesc&return_url=$monbookreturn&cancel_url=$monbookcancel\")\n";
-			print "// - JavaScript - -->\n";
-			print "</script>\n";
-    }
-	}
-	// Bluepaid payment processing
-	if (strcasecmp($payprocess,"Bluepaid")==0)
-	{
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "window.location.replace(\"https://www.bluepaid.com/in.php?id_boutique=$blueidboutique&id_client=$blueidclient&devise=$bluedevise&langue=$bluelangue&montant=$total&divers=$ordnum\")\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-  //  Caixagalicia payment processing
-	if (strcasecmp($payprocess,"Caixagalicia")==0)
-	{
-		$caixagdesc=urlencode($caixagdesc);
-		$centamount=intval($total*100);
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "window.location.replace(\"http://sdicomercio.caixagalicia.es/tpv2/default.asp?pedido=$ordnum&comercio=$caixagcomercio&vuelta=$caixagvuelta&importe=$centamount&moneda=$caixagmoneda\")\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-  }
-  // cdgcommerce payment processing
-	if (strcasecmp($payprocess,"cdgcommerce")==0)
-	{
-		$cdgdesc=urlencode($cdgdesc);
-	  // See if we need to do one off or recurring billing
-	  if ($recurringtotal>0)
-		{
-			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://secure.paymentclearing.com/cgi-bin/mas/buynow.cgi?vendor_id=$cdgvendorid&home_page=$cdghome&showaddr=1&1-desc=$cdgdesc&1-cost=$total&1-qty=1&ret_addr=$cdgreturn&mername=$cdgmername&visaimage=1&mcimage=1&ameximage=1&discimage=1&dinerimage=1&acceptcards=1&recur_recipe=$cdgrecipe&recur_reps=999&recur_total=$recurringtotal&recur_desc=$cdgdesc\")\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-    else
-    {
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://secure.paymentclearing.com/cgi-bin/mas/buynow.cgi?vendor_id=$cdgvendorid&home_page=$cdghome&showaddr=1&1-desc=$cdgdesc&1-cost=$total&1-qty=1&ret_addr=$cdgreturn&mername=$cdgmername&visaimage=1&mcimage=1&ameximage=1&discimage=1&dinerimage=1&acceptcards=1\")\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-  }
-	// iKobo payment processing
-	if (strcasecmp($payprocess,"iKobo")==0)
-	{
-	  print "<form action=\"https://www.iKobo.com/store/index.php\" method=\"post\" name=\"ikobobuy\">\n";
-	  print "<input type=\"hidden\" name=\"cmd\" value=\"cart\">\n";
-	  print "<input type=\"hidden\" name=\"poid\" value=\"$ikoboid\">\n";
-	  print "<input type=\"hidden\" name=\"item\" value=\"$ikobodesc\">\n";
-	  print "<input type=\"hidden\" name=\"price\" value=\"$total\">\n";
-	  print "</form>\n";
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "document.forms[0].submit()\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-
-  // Internet Secure payment processing
-	if (strcasecmp($payprocess,"internetsecure")==0)
-	{
-		$insecdesc=urlencode($intsecdesc);
-	  // See if we need to do one off or recurring billing
-	  if ($recurringtotal>0)
-		{
-			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://secure.internetsecure.com/process.cgi?MerchantNumber=$intsecid&ReturnURL=$intsecreturn&Products=Price::Qty::Code::Description::Flags|$total::1::$intsecitem::$intsecdesc::$intsecflags {RB amount=$recurringtotal startmonth=%2B1 frequency=monthly duration=0 email=2}\")\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-    else
-    {
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-			print "window.location.replace(\"https://secure.internetsecure.com/process.cgi?MerchantNumber=$intsecid&ReturnURL=$intsecreturn&Products=Price::Qty::Code::Description::Flags|$total::1::$intsecitem::$intsecdesc::$intsecflags\")\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-  }
-  // ePN payment processing
-	if (strcasecmp($payprocess,"epn")==0)
-	{
-	  // See if we need to do one off or recurring billing
-	  if ($recurringtotal>0)
-		{
-			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-	    print "<FORM name=\"epnform\" ACTION=\"https://www.eProcessingNetwork.com/cgi-bin/dbe/order.pl\" METHOD=POST>\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ePNAccount\" VALUE=\"$epnid\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"Total\" VALUE=\"$total\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ID\" VALUE=\"$ordnum\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ApprovedURL\" VALUE=\"$epnreturn\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"DeclinedURL\" VALUE=\"$epndecline\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"BackgroundColor\" VALUE=\"FFFFFF\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"TextColor\" VALUE=\"000000\">\n";
-	    print "<input type=\"hidden\" name=\"RecurAmountOverride\" value=\"$recurringtotal\">\n";
-	    print "<input type=hidden name=RecurMethodID value=\"$epnrecurr\">\n";
-	    print "</FORM>\n";
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.epnform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-    else
-    {
-	    print "<FORM name=\"epnform\" ACTION=\"https://www.eProcessingNetwork.com/cgi-bin/dbe/order.pl\" METHOD=POST>\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ePNAccount\" VALUE=\"$epnid\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"Total\" VALUE=\"$total\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ID\" VALUE=\"$ordnum\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"ApprovedURL\" VALUE=\"$epnreturn\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"DeclinedURL\" VALUE=\"$epndecline\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"BackgroundColor\" VALUE=\"FFFFFF\">\n";
-	    print "<INPUT TYPE=\"HIDDEN\" NAME=\"TextColor\" VALUE=\"000000\">\n";
-	    print "</FORM>\n";
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.epnform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-  }
-  // MetaCharge payment processing
-	if (strcasecmp($payprocess,"MetaCharge")==0)
-	{
-	  // See if we need to do one off or recurring billing
-	  if ($recurringtotal>0)
-		{
-			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-	    print "<form  name=\"metaform\" action=\"https://secure.metacharge.com/mcpe/purser\" method=\"post\">\n";
-	    print "<input type=\"hidden\" name=\"intInstID\" value=\"$metaid\">\n";
-	    print "<input type=\"hidden\" name=\"strCartID\" value=\"$ordnum\">\n";
-	    print "<input type=\"hidden\" name=\"strCurrency\" value=\"$metacurrency\">\n";
-	    print "<input type=\"hidden\" name=\"strDesc\" value=\"$metadesc\">\n";
-	    print "<input type=\"hidden\" name=\"fltSchAmount1\" value=\"$total\">\n";
-	    print "<input type=\"hidden\" name=\"strSchPeriod1\" value=\"1M\">\n";
-	    print "<input type=\"hidden\" name=\"fltSchAmount2\" value=\"$recurringtotal\">\n";
-	    print "<input type=\"hidden\" name=\"strSchPeriod2\" value=\"1M\">\n";
-	    print "<input type=\"hidden\" name=\"intRecurs\" value=\"1\">\n";
-	    print "</FORM>\n";
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.metaform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-    else
-    {
-	    print "<form  name=\"metaform\" action=\"https://secure.metacharge.com/mcpe/purser\" method=\"post\">\n";
-	    print "<input type=\"hidden\" name=\"intInstID\" value=\"$metaid\">\n";
-	    print "<input type=\"hidden\" name=\"strCartID\" value=\"$ordnum\">\n";
-	    print "<input type=\"hidden\" name=\"fltAmount\" value=\"$total\">\n";
-	    print "<input type=\"hidden\" name=\"strCurrency\" value=\"$metacurrency\">\n";
-	    print "<input type=\"hidden\" name=\"strDesc\" value=\"$metadesc\">\n";
-	    print "</FORM>\n";
-      print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.metaform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-  }
-	// eGold payment processing
-	if (strcasecmp($payprocess,"eGold")==0)
-	{
-	  print "<form name=\"egoldform\" action=\"https://www.e-gold.com/sci_asp/payments.asp\" method=\"POST\">\n";
-	  print "<input type=\"hidden\" name=\"PAYEE_ACCOUNT\" value=\"$egoldid\">\n";
-	  print "<input type=\"hidden\" name=\"PAYEE_NAME\" value=\"$egoldname\">\n";
-	  print "<input type=\"hidden\" name=\"PAYMENT_AMOUNT\" value=\"$total\">\n";
-	  print "<input type=\"hidden\" name=\"PAYMENT_UNITS\" value=\"$egoldunits\">\n";
-	  print "<input type=\"hidden\" name=\"PAYMENT_METAL_ID\" value=\"$egoldmetalid\">\n";
-	  print "<input type=\"hidden\" name=\"PAYMENT_URL\" value=\"$egoldreturn\">\n";
-	  print "<input type=\"hidden\" name=\"NOPAYMENT_URL\" value=\"$egoldcancel\">\n";
-	  print "<input type=\"hidden\" name=\"PAYMENT_URL_METHOD\" value=\"LINK\">\n";
-	  print "<input type=\"hidden\" name=\"NOPAYMENT_URL_METHOD\" value=\"LINK\">\n";
-	  print "<input type=\"hidden\" name=\"SUGGESTED_MEMO\" value=\"$egoldmemo\">\n";
-	  print "<input type=\"hidden\" name=\"BAGGAGE_FIELDS\" value=\"\">\n";
-	  print "</form>\n";
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "document.egoldform.submit()\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-	}
-  	// OKO Banks payment processing
-	if (strcasecmp($payprocess,"okobank")==0)
-	{
-		$viite=viite($ordnum);
-	  print "<form name=\"okoform\" action=\"https://kultaraha.op.fi:443/cgi-bin/krcgi\" method=\"POST\">\n";
-	  print "<input type=\"hidden\" name=\"action_id\" value=\"701\">\n";
-	  print "<input type=\"hidden\" name=\"VERSIO\" value=\"1\">\n";
-	  print "<input type=\"hidden\" name=\"MAKSUTUNNUS\" value=\"$ordnum\">\n";
-	  print "<input type=\"hidden\" name=\"MYYJA\" value=\"$okoid\">\n";
-	  print "<input type=\"hidden\" name=\"SUMMA\" value=\"$total\">\n";
-	  print "<input type=\"hidden\" name=\"VIITE\" value=\"$viite\">\n";
-	  print "<input type=\"hidden\" name=\"VIEST1\" value=\"$ordnum\">\n";
-	  print "<input type=\"hidden\" name=\"VIEST2\" value=\"\">\n";
-	  print "<input type=\"hidden\" name=\"VIESTI\" value=\"$okodesc-$ordnum\">\n";
-	  print "<input type=\"hidden\" name=\"TARKISTE-VERSIO\" value=\"1\">\n";
-	  print "<?php\n";
-		$tarkiste=md5("1".$ordnum.$okoid.$total.$viite.$ordnum."".$okocurrency."1".$okokey);
-		$tarkiste=strtoupper($tarkiste);
-	  print "?>\n";
-	  print "<input type=\"hidden\" name=\"TARKISTE\" value=\"$tarkiste\">\n";
-	  print "<input type=\"hidden\" name=\"PALUU-LINKKI\" value=\"$okoreturn\">\n";
-	  print "<input type=\"hidden\" name=\"PERUUTUS-LINKKI\" value=\"$okocancel\">\n";
-	  print "<input type=\"hidden\" name=\"VALUUTTALAJI\" value=\"$okocurrency\">\n";
-	  print "</form>\n";
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "document.okoform.submit()\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-	// payson.se payment processing
-	if (strcasecmp($payprocess,"payson")==0)
-	{
-	  $cost=$total;
-	  $cost=str_replace(".",",",$cost);
-		$paysonemail=urlencode($paysonemail);
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		//		print "window.location.replace(\"https://www.payson.se/prod/SendMoney/default.aspx?3m_m=2&Description=$ordnum&sellerEmail=$paysonemail&cost=$cost$paysonoption\")\n";
-    print "window.location.replace(\"https://www.payson.se/SendMoney/?De=$ordnum&Se=$paysonemail&cost=$cost&ShippingAmount=0%2c00$paysonoption\")\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-	// Picpay payment processing
-	if (strcasecmp($payprocess,"Picpay")==0)
-	{
-	  print "<form action=\"https://www.picpay.com/securepay.php\" method=\"post\" name=\"picpayform\">\n";
-	  print "<input type=\"hidden\" name=\"member\" value=\"$picpaymember\">\n";
-	  print "<input type=\"hidden\" name=\"memo\" value=\"$picpaydesc\">\n";
-	  print "<input type=\"hidden\" name=\"amount\" value=\"$total\">\n";
-	  print "<input type=\"hidden\" name=\"returnurl\" value=\"$picpayreturn\">\n";
-	  print "<input type=\"hidden\" name=\"cancelurl\" value=\"$picpaycancel\">\n";
-	  print "</form>\n";
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "document.picpayform.submit()\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-  // setcom.co.za payment processing
-	if (strcasecmp($payprocess,"Setcom")==0)
-	{
-      print"<FORM NAME=\"setcomform\" METHOD=\"POST\" ACTION=\"https://www.setcom.com/secure/index.cfm\">\n";
-      print"<INPUT TYPE=\"HIDDEN\" NAME=\"ButtonAction\" VALUE=\"buynow\">\n";
-      print"<INPUT TYPE=\"HIDDEN\" NAME=\"MerchantIdentifier\" VALUE=\"$setcomid\">\n";
-      print"<INPUT TYPE=\"HIDDEN\" NAME=\"CurrencyAlphaCode\" VALUE=\"$setcomcurrency\">\n";
-      print"<INPUT TYPE=\"HIDDEN\" NAME=\"LIDSKU\" VALUE=\"$setcomsku\">\n";
-      print" <INPUT TYPE=\"HIDDEN\" NAME=\"LIDDesc\" VALUE=\"$setcomdesc\">\n";
-      print"<INPUT TYPE=\"HIDDEN\" NAME=\"LIDPrice\" VALUE=\"$total\">\n";
-      print"<INPUT TYPE=\"HIDDEN\" NAME=\"LIDQty\" VALUE=\"1\">\n";
-      print"<INPUT TYPE=\"HIDDEN\" NAME=\"ShippingRequired\" VALUE=\"0\">\n";
-      print"<INPUT TYPE=\"HIDDEN\" NAME=\"MerchCustom\" VALUE=\"$ordnum\">\n";
-      print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.setcomform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-  }
-  // SecPay payment processing
-	if (strcasecmp($payprocess,"SecPay")==0)
-	{
-	  // See if we need to do one off or recurring billing
-	  if ($recurringtotal>0)
-		{
-			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-			$startdate=date("Ymd",time()+(86400*30));
-      $secpaydigest=md5($ordnum.$total.$secpayremotepass);
-      print "<form name=\"secpayform\" method=\"post\" action=\"https://www.secpay.com/java-bin/ValCard\">\n";
-      if ($secpayremotepass!="")
-        print "<input name=\"digest\" type=\"hidden\" value=\"$secpaydigest\" />\n";
-      print "<input name=\"merchant\" type=\"hidden\" value=\"$secpaymerchant\" />\n";
-      print "<input name=\"trans_id\" type=\"hidden\" value=\"$ordnum\" />\n";
-      print "<input name=\"amount\" type=\"hidden\" value=\"$total\" />\n";
-      print "<input name=\"callback\" type=\"hidden\" value=\"$secpayreturn\" />\n";
-      print "<input name=\"currency\" type=\"hidden\" value=\"$secpaycurrency\" />\n";
-      print "<input name=\"repeat\" type=\"hidden\" value=\"$startdate/monthly/-1:$recurringtotal\" />\n";
-      if ($secpaytest=="true")
-        print "<input type=\"hidden\" name=\"test_status\" value=\"true\">\n";
-      if ($secpaytemplate!="")
-        print "<input type=\"hidden\" name=\"template\" value=\"$secpaytemplate\">\n";
-      print "<input type=\"hidden\" name=\"options\" value=\"cart=cwhoisdomaincart\" />\n";
-      print "</form>\n";
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.secpayform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-    else
-    {
-      $secpaydigest=md5($ordnum.$total.$secpayremotepass);
-      print "<form name=\"secpayform\" method=\"post\" action=\"https://www.secpay.com/java-bin/ValCard\">\n";
-      if ($secpayremotepass!="")
-        print "<input name=\"digest\" type=\"hidden\" value=\"$secpaydigest\" />\n";
-      print "<input name=\"merchant\" type=\"hidden\" value=\"$secpaymerchant\" />\n";
-      print "<input name=\"trans_id\" type=\"hidden\" value=\"$ordnum\" />\n";
-      print "<input name=\"amount\" type=\"hidden\" value=\"$total\" />\n";
-      print "<input name=\"callback\" type=\"hidden\" value=\"$secpayreturn\" />\n";
-      print "<input name=\"currency\" type=\"hidden\" value=\"$secpaycurrency\" />\n";
-      if ($secpaytest=="true")
-        print "<input type=\"hidden\" name=\"test_status\" value=\"true\">\n";
-      print "<input type=\"hidden\" name=\"options\" value=\"cart=cwhoisdomaincart\" />\n";
-      print "</form>\n";
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.secpayform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-  }
-  // mals-e payment processing
-	if (strcasecmp($payprocess,"Mals")==0)
-	{
-      print "<form name=\"malsform\" action=\"$malsurl/cf/addmulti.cfm\" method=\"post\">\n";
-      print "<input type=\"hidden\" name=\"userid\" value=\"$malsuserid\" />\n";
-      print "<input type=\"hidden\" name=\"noqty\" value=\"1\" />\n";
-      print "<input type=\"hidden\" name=\"product\" value=\"$malsdesc - $ordnum\" />\n";
-      print "<input type=\"hidden\" name=\"price\" value=\"$total\" />\n";
-      print "<input type=\"hidden\" name=\"return\" value=\"$malsreturn\" />\n";
-      print "</form>\n";
-      print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.malsform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-  }
-  // Linkpoint payment processing
-	if (strcasecmp($payprocess,"Linkpoint")==0)
-	{
-      print "<form name=\"lpform\" action=\"https://www.linkpointcentral.com/lpc/servlet/lppay\" method=\"post\">\n";
-      print "<input type=\"hidden\" name=\"storename\" value=\"$lpstorename\">\n";
-      print "<input type=\"hidden\" name=\"chargetotal\" value=\"$total\">\n";
-      print "<input type=\"hidden\" name=\"txnorg\" value=\"eci\">\n";
-      print "<input type=\"hidden\" name=\"mode\" value=\"payplus\">\n";
-      print "<input type=\"hidden\" name=\"txntype\" value=\"sale\">\n";
-      print "<input type=\"hidden\" name=\"oid\" value=\"$ordnum\">\n";
-      print "<input type=\"hidden\" name=\"responseSuccessURL\" value=\"$lpreturn\">\n";
-      print "<input type=\"hidden\" name=\"responseFailURL\" value=\"$lpcancel\">\n";
-      print "</form>\n";
-      print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.lpform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-  }
-  // paymate.com.au payment processing
-	if (strcasecmp($payprocess,"Paymate")==0)
-	{
-		$paymatedesc=urlencode($paymatedesc);
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "window.location.replace(\"https://www.paymate.com/PayMate/ExpressPayment?mid=$paymateid&amt=$total&ref=$paymatedesc&currency=$paymatecurrency&\")\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-  }
-  // Google Checkout payment processing
-	if (strcasecmp($payprocess,"GoogleCheckout")==0)
-	{
-      print "<form name=\"gcform\" action=\"https://checkout.google.com/cws/v2/Merchant/".$gcmerchantid."/checkoutForm\" id=\"BB_BuyButtonForm\" method=\"post\" name=\"BB_BuyButtonForm\">\n";
-      print "<input name=\"item_name_1\" type=\"hidden\" value=\"".$ordnum."\"/>\n";
-      print "<input name=\"item_description_1\" type=\"hidden\" value=\"".$gcdesc."\"/>\n";
-      print "<input name=\"item_quantity_1\" type=\"hidden\" value=\"1\"/>\n";
-      print "<input name=\"item_price_1\" type=\"hidden\" value=\"".$total."\"/>\n";
-      print "<input name=\"item_currency_1\" type=\"hidden\" value=\"".$gccurrency."\"/>\n";
-      print "<input name=\"_charset_\" type=\"hidden\" value=\"utf-8\"/>\n";
-      print "</form>\n";
-      print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.gcform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-  }
-  // Pagseguro payment processing
-	if (strcasecmp($payprocess,"Pagseguro")==0)
-	{
-    print "<form name='pgform' target='pagseguro' action='https://pagseguro.uol.com.br/security/webpagamentos/webpagto.aspx' method='post'>\n";
-    print " <input type='hidden' name='email_cobranca' value='".$pgemailcobranca."' />\n";
-    print "<input type='hidden' name='tipo' value='".$pgtipo."' />\n";
-    print "<input type='hidden' name='moeda' value='".$pgmoeda."' />\n";
-    print "<input type='hidden' name='item_id_1' value='".$total."' />\n";
-    print "<input type='hidden' name='item_descr_1' value='".$pgdesc."' />\n";
-    print "<input type='hidden' name='item_quant_1' value='1' />\n";
-    print "<input type='hidden' name='item_valor_1' value='".$total."' />\n";
-    print "<input type='hidden' name='item_frete_1' value='0' />\n";
-    print "</form>\n";
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
+//  // Ideal payment processing
+//  if (strcasecmp($payprocess,"Ideal")==0)
+//  {    $totald=$total*100;
+//      print "<script language=\"JavaScript\">\n";
+//      print "<!-- JavaScript\n";
+//      print "window.location.replace(\" https://ideal.secure-ing.com/ideal/mpiPayInitIng.do?merchantID=$idealid&subID=0&amount=$totald&purchaseID=$ordnum&language=$ideallang&currency=$idealcurrency&description=$idealdesc&itemNumber1=$idealitem&itemDescription1=$idealdesc&itemQuantity1=1&itemPrice1=$totald&paymentType=ideal&validUntil=2008-12-01T12:00:00:0000Z\")\n";
+//      print "// - JavaScript - -->\n";
+//      print "</script>\n";
+//  }
+//  // AlertPay payment processing
+//	if (strcasecmp($payprocess,"AlertPay")==0)
+//	{
+//	  // See if we need to do one off or recurring billing
+//	  if ($recurringtotal>0)
+//		{
+//			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
+//
+//      print "<form name=\"alertpayform\"method=\"post\" action=\"https://www.alertpay.com/PayProcess.aspx\" >\n";
+//      print "<input type=\"hidden\" name=\"ap_purchasetype\" value=\"subscription\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_merchant\" value=\"$alertpayid\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_itemname\" value=\"$alertpayname\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_currency\" value=\"$alertpaycurrency\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_returnurl\" value=\"$alertpayreturn\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_itemcode\" value=\"$alertpaycode\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_quantity\" value=\"1\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_description\" value=\"$alertpaydesc\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_trialamount\" value=\"$total\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_trialtimeunit\" value=\"Month\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_trialperiodlength\" value=\"1\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_trialperiodcount\" value=\"0\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_amount\" value=\"$recurringtotal\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_timeunit\" value=\"Month\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_periodlength\" value=\"1\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_periodcount\" value=\"0\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_cancelurl\" value=\"$alertpaycancel\"/>\n";
+//      print "</form>\n";
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.alertpayform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//    else
+//    {
+//      print "<form name=\"alertpayform\"method=\"post\" action=\"https://www.alertpay.com/PayProcess.aspx\" >\n";
+//      print "<input type=\"hidden\" name=\"ap_purchasetype\" value=\"service\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_merchant\" value=\"$alertpayid\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_itemname\" value=\"$alertpayname\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_currency\" value=\"$alertpaycurrency\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_returnurl\" value=\"$alertpayreturn\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_itemcode\" value=\"$alertpaycode\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_quantity\" value=\"1\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_description\" value=\"$alertpaydesc\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_amount\" value=\"$total\"/>\n";
+//      print "<input type=\"hidden\" name=\"ap_cancelurl\" value=\"$alertpaycancel\"/>\n";
+//      print "</form>\n";
+//	    print "<script language=\"JavaScript\">\n";
+//	    print "<!-- JavaScript\n";
+//	    print "document.alertpayform.submit()\n";
+//	    print "// - JavaScript - -->\n";
+//	    print "</script>\n";
+//    }
+//  }
+//  // Swreg payment processing
+//  if (strcasecmp($payprocess,"Swreg")==0)
+//  {
+//      print "<script language=\"JavaScript\">\n";
+//      print "<!-- JavaScript\n";
+//      print "window.location.replace(\"https://usd.swreg.org/cgi-bin/s.cgi?s=$swregid&p=$swregproduct&v=0&d=0&q=1&vp=$total\")\n";
+//      print "// - JavaScript - -->\n";
+//      print "</script>\n";
+//  }
+//	// Virtualpaycash Processing
+//	if (strcasecmp($payprocess,"vpcash")==0)
+//	{
+//	  print "<form name=\"vpcash\" action=\"https://www.virtualpaycash.net/handle.php\" method=\"POST\">\n";
+//	  print "<input type=\"hidden\" name=\"merchantAccount\" value=\"$vpc_merchand\">\n";
+//	  print "<input type=\"hidden\" name=\"vpc_currency\" value=\"$vpc_currency\">\n";
+//	  print "<input type=\"hidden\" name=\"amount\" value=\"$total\">\n";
+//	  print "<input type=\"hidden\" name=\"item_id\" value=\"$vpc_item\">\n";
+//	  print "<input type=\"hidden\" name=\"merchantSecurityWord\" value=\"$vpc_merchantSecurityWord\">\n";
+//	  print "<input type=\"hidden\" name=\"return_url\" value=\"$vpc_return_url\">\n";
+//	  print "<input type=\"hidden\" name=\"notify_url\" value=\"$vpc_notify_url\">\n";
+//	  print "<input type=\"hidden\" name=\"cancel_url\" value=\"$vpc_cancel_url\">\n";
+//	  print "</form>\n";
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "document.vpcash.submit()\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//	}
+//
+//	// Global Digital Pay Processing
+//	if (strcasecmp($payprocess,"GlobalDigitalPay")==0)
+//	{
+//    print "<form name=\"gdp\" method=\"post\" action=\"https://www.globaldigitalpay.com/process.htm\">\n";
+//    print "<input type=\"hidden\" name=\"member\" value=\"$gdp_member\">\n";
+//    print "<input type=\"hidden\" name=\"action\" value=\"service\">\n";
+//    print "<input type=\"hidden\" name=\"product\" value=\"$gdp_desc\">\n";
+//    print "<input type=\"hidden\" name=\"price\" value=\"$total\">\n";
+//    print "<input type=\"hidden\" name=\"currency\" value=\"$gdp_currency\">\n";
+//    print "<input type=\"hidden\" name=\"nocheck\" value=\"1\">\n";
+//    print "<input type=\"hidden\" name=\"store_id\" value=\"$gdp_storeid\">\n";
+//    print "<input type=\"hidden\" name=\"comments\" value=\"$ordnum\">\n";
+//    print "<input type=\"hidden\" name=\"success_url\" value=\"$gdp_success\">\n";
+//    print "<input type=\"hidden\" name=\"cancel_url\" value=\"$gdp_cancel\">\n";
+//    print "</form>\n";
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "document.gdp.submit()\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//	}
+//
+//	// Amazon Pay Processing
+//	if (strcasecmp($payprocess,"Amazon")==0)
+//	{
+//	  $sig="";
+//    print "<form name=\"amazon\" action=\"https://authorize.payments.amazon.com/pba/paypipeline\" method=\"post\">\n";
+//    print "<input type=\"hidden\" name=\"immediateReturn\" value=\"1\" >\n";
+//    print "<input type=\"hidden\" name=\"collectShippingAddress\" value=\"0\" >\n";
+//    print "<input type=\"hidden\" name=\"signatureVersion\" value=\"2\" >\n";
+//    print "<input type=\"hidden\" name=\"signatureMethod\" value=\"HmacSHA256\" >\n";
+//    print "<input type=\"hidden\" name=\"accessKey\" value=\"$amazon_accesskey\" >\n";
+//    print "<input type=\"hidden\" name=\"referenceId\" value=\"$ordnum\" >\n";
+//    print "<input type=\"hidden\" name=\"amount\" value=\"$amazon_currency $total\" >\n";
+//    print "<input type=\"hidden\" name=\"signature\" value=\"$sig\" >\n";
+//    print "<input type=\"hidden\" name=\"isDonationWidget\" value=\"0\" >\n";
+//    print "<input type=\"hidden\" name=\"description\" value=\"$amazon_desc\" >\n";
+//    print "<input type=\"hidden\" name=\"amazonPaymentsAccountId\" value=\"$amazon_payid\" >\n";
+//    print "<input type=\"hidden\" name=\"returnUrl\" value=\"$amazon_success\" >\n";
+//    print "<input type=\"hidden\" name=\"processImmediate\" value=\"1\" >\n";
+//    print "<input type=\"hidden\" name=\"cobrandingStyle\" value=\"logo\" >\n";
+//    print "<input type=\"hidden\" name=\"abandonUrl\" value=\"$amazon_cancel\" >\n";
+//    print "</form>\n";
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "document.gdp.submit()\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//	}
+//
+//  // MoIP payment processing
+//  if (strcasecmp($payprocess,"MoIP")==0)
+//  {
+//    $centamount=intval($total*100);
+//    print "<form name='pgform' target='moip' action='https://www.moip.com.br/PagamentoMoIP.do' method='post'>\n";
+//    print " <input type='hidden' name='id_carteira' value='".$pgemailcobranca."' />\n";
+//    print "<input type='hidden' name='id_transacao' value='".$pgtrans."' />\n";
+//    print "<input type='hidden' name='moeda' value='".$pgmoeda."' />\n";
+//    print "<input type='hidden' name='valor' value='".$centamount."' />\n";
+//    print "<input type='hidden' name='nome' value='".$pgdesc."' />\n";
+//    print "<input type='hidden' name='item_quant_1' value='1' />\n";
+//    print "<input type='hidden' name='item_frete_1' value='0' />\n";
+//    print "</form>\n";
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
 //    print "document.pgform.submit()\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-	}
-
-  // Ideal payment processing
-  if (strcasecmp($payprocess,"Ideal")==0)
-  {    $totald=$total*100;
-      print "<script language=\"JavaScript\">\n";
-      print "<!-- JavaScript\n";
-      print "window.location.replace(\" https://ideal.secure-ing.com/ideal/mpiPayInitIng.do?merchantID=$idealid&subID=0&amount=$totald&purchaseID=$ordnum&language=$ideallang&currency=$idealcurrency&description=$idealdesc&itemNumber1=$idealitem&itemDescription1=$idealdesc&itemQuantity1=1&itemPrice1=$totald&paymentType=ideal&validUntil=2008-12-01T12:00:00:0000Z\")\n";
-      print "// - JavaScript - -->\n";
-      print "</script>\n";
-  }
-  // AlertPay payment processing
-	if (strcasecmp($payprocess,"AlertPay")==0)
-	{
-	  // See if we need to do one off or recurring billing
-	  if ($recurringtotal>0)
-		{
-			$recurringtotal=sprintf("%01.".$decimalplaces."f",$recurringtotal);
-
-      print "<form name=\"alertpayform\"method=\"post\" action=\"https://www.alertpay.com/PayProcess.aspx\" >\n";
-      print "<input type=\"hidden\" name=\"ap_purchasetype\" value=\"subscription\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_merchant\" value=\"$alertpayid\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_itemname\" value=\"$alertpayname\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_currency\" value=\"$alertpaycurrency\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_returnurl\" value=\"$alertpayreturn\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_itemcode\" value=\"$alertpaycode\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_quantity\" value=\"1\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_description\" value=\"$alertpaydesc\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_trialamount\" value=\"$total\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_trialtimeunit\" value=\"Month\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_trialperiodlength\" value=\"1\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_trialperiodcount\" value=\"0\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_amount\" value=\"$recurringtotal\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_timeunit\" value=\"Month\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_periodlength\" value=\"1\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_periodcount\" value=\"0\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_cancelurl\" value=\"$alertpaycancel\"/>\n";
-      print "</form>\n";
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.alertpayform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-    else
-    {
-      print "<form name=\"alertpayform\"method=\"post\" action=\"https://www.alertpay.com/PayProcess.aspx\" >\n";
-      print "<input type=\"hidden\" name=\"ap_purchasetype\" value=\"service\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_merchant\" value=\"$alertpayid\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_itemname\" value=\"$alertpayname\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_currency\" value=\"$alertpaycurrency\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_returnurl\" value=\"$alertpayreturn\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_itemcode\" value=\"$alertpaycode\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_quantity\" value=\"1\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_description\" value=\"$alertpaydesc\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_amount\" value=\"$total\"/>\n";
-      print "<input type=\"hidden\" name=\"ap_cancelurl\" value=\"$alertpaycancel\"/>\n";
-      print "</form>\n";
-	    print "<script language=\"JavaScript\">\n";
-	    print "<!-- JavaScript\n";
-	    print "document.alertpayform.submit()\n";
-	    print "// - JavaScript - -->\n";
-	    print "</script>\n";
-    }
-  }
-  // Swreg payment processing
-  if (strcasecmp($payprocess,"Swreg")==0)
-  {
-      print "<script language=\"JavaScript\">\n";
-      print "<!-- JavaScript\n";
-      print "window.location.replace(\"https://usd.swreg.org/cgi-bin/s.cgi?s=$swregid&p=$swregproduct&v=0&d=0&q=1&vp=$total\")\n";
-      print "// - JavaScript - -->\n";
-      print "</script>\n";
-  }
-	// Virtualpaycash Processing
-	if (strcasecmp($payprocess,"vpcash")==0)
-	{
-	  print "<form name=\"vpcash\" action=\"https://www.virtualpaycash.net/handle.php\" method=\"POST\">\n";
-	  print "<input type=\"hidden\" name=\"merchantAccount\" value=\"$vpc_merchand\">\n";
-	  print "<input type=\"hidden\" name=\"vpc_currency\" value=\"$vpc_currency\">\n";
-	  print "<input type=\"hidden\" name=\"amount\" value=\"$total\">\n";
-	  print "<input type=\"hidden\" name=\"item_id\" value=\"$vpc_item\">\n";
-	  print "<input type=\"hidden\" name=\"merchantSecurityWord\" value=\"$vpc_merchantSecurityWord\">\n";
-	  print "<input type=\"hidden\" name=\"return_url\" value=\"$vpc_return_url\">\n";
-	  print "<input type=\"hidden\" name=\"notify_url\" value=\"$vpc_notify_url\">\n";
-	  print "<input type=\"hidden\" name=\"cancel_url\" value=\"$vpc_cancel_url\">\n";
-	  print "</form>\n";
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "document.vpcash.submit()\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-	}
-
-	// Global Digital Pay Processing
-	if (strcasecmp($payprocess,"GlobalDigitalPay")==0)
-	{
-    print "<form name=\"gdp\" method=\"post\" action=\"https://www.globaldigitalpay.com/process.htm\">\n";
-    print "<input type=\"hidden\" name=\"member\" value=\"$gdp_member\">\n";
-    print "<input type=\"hidden\" name=\"action\" value=\"service\">\n";
-    print "<input type=\"hidden\" name=\"product\" value=\"$gdp_desc\">\n";
-    print "<input type=\"hidden\" name=\"price\" value=\"$total\">\n";
-    print "<input type=\"hidden\" name=\"currency\" value=\"$gdp_currency\">\n";
-    print "<input type=\"hidden\" name=\"nocheck\" value=\"1\">\n";
-    print "<input type=\"hidden\" name=\"store_id\" value=\"$gdp_storeid\">\n";
-    print "<input type=\"hidden\" name=\"comments\" value=\"$ordnum\">\n";
-    print "<input type=\"hidden\" name=\"success_url\" value=\"$gdp_success\">\n";
-    print "<input type=\"hidden\" name=\"cancel_url\" value=\"$gdp_cancel\">\n";
-    print "</form>\n";
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "document.gdp.submit()\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-	}
-
-	// Amazon Pay Processing
-	if (strcasecmp($payprocess,"Amazon")==0)
-	{
-	  $sig="";
-    print "<form name=\"amazon\" action=\"https://authorize.payments.amazon.com/pba/paypipeline\" method=\"post\">\n";
-    print "<input type=\"hidden\" name=\"immediateReturn\" value=\"1\" >\n";
-    print "<input type=\"hidden\" name=\"collectShippingAddress\" value=\"0\" >\n";
-    print "<input type=\"hidden\" name=\"signatureVersion\" value=\"2\" >\n";
-    print "<input type=\"hidden\" name=\"signatureMethod\" value=\"HmacSHA256\" >\n";
-    print "<input type=\"hidden\" name=\"accessKey\" value=\"$amazon_accesskey\" >\n";
-    print "<input type=\"hidden\" name=\"referenceId\" value=\"$ordnum\" >\n";
-    print "<input type=\"hidden\" name=\"amount\" value=\"$amazon_currency $total\" >\n";
-    print "<input type=\"hidden\" name=\"signature\" value=\"$sig\" >\n";
-    print "<input type=\"hidden\" name=\"isDonationWidget\" value=\"0\" >\n";
-    print "<input type=\"hidden\" name=\"description\" value=\"$amazon_desc\" >\n";
-    print "<input type=\"hidden\" name=\"amazonPaymentsAccountId\" value=\"$amazon_payid\" >\n";
-    print "<input type=\"hidden\" name=\"returnUrl\" value=\"$amazon_success\" >\n";
-    print "<input type=\"hidden\" name=\"processImmediate\" value=\"1\" >\n";
-    print "<input type=\"hidden\" name=\"cobrandingStyle\" value=\"logo\" >\n";
-    print "<input type=\"hidden\" name=\"abandonUrl\" value=\"$amazon_cancel\" >\n";
-    print "</form>\n";
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "document.gdp.submit()\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-	}
-
-  // MoIP payment processing
-  if (strcasecmp($payprocess,"MoIP")==0)
-  {
-    $centamount=intval($total*100);
-    print "<form name='pgform' target='moip' action='https://www.moip.com.br/PagamentoMoIP.do' method='post'>\n";
-    print " <input type='hidden' name='id_carteira' value='".$pgemailcobranca."' />\n";
-    print "<input type='hidden' name='id_transacao' value='".$pgtrans."' />\n";
-    print "<input type='hidden' name='moeda' value='".$pgmoeda."' />\n";
-    print "<input type='hidden' name='valor' value='".$centamount."' />\n";
-    print "<input type='hidden' name='nome' value='".$pgdesc."' />\n";
-    print "<input type='hidden' name='item_quant_1' value='1' />\n";
-    print "<input type='hidden' name='item_frete_1' value='0' />\n";
-    print "</form>\n";
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "document.pgform.submit()\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-  }
-
-    // Mollie Ideal payment processing
-  if (strcasecmp($payprocess,"MollieIdealOld")==0)
-  {
-    $mollieideal_reporturl=urlencode($mollieideal_reporturl);
-    $mollieideal_returnurl=urlencode($mollieideal_returnurl);
-    $mollieideal_desc=urlencode($mollieideal_desc);
-    $totald=$total*100;
-    // Call mollie to get bank URL to call
-    $url="https://secure.mollie.nl/xml/ideal?a=fetch&partnerid=$mollieideal_partnerid&description=$mollieideal_desc&reporturl=$mollieideal_reporturl&returnurl=$mollieideal_returnurl&amount=$totald&bank_id=$cfmollieidealbank";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    $pos=strpos($response,"<URL>");
-    $pos2=strpos($response,"</URL>",$pos);
-    $bankurl=substr($response,$pos+5,$pos2-$pos-5);
-    $bankurl=str_replace("&amp;","&",$bankurl);
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "window.location.replace(\"$bankurl\")\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-  }
-
-  // Mollie Ideal payment processing
-  if (strcasecmp($payprocess,"MollieIdeal")==0)
-  {
-    require_once "Mollie/API/Autoloader.php";
-    try
-    {
-    	$mollie = new Mollie_API_Client;
-    	$mollie->setApiKey($mollieideal_api);
-    	$order_id = $ordnum;
-    	$protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
-    	$hostname = $_SERVER['HTTP_HOST'];
-    	$path     = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
-    	$payment = $mollie->payments->create(array(
-    		"amount"       => $total,
-    		"method"       => $mollieideal_method,
-    		"description"  => $mollieideal_desc,
-    		"redirectUrl"  => $mollieideal_returnurl."?order_id=".$order_id,
-    		"metadata"     => array(
-    			"order_id" => $order_id,
-    		),
-    		"issuer"       => NULL
-    	));
-    	$bankurl=$payment->getPaymentUrl();
-      print "<script language=\"JavaScript\">\n";
-      print "<!-- JavaScript\n";
-      print "window.location.replace(\"$bankurl\")\n";
-      print "// - JavaScript - -->\n";
-      print "</script>\n";
-    }
-    catch (Mollie_API_Exception $e)
-    {
-      echo "Mollie API call failed: " . htmlspecialchars($e->getMessage());
-      exit;
-    }
-  }
-
-  // PayuLatam payment processing
-  // http://docs.payulatam.com/en/web-checkout-integration/integrate/
-  if (strcasecmp($payprocess,"PayuLatam")==0)
-  {
-    $signature=md5("$payulapikey~$payulmerchantid~$ordnum~$total~$payulcurrency");
-    print"<form name='payulform' method='post' action='https://stg.gateway.payulatam.com/ppp-web-gateway/'>\n";
-    print"<input name='merchantId' type='hidden' value='$payulmerchantid'/>\n";
-    print"<input name='accountId' type='hidden' value='$payulaccountid'/>\n";
-    print"<input name='description' type='hidden' value='$payulaccountdesc'/>\n";
-    print"<input name='referenceCode' type='hidden' value='$ordnum'/>\n";
-    print"<input name='amount' type='hidden' value='$total'/>\n";
-    print"<input name='tax' type='hidden' value='16'/>\n";
-    print"<input name='taxReturnBase' type='hidden' value='0'/>\n";
-    print"<input name='shipmentValue' value='0' type='hidden'/>\n";
-    print"<input name='currency' type='hidden' value='$payulcurrency'/>\n";
-    print"<input name='lng' type='hidden' value='$payullng'/>\n";
-    print"<input name='sourceUrl' id='urlOrigen' value='' type='hidden'/>\n";
-    print"<input name='buttonType' value='SIMPLE' type='hidden'/>\n";
-    print"<input name='signature' value='$signature' type='hidden'/>\n";
-    print"</form>\n";
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "document.payulform.submit()\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-  }
-
-  // AccessPay payment processing
-  if (strcasecmp($payprocess,"AccessPay")==0)
-  {
-    print"<form name='upay_form' id='upay_form' method='post' action='https://cipg.accessbankplc.com/MerchantServices/MakePayment.aspx' target='_top'>\n";
-    print"<input type='hidden' name='mercId' value='$accesspaymercid'>\n";
-    print"<input type='hidden' name='currCode' value='$accesspaycurrcode'>\n";
-    print"<input type='hidden' name='amt' value='$total'>\n";
-    print"<input type='hidden' name='orderId' value='$ordnum'>\n";
-    print"<input type='hidden' name='prod' value='$accesspaydesc'>\n";
-    print"<input type='hidden' name='email' value='$cfemail'>\n";
-    print"</form>\n";
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "document.upay_form.submit()\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-  }
-
-
-  // Manual payment processing
-	if (($payprocess=="") ||(strcasecmp($payprocess,"manual")==0))
-	{
-	  print "<form action=\"$manualreturn\" method=\"get\" name=\"manualform\">\n";
-	  print "<input type=\"hidden\" name=\"ordnum\" value=\"$ordnum\">\n";
-	  print "<input type=\"hidden\" name=\"total\" value=\"$total\">\n";
-	  print "<input type=\"hidden\" name=\"recurringtotal\" value=\"$recurringtotal\">\n";
-	  print "<input type=\"hidden\" name=\"sessionid\" value=\"".session_id()."\">\n";
-	  print "</form>\n";
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "document.manualform.submit()\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
-	// Manual payment processing (second option)
-	if (strcasecmp($payprocess,"manual2")==0)
-	{
-	  print "<form action=\"$manual2return\" method=\"get\" name=\"manual2form\">\n";
-	  print "<input type=\"hidden\" name=\"ordnum\" value=\"$ordnum\">\n";
-	  print "<input type=\"hidden\" name=\"total\" value=\"$total\">\n";
-	  print "<input type=\"hidden\" name=\"recurringtotal\" value=\"$recurringtotal\">\n";
-	  print "<input type=\"hidden\" name=\"sessionid\" value=\"".session_id()."\">\n";
-	  print "</form>\n";
-		print "<script language=\"JavaScript\">\n";
-		print "<!-- JavaScript\n";
-		print "document.manual2form.submit()\n";
-		print "// - JavaScript - -->\n";
-		print "</script>\n";
-	}
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//  }
+//
+//    // Mollie Ideal payment processing
+//  if (strcasecmp($payprocess,"MollieIdealOld")==0)
+//  {
+//    $mollieideal_reporturl=urlencode($mollieideal_reporturl);
+//    $mollieideal_returnurl=urlencode($mollieideal_returnurl);
+//    $mollieideal_desc=urlencode($mollieideal_desc);
+//    $totald=$total*100;
+//    // Call mollie to get bank URL to call
+//    $url="https://secure.mollie.nl/xml/ideal?a=fetch&partnerid=$mollieideal_partnerid&description=$mollieideal_desc&reporturl=$mollieideal_reporturl&returnurl=$mollieideal_returnurl&amount=$totald&bank_id=$cfmollieidealbank";
+//    $ch = curl_init();
+//    curl_setopt($ch, CURLOPT_URL, $url);
+//    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//    $response = curl_exec($ch);
+//    curl_close($ch);
+//    $pos=strpos($response,"<URL>");
+//    $pos2=strpos($response,"</URL>",$pos);
+//    $bankurl=substr($response,$pos+5,$pos2-$pos-5);
+//    $bankurl=str_replace("&amp;","&",$bankurl);
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "window.location.replace(\"$bankurl\")\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//  }
+//
+//  // Mollie Ideal payment processing
+//  if (strcasecmp($payprocess,"MollieIdeal")==0)
+//  {
+//    require_once "Mollie/API/Autoloader.php";
+//    try
+//    {
+//    	$mollie = new Mollie_API_Client;
+//    	$mollie->setApiKey($mollieideal_api);
+//    	$order_id = $ordnum;
+//    	$protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
+//    	$hostname = $_SERVER['HTTP_HOST'];
+//    	$path     = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
+//    	$payment = $mollie->payments->create(array(
+//    		"amount"       => $total,
+//    		"method"       => $mollieideal_method,
+//    		"description"  => $mollieideal_desc,
+//    		"redirectUrl"  => $mollieideal_returnurl."?order_id=".$order_id,
+//    		"metadata"     => array(
+//    			"order_id" => $order_id,
+//    		),
+//    		"issuer"       => NULL
+//    	));
+//    	$bankurl=$payment->getPaymentUrl();
+//      print "<script language=\"JavaScript\">\n";
+//      print "<!-- JavaScript\n";
+//      print "window.location.replace(\"$bankurl\")\n";
+//      print "// - JavaScript - -->\n";
+//      print "</script>\n";
+//    }
+//    catch (Mollie_API_Exception $e)
+//    {
+//      echo "Mollie API call failed: " . htmlspecialchars($e->getMessage());
+//      exit;
+//    }
+//  }
+//
+//  // PayuLatam payment processing
+//  // http://docs.payulatam.com/en/web-checkout-integration/integrate/
+//  if (strcasecmp($payprocess,"PayuLatam")==0)
+//  {
+//    $signature=md5("$payulapikey~$payulmerchantid~$ordnum~$total~$payulcurrency");
+//    print"<form name='payulform' method='post' action='https://stg.gateway.payulatam.com/ppp-web-gateway/'>\n";
+//    print"<input name='merchantId' type='hidden' value='$payulmerchantid'/>\n";
+//    print"<input name='accountId' type='hidden' value='$payulaccountid'/>\n";
+//    print"<input name='description' type='hidden' value='$payulaccountdesc'/>\n";
+//    print"<input name='referenceCode' type='hidden' value='$ordnum'/>\n";
+//    print"<input name='amount' type='hidden' value='$total'/>\n";
+//    print"<input name='tax' type='hidden' value='16'/>\n";
+//    print"<input name='taxReturnBase' type='hidden' value='0'/>\n";
+//    print"<input name='shipmentValue' value='0' type='hidden'/>\n";
+//    print"<input name='currency' type='hidden' value='$payulcurrency'/>\n";
+//    print"<input name='lng' type='hidden' value='$payullng'/>\n";
+//    print"<input name='sourceUrl' id='urlOrigen' value='' type='hidden'/>\n";
+//    print"<input name='buttonType' value='SIMPLE' type='hidden'/>\n";
+//    print"<input name='signature' value='$signature' type='hidden'/>\n";
+//    print"</form>\n";
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "document.payulform.submit()\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//  }
+//
+//  // AccessPay payment processing
+//  if (strcasecmp($payprocess,"AccessPay")==0)
+//  {
+//    print"<form name='upay_form' id='upay_form' method='post' action='https://cipg.accessbankplc.com/MerchantServices/MakePayment.aspx' target='_top'>\n";
+//    print"<input type='hidden' name='mercId' value='$accesspaymercid'>\n";
+//    print"<input type='hidden' name='currCode' value='$accesspaycurrcode'>\n";
+//    print"<input type='hidden' name='amt' value='$total'>\n";
+//    print"<input type='hidden' name='orderId' value='$ordnum'>\n";
+//    print"<input type='hidden' name='prod' value='$accesspaydesc'>\n";
+//    print"<input type='hidden' name='email' value='$cfemail'>\n";
+//    print"</form>\n";
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "document.upay_form.submit()\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//  }
+//
+//
+//  // Manual payment processing
+//	if (($payprocess=="") ||(strcasecmp($payprocess,"manual")==0))
+//	{
+//	  print "<form action=\"$manualreturn\" method=\"get\" name=\"manualform\">\n";
+//	  print "<input type=\"hidden\" name=\"ordnum\" value=\"$ordnum\">\n";
+//	  print "<input type=\"hidden\" name=\"total\" value=\"$total\">\n";
+//	  print "<input type=\"hidden\" name=\"recurringtotal\" value=\"$recurringtotal\">\n";
+//	  print "<input type=\"hidden\" name=\"sessionid\" value=\"".session_id()."\">\n";
+//	  print "</form>\n";
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "document.manualform.submit()\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
+//	// Manual payment processing (second option)
+//	if (strcasecmp($payprocess,"manual2")==0)
+//	{
+//	  print "<form action=\"$manual2return\" method=\"get\" name=\"manual2form\">\n";
+//	  print "<input type=\"hidden\" name=\"ordnum\" value=\"$ordnum\">\n";
+//	  print "<input type=\"hidden\" name=\"total\" value=\"$total\">\n";
+//	  print "<input type=\"hidden\" name=\"recurringtotal\" value=\"$recurringtotal\">\n";
+//	  print "<input type=\"hidden\" name=\"sessionid\" value=\"".session_id()."\">\n";
+//	  print "</form>\n";
+//		print "<script language=\"JavaScript\">\n";
+//		print "<!-- JavaScript\n";
+//		print "document.manual2form.submit()\n";
+//		print "// - JavaScript - -->\n";
+//		print "</script>\n";
+//	}
 }
 
 function hmac($key, $data)

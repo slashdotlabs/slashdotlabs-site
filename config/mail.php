@@ -133,4 +133,16 @@ return [
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Vendor emails for Slash dot
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+    'vendor_from' => [
+        'address' => env('VENDOR_EMAIL', 'info@slashdotlabs.com'),
+        'name' => env('VENDOR_NAME', 'Slash Dot Labs' )
+    ]
+
 ];

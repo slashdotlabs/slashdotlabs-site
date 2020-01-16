@@ -99,6 +99,11 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'ipay' => [
+            'path' => storage_path('logs/ipay.log'),
+            'driver' => 'single'
+        ]
     ],
 
 ];

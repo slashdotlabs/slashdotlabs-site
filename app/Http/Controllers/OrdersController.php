@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Billing\PaymentGatewayContract;
+use App\Models\Order;
+use App\Models\OrderItem;
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -18,30 +23,40 @@ class OrdersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Save new order with details
      *
      * @param Request $request
-     * @return Response
+     * @param PaymentGatewayContract $paymentGateway
+     * @return JsonResponse|Response
      */
-    public function store(Request $request)
+    public function store(Request $request, PaymentGatewayContract $paymentGateway)
     {
-        //
+        try {
+            $customer = $request->user();
+            $order = new Order($request->only(['total_amount', 'currency']));
+            $order->customer()->associate($customer);
+            $order_items = collect($request->only('order_items'))->map(function ($order_item) {
+                return new OrderItem($order_item);
+            });
+            // TODO: error processing
+            $order->order_items()->saveMany($order_items);
+            $order->save();
+
+            // TODO: Create order created event
+
+
+            // TODO: go to iPay
+        } catch (Exception $e) {
+            return \response()->withException($e);
+        }
+
+        return \response()->json(['ok'=>true]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -52,7 +67,7 @@ class OrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -64,7 +79,7 @@ class OrdersController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -75,7 +90,7 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
