@@ -12,7 +12,7 @@
                 <h3 class="block-title">Domain Cart</h3>
                 <div class="block-options">
                     <a href="{{ url('destroycart') }}" type="button" class="btn btn-sm btn-secondary ">
-                        <i class="si si-basket"></i> Empty Cart
+                        <i class="si si-close"></i> Empty Cart
                     </a>
                 </div>
             </div>

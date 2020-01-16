@@ -36,6 +36,9 @@ class PaymentsController extends Controller
         try {
             $res = request()->all();
 
+            // Log
+            Log::channel('ipay')->debug(['fields_retuned' => $res]);
+
             // get status state TODO: track transactions made in the database
             $status_res = $paymentGateway->get_status_state($res['status']);
             if (!$status_res['process']) throw new Exception($status_res['state']);

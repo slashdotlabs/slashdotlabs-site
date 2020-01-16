@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Orders\OrderHandler;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class DomainCartController extends Controller
 {

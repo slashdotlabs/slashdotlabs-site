@@ -5,6 +5,7 @@ namespace App\Billing;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class IpayPaymentGateway implements PaymentGatewayContract
@@ -43,6 +44,9 @@ class IpayPaymentGateway implements PaymentGatewayContract
         $fields_string = $fields->map(function ($value, $key) {
             return $key.'='.$value;
         })->join('&');
+
+        // Log
+        Log::channel('ipay')->debug(['fields' => $fields->toArray(), 'url' => $ipay_base_url.'?'.$fields_string]);
 
         return redirect($ipay_base_url.'?'.$fields_string);
     }
