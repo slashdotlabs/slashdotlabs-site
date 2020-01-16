@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\PaymentReceived;
+use App\Notifications\PaymentReceivedNotification;
+use Illuminate\Support\Facades\Notification;
 
 class SendPaymentReceivedNotification
 {
@@ -24,6 +26,8 @@ class SendPaymentReceivedNotification
      */
     public function handle(PaymentReceived $event)
     {
-        //
+        // Notify vendor
+        Notification::route('mail', config('mail.vendor_from.address'))
+            ->notify(new PaymentReceivedNotification($event->payment));
     }
 }

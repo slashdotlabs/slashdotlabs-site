@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -18,5 +19,10 @@ class OrderItem extends Model
     public function product()
     {
         return $this->morphTo();
+    }
+
+    public function getExpiryDateAttribute($value)
+    {
+        return $this->attributes['expiry_date'] = (new Carbon($value))->toFormattedDateString();
     }
 }

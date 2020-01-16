@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->bigInteger('customer_id');
             $table->bigInteger('order_id');
             $table->string('payment_type');
-            $table->string('payment_ref');
+            $table->string('payment_ref')->unique();
             $table->decimal('amount');
             $table->string('currency');
 

@@ -4,6 +4,7 @@
 namespace App\Orders;
 
 
+use App\Models\CustomerBiodata;
 use App\Models\CustomerDomain;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -18,6 +19,16 @@ class OrderHandler
     {
         try {
             $customer = \request()->user();
+            // Update or create biodata details
+            CustomerBiodata::updateOrCreate(
+                ['customer_id' => $customer->id],
+                [
+                    'phone_number' => $data['contact_details']['tel'],
+                    'address' => $data['contact_details']['str1'],
+                    'city' => $data['contact_details']['city'],
+                    'country' => $data['contact_details']['country'],
+                    'organization' => $data['contact_details']['org']
+                ]);
             $order = new Order($data->get('order_details'));
             $order->customer()->associate($customer);
             $order->save();
@@ -44,7 +55,7 @@ class OrderHandler
 
                 $hosting_item = new OrderItem($order_item->only(['price', 'currency', 'expiry_date'])->toArray());
 
-                $product = $products->filter(function ($product) use(&$order_item) {
+                $product = $products->filter(function ($product) use (&$order_item) {
                     $db_product_desc = $product->product_name . ' (' . $product->product_description . ')';
                     return $db_product_desc == $order_item['hosting_name'];
                 })->first();
@@ -57,7 +68,7 @@ class OrderHandler
                 $order_item->push();
             });
 
-            return response()->json(['order' => $order]);
+            return response()->json(['order' => $order->load('customer', 'customer.customer_biodata')]);
         } catch (Exception $e) {
             return response()->withException($e);
         }

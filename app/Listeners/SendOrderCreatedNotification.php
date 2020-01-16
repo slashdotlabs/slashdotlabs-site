@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\OrderCreated;
+use App\Notifications\OrderCreatedNotification;
+use Illuminate\Support\Facades\Notification;
 
 class SendOrderCreatedNotification
 {
@@ -24,6 +26,6 @@ class SendOrderCreatedNotification
      */
     public function handle(OrderCreated $event)
     {
-        //
+        $event->order->customer->notify(new OrderCreatedNotification($event->order));
     }
 }

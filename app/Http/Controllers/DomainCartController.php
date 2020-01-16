@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Billing\PaymentGatewayContract;
 use App\Events\OrderCreated;
+use App\Models\Order;
 use App\Models\Product;
 use App\Orders\OrderHandler;
 use Carbon\Carbon;
@@ -98,14 +99,19 @@ class DomainCartController extends Controller
         ]);
         try {
             $created_order_response = $orderHandler->store($dataToSend);
-            if ($created_order_response->status() == 200) {
-                event(new OrderCreated($created_order_response['order']));
+            if ($created_order_response->status() != 200) throw $created_order_response->exception;
+            $created_order = $created_order_response->getData(true)['order'];
 
-                // TODO: go to iPay, add required details for redirect
-                $paymentGateway->charge([]);
-            }
+            event(new OrderCreated(Order::find($created_order['order_id'])));
+
+            return $paymentGateway->charge([
+                'order_id' => $created_order['order_id'],
+                'total_amount' => $created_order['total_amount'],
+                'phone_number' => $created_order['customer']['customer_biodata']['phone_number'],
+                'email' => $created_order['customer']['email']
+            ]);
         } catch(\Exception $e) {
-            // TODO: handle exception
+           return back()->withException($e);
         }
     }
 

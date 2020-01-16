@@ -992,7 +992,7 @@ if (($cwaction=="hoststep2") && ($domexists=="exists")&& ($cwhoismode==1))
   {
   	print "<tr>\n";
 	  print "<td  class=\"cwhoissimplestep2b\"><p class=\"cwhoissimplestep2b\">".$lang['LookupOptional']."</p></td>\n";
-    print ".$lang['Lookup']."\"></td>\n";
+    print $lang['Lookup']."\"></td>\n";
 	  print "</tr>\n";
   }
 	print "<tr><td  class=\"cwhoissimplestep2b\">&nbsp;</td><td  class=\"cwhoissimplestep2b\" class=\"cwhoissimplestep2\">&nbsp;</td></tr>\n";
@@ -3106,7 +3106,6 @@ if ($cwaction=="order")
 	// This is the final step where we call the credit card handling service.
 	// Send email to vendor with order details. As this happens before the purchasers
 	// credit card is approved we should warn the vendor to verify order goes through.
-    // TODO: Place all cart data in session and redirect to DomainCartController@checkout
 
   // See if tax rate sent in for via ra_formtaxrate, cb_formtaxrate, dm_formtaxrate or formtaxrate
   if (isset($cfra_formtaxrate))
@@ -3171,7 +3170,6 @@ if ($cwaction=="order")
   // $total=0.00;
 	$total = $_SESSION['ipaytotal'];
   $recurringtotal=0.00;
-//  TODO: Move email sending to laravel
 //  if ($HTMLEmail=="Y")
 //  {
 //		$cotextcolor="#000000";
@@ -3454,7 +3452,6 @@ if ($cwaction=="order")
 //  $_SESSION['domaincart']['cartpayprocess']=$payprocess;
 //  $_SESSION['domaincart']['contact_formvalues'] = $formvalues;
 
-    // TODO: redirect to DomainCartController@checkout
   if ($UseMySQL)
   {
 	//StoreOrderMysql();

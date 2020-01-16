@@ -26,6 +26,15 @@ Auth::routes(['verify' => true]);
 Route::get('/domaincart', 'DomainCartController@index')->name('domaincart');
 Route::get('/domaincart/order_checkout', 'DomainCartController@order_checkout')->name('domaincart.order_checkout');
 
+Route::get('/destroycart', function(){
+    session_start();
+    session_destroy();
+    return redirect('/domaincart');
+});
+
+//Payment routes
+Route::get('/payment/process', 'PaymentsController@create');
+
 //OrderController routes
 Route::resource('orders', 'OrdersController')->only(['index']);
 
