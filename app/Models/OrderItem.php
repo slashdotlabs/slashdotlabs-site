@@ -9,6 +9,8 @@ class OrderItem extends Model
 {
     use SoftDeletes;
 
+    protected $guarded = [];
+    
     public function order()
     {
         return $this->belongsTo('App\Models\Order', 'order_id', 'order_id');

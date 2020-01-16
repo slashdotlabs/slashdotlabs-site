@@ -25,72 +25,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">101101</td>
-                        <td class="font-w600">allanvikiru.co.ke</td>
-                        <td class="text-center">10 January 2020</td>
-                        <td class="text-center">09 January 2021</td>
-                        <td class="text-center">Savanna</td>
-                        <td class="text-center"><span class="badge badge-success">Active</span></td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#modal-edit" >
-                                Edit Name Server
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">202202</td>
-                        <td class="font-w600">allanvikiru.info</td>
-                        <td class="text-center">12 October 2018</td>
-                        <td class="text-center">11 October 2019</td>
-                        <td class="text-center">Kilimanjaro</td>
-                        <td class="text-center"><span class="badge badge-danger">Inactive</span></td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#modal-edit" >
-                                Edit Name Server
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">303303</td>
-                        <td class="font-w600">allanvikiru.net</td>
-                        <td class="text-center">22 May 2019</td>
-                        <td class="text-center">22 May 2020</td>
-                        <td class="text-center">Kenya</td>
-                        <td class="text-center"><span class="badge badge-success">Active</span></td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#modal-edit" >
-                                Edit Name Server
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">404404</td>
-                        <td class="font-w600">allanvikiru.me</td>
-                        <td class="text-center">15 January 2019</td>
-                        <td class="text-center">14 January 2020</td>
-                        <td class="text-center">Indian Ocean</td>
-                        <td class="text-center"><span class="badge badge-primary">Due soon for renewal</span></td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#modal-edit" >
-                                Edit Name Server
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">505505</td>
-                        <td class="font-w600">allanvikiru.com</td>
-                        <td class="text-center">1 April 2019</td>
-                        <td class="text-center">31 March 2020</td>
-                        <td class="text-center">Atlantic Ocean</td>
-                        <td class="text-center"><span class="badge badge-success">Active</span></td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#modal-edit" >
-                                Edit Name Server
-                            </button>
-                        </td>
-                    </tr>
-
+                    @if(count($customer_domains) > 0)
+                        @foreach($customer_domains as $domains)
+                            <tr>
+                                <td class="text-center">{{ $domains->id}}</td>
+                                <td class="font-w600">{{ $domains->domain_name }}</td>
+                                <td class="text-center">{{ $domains->created_at }}</td>
+                                @if($order_items)
+                                <td class="text-center">{{ $order_items->expiry_date }}</td>
+                                <td class="text-center">{{ $order_items->product_type }}</td>
+                                @else
+                                <td class="text-center">-</td>
+                                <td class="text-center">-</td>
+                                @endif
+                                <td class="text-center"><span class="badge badge-success">Active</span></td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#modal-edit" >
+                                        Edit Name Server
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <span class="badge badge-danger">No Domains Purchased Yet</span>
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -113,24 +71,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">1</td>
-                        <td class="font-w600">Geotrust RapidSSL Essential Certificate</td>
-                        <td class="text-center">1 April 2019</td>
-                        <td class="text-center">31 March 2020</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">2</td>
-                        <td class="font-w600">Sectigo Essential Certificate</td>
-                        <td class="text-center">12 December 2019</td>
-                        <td class="text-center">31 December 2020</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">3</td>
-                        <td class="font-w600">Geotrust QuickSSL Premium Certificate</td>
-                        <td class="text-center">22 September 2019</td>
-                        <td class="text-center">31 September 2021</td>
-                    </tr>
+                        <tr>
+                            <td class="text-center"></td>
+                            <td class="font-w600"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                        </tr>
                 </tbody>
             </table>
         </div>

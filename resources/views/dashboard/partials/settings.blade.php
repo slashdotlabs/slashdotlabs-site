@@ -18,7 +18,7 @@
             <div class="form-group mb-15">
                 <label for="side-overlay-profile-name">Name</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="user-settings-name" name="user-settings-name" placeholder="Enter your name.." value="Allan Vikiru">
+                    <input type="text" class="form-control" id="user-settings-name" name="user-settings-name" placeholder="Enter your name.." value="{{ Auth::user()->get_name() }}">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fa fa-user"></i>
@@ -29,7 +29,8 @@
             <div class="form-group mb-15">
                 <label for="side-overlay-profile-email">Email</label>
                 <div class="input-group">
-                    <input type="email" class="form-control" id="user-settings-email" name="user-settings-email" placeholder="Enter your email.." value="hosting@example.com">
+                    <input type="email" class="form-control" id="user-settings-email" name="user-settings-email" placeholder="Enter your email.." value="{{ 
+                    Auth::user()->email }}">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fa fa-envelope"></i>
@@ -85,19 +86,19 @@
         <p class="text-muted">
             This information is only used for invoicing.
         </p>
-        <form action="be_pages_dashboard.html" method="post" onsubmit="return false;">
+        <form method="post" action="" onsubmit="return false;">
             <div class="block-content block-content-full block-content-sm">
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="hosting-settings-address-firstname">First Name</label>
-                            <input type="text" class="form-control form-control-lg" id="address-settings-firstname" name="address-settings-firstname" value="Allan" disabled>
+                            <input type="text" class="form-control form-control-lg" id="address-settings-firstname" name="address-settings-firstname" value="{{ $user->first_name }}" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="hosting-settings-address-lastname">Last Name</label>
-                            <input type="text" class="form-control form-control-lg" id="address-settings-lastname" name="address-settings-lastname" value="Vikiru" disabled>
+                            <input type="text" class="form-control form-control-lg" id="address-settings-lastname" name="address-settings-lastname" value="{{ $user->last_name}}" disabled>
                         </div>
                     </div>
                 </div>
