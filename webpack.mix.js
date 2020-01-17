@@ -25,11 +25,10 @@ mix
     .js('resources/js/codebase/app.js', 'public/js/codebase.app.js')
 
     /* Page JS */
-    .js('resources/js/pages/tables_datatables.js', 'public/js/pages/tables_datatables.js')
+    .js('resources/js/pages/customer_dashboard.js', 'public/js/pages/customer_dashboard.js')
 
     /* Tools */
-    .browserSync('localhost:8000')
-    .disableNotifications()
+    .browserSync('localhost:8000', { notify: false })
 
     /* Options */
     .options({

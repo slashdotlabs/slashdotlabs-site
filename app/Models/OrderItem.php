@@ -10,7 +10,7 @@ class OrderItem extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
-    
+
     public function order()
     {
         return $this->belongsTo('App\Models\Order', 'order_id', 'order_id');
@@ -24,5 +24,18 @@ class OrderItem extends Model
     public function getExpiryDateAttribute($value)
     {
         return $this->attributes['expiry_date'] = (new Carbon($value))->toFormattedDateString();
+    }
+
+    public function get_item_status()
+    {
+        $expiry_date = Carbon::make($this->expiry_date);
+        $diff = Carbon::now()->diffInDays($expiry_date);
+        if ($expiry_date->isPast()) {
+            return 'expired';
+        } else if ($diff <= 30) {
+            return 'expiring_soon';
+        } else {
+            return 'active';
+        }
     }
 }
