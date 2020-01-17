@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/pages/customer_dashboard.js":
-/*!**************************************************!*\
-  !*** ./resources/js/pages/customer_dashboard.js ***!
-  \**************************************************/
+/***/ "./resources/js/pages/admin_products.js":
+/*!**********************************************!*\
+  !*** ./resources/js/pages/admin_products.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -99,28 +99,27 @@ $(function () {
     sWrapper: "dataTables_wrapper dt-bootstrap4"
   }); // Hosting packages datatable
 
-  var tbHostingPackages = $('#tb-hosting-packages');
-  var dtHostingPackages = tbHostingPackages.DataTable({
+  var tbProducts = $('#tb-products');
+  var dtProducts = tbProducts.DataTable({
     columnDefs: [{
       targets: "_all",
       "class": 'text-center'
     }, {
-      targets: 0,
-      width: "15%"
+      targets: 0
     }]
   });
 });
 
 /***/ }),
 
-/***/ 2:
-/*!********************************************************!*\
-  !*** multi ./resources/js/pages/customer_dashboard.js ***!
-  \********************************************************/
+/***/ 3:
+/*!****************************************************!*\
+  !*** multi ./resources/js/pages/admin_products.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\customer_dashboard.js */"./resources/js/pages/customer_dashboard.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_products.js */"./resources/js/pages/admin_products.js");
 
 
 /***/ })

@@ -26,6 +26,7 @@
                 <h3 class="block-title" id="domains">My Domains</h3>
             </div>
             <div class="block-content block-content-full">
+                @if(count($customer_domains) > 0)
                 <!-- DataTables functionality is initialized with .js-dataTable-full-pagination class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
                     <thead>
@@ -40,7 +41,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if(count($customer_domains) > 0)
+
                         @foreach($customer_domains as $domains)
                             <tr>
                                 <td class="text-center">{{ $domains->id}}</td>

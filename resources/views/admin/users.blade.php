@@ -11,7 +11,7 @@
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Page JS Code -->
-    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+    <script src="{{ asset('js/pages/admin_users.js') }}"></script>
 @endsection
 
 @section('content')
@@ -44,7 +44,10 @@
         <h2 class="content-heading">Users</h2>
         <div class="block block-rounded">
             <div class="block-content">
-                <table class="table table-borderless table-striped table-vcenter js-dataTable-full">
+                @if(empty($users))
+                    <p>No users are available in the database.</p>
+                @else
+                <table id="tb-users" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr>
                             <th class="d-none d-sm-table-cell">User ID</th>
@@ -56,8 +59,42 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($users as $user)
+                        <tr>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $user['id'] }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $user['first_name'] }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                               {{ $user['last_name'] }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $user['email']}}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $user['user_type']}}
+                            </td>
+                            <td class="text-right">
+                                <div class="form-group row">
+                                    <div class= "col-sm-12 col-md-6">
+                                        <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-user" >
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <div class= "col-sm-12 col-md-6">
+                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-user" >
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                @endif
             </div>
         </div>
         <!-- END Users Table -->

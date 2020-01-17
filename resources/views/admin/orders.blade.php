@@ -11,7 +11,7 @@
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Page JS Code -->
-    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+    <script src="{{ asset('js/pages/admin_orders.js') }}"></script>
 @endsection
 
 @section('content')
@@ -43,7 +43,6 @@
         <!-- Orders -->
 
         <div class="content-heading">
-
             <!-- Sort Orders by Duration: Today, This Week, This Month, All Time
             <div class="dropdown float-right">
                 <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" id="ecom-orders-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,8 +72,11 @@
         </div>
         <div class="block block-rounded">
             <div class="block-content">
+                @if(empty($orders))
+                    <p>No orders are available in the database.</p>
+                @else
                 <!-- Orders Table -->
-                <table class="table table-borderless table-striped table-vcenter js-dataTable-full">
+                <table id= "tb-orders" class="table table-borderless table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr>
                             <th class="d-none d-sm-table-cell">Order ID</th>
@@ -82,13 +84,42 @@
                             <th class="d-none d-sm-table-cell">Customer</th>
                             <th class="d-none d-sm-table-cell">Amount</th>
                             <th class="d-none d-sm-table-cell">Currency</th>
-                            <th class="d-none d-sm-table-cell">Expiry Date</th>
+                            <th class="d-none d-sm-table-cell">Purchase Date</th>
                             <th class="text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- TODO: map products, customers and expiry dates -->
+                        @foreach($orders as $order)
+                        <tr>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $order['order_id'] }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $order['customer_id'] }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $order['customer_id'] }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $order['total_amount'] }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $order['currency'] }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                {{ $order['created_at'] }}
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-order" >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                @endif
                 <!-- END Orders Table -->
             </div>
         </div>

@@ -236,3 +236,103 @@
 <!-- END Confirm Delete Product Modal -->
 
 <!-- END Product Modals -->
+
+<!-- User Modals -->
+<!-- Confirm Suspend User Modal -->
+<div class="modal fade" id="modal-suspend-user" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Suspend User</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="si si-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="form-group">
+                        <div class="font-w600"> Are you sure you want to suspend this user? </div>
+                        <br/>
+                        <div class="alert alert-info" role="alert">
+                            <i class="fa fa-info" aria-hidden="true"></i>
+                            &ensp;This user will be unable to access the system but their information will still be available in the database.
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal" data-toggle="modal" data-target="#modal-unsuspend-user" >Suspend</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Confirm Suspend Product Modal -->
+
+<!-- Confirm Unsuspend User Modal -->
+<div class="modal fade" id="modal-unsuspend-user" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Unsuspend Product</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="si si-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                <div class="form-group">
+                    <div class="font-w600"> Are you sure you want to unsuspend this user? </div>
+                    <br/>
+                    <div class="alert alert-info" role="alert">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        &nbsp;This user will now be able to access the system.
+                     </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal">Unsuspend</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Confirm Suspend Product Modal -->
+
+<!-- Confirm Delete User Modal -->
+<div class="modal fade" id="modal-delete-user" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Delete User</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="si si-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                <div class="form-group">
+                    <div class="font-w600"> Are you sure you want to delete this user? </div>
+                    <br/>
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            &ensp;Note: This action cannot be undone.
+                     </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-danger" data-dismiss="modal">Delete</button>
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Confirm Delete User Modal -->
