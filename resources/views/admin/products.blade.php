@@ -10,6 +10,7 @@
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
+
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/admin_products.js') }}"></script>
 @endsection
@@ -129,52 +130,48 @@
                     <p>No products are available in the database.</p>
                     @else
                 <!-- Products Table -->
-                <table id="tb-products" class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination" >
-                    <thead>
+                <table id="tb-products" class="table table-sm table-bordered table-striped table-vcenter" >
+                    <thead class="text-uppercase">
                         <tr>
-                            <th class="d-none d-sm-table-cell">Product ID</th>
-                            <th class="d-none d-sm-table-cell">Name</th>
-                            <th class="d-none d-sm-table-cell">Type</th>
-                            <th class="d-none d-sm-table-cell">Description</th>
-                            <th class="d-none d-sm-table-cell">Price (KES) </th>
-                            <th class="text-right">Actions</th>
+                            <th class="text-center">Product ID</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Type</th>
+                            <th class="text-center">Description</th>
+                            <th class="text-center">Price (KES) </th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($products as $product)
                         <tr>
-                            <td class="d-none d-sm-table-cell">
+                            <td>
                                 {{ $product['id'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
+                            <td>
                                 {{ $product['product_name'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
+                            <td>
                                 {{ $product['product_type'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
+                            <td>
                                 {{ $product['product_description'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
+                            <td>
                                 {{ $product['price'] }}
                             </td>
                             <td>
-                                <div class="form-group row">
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit-product" >
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-product" >
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit-product" >
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>
+                                    &emsp;&nbsp;
+                                    <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    &emsp;&nbsp;
+                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-product">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                     </button>
                                 </div>
                             </td>
                         </tr>

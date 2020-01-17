@@ -100,10 +100,16 @@ $(function () {
   }); // Hosting packages datatable
 
   var tbOrders = $('#tb-orders');
-  var dtProducts = tbOrders.DataTable({
+  var dtOrders = tbOrders.DataTable({
     columnDefs: [{
       targets: "_all",
-      "class": 'text-center'
+      "class": 'text-left'
+    }, {
+      targets: [0],
+      width: "15%"
+    }, {
+      targets: [5],
+      orderable: false
     }, {
       targets: 0
     }]

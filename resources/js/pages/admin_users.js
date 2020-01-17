@@ -7,9 +7,11 @@ $(() => {
 
     // Hosting packages datatable
     const tbUsers = $('#tb-users');
-    const dtProducts = tbUsers.DataTable({
+    const dtUsers = tbUsers.DataTable({
         columnDefs: [
-            {targets: "_all", class: 'text-center'},
+            {targets: "_all", class: 'text-left'},
+            {targets: [0], width: "15%"},
+            {targets: [5], orderable: false},
             {targets: 0 }
         ]
     });

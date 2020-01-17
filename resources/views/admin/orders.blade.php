@@ -76,41 +76,41 @@
                     <p>No orders are available in the database.</p>
                 @else
                 <!-- Orders Table -->
-                <table id= "tb-orders" class="table table-borderless table-striped table-vcenter js-dataTable-full">
-                    <thead>
+                <table id= "tb-orders" class="table table-sm table-bordered table-striped table-vcenter">
+                    <thead class="text-uppercase">
                         <tr>
-                            <th class="d-none d-sm-table-cell">Order ID</th>
-                            <th class="d-none d-sm-table-cell">Product</th>
-                            <th class="d-none d-sm-table-cell">Customer</th>
-                            <th class="d-none d-sm-table-cell">Amount</th>
-                            <th class="d-none d-sm-table-cell">Currency</th>
-                            <th class="d-none d-sm-table-cell">Purchase Date</th>
-                            <th class="text-right">Actions</th>
+                            <th class="text-center">Order ID</th>
+                            <th class="text-center">Product</th>
+                            <th class="text-center">Customer</th>
+                            <th class="text-center">Amount</th>
+                            <th class="text-center">Currency</th>
+                            <th class="text-center">Purchase Date</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- TODO: map products, customers and expiry dates -->
                         @foreach($orders as $order)
                         <tr>
-                            <td class="d-none d-sm-table-cell">
+                            <td class="text-left">
                                 {{ $order['order_id'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
+                            <td class="text-left">
                                 {{ $order['customer_id'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
+                            <td class="text-left">
                                 {{ $order['customer_id'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
+                            <td class="text-left">
                                 {{ $order['total_amount'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
+                            <td class="text-left">
                                 {{ $order['currency'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
+                            <td class="text-left">
                                 {{ $order['created_at'] }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-order" >
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>

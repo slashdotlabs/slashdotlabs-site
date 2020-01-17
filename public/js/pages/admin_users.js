@@ -100,10 +100,16 @@ $(function () {
   }); // Hosting packages datatable
 
   var tbUsers = $('#tb-users');
-  var dtProducts = tbUsers.DataTable({
+  var dtUsers = tbUsers.DataTable({
     columnDefs: [{
       targets: "_all",
-      "class": 'text-center'
+      "class": 'text-left'
+    }, {
+      targets: [0],
+      width: "15%"
+    }, {
+      targets: [5],
+      orderable: false
     }, {
       targets: 0
     }]
