@@ -64,7 +64,7 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
                 <thead>
                     <tr>
-                        <th class="ID"></th>
+                        <th class="ID">ID</th>
                         <th>Name</th>
                         <th>Activation Date</th>
                         <th>Expiry Date</th>
