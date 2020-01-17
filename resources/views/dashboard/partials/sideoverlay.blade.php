@@ -23,7 +23,7 @@
     <!-- END Side Header -->
 
     <!-- Side Content -->
-    <div class="content-side">
+    <div class="content-side pt-0">
         @include('dashboard.partials.settings')
     </div>
     <!-- END Side Content -->

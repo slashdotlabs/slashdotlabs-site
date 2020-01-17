@@ -23,77 +23,92 @@
     <!-- Domains -->
         <div class="block">
             <div class="block-header block-header-default">
-                <h3 class="block-title" id="domains">My Domains</h3>
+                <h3 class="block-title" id="domains">Registered Domains</h3>
             </div>
             <div class="block-content block-content-full">
-                <!-- DataTables functionality is initialized with .js-dataTable-full-pagination class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
-                    <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Name Server</th>
-                        <th>Activation Date</th>
-                        <th>Expiry Date</th>
-                        <th>Hosting Package</th>
-                        <th>Status</th>
-                        <th class="text-center" style="width: 15%;">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if(count($customer_domains) > 0)
-                        @foreach($customer_domains as $domains)
+                @if(empty($customer_domains))
+                    <p>You have no registered domains</p>
+                @else
+                    <table id="tb-customer-domains" class="table table-bordered table-striped table-vcenter">
+                        <thead class="text-uppercase">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Domain Name</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($customer_domains as $domain)
                             <tr>
-                                <td class="text-center">{{ $domains->id}}</td>
-                                <td class="font-w600">{{ $domains->domain_name }}</td>
-                                <td class="text-center">{{ $domains->created_at }}</td>
-                                @if($order_items)
-                                    <td class="text-center">{{ $order_items->expiry_date }}</td>
-                                    <td class="text-center">{{ $order_items->product_type }}</td>
-                                @else
-                                    <td class="text-center">-</td>
-                                    <td class="text-center">-</td>
-                                @endif
-                                <td class="text-center"><span class="badge badge-success">Active</span></td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#modal-edit">
-                                        Edit Name Server
-                                    </button>
+                                <td>{{ $domain['order_id'] }}</td>
+                                <td>{{ $domain['product']['domain_name'] }}</td>
+                                <td>{{ $domain['expiry_date'] }}</td>
+                                <td>
+                                    @switch($domain->get_item_status())
+                                        @case('active')
+                                        <span class="badge badge-success">Active</span>
+                                        @break
+                                        @case('expiring_soon')
+                                        <span class="badge badge-warning">Expiring Soon</span>
+                                        @break
+                                        @case('expired')
+                                        <span class="badge badge-danger">Expired</span>
+                                    @endswitch
+                                </td>
+                                <td>
+                                    <a href="#" class="edit-nameserver">Edit nameservers</a>
                                 </td>
                             </tr>
                         @endforeach
-                    @else
-                        <span class="badge badge-danger">No Domains Purchased Yet</span>
-                    @endif
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                @endif
             </div>
         </div>
 
         <!-- SSL Certificates -->
         <div class="block">
             <div class="block-header block-header-default">
-                <h3 class="block-title" id="certificate">My SSL Certificates</h3>
+                <h3 class="block-title" id="certificate">SSL Certificates</h3>
             </div>
             <div class="block-content block-content-full">
-                <!-- DataTables functionality is initialized with .js-dataTable-full-pagination class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
-                    <thead>
-                    <tr>
-                        <th class="ID"></th>
-                        <th>Name</th>
-                        <th>Activation Date</th>
-                        <th>Expiry Date</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="text-center"></td>
-                        <td class="font-w600"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                @if(empty($ssl_certificates))
+                    <p>You have no ssl certificates</p>
+                @else
+                    <table id="tb-ssl-certificates" class="table table-bordered table-striped table-vcenter">
+                        <thead class="text-uppercase">
+                        <tr>
+                            <th class="ID">Order id</th>
+                            <th>Certificate Name</th>
+                            <th>Expiry Date</th>
+                            <th>status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($ssl_certificates as $certificate)
+                            <tr>
+                                <td>{{ $certificate['order_id'] }}</td>
+                                <td>{{ $certificate['product']['product_name'] }}</td>
+                                <td>{{ $certificate['expiry_date'] }}</td>
+                                <td>
+                                    @switch($certificate->get_item_status())
+                                        @case('active')
+                                        <span class="badge badge-success">Active</span>
+                                        @break
+                                        @case('expiring_soon')
+                                        <span class="badge badge-warning">Expiring Soon</span>
+                                        @break
+                                        @case('expired')
+                                        <span class="badge badge-danger">Expired</span>
+                                    @endswitch
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                @endif
             </div>
         </div>
 
@@ -120,11 +135,11 @@
                         @foreach($hosting_packages as $package)
                             <tr>
                                 <td>{{ $package['order_id'] }}</td>
-                                <td>{{ $package['package_name'] }}</td>
-                                <td>{{ $package['package_description'] }}</td>
+                                <td>{{ $package['product']['product_name'] }}</td>
+                                <td>{{ $package['product']['product_description'] }}</td>
                                 <td>{{ $package['expiry_date'] }}</td>
                                 <td>
-                                    @switch($package['status'])
+                                    @switch($package->get_item_status())
                                         @case('active')
                                         <span class="badge badge-success">Active</span>
                                         @break
@@ -143,5 +158,6 @@
             </div>
         </div>
         <!-- END Page Content -->
+    </div>
 @endsection
 
