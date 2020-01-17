@@ -97,21 +97,27 @@ $(function () {
   // Override a few DataTable defaults
   jQuery.extend(jQuery.fn.dataTable.ext.classes, {
     sWrapper: "dataTables_wrapper dt-bootstrap4"
-  }); // Hosting packages datatable
+  }); // Products datatable
 
   var tbProducts = $('#tb-products');
   var dtProducts = tbProducts.DataTable({
     columnDefs: [{
-      targets: "_all",
+      targets: [1, 2, 3],
       "class": 'text-left'
     }, {
-      targets: [0],
+      targets: [0, 4],
+      "class": 'text-right'
+    }, {
+      targets: 5,
+      "class": 'text-center'
+    }, {
+      targets: 0,
       width: "13%"
     }, {
-      targets: [4],
+      targets: 4,
       width: "13%"
     }, {
-      targets: [5],
+      targets: 5,
       orderable: false
     }, {
       targets: 0

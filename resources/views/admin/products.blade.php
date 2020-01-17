@@ -133,12 +133,12 @@
                 <table id="tb-products" class="table table-sm table-bordered table-striped table-vcenter" >
                     <thead class="text-uppercase">
                         <tr>
-                            <th class="text-center">Product ID</th>
-                            <th class="text-center">Name</th>
-                            <th class="text-center">Type</th>
-                            <th class="text-center">Description</th>
-                            <th class="text-center">Price (KES) </th>
-                            <th class="text-center">Actions</th>
+                            <th>Product ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Price (KES) </th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>

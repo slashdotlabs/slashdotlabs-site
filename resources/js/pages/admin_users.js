@@ -5,13 +5,15 @@ $(() => {
     });
 
 
-    // Hosting packages datatable
+    // Users datatable
     const tbUsers = $('#tb-users');
     const dtUsers = tbUsers.DataTable({
         columnDefs: [
-            {targets: "_all", class: 'text-left'},
-            {targets: [0], width: "15%"},
-            {targets: [5], orderable: false},
+            {targets: [1,2,3,4], class: 'text-left'},
+            {targets: 0, class: 'text-right'},
+            {targets: 5, class: 'text-center'},
+            {targets: 0, width: "10%"},
+            {targets: 5, orderable: false},
             {targets: 0 }
         ]
     });

@@ -79,38 +79,38 @@
                 <table id= "tb-orders" class="table table-sm table-bordered table-striped table-vcenter">
                     <thead class="text-uppercase">
                         <tr>
-                            <th class="text-center">Order ID</th>
-                            <th class="text-center">Product</th>
-                            <th class="text-center">Customer</th>
-                            <th class="text-center">Amount</th>
-                            <th class="text-center">Currency</th>
-                            <th class="text-center">Purchase Date</th>
-                            <th class="text-center">Actions</th>
+                            <th>Order ID</th>
+                            <th>Product</th>
+                            <th>Customer</th>
+                            <th>Price (KES)</th>
+                            <th>Currency</th>
+                            <th>Purchase Date</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- TODO: map products, customers and expiry dates -->
                         @foreach($orders as $order)
                         <tr>
-                            <td class="text-left">
+                            <td>
                                 {{ $order['order_id'] }}
                             </td>
-                            <td class="text-left">
+                            <td>
                                 {{ $order['customer_id'] }}
                             </td>
-                            <td class="text-left">
+                            <td>
                                 {{ $order['customer_id'] }}
                             </td>
-                            <td class="text-left">
+                            <td>
                                 {{ $order['total_amount'] }}
                             </td>
-                            <td class="text-left">
+                            <td>
                                 {{ $order['currency'] }}
                             </td>
-                            <td class="text-left">
+                            <td>
                                 {{ $order['created_at'] }}
                             </td>
-                            <td class="text-center">
+                            <td>
                                 <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-order" >
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>

@@ -51,33 +51,33 @@
                 <table id="tb-users" class="table table-sm table-bordered table-striped table-vcenter">
                     <thead class="text-uppercase">
                         <tr>
-                            <th class="text-center">User ID</th>
-                            <th class="text-center">First Name</th>
-                            <th class="text-center">Last Name</th>
-                            <th class="text-center">Email</th>
-                            <th class="text-center">User Type</th>
-                            <th class="text-center">Actions</th>
+                            <th>User ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>User Type</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($users as $user)
                         <tr>
-                            <td class="text-left">
+                            <td>
                                 {{ $user['id'] }}
                             </td>
-                            <td class="text-left">
+                            <td>
                                 {{ $user['first_name'] }}
                             </td>
-                            <td class="text-left">
+                            <td>
                                {{ $user['last_name'] }}
                             </td>
-                            <td class="text-left">
+                            <td>
                                 {{ $user['email']}}
                             </td>
-                            <td class="text-left">
+                            <td>
                                 {{ $user['user_type']}}
                             </td>
-                            <td class="text-left">
+                            <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-user" >
                                         <i class="fa fa-eye" aria-hidden="true"></i>

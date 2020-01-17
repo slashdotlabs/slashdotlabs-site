@@ -102,13 +102,19 @@ $(function () {
   var tbHostingPackages = $('#tb-hosting-packages');
   var dtHostingPackages = tbHostingPackages.DataTable({
     columnDefs: [{
-      targets: "_all",
+      targets: [1, 2, 3],
+      "class": 'text-left'
+    }, {
+      targets: 0,
+      "class": 'text-right'
+    }, {
+      targets: 4,
       "class": 'text-center'
     }, {
       targets: 0,
-      width: "15%"
+      width: "13%"
     }, {
-      targets: [4],
+      targets: 4,
       orderable: false
     }]
   }); // ?SSL certificates datatable
@@ -116,13 +122,19 @@ $(function () {
   var tbSslCertificates = $('#tb-ssl-certificates');
   var dtSslCertificates = tbSslCertificates.DataTable({
     columnDefs: [{
-      targets: "_all",
+      targets: [1, 2],
+      "class": 'text-left'
+    }, {
+      targets: 0,
+      "class": 'text-right'
+    }, {
+      targets: 3,
       "class": 'text-center'
     }, {
       targets: 0,
-      width: "15%"
+      width: "13%"
     }, {
-      targets: [3],
+      targets: 3,
       orderable: false
     }]
   }); // ?Customer domain datatable
@@ -130,11 +142,17 @@ $(function () {
   var tbCustomerDomains = $("#tb-customer-domains");
   var dtCustomerDomains = tbCustomerDomains.DataTable({
     columnDefs: [{
-      targets: "_all",
+      targets: [1, 2],
+      "class": 'text-left'
+    }, {
+      targets: 0,
+      "class": 'text-right'
+    }, {
+      targets: [3, 4],
       "class": 'text-center'
     }, {
       targets: 0,
-      width: "15%"
+      width: "13%"
     }, {
       targets: [3, 4],
       orderable: false
