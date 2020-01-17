@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerDomain;
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -27,45 +29,23 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        $orders = Order::has('payment')->with('order_items', 'order_items.product')->get();
-        $hosting_packages = $orders->flatMap(function ($order) {
-            return $order->order_items;
-        })->filter(function (OrderItem $order_item) {
-            return $order_item->product->product_type == 'hosting';
-        })->map(function (OrderItem $hosting_order_item) {
-            return [
-                'order_id' => $hosting_order_item->order->order_id,
-                'package_name' => $hosting_order_item->product->product_name,
-                'package_description' => $hosting_order_item->product->product_description,
-                'expiry_date' => $hosting_order_item->expiry_date,
-                'status' => $hosting_order_item->get_item_status()
-            ];
+        $order_items = Order::has('payment')->with('order_items', 'order_items.product')->get()
+            ->flatMap(function ($order) {
+                return $order->order_items;
+            });
+        $product_order_items = $order_items->filter(function (OrderItem $order_item) {
+            return $order_item->product_type == Product::class;
+        })->groupBy('product.product_type');
+        $domains_order_items = $order_items->filter(function (OrderItem $order_item) {
+            return $order_item->product_type == CustomerDomain::class;
         })->values();
-
-        $id = '';
-
-        $orders = $user->customer_orders;
-        foreach ($orders as $order) {
-            $id = $order->customer_id;
-        }
-
-
-        $order_id = DB::table('orders')->select('order_id')
-            ->where('customer_id', '=', $id)->value('order_id');
-
-        //echo $order_id;
-
-
-        $order_items = OrderItem::find($order_id);
-
 
         return view('dashboard.index',
             [
-                "customer_domains" => $user->customer_domains,
-                "user" => $user,
-                "order_items" => $order_items,
-                'hosting_packages' => $hosting_packages
+                'user' => Auth::user(),
+                "customer_domains" => $domains_order_items,
+                'hosting_packages' => $product_order_items['hosting'],
+                'ssl_certificates' => $product_order_items['ssl_certificate'],
             ]);
 
     }
