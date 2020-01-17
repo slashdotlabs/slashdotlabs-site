@@ -12,7 +12,7 @@ $(() => {
             {targets: [1,2,4,5], class: 'text-left'},
             {targets: [0,3], class: 'text-right'},
             {targets: 6, class: 'text-center'},
-            {targets: 0, width: "10%"},
+            {targets: 0, width: "11%"},
             {targets: 5, orderable: false},
             {targets: 0 }
         ]

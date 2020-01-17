@@ -48,7 +48,9 @@
             </a>
             <ul class="list-inline mt-10">
                 <li class="list-inline-item">
-                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" data-toggle="layout" data-action="side_overlay_toggle">{{ Auth::user()->get_name() }}</a>
+                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" data-toggle="layout" data-action="side_overlay_toggle">
+                        {{Auth::user()->first_name }}&nbsp;{{Auth::user()->last_name }}
+                    </a>
                 </li>
             </ul>
         </div>

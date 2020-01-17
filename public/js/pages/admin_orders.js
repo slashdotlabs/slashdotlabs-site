@@ -112,7 +112,7 @@ $(function () {
       "class": 'text-center'
     }, {
       targets: 0,
-      width: "10%"
+      width: "11%"
     }, {
       targets: 5,
       orderable: false
