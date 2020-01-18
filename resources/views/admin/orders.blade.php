@@ -111,8 +111,8 @@
                                 {{ $order['created_at'] }}
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-order" >
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-order" >
+                                    Suspend
                                 </button>
                             </td>
                         </tr>

@@ -161,17 +161,13 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit-product" >
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-edit-product" >
+                                        Edit
                                     </button>
-                                    &emsp;&nbsp;
+                                    &emsp;&emsp;
                                     <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        Suspend
                                     </button>
-                                    &emsp;&nbsp;
-                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-product">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                     </button>
                                 </div>
                             </td>
                         </tr>

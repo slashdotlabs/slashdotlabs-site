@@ -80,11 +80,7 @@
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-user" >
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                    &emsp;&emsp;
-                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-user" >
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                        Suspend
                                     </button>
                                 </div>
                             </td>
