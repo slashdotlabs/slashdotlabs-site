@@ -17,7 +17,14 @@ use Illuminate\Support\Facades\Route;
 // Dashboard routes
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
+// Customer update routes
+Route::patch('/user/{id}', 'DashboardController@update')->name('user.update');
+Route::patch('/password/{id}', 'DashboardController@changePassword')->name('user.changepassword');
+Route::patch('/bio/{id}', 'DashboardController@changeBio')->name('user.changeinfo');
+
 Route::redirect('/home', wordpress_url('/'));
+
+
 
 // Authentication routes
 Auth::routes(['verify' => true]);

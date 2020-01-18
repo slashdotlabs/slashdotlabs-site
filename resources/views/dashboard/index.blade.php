@@ -19,7 +19,7 @@
     <!-- Page Content -->
     <div class="content content-full">
     @include('dashboard.partials.overview')
-
+    
     <!-- Domains -->
         <div class="block">
             <div class="block-header block-header-default">
