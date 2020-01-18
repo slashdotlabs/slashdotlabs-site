@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use DataTables;
+
+
 
 class ProductsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +20,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->get();
-        return view('admin.products', [
-            'products' => $products]);
+        $products = Product::all();
+        return view('admin.products', ['products' => $products]);
     }
     /**
      * Show the form for creating a new resource.

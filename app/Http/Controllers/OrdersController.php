@@ -12,15 +12,27 @@ use Illuminate\Http\Response;
 
 class OrdersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $orders = Order::all();
+        return view('admin.orders', ['orders' => $orders]);
+        /* TODO: Map Products and Customers */
+    }
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Save new order with details

@@ -10,8 +10,9 @@
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
+
     <!-- Page JS Code -->
-    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+    <script src="{{ asset('js/pages/admin_users.js') }}"></script>
 @endsection
 
 @section('content')
@@ -44,20 +45,50 @@
         <h2 class="content-heading">Users</h2>
         <div class="block block-rounded">
             <div class="block-content">
-                <table class="table table-borderless table-striped table-vcenter js-dataTable-full">
-                    <thead>
+                @if(empty($users))
+                    <p>No users are available in the database.</p>
+                @else
+                <table id="tb-users" class="table table-sm table-bordered table-striped table-vcenter">
+                    <thead class="text-uppercase">
                         <tr>
-                            <th class="d-none d-sm-table-cell">User ID</th>
-                            <th class="d-none d-sm-table-cell">First Name</th>
-                            <th class="d-none d-sm-table-cell">Last Name</th>
-                            <th class="d-none d-sm-table-cell">Email</th>
-                            <th class="d-none d-sm-table-cell">User Type</th>
-                            <th class="text-right">Actions</th>
+                            <th>User ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>User Type</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($users as $user)
+                        <tr>
+                            <td>
+                                {{ $user['id'] }}
+                            </td>
+                            <td>
+                                {{ $user['first_name'] }}
+                            </td>
+                            <td>
+                               {{ $user['last_name'] }}
+                            </td>
+                            <td>
+                                {{ $user['email']}}
+                            </td>
+                            <td>
+                                {{ $user['user_type']}}
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-user" >
+                                        Suspend
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                @endif
             </div>
         </div>
         <!-- END Users Table -->

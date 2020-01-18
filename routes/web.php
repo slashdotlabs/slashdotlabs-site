@@ -46,17 +46,15 @@ Route::get('/payment/process', 'PaymentsController@create');
 //OrderController routes
 Route::resource('orders', 'OrdersController')->only(['index']);
 
-//Admin Test Routes
+//Admin Dashboard Route
 Route::view('/admin/dashboard', 'admin.dashboard');
-Route::view('/admin/products', 'admin.products');
-Route::view('/admin/orders', 'admin.orders');
-Route::view('/admin/users', 'admin.users');
 
-//Products Resource Route
-Route::resource('products', 'ProductsController');
+//Admin Products Resource Route
+Route::resource('admin/products', 'ProductsController');
 
-//Orders Resource Route
-Route::resource('orders', 'OrdersController');
+//Admin Orders Resource Route
+Route::resource('admin/orders', 'OrdersController');
 
-//Users Resource Route
-Route::resource('users', 'UsersController');
+//Admin Users Resource Route
+Route::resource('admin/users', 'UsersController');
+

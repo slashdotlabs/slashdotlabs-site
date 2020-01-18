@@ -1,12 +1,46 @@
-<!-- Order Modals -->
+<!-- TODO: Change Button Names on Suspend and Restore -->
 
-<!-- Confirm Delete Order Modal -->
-<div class="modal fade" id="modal-delete-order" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+<!-- Order Modals -->
+<!-- Confirm Suspend Order Modal -->
+<div class="modal fade" id="modal-suspend-order" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
                 <div class="block-header bg-primary-dark">
-                    <h3 class="block-title">Delete Order</h3>
+                    <h3 class="block-title">Suspend Order</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="si si-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="form-group">
+                        <div class="font-w600"> Are you sure you want to suspend this order? </div>
+                        <br/>
+                        <div class="alert alert-info" role="alert">
+                            <i class="fa fa-info" aria-hidden="true"></i>
+                            &ensp;This order will be hidden from the customer but it will still be available in the database.
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal" data-toggle="modal" data-target="#modal-restore-order" >Suspend</button>
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Confirm Suspend Product Modal -->
+
+<!-- Confirm Restore Product Modal -->
+<div class="modal fade" id="modal-restore-order" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Restore Order</h3>
                     <div class="block-options">
                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
                             <i class="si si-close"></i>
@@ -15,24 +49,23 @@
                 </div>
                 <div class="block-content">
                 <div class="form-group">
-                    <div class="font-w600"> Are you sure you want to delete this order? </div>
+                    <div class="font-w600"> Are you sure you want to restore this order? </div>
                     <br/>
-                    <div class="alert alert-warning" role="alert">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                            Note: This action cannot be undone.
+                    <div class="alert alert-info" role="alert">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        &nbsp;This product will now be available to the customer.
                      </div>
                 </div>
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-alt-danger" data-dismiss="modal">Delete</button>
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal">Restore</button>
             </div>
         </div>
     </div>
 </div>
-<!-- END Confirm Delete Order Modal -->
-
+<!-- END Confirm Restore Product Modal -->
 <!-- END Order Modals -->
 
 <!-- Product Modals-->
@@ -161,21 +194,21 @@
                 </div>
             </div>
             <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal" data-toggle="modal" data-target="#modal-restore-product" >Suspend</button>
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal" data-toggle="modal" data-target="#modal-unsuspend-product" >Suspend</button>
             </div>
         </div>
     </div>
 </div>
 <!-- END Confirm Suspend Product Modal -->
 
-<!-- Confirm Unsuspend Product Modal -->
-<div class="modal fade" id="modal-unsuspend-product" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+<!-- Confirm Restore Product Modal -->
+<div class="modal fade" id="modal-restore-product" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
                 <div class="block-header bg-primary-dark">
-                    <h3 class="block-title">Unsuspend Product</h3>
+                    <h3 class="block-title">Restore Product</h3>
                     <div class="block-options">
                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
                             <i class="si si-close"></i>
@@ -184,7 +217,7 @@
                 </div>
                 <div class="block-content">
                 <div class="form-group">
-                    <div class="font-w600"> Are you sure you want to unsuspend this product? </div>
+                    <div class="font-w600"> Are you sure you want to restore this product? </div>
                     <br/>
                     <div class="alert alert-info" role="alert">
                         <i class="fa fa-info" aria-hidden="true"></i>
@@ -195,20 +228,56 @@
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal">Unsuspend</button>
+                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal">Restore</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Confirm Restore Product Modal -->
+
+<!-- END Product Modals -->
+
+<!-- User Modals -->
+<!-- Confirm Suspend User Modal -->
+<div class="modal fade" id="modal-suspend-user" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Suspend User</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="si si-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="form-group">
+                        <div class="font-w600"> Are you sure you want to suspend this user? </div>
+                        <br/>
+                        <div class="alert alert-info" role="alert">
+                            <i class="fa fa-info" aria-hidden="true"></i>
+                            &ensp;This user will be unable to access the system but their information will still be available in the database.
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal" data-toggle="modal" data-target="#modal-restore-user" >Suspend</button>
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
 </div>
 <!-- END Confirm Suspend Product Modal -->
 
-<!-- Confirm Delete Product Modal -->
-<div class="modal fade" id="modal-delete-product" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+<!-- Confirm Restore User Modal -->
+<div class="modal fade" id="modal-restore-user" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
                 <div class="block-header bg-primary-dark">
-                    <h3 class="block-title">Delete Product</h3>
+                    <h3 class="block-title">Restore Product</h3>
                     <div class="block-options">
                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
                             <i class="si si-close"></i>
@@ -217,22 +286,21 @@
                 </div>
                 <div class="block-content">
                 <div class="form-group">
-                    <div class="font-w600"> Are you sure you want to delete this product? </div>
+                    <div class="font-w600"> Are you sure you want to restore this user? </div>
                     <br/>
-                    <div class="alert alert-warning" role="alert">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                            &ensp;Note: This action cannot be undone.
+                    <div class="alert alert-info" role="alert">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        &nbsp;This user will now be able to access the system.
                      </div>
                 </div>
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-alt-danger" data-dismiss="modal">Delete</button>
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal">Restore</button>
             </div>
         </div>
     </div>
 </div>
-<!-- END Confirm Delete Product Modal -->
+<!-- END Confirm Restore Product Modal -->
 
-<!-- END Product Modals -->

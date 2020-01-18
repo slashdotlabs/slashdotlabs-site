@@ -15,7 +15,8 @@
                 <a class="img-link mr-5" href="javascript:void(0)">
                     <img class="img-avatar img-avatar32" src="{{ asset('media/avatars/avatar15.jpg') }}" alt="">
                 </a>
-                <a class="align-middle link-effect text-primary-dark font-w600" href="javascript:void(0)">{{ Auth::user()->get_name() }}</a>
+                <a class="align-middle link-effect text-primary-dark font-w600" href="javascript:void(0)">
+                    {{Auth::user()->first_name }}&nbsp;{{Auth::user()->last_name }}</a>
             </div>
             <!-- END User Info -->
         </div>
@@ -23,7 +24,7 @@
     <!-- END Side Header -->
 
     <!-- Side Content -->
-    <div class="content-side">
+    <div class="content-side pt-0">
         @include('dashboard.partials.settings')
     </div>
     <!-- END Side Content -->

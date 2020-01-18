@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/pages/customer_dashboard.js":
-/*!**************************************************!*\
-  !*** ./resources/js/pages/customer_dashboard.js ***!
-  \**************************************************/
+/***/ "./resources/js/pages/admin_products.js":
+/*!**********************************************!*\
+  !*** ./resources/js/pages/admin_products.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -97,79 +97,44 @@ $(function () {
   // Override a few DataTable defaults
   jQuery.extend(jQuery.fn.dataTable.ext.classes, {
     sWrapper: "dataTables_wrapper dt-bootstrap4"
-  }); // ?Hosting packages datatable
+  }); // Products datatable
 
-  var tbHostingPackages = $('#tb-hosting-packages');
-  var dtHostingPackages = tbHostingPackages.DataTable({
+  var tbProducts = $('#tb-products');
+  var dtProducts = tbProducts.DataTable({
     columnDefs: [{
       targets: [1, 2, 3],
       "class": 'text-left'
     }, {
-      targets: 0,
+      targets: [0, 4],
       "class": 'text-right'
     }, {
-      targets: 4,
+      targets: 5,
       "class": 'text-center'
     }, {
       targets: 0,
       width: "13%"
     }, {
       targets: 4,
-      orderable: false
-    }]
-  }); // ?SSL certificates datatable
-
-  var tbSslCertificates = $('#tb-ssl-certificates');
-  var dtSslCertificates = tbSslCertificates.DataTable({
-    columnDefs: [{
-      targets: [1, 2],
-      "class": 'text-left'
-    }, {
-      targets: 0,
-      "class": 'text-right'
-    }, {
-      targets: 3,
-      "class": 'text-center'
-    }, {
-      targets: 0,
       width: "13%"
     }, {
-      targets: 3,
+      targets: 5,
       orderable: false
-    }]
-  }); // ?Customer domain datatable
-
-  var tbCustomerDomains = $("#tb-customer-domains");
-  var dtCustomerDomains = tbCustomerDomains.DataTable({
-    columnDefs: [{
-      targets: [1, 2],
-      "class": 'text-left'
     }, {
-      targets: 0,
-      "class": 'text-right'
-    }, {
-      targets: [3, 4],
-      "class": 'text-center'
-    }, {
-      targets: 0,
-      width: "13%"
-    }, {
-      targets: [3, 4],
-      orderable: false
+      targets: 0
     }]
   });
 });
 
 /***/ }),
 
-/***/ 2:
-/*!********************************************************!*\
-  !*** multi ./resources/js/pages/customer_dashboard.js ***!
-  \********************************************************/
+/***/ 3:
+/*!****************************************************!*\
+  !*** multi ./resources/js/pages/admin_products.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\customer_dashboard.js */"./resources/js/pages/customer_dashboard.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_products.js */"./resources/js/pages/admin_products.js");
 
 
 /***/ })

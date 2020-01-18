@@ -10,8 +10,9 @@
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
+
     <!-- Page JS Code -->
-    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+    <script src="{{ asset('js/pages/admin_products.js') }}"></script>
 @endsection
 
 @section('content')
@@ -125,131 +126,105 @@
         </div>
         <div class="block block-rounded">
             <div class="block-content">
+                @if(empty($products))
+                    <p>No products are available in the database.</p>
+                    @else
                 <!-- Products Table -->
-                <table class="table table-borderless table-striped table-vcenter js-dataTable-full" id="products-table">
-                    <thead>
+                <table id="tb-products" class="table table-sm table-bordered table-striped table-vcenter" >
+                    <thead class="text-uppercase">
                         <tr>
-                            <th class="d-none d-sm-table-cell">Product ID</th>
-                            <th class="d-none d-sm-table-cell">Name</th>
-                            <th class="d-none d-sm-table-cell">Type</th>
-                            <th class="d-none d-sm-table-cell">Description</th>
-                            <th class="d-none d-sm-table-cell">Price (KES) </th>
-                            <th class="text-right">Actions</th>
+                            <th>Product ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Price (KES) </th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(isset($products))
-                        @foreach ($products as $product)
+                        @foreach($products as $product)
                         <tr>
-                            <td class="d-none d-sm-table-cell">
-                                {{ $product -> id }}
+                            <td>
+                                {{ $product['id'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ $product -> product_name }}
+                            <td>
+                                {{ $product['product_name'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ $product -> product_type }}
+                            <td>
+                                {{ $product['product_type'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ $product -> product_description }}
+                            <td>
+                                {{ $product['product_description'] }}
                             </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ $product -> price }}
+                            <td>
+                                {{ $product['price'] }}
                             </td>
-                            <td class="text-right">
-                                <div class="form-group row">
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit-product" >
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class= "col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-product" >
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-edit-product" >
+                                        Edit
+                                    </button>
+                                    &emsp;&emsp;
+                                    <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
+                                        Suspend
+                                    </button>
                                 </div>
                             </td>
                         </tr>
                         @endforeach
-                        @endif
                     </tbody>
+                    @endif
                 </table>
-                <!-- END Products Table -->
+
+            <!-- END Products Table -->
             </div>
         </div>
         <!-- END Products -->
     </div>
 @endsection
 
-@section('products_ajax')
 <!--Products AJAX Script -->
-
-<script>
-  $(document).ready(function() {
-    $('#products-table').DataTable();
-  });
- </script>
+@section('products_ajax')
 
 <script type="text/javascript">
-$(function () {
+    $(function () {
 
-    $.ajaxSetup({
-         headers: {
-             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#createNewProduct').click(function () {
+            $('#saveBtn').val("create-product");
+            $('#product_id').val('');
+            $('#productForm').trigger("reset");
+            $('#modal-add-product').modal('show');
+        });
+
+        $('#saveBtn').click(function (e) {
+            e.preventDefault();
+            $(this).html('Sending..');
+
+            $.ajax({
+            data: $('#productForm').serialize(),
+            url: "{{ route('products.store') }}",
+            type: "POST",
+            dataType: 'json',
+            success: function (data) {
+
+                $('#productForm').trigger("reset");
+                toastr.success('New Product Added Successfully.', {timeOut: 500})
+                $('#modal-add-product').modal('hide');
+
+            },
+            error: function (data) {
+                console.log('Error:', data);
+                $('#saveBtn').html('Add Product');
+            }
+        });
+        });
+
     });
-
-   /*var table = $('#products-table').DataTable({
-       processing: true,
-       serverSide: true,
-       ajax: "{{ route('products.index') }}",
-       columns: [
-           {data: 'id', name: 'id'},
-           {data: 'product_name', name: 'product_name'},
-           {data: 'product_type', name: 'product_type'},
-           {data: 'product_description', name: 'product_description'},
-           {data: 'price', name: 'price'},
-           {data: 'action', name: 'action', orderable: false, searchable: false},
-       ]
-    }); */
-
-    $('#createNewProduct').click(function () {
-        $('#saveBtn').val("create-product");
-        $('#product_id').val('');
-        $('#productForm').trigger("reset");
-        $('#modal-add-product').modal('show');
-    });
-
-    $('#saveBtn').click(function (e) {
-        e.preventDefault();
-        $(this).html('Sending..');
-
-        $.ajax({
-          data: $('#productForm').serialize(),
-          url: "{{ route('products.store') }}",
-          type: "POST",
-          dataType: 'json',
-          success: function (data) {
-
-              $('#productForm').trigger("reset");
-              toastr.success('New Product Added Successfully.', {timeOut: 500})
-              $('#modal-add-product').modal('hide');
-              table.draw();
-
-          },
-          error: function (data) {
-              console.log('Error:', data);
-              $('#saveBtn').html('Add Product');
-          }
-      });
-    });
-
-});
 </script>
 @endsection
+<!-- END Products AJAX Script -->
