@@ -9,6 +9,8 @@
     <!-- Page JS Plugins -->
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('/js/plugins/jquery-validation/additional-methods.js') }}"></script>
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/customer_dashboard.js') }}"></script>
@@ -58,7 +60,7 @@
                                     @endswitch
                                 </td>
                                 <td>
-                                    <a href="#" class="edit-nameserver">Edit nameservers</a>
+                                    <a href="#" class="edit-nameserver" data-domain-id="{{ $domain['product']['id'] }}" data-nameservers="{{$domain['product']['nameservers']}}">Update nameservers</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -159,4 +161,8 @@
         </div>
         <!-- END Page Content -->
     </div>
+@endsection
+
+@section('modals')
+    @include('dashboard.partials.modals.update_nameserver_modal')
 @endsection

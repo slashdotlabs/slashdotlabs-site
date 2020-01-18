@@ -44,10 +44,10 @@
             </main>
             <!-- END Main Container -->
 
+           @yield('modals')
+
             <!-- Footer -->
             @include('dashboard.partials.footer')
-
-            @include('dashboard.partials.modal')
         </div>
         <!-- END Page Container -->
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fe6983a2dd23c05ee82942968af6953",
+    "content-hash": "ba88cef7d8c0cbc33769b1146588f404",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1585,6 +1585,54 @@
                 "toast"
             ],
             "time": "2020-01-07T18:28:57+00:00"
+        },
+        {
+            "name": "staudenmeir/laravel-upsert",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/staudenmeir/laravel-upsert.git",
+                "reference": "48dcaa9cce98eaaf92d2d00fb885d9bc0c313cbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/staudenmeir/laravel-upsert/zipball/48dcaa9cce98eaaf92d2d00fb885d9bc0c313cbc",
+                "reference": "48dcaa9cce98eaaf92d2d00fb885d9bc0c313cbc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^6.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "laravel/homestead": "^9.0",
+                "orchestra/testbench": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Staudenmeir\\LaravelUpsert\\DatabaseServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\LaravelUpsert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Laravel UPSERT and INSERT IGNORE queries",
+            "time": "2019-08-25T00:34:16+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

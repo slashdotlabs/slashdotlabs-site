@@ -27,7 +27,7 @@ class DashboardController extends Controller
     /**
      * Display dashboard
      *
-     * @return Factory|View
+     * @return View
      */
     public function index()
     {
@@ -40,6 +40,8 @@ class DashboardController extends Controller
         })->groupBy('product.product_type');
         $domains_order_items = $order_items->filter(function (OrderItem $order_item) {
             return $order_item->product_type == CustomerDomain::class;
+        })->each(function ($domain_order_item) {
+            $domain_order_item->product->load('nameservers');
         })->values();
 
         return view('dashboard.index',
@@ -49,7 +51,6 @@ class DashboardController extends Controller
                 'hosting_packages' => $product_order_items['hosting'],
                 'ssl_certificates' => $product_order_items['ssl_certificate'],
             ]);
-
     }
 
     public function update(Request $request, $id)

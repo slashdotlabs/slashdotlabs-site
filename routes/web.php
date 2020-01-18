@@ -58,3 +58,6 @@ Route::resource('admin/orders', 'OrdersController');
 //Admin Users Resource Route
 Route::resource('admin/users', 'UsersController');
 
+
+//Nameserver resource
+Route::resource('nameservers', 'NameserversController')->only('store');
