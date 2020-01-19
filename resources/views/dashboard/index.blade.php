@@ -33,7 +33,7 @@
                     <p>You have no registered domains</p>
                 @else
                     <table id="tb-customer-domains" class="table table-bordered table-striped table-vcenter w-100">
-                        <thead class="text-uppercase">
+                        <thead class="text-uppercase text-center">
                         <tr>
                             <th>Order ID</th>
                             <th>Domain Name</th>

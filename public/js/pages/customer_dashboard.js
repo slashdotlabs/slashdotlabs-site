@@ -44,7 +44,9 @@ const hostingPackagesSection = () => {
     const tbHostingPackages = $('#tb-hosting-packages');
     const dtHostingPackages = tbHostingPackages.DataTable({
         columnDefs: [
-            {targets: "_all", class: 'text-center'},
+            {targets: [4], class: 'text-center'},
+            {targets: [0], class: 'text-right'},
+            {targets: [1, 2, 3], class: 'text-left'},
             {targets: 0, width: "15%"},
             {targets: [4], orderable: false}
         ]
@@ -56,7 +58,9 @@ const sslCertificatesSection = () => {
     const tbSslCertificates = $('#tb-ssl-certificates');
     const dtSslCertificates = tbSslCertificates.DataTable({
         columnDefs: [
-            {targets: "_all", class: 'text-center'},
+            {targets: [3], class: 'text-center'},
+            {targets: [0], class: 'text-right'},
+            {targets: [1, 2], class: 'text-left'},
             {targets: 0, width: "15%"},
             {targets: [3], orderable: false}
         ]
@@ -70,7 +74,9 @@ const customerDomainsSection = () => {
         scrollX: true,
         autoWidth: true,
         columnDefs: [
-            {targets: "_all", class: 'text-center'},
+            {targets: [3, 4], class: 'text-center'},
+            {targets: [0], class: 'text-right'},
+            {targets: [1, 2], class: 'text-left'},
             {targets: 0, width: "15%"},
             {targets: [3, 4], orderable: false}
         ]
