@@ -100,8 +100,8 @@
                         <select class="form-control form-control-m" id="product_type" name="product_type">
                             <option value="0">Select a product type</option>
                             <option value="1">Domain</option>
-                            <option value="2">Hosting Package</option>
-                            <option value="3">SSL Certificates</option>
+                            <option value="2">SSL Certificate</option>
+                            <option value="3">Hosting Package</option>
                         </select>
                     </div>
                     <div class="form-group">

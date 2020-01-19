@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 
 
@@ -18,10 +19,29 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('admin.products', ['products' => $products]);
+        if ($request->ajax()) {
+            $data = Product::latest()->get();
+            return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                           $buttons =
+                           '<div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-id="'.$row->id.'" data-toggle="modal" data-target="#modal-edit-product">
+                                     Edit
+                                 </button>
+                                &emsp;&emsp;
+                                <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
+                                    Suspend
+                                </button>
+                            </div>';
+                            return $buttons;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('admin.products');
     }
     /**
      * Show the form for creating a new resource.

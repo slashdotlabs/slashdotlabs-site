@@ -10,8 +10,7 @@
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
-
-    <!-- Page JS Code -->
+    <!-- DataTables JS  -->
     <script src="{{ asset('js/pages/admin_products.js') }}"></script>
 @endsection
 
@@ -126,9 +125,6 @@
         </div>
         <div class="block block-rounded">
             <div class="block-content">
-                @if(empty($products))
-                    <p>No products are available in the database.</p>
-                    @else
                 <!-- Products Table -->
                 <table id="tb-products" class="table table-sm table-bordered table-striped table-vcenter" >
                     <thead class="text-uppercase">
@@ -142,38 +138,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($products as $product)
-                        <tr>
-                            <td>
-                                {{ $product['id'] }}
-                            </td>
-                            <td>
-                                {{ $product['product_name'] }}
-                            </td>
-                            <td>
-                                {{ $product['product_type'] }}
-                            </td>
-                            <td>
-                                {{ $product['product_description'] }}
-                            </td>
-                            <td>
-                                {{ $product['price'] }}
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-edit-product" >
-                                        Edit
-                                    </button>
-                                    &emsp;&emsp;
-                                    <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
-                                        Suspend
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
                     </tbody>
-                    @endif
                 </table>
 
             <!-- END Products Table -->
@@ -185,10 +150,8 @@
 
 <!--Products AJAX Script -->
 @section('products_ajax')
-
 <script type="text/javascript">
     $(function () {
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -213,7 +176,7 @@
             success: function (data) {
 
                 $('#productForm').trigger("reset");
-                toastr.success('New Product Added Successfully.', {timeOut: 500})
+                //Add Notifications
                 $('#modal-add-product').modal('hide');
 
             },

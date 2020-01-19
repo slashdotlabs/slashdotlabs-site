@@ -30,6 +30,7 @@ mix
     .js('resources/js/pages/admin_orders.js', 'public/js/pages/admin_orders.js')
     .js('resources/js/pages/admin_users.js', 'public/js/pages/admin_users.js')
 
+
     /* Tools */
     .browserSync('localhost:8000', { notify: false })
 
