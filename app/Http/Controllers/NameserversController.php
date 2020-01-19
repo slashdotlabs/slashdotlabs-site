@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use function foo\func;
 
 class NameserversController extends Controller
 {
@@ -15,29 +16,45 @@ class NameserversController extends Controller
     {
         // validate
         $rules = [
-            'nameservers' => 'required|array',
-            'nameservers.*' => [
-                'sometimes', 'ip',
-                Rule::unique('nameservers', 'ip_address')
-                    ->ignore($request->get('domain_id'), 'domain_d')
-                    ->where(function (Builder $query) use ($request) {
-                        return $query->where([
-                            'deleted_at' => null
-                        ]);
-                    })
-            ],
+            'formNameservers' => 'required|array',
+            'formNameservers.*' => 'ip',
+            'domainNameservers' => 'present|array',
+            'domain_id' => 'required'
         ];
         $messages = [
-            'nameservers.*.ip' => 'Enter a valid ip address',
-            'nameservers.*.unique' => 'Duplicate ip address'
+            'formNameservers.*.ip' => 'Enter a valid ip address',
         ];
         Validator::make($request->all(), $rules, $messages)->validate();
 
+        // Delete removed nameservers
+        collect($request->get('domainNameservers'))
+            ->pluck('ip_address')
+            ->diff(collect($request->get('formNameservers')))
+            ->tap(function ($ip_addresses) use (&$request) {
+                Nameserver::where('domain_id', $request->get('domain_id'))
+                    ->whereIn('ip_address', $ip_addresses)
+                    ->update(['deleted_at' => now()]);
+            });
 
-        dd($request->all());
+        // Add new ones
+        collect($request->get('formNameservers'))
+            ->map(function ($entry) use (&$request) {
+                return [
+                    'ip_address' => $entry,
+                    'domain_id' => $request->get('domain_id'),
+                ];
+            })
+            ->tap(function ($entries) use (&$request) {
+                Nameserver::upsert($entries->toArray(), ['ip_address', 'domain_id'], ['deleted_at' => null]);
+            });
 
-        // handle addition
-        $new_nameservers_list = $request->only('add-nameservers[]');
-        $new_nameservers = Nameserver::upadateOrCreate();
+        // Get nameservers
+        $nameservers = Nameserver::where('domain_id', $request->get('domain_id'))
+            ->whereNull('deleted_at')
+            ->get();
+        return response()->json([
+            'domain_id' => $request->get('domain_id'),
+            'nameservers' => $nameservers
+        ]);
     }
 }

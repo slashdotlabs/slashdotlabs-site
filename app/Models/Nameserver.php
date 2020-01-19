@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Staudenmeir\LaravelUpsert\Eloquent\HasUpsertQueries;
 
 class Nameserver extends Model
 {
+    use HasUpsertQueries;
+
     protected $guarded = [];
 
     public function domain()

@@ -4,6 +4,7 @@ const overrides = () => {
         ignore: [],
         errorClass: 'invalid-feedback animated fadeInDown',
         errorElement: 'div',
+        focusCleanup: true,
         errorPlacement: (error, e) => {
             jQuery(e).parents('.form-group > div').append(error);
         },
@@ -15,6 +16,22 @@ const overrides = () => {
             jQuery(e).remove();
         },
     });
+
+    // ?Custom validator method
+    jQuery.validator.addMethod(
+        'notEqualToGroup',
+        function (value, element, options) {
+            // get all the elements passed here with the same class
+            const group = $(element)
+                .parents('form')
+                .find(options[0])
+                .not(element);
+            if (group.length === 0) return true;
+
+            return !group.toArray().some(element => $(element).val() === value) || this.optional(element);
+        },
+        'Duplicate IP address'
+    );
 
     // ?Override a few DataTable defaults
     jQuery.extend(jQuery.fn.dataTable.ext.classes, {
@@ -50,6 +67,8 @@ const customerDomainsSection = () => {
     // ?Customer domain datatable
     const tbCustomerDomains = $("#tb-customer-domains");
     const dtCustomerDomains = tbCustomerDomains.DataTable({
+        scrollX: true,
+        autoWidth: true,
         columnDefs: [
             {targets: "_all", class: 'text-center'},
             {targets: 0, width: "15%"},
@@ -62,6 +81,13 @@ const customerDomainsSection = () => {
     const nameserverForm = $('#update-nameservers-form');
     const fieldsWrapper = $('#nameserver-fields-wrapper');
 
+    // ?Validation
+    const nameserverFormValidator = nameserverForm.validate({
+        errorPlacement: (error, e) => {
+            jQuery(e).parents('.form-group').append(error);
+        }
+    });
+
     // ?Html content for nameserver fields for dynamic adding add deletion
     const nameserverField = (index, nameserver = {}) => {
         if ($.isEmptyObject(nameserver)) {
@@ -72,10 +98,10 @@ const customerDomainsSection = () => {
         return `<div class="item-wrapper form-group">
                     <label for="nameserver${index}">Name Server IP Address</label>
                     <div class="d-flex">
-                        <input type="text" class="w-75 form-control form-control" id="nameserver${index}" name="nameservers[]" data-nameserver-id="${nameserver['id']}" value="${nameserver['ip_address']}" placeholder="e.g. 172.192.34.44" autocomplete="off" required>
-                        <button class="ml-2 flex-grow-1 btn btn-alt-danger remove-nameserver-row">
+                        <input type="text" class="w-75 form-control form-control distinct-ip" id="nameserver${index}" name="nameserver${index}" data-nameserver-id="${nameserver['id']}" value="${nameserver['ip_address']}" placeholder="e.g. 172.192.34.44" autocomplete="off" required>
+                        <a href="javascript.void(0);" class="ml-2 flex-grow-1 btn btn-alt-danger remove-nameserver-row" tabindex="-1">
                             <i class="si si-close"></i> Delete
-                        </button>
+                        </a>
                     </div>
                 </div>`;
     };
@@ -92,7 +118,8 @@ const customerDomainsSection = () => {
 
         // Add validation rule
         $(`input#nameserver${rowsPresent}`).rules('add', {
-            required: true
+            required: true,
+            notEqualToGroup: ['.distinct-ip']
         });
 
         // Remove empty indicator
@@ -105,8 +132,7 @@ const customerDomainsSection = () => {
     nameserverForm.on('click', '.remove-nameserver-row', event => {
         event.preventDefault();
         const _this = $(event.target);
-        const row = _this.closest('.item-wrapper');
-        row.remove();
+        _this.closest('.item-wrapper').remove();
 
         // if empty show indicator
         if (fieldsWrapper.children().length === 0 && nameserverForm.find('.empty-nameservers').hasClass('d-none')) {
@@ -114,33 +140,49 @@ const customerDomainsSection = () => {
         }
     });
 
-    // ?Validation
-    const nameserverFormValidator = nameserverForm.validate({
-        errorPlacement: (error, e) => {
-            jQuery(e).parents('.form-group').append(error);
-        }
-    });
+    // ?Global state for nameservers of current domain
+    let domainNameservers = {};
 
     // ?Form submission
     $("#btn-update-nameservers").on('click', () => nameserverForm.trigger('submit'));
     nameserverForm.on('submit', event => {
         event.preventDefault();
+        if (!nameserverForm.valid() || fieldsWrapper.children().length === 0) return false;
         const _this = $(event.target);
-        const data = _this.serializeArray();
-        console.log(data);
-        // return;
-        if (!nameserverFormValidator.valid() || fieldsWrapper.children().length === 0) return false;
+        const formData = _this.serializeArray();
+        const formNameservers = formData.filter(item => {
+            return item['name'].includes('nameserver');
+        }).map(item => item['value']);
+        const data = {
+            domain_id: _this.find('[name=domain_id]').val(),
+            domainNameservers, formNameservers
+        };
 
         Codebase.blocks('#nameserver-form-block', 'state_loading');
 
         axios.post(_this.attr('action'), data)
             .then(res => {
-                console.log(res);
+                // update nameservers record
+                tbCustomerDomains.find(`.edit-nameserver[data-domain-id=${res.data.domain_id}]`)
+                    .data('nameservers', res.data['nameservers']);
+                Codebase.helpers('notify', {
+                    align: 'right',
+                    from: 'top',
+                    type: 'success',
+                    icon: 'fa fa-info mr-5',
+                    message: 'You have successfully updated your nameservers'
+                });
+                nameserverEditModal.modal('hide');
             })
             .catch(error => {
                 if (error.response.status === 422) {
                     const errors = error.response.data.errors;
-                    console.log(errors);
+                    const errorData = {};
+                    Object.keys(errors).forEach(entry => {
+                        const [_, index] = entry.split('.');
+                        errorData[`nameserver${index}`] = errors[entry];
+                    });
+                    nameserverFormValidator.showErrors(errorData)
                 }
             })
             .finally(() => {
@@ -152,18 +194,18 @@ const customerDomainsSection = () => {
     tbCustomerDomains.find('.edit-nameserver').on('click', event => {
         event.preventDefault();
         const _this = $(event.target);
-        const nameservers = _this.data('nameservers');
+        domainNameservers = _this.data('nameservers');
         const domainId = _this.data('domain-id');
 
         nameserverForm.find('input[name=domain_id]').val(domainId);
 
-        if (nameservers.length === 0 && nameserverForm.find('.empty-nameservers').hasClass('d-none')) {
+        if (domainNameservers.length === 0 && nameserverForm.find('.empty-nameservers').hasClass('d-none')) {
             nameserverForm.find('.empty-nameservers').removeClass('d-none');
         } else {
             nameserverForm.find('.empty-nameservers').addClass('d-none');
         }
 
-        nameservers.forEach(nameserver => {
+        domainNameservers.forEach(nameserver => {
             $('.add-nameserver-row').trigger('click', nameserver);
         });
 

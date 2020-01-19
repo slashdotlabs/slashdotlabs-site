@@ -11,6 +11,7 @@
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/jquery-validation/additional-methods.js') }}"></script>
+    <script src="{{ asset('/js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/customer_dashboard.js') }}"></script>
@@ -31,7 +32,7 @@
                 @if(empty($customer_domains))
                     <p>You have no registered domains</p>
                 @else
-                    <table id="tb-customer-domains" class="table table-bordered table-striped table-vcenter">
+                    <table id="tb-customer-domains" class="table table-bordered table-striped table-vcenter w-100">
                         <thead class="text-uppercase">
                         <tr>
                             <th>Order ID</th>

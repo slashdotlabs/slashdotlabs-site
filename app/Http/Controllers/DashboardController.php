@@ -8,6 +8,7 @@ use App\Models\CustomerDomain;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -41,7 +42,9 @@ class DashboardController extends Controller
         $domains_order_items = $order_items->filter(function (OrderItem $order_item) {
             return $order_item->product_type == CustomerDomain::class;
         })->each(function ($domain_order_item) {
-            $domain_order_item->product->load('nameservers');
+            $domain_order_item->product->load(['nameservers' => function ($query) {
+                $query->whereNull('deleted_at');
+            }]);
         })->values();
 
         return view('dashboard.index',
