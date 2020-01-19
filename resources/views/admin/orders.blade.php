@@ -31,7 +31,7 @@
     <div class="bg-body-light border-b">
         <div class="content py-5 text-center">
             <nav class="breadcrumb bg-body-light mb-0">
-                <a class="breadcrumb-item" href="/admin/dashboard">Home</a>
+                <a class="breadcrumb-item" href="{{ url('/admin/dashboard') }}">Home</a>
                 <span class="breadcrumb-item active">Orders</span>
             </nav>
         </div>
@@ -67,17 +67,16 @@
                     </a>
                 </div>
             </div>
-            End Sort Orders by Duration -->
-            Orders
+            End Sort Orders by Duration -->Orders
         </div>
         <div class="block block-rounded">
             <div class="block-content">
-                @if(empty($orders))
+                @if(empty($order_items))
                     <p>No orders are available in the database.</p>
-                @else
+            @else
                 <!-- Orders Table -->
-                <table id= "tb-orders" class="table table-sm table-bordered table-striped table-vcenter">
-                    <thead class="text-uppercase">
+                    <table id="tb-orders" class="table table-sm table-bordered table-striped table-vcenter">
+                        <thead class="text-uppercase">
                         <tr>
                             <th>Order ID</th>
                             <th>Product</th>
@@ -87,50 +86,50 @@
                             <th>Purchase Date</th>
                             <th>Actions</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         <!-- TODO: map products, customers and expiry dates -->
-                        @foreach($orders as $order)
-                        <tr>
-                            <td>
-                                {{ $order['order_id'] }}
-                            </td>
-                            <td>
-                                {{ $order['customer_id'] }}
-                            </td>
-                            <td>
-                                {{ $order['customer_id'] }}
-                            </td>
-                            <td>
-                                {{ $order['total_amount'] }}
-                            </td>
-                            <td>
-                                {{ $order['currency'] }}
-                            </td>
-                            <td>
-                                {{ $order['created_at'] }}
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-order" >
-                                    Suspend
-                                </button>
-                            </td>
-                        </tr>
+                        @foreach($order_items as $order_item)
+                            <tr>
+                                <td>
+                                    {{ $order_item['order']['order_id'] }}
+                                </td>
+                                <td>
+                                    {{ $order_item['product']['product_name'] ?: $order_item['product']['domain_name'] }}
+                                </td>
+                                <td>
+                                    {{ $order_item['order']['customer']->get_fullname() }}
+                                </td>
+                                <td>
+                                    {{ $order_item['order']['total_amount'] }}
+                                </td>
+                                <td>
+                                    {{ $order_item['order']['currency'] }}
+                                </td>
+                                <td>
+                                    {{ $order_item['order']['created_at'] }}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-order">
+                                        Suspend
+                                    </button>
+                                </td>
+                            </tr>
                         @endforeach
-                    </tbody>
-                </table>
-                @endif
-                <!-- END Orders Table -->
+                        </tbody>
+                    </table>
+            @endif
+            <!-- END Orders Table -->
             </div>
         </div>
         <!-- END Orders -->
     </div>
 @endsection
 @section('orders_ajax')
-<!--Products AJAX Script -->
-<script type="text/javascript">
-    $(document).ready(function(){
+    <!--Products AJAX Script -->
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-    });
+        });
     </script>
 @endsection

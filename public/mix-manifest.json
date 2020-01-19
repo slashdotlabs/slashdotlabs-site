@@ -6,9 +6,8 @@
     "/css/themes/earth.css": "/css/themes/earth.css",
     "/css/themes/elegance.css": "/css/themes/elegance.css",
     "/css/themes/flat.css": "/css/themes/flat.css",
-    "/css/themes/pulse.css": "/css/themes/pulse.css"
     "/css/themes/pulse.css": "/css/themes/pulse.css",
     "/js/pages/admin_orders.js": "/js/pages/admin_orders.js",
     "/js/pages/admin_products.js": "/js/pages/admin_products.js",
-    "/js/pages/admin_users.js": "/js/pages/admin_users.js",
+    "/js/pages/admin_users.js": "/js/pages/admin_users.js"
 }

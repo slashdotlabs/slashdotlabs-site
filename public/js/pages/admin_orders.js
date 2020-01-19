@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -124,14 +124,14 @@ $(function () {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!**************************************************!*\
   !*** multi ./resources/js/pages/admin_orders.js ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_orders.js */"./resources/js/pages/admin_orders.js");
+module.exports = __webpack_require__(/*! /home/steekam/public_html/slashdot_dashboard/resources/js/pages/admin_orders.js */"./resources/js/pages/admin_orders.js");
 
 
 /***/ })
