@@ -63,6 +63,10 @@
 </div>
 <!-- END Page Container -->
 
+<script>
+    const baseURL = "{{ url('') }}";
+</script>
+
 <!-- Codebase Core JS -->
 <script src="{{ mix('js/codebase.app.js') }}"></script>
 
@@ -74,8 +78,6 @@
 @include('admin.partials.modals')
 
 </body>
-
-@yield('products_ajax')
 @yield('users_ajax')
 @yield('orders_ajax')
 </html>

@@ -83,7 +83,7 @@
                         </button>
                     </div>
                 </div>
-            <form id="productForm">
+            <form id="add-product-form">
                 <div class="block-content">
                     <input type="hidden" name="product_id" id="product_id"> <!-- Hidden Product ID -->
                 <div class="form-group">
@@ -97,11 +97,11 @@
                     </div>
                     <div class="form-group">
                         <label for="product-type">Type</label>
-                        <select class="form-control form-control-m" id="product_type" name="product_type">
-                            <option value="0">Select a product type</option>
-                            <option value="1">Domain</option>
-                            <option value="2">SSL Certificate</option>
-                            <option value="3">Hosting Package</option>
+                        <select class="form-control form-control-m" id="product_type" name="product_type" required>
+                            <option value="">Select a product type</option>
+                            <option value="domain">Domain</option>
+                            <option value="hosting">Hosting Package</option>
+                            <option value="ssl_certificate">SSL Certificate</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -113,7 +113,7 @@
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-alt-success" data-dismiss="modal" id="saveBtn">Add Product</button>
+                    <button type="button" class="btn btn-alt-success" data-dismiss="modal" id="btn-add-product">Add Product</button>
             </div>
         </form>
         </div>
@@ -135,34 +135,36 @@
                     </div>
                 </div>
                 <div class="block-content">
-                <div class="form-group">
+                <form id="update-product-form" method="post">
+                    @method('put')
+                    <input type="hidden" name="product_id">
                     <div class="form-group">
                         <label for="product-name">Product Name</label>
-                        <input type="text" class="form-control form-control-m" id="edit-product-name" name="product-name" placeholder="Enter the new product name.." value=".com Domain">
+                        <input type="text" class="form-control form-control-m" id="edit-product-name" name="product_name" placeholder="Enter the new product name.." required>
                     </div>
                     <div class="form-group">
                         <label for="product-description">Description</label>
-                        <textarea class="form-control" id="product-description" name="edit-product-description" rows="4" placeholder="Enter the new product description..">Domain name with .com extension.</textarea>
+                        <textarea class="form-control" id="edit-product-description" name="product_description" rows="4" placeholder="Enter the new product description.."></textarea>
                     </div>
                     <div class="form-group">
                         <label for="product-type">Type</label>
-                        <select class="form-control form-control-m" id="product-type" name="edit-product-type">
-                            <option value="0">Select a product type</option>
-                            <option value="1">Domain</option>
-                            <option value="2">Hosting Package</option>
-                            <option value="3">SSL Certificates</option>
+                        <select class="form-control form-control-m" id="edit-product-type" name="product_type" required>
+                            <option value="">Select a product type</option>
+                            <option value="domain">Domain</option>
+                            <option value="hosting">Hosting Package</option>
+                            <option value="ssl_certificate">SSL Certificates</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="product-price">Price</label>
-                        <input type="text" class="form-control form-control-m" id="edit-product-price" name="edit-product-price"  placeholder="Enter the new product price.." value="7500">
+                        <input type="text" class="form-control form-control-m" id="edit-product-price" name="price"  placeholder="Enter the new product price.." required>
                     </div>
-                </div>
+                </form>
                 </div>
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-alt-primary" data-dismiss="modal">Update</button>
+                    <button type="button" class="btn btn-alt-primary" id="btn-update-product">Update</button>
             </div>
         </div>
     </div>

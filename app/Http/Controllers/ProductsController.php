@@ -28,7 +28,7 @@ class ProductsController extends Controller
                     ->addColumn('action', function($row){
                            $buttons =
                            '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-primary" data-id="'.$row->id.'" data-toggle="modal" data-target="#modal-edit-product">
+                                <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
                                      Edit
                                  </button>
                                 &emsp;&emsp;
@@ -99,7 +99,13 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // TODO: validation
+
+        $updated_record = Product::find($id)->update($request->get('product_details'));
+        return \response()->json([
+            'msg' => 'Updated product successfully',
+            'product' => $updated_record
+        ]);
     }
 
     /**
