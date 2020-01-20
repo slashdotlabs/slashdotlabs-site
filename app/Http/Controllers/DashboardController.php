@@ -8,6 +8,7 @@ use App\Models\CustomerDomain;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -27,7 +28,7 @@ class DashboardController extends Controller
     /**
      * Display dashboard
      *
-     * @return Factory|View
+     * @return View
      */
     public function index()
     {
@@ -40,6 +41,8 @@ class DashboardController extends Controller
         })->groupBy('product.product_type');
         $domains_order_items = $order_items->filter(function (OrderItem $order_item) {
             return $order_item->product_type == CustomerDomain::class;
+        })->each(function ($domain_order_item) {
+            $domain_order_item->product->load('nameservers');
         })->values();
 
         return view('dashboard.index',
@@ -49,7 +52,6 @@ class DashboardController extends Controller
                 'hosting_packages' => $product_order_items['hosting'],
                 'ssl_certificates' => $product_order_items['ssl_certificate'],
             ]);
-
     }
 
     public function update(Request $request, $id)
@@ -79,7 +81,7 @@ class DashboardController extends Controller
 
         // return redirect('/')->with('success', 'Updated');
         return response()->json($Response);
-        
+
     }
 
     public function passwordRules(array $data)
@@ -92,13 +94,13 @@ class DashboardController extends Controller
       $validator = Validator::make($data, [
         'current_password' => 'required',
         'new_password' => 'required|min:6|same:new_password',
-        'confirm_password' => 'required|min:6|same:new_password',     
+        'confirm_password' => 'required|min:6|same:new_password',
       ], $messages);
 
       return $validator;
     }
 
-    public function changePassword(Request $request) 
+    public function changePassword(Request $request)
     {
         if(Auth::Check()) {
             $request_data = $request->All();
@@ -109,23 +111,23 @@ class DashboardController extends Controller
                 //return response()->json(array('error' => $validator->getMessageBag()->toArray()), 422);
                 return response()->json($validator->errors(), 422);
 
-            } else {  
+            } else {
 
-              $current_password = Auth::User()->password;           
-              if(Hash::check($request_data['current_password'], $current_password)) {           
-                $user_id = Auth::User()->id;                       
+              $current_password = Auth::User()->password;
+              if(Hash::check($request_data['current_password'], $current_password)) {
+                $user_id = Auth::User()->id;
                 $user = User::find($user_id);
                 $user->password = Hash::make($request_data['new_password']);;
-                $user->save(); 
+                $user->save();
                 $Response = ['success' => 'Password successfully changed !'];
                 return response()->json($Response, 200);
               }
-              else {           
+              else {
                 $Response = ['error' => 'Please enter correct current password'];
-                return response()->json($Response, 422);   
+                return response()->json($Response, 422);
               }
-            }        
-        } 
+            }
+        }
     }
 
     public function changeBio(Request $request, $id)

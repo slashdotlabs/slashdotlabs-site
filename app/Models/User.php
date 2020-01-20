@@ -43,6 +43,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return ($this->first_name)[0] . ". " . $this->last_name;
     }
 
+    public function get_fullname()
+    {
+        return $this->first_name . " " . $this->last_name;
+    }
+
     public function customer_biodata()
     {
         return $this->hasOne('App\Models\CustomerBiodata', 'customer_id');
@@ -50,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function customer_domains()
     {
-        return $this->hasMany('App\Models\CustomerDomain','customer_id');
+        return $this->hasMany('App\Models\CustomerDomain', 'customer_id');
     }
 
     public function customer_orders()

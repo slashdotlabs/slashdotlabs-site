@@ -18,6 +18,7 @@ class CreateNameserversTable extends Migration
             $table->bigInteger("domain_id");
             $table->string("ip_address");
 
+            $table->unique(['domain_id', 'ip_address']);
             $table->softDeletes();
             $table->timestamps();
         });

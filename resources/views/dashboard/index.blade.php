@@ -9,6 +9,9 @@
     <!-- Page JS Plugins -->
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('/js/plugins/jquery-validation/additional-methods.js') }}"></script>
+    <script src="{{ asset('/js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/customer_dashboard.js') }}"></script>
@@ -29,8 +32,8 @@
                 @if(empty($customer_domains))
                     <p>You have no registered domains</p>
                 @else
-                    <table id="tb-customer-domains" class="table table-bordered table-striped table-vcenter">
-                        <thead class="text-uppercase">
+                    <table id="tb-customer-domains" class="table table-bordered table-striped table-vcenter w-100">
+                        <thead class="text-uppercase text-center">
                         <tr>
                             <th>Order ID</th>
                             <th>Domain Name</th>
@@ -58,7 +61,7 @@
                                     @endswitch
                                 </td>
                                 <td>
-                                    <a href="#" class="edit-nameserver">Edit nameservers</a>
+                                    <a href="#" class="edit-nameserver" data-domain-id="{{ $domain['product']['id'] }}" data-nameservers="{{$domain['product']['nameservers']}}">Update nameservers</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -159,4 +162,8 @@
         </div>
         <!-- END Page Content -->
     </div>
+@endsection
+
+@section('modals')
+    @include('dashboard.partials.modals.update_nameserver_modal')
 @endsection
