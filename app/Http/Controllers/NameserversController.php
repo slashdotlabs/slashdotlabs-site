@@ -16,7 +16,7 @@ class NameserversController extends Controller
     {
         // validate
         $rules = [
-            'formNameservers' => 'required|array',
+            'formNameservers' => 'present|array',
             'formNameservers.*' => 'ip',
             'domainNameservers' => 'present|array',
             'domain_id' => 'required'
