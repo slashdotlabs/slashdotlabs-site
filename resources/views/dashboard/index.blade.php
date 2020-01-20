@@ -96,7 +96,7 @@
                                 <td>{{ $certificate['product']['product_name'] }}</td>
                                 <td>{{ $certificate['expiry_date'] }}</td>
                                 <td>
-                                    @switch($certificate->get_item_status())
+                                    @switch($certificate['item_status'])
                                         @case('active')
                                         <span class="badge badge-success">Active</span>
                                         @break
@@ -127,11 +127,11 @@
                     <table id="tb-hosting-packages" class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
                         <thead class="text-uppercase">
                         <tr>
-                            <td>order id</td>
-                            <td>package name</td>
-                            <td>package description</td>
-                            <td>Expiry Date</td>
-                            <td>Status</td>
+                            <th>order id</th>
+                            <th>package name</th>
+                            <th>package description</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -142,7 +142,7 @@
                                 <td>{{ $package['product']['product_description'] }}</td>
                                 <td>{{ $package['expiry_date'] }}</td>
                                 <td>
-                                    @switch($package->get_item_status())
+                                    @switch($package['item_status'])
                                         @case('active')
                                         <span class="badge badge-success">Active</span>
                                         @break
