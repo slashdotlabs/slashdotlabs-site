@@ -104,11 +104,14 @@ $(function () {
     sWrapper: "dataTables_wrapper dt-bootstrap4"
   }); // Products datatable
 
+  var updateProductsForm = $('#update-product-form');
   var tbProducts = $('#tb-products');
   var dtProducts = tbProducts.DataTable({
-    processing: true,
-    serverSide: true,
-    url: "{{url('products.index')}}",
+    ajax: {
+      url: "".concat(baseURL, "/admin/products"),
+      method: 'GET',
+      dataSrc: 'data'
+    },
     columns: [{
       data: 'DT_RowIndex',
       name: 'DT_RowIndex'
@@ -152,6 +155,83 @@ $(function () {
     }, {
       targets: 0
     }]
+  });
+  $('#createNewProduct').click(function () {
+    $('#btn-add-product').val("create-product");
+    $('#product_id').val('');
+    $('#add-product-form').trigger("reset");
+    $('#modal-add-product').modal('show');
+  });
+  $('#btn-add-product').click(function (e) {
+    e.preventDefault();
+    $(this).html('Sending..');
+    var storeUrl = "".concat(baseURL, "/admin/products/");
+    $.ajax({
+      data: $('#add-product-form').serialize(),
+      url: storeUrl,
+      type: "POST",
+      dataType: 'json',
+      success: function success(data) {
+        $('#productForm').trigger("reset"); //Add Notifications
+
+        $('#modal-add-product').modal('hide');
+        dtProducts.ajax.reload();
+      },
+      error: function error(data) {
+        console.log('Error:', data);
+        $('#saveBtn').html('Add Product');
+      }
+    });
+  });
+  var editProductsModal = $('#modal-edit-product'); // Show edit modal with details
+
+  tbProducts.on('click', '.edit-product', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var rowData = dtProducts.row(_this.closest('tr')).data(); // Fill modal with data
+
+    updateProductsForm.find('[name=product_id]').val(rowData['id']);
+    updateProductsForm.find('#edit-product-name').val(rowData['product_name']);
+    updateProductsForm.find('#edit-product-description').val(rowData['product_description']);
+    updateProductsForm.find('#edit-product-type').val(rowData['product_type']);
+    updateProductsForm.find('#edit-product-price').val(rowData['price']); // Show modal
+
+    editProductsModal.modal('show');
+  }); // Update product form submission
+
+  $('#btn-update-product').on('click', function (event) {
+    return updateProductsForm.trigger('submit');
+  });
+  updateProductsForm.on('submit', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var productId = _this.find('input[name=product_id]').val();
+
+    var targetURL = "".concat(baseURL, "/admin/products/").concat(productId);
+    var product_details = {};
+
+    _this.serializeArray().filter(function (field) {
+      return !['product_id', '_method'].includes(field.name);
+    }).forEach(function (field) {
+      product_details[field.name] = field.value;
+    });
+
+    $.ajax({
+      url: targetURL,
+      method: 'put',
+      data: {
+        'product_details': product_details
+      }
+    }).then(function (res) {
+      console.log(res);
+      dtProducts.ajax.reload(); // remove modal
+
+      editProductsModal.modal('hide');
+    });
   });
 });
 

@@ -11,24 +11,24 @@ $(function() {
 			url: route,
 			data:form_data.serialize(),
 			success: function(Response) {
-				// 
-				console.log(Response);
+
+				//console.log(Response);
 				if (Response.success) {
 					$('#message-success').append('<p>'+Response.success+'</p>');
 				}
 
-				if (Response.email) {
-					$('#message-success').append('<p>'+Response.email+'</p>');
-				}
-
-				if (Response.email.unique) {
-					$('#message-danger').append('<p>'+Response.email+'</p>');
-				}
+				setTimeout(function(){
+			        $('#message-success').html('');
+			    }, 5000);
 			}, 
-			// 
+			 
 			error: response => {
 				const errors = response.responseJSON;
 				$('#message-danger').append(`<p>${errors.email[0]}</p>`);
+
+				setTimeout(function(){
+			        $('#message-danger').html('');
+			    }, 5000);
 			}
 		});
 	});
@@ -50,6 +50,10 @@ $(function() {
 				if (Response.success) {
 					$('#bio-success').append('<p>'+Response.success+'</p>');
 				}
+
+				setTimeout(function(){
+			        $('#bio-success').html('');
+			    }, 5000);
 			},
 			error: function(Response) {
 				var i, x = "";
@@ -59,6 +63,9 @@ $(function() {
 				  	x = errors[i];
 				  	$('#bio-danger').append(`<p>${x}</p>`);
 				}
+				setTimeout(function(){
+			        $('#bio-danger').html('');
+			    }, 5000);
 			}
 		});
 	});
@@ -80,9 +87,12 @@ $(function() {
 				if (Response.success) {
 					$('#password-success').append('<p>'+Response.success+'</p>');
 				}
+				setTimeout(function(){
+			        $('#password-success').html('');
+			    }, 5000);
 			},
 			error: function(Response) {
-				// body...
+				
 				var i, x = "";
 				var errors = Response.responseJSON;
 				//console.log(errors);
@@ -90,6 +100,9 @@ $(function() {
 				  	x = errors[i];
 				  	$('#password-danger').append(`<p>${x}</p>`);
 				}
+				setTimeout(function(){
+			        $('#password-danger').html('');
+			    }, 5000);
 			}
 		});
 	});
