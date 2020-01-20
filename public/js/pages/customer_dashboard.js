@@ -153,7 +153,7 @@ const customerDomainsSection = () => {
     $("#btn-update-nameservers").on('click', () => nameserverForm.trigger('submit'));
     nameserverForm.on('submit', event => {
         event.preventDefault();
-        if (!nameserverForm.valid() || fieldsWrapper.children().length === 0) return false;
+        if (!nameserverForm.valid() || fieldsWrapper.children().length === 0 && domainNameservers.length === 0) return false;
         const _this = $(event.target);
         const formData = _this.serializeArray();
         const formNameservers = formData.filter(item => {
@@ -207,7 +207,7 @@ const customerDomainsSection = () => {
 
         if (domainNameservers.length === 0 && nameserverForm.find('.empty-nameservers').hasClass('d-none')) {
             nameserverForm.find('.empty-nameservers').removeClass('d-none');
-        } else {
+        } else if (domainNameservers.length !== 0 && !nameserverForm.find('.empty-nameservers').hasClass('d-none')) {
             nameserverForm.find('.empty-nameservers').addClass('d-none');
         }
 
