@@ -102,23 +102,74 @@ $(function () {
   var tbOrders = $('#tb-orders');
   var dtOrders = tbOrders.DataTable({
     columnDefs: [{
-      targets: [1, 2, 4, 5],
+      targets: [1],
       "class": 'text-left'
     }, {
-      targets: [0, 3],
+      targets: [0, 2],
       "class": 'text-right'
     }, {
-      targets: 6,
+      targets: [4, 5],
       "class": 'text-center'
     }, {
       targets: 0,
       width: "11%"
     }, {
-      targets: 5,
+      targets: [4, 5],
       orderable: false
-    }, {
-      targets: 0
     }]
+  }); // display order details
+
+  var tbOrderDetails = $('#tb-order-items');
+  var orderDetailsModal = $('#order-details-modal');
+  var dtOrderDetails = tbOrderDetails.DataTable({
+    paging: false,
+    columns: [{
+      data: function data(record) {
+        return record['product']['product_name'] ? record['product']['product_name'] : record['product']['domain_name'];
+      }
+    }, {
+      data: function data(record) {
+        return record['product']['product_type'] ? record['product']['product_type'].toUpperCase() : 'domain'.toUpperCase();
+      }
+    }, {
+      data: 'expiry_date'
+    }, {
+      data: function data(record) {
+        switch (record['item_status']) {
+          case 'active':
+            return "<span class=\"badge badge-success\">Active</span>";
+
+          case 'expiring_soon':
+            return "<span class=\"badge badge-warning\">Expiring Soon</span>";
+
+          case 'expired':
+            return "<span class=\"badge badge-danger\">Expired</span>";
+        }
+      }
+    }],
+    columnDefs: [{
+      targets: [1, 2],
+      "class": 'text-left'
+    }, {
+      targets: [3],
+      "class": 'text-center'
+    }, {
+      targets: [3],
+      orderable: false
+    }]
+  });
+  tbOrders.on('click', '.show-order-items', function (event) {
+    var _this = $(event.target);
+
+    var orderDetails = _this.data('order-items');
+
+    var orderId = _this.data('order-id');
+
+    orderDetailsModal.find('#order-id').text(orderId);
+    dtOrderDetails.clear();
+    dtOrderDetails.rows.add(orderDetails).draw();
+    dtOrderDetails.columns.adjust().draw();
+    orderDetailsModal.modal('show');
   });
 });
 

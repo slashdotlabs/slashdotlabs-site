@@ -56,6 +56,8 @@
     </main>
     <!-- END Main Container -->
 
+    @yield('modals')
+
     <!-- Footer -->
     @include('admin.partials.footer')
     <!-- END Footer -->

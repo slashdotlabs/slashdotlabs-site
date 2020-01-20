@@ -49,7 +49,7 @@
                                 <td>{{ $domain['product']['domain_name'] }}</td>
                                 <td>{{ $domain['expiry_date'] }}</td>
                                 <td>
-                                    @switch($domain->get_item_status())
+                                    @switch($domain['item_status'])
                                         @case('active')
                                         <span class="badge badge-success">Active</span>
                                         @break

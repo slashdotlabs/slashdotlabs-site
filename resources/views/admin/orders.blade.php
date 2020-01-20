@@ -71,7 +71,7 @@
         </div>
         <div class="block block-rounded">
             <div class="block-content">
-                @if(empty($order_items))
+                @if(empty($orders))
                     <p>No orders are available in the database.</p>
             @else
                 <!-- Orders Table -->
@@ -79,40 +79,51 @@
                         <thead class="text-uppercase">
                         <tr>
                             <th>Order ID</th>
-                            <th>Product</th>
                             <th>Customer</th>
                             <th>Price (KES)</th>
-                            <th>Currency</th>
                             <th>Purchase Date</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <!-- TODO: map products, customers and expiry dates -->
-                        @foreach($order_items as $order_item)
+                        @foreach($orders as $order)
                             <tr>
                                 <td>
-                                    {{ $order_item['order']['order_id'] }}
+                                    {{ $order['order_id'] }}
                                 </td>
                                 <td>
-                                    {{ $order_item['product']['product_name'] ?: $order_item['product']['domain_name'] }}
+                                    {{ $order['customer']->get_fullname() }}
                                 </td>
                                 <td>
-                                    {{ $order_item['order']['customer']->get_fullname() }}
+                                    {{ $order['total_amount'] }}
                                 </td>
                                 <td>
-                                    {{ $order_item['order']['total_amount'] }}
+                                    {{ $order['created_at'] }}
                                 </td>
                                 <td>
-                                    {{ $order_item['order']['currency'] }}
+                                    @if($order['paid'])
+                                        <span class="badge badge-success">Paid</span>
+                                    @else
+                                        <span class="badge badge-warning">Not paid</span>
+                                    @endif
                                 </td>
                                 <td>
-                                    {{ $order_item['order']['created_at'] }}
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-order">
-                                        Suspend
-                                    </button>
+                                    <div class="btn-group" role="group">
+                                        <button data-order-id="{{ $order['order_id'] }}" data-order-items="{{ $order['order_items'] }}" type="button" class="btn btn-sm btn-alt-info show-order-items">
+                                            Order Items
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="dropdown">
+                                            <i class="si si-arrow-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            @if(!$order['paid'])
+                                                <a class="dropdown-item" href="javascript:void(0)"> Add payment </a>
+                                                <div class="dropdown-divider"></div>
+                                            @endif
+                                            <a class="dropdown-item" href="javascript:void(0)"> Suspend Order </a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -125,11 +136,7 @@
         <!-- END Orders -->
     </div>
 @endsection
-@section('orders_ajax')
-    <!--Products AJAX Script -->
-    <script type="text/javascript">
-        $(document).ready(function () {
 
-        });
-    </script>
+@section('modals')
+    @include('admin.partials.modals.order_items_modal')
 @endsection

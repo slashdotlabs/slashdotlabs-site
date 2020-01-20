@@ -10,6 +10,7 @@ class OrderItem extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
+    protected $appends = ['item_status'];
 
     public function order()
     {
@@ -26,7 +27,7 @@ class OrderItem extends Model
         return $this->attributes['expiry_date'] = (new Carbon($value))->toFormattedDateString();
     }
 
-    public function get_item_status()
+    public function getItemStatusAttribute()
     {
         $expiry_date = Carbon::make($this->expiry_date);
         $diff = Carbon::now()->diffInDays($expiry_date);
