@@ -1,110 +1,94 @@
-$(function() {
-	// Customer profile form
-	$('#form-profile').submit(function(e) {
-		e.preventDefault();
+$(function () {
+    // Customer profile form
+    $('#form-profile').on('submit', function (e) {
+        e.preventDefault();
+        const url = `${baseURL}/user`;
+        const formdata = {};
+        $(this).serializeArray().forEach(entry => {
+            formdata[entry.name] = entry.value;
+        });
+        const {_token, _method} = formdata;
+        const user_details = {
+          'email': formdata.email, 'first_name': formdata.first_name, 'last_name': formdata.last_name
+        };
 
-		var route = $('#form-profile').data('route');
-		var form_data = $(this);
-		$('.alert').remove();
-		$.ajax({
-			type: 'POST',
-			url: route,
-			data:form_data.serialize(),
-			success: function(Response) {
+        $.ajax({
+            type: 'post',
+            url,
+            data: { _token, _method, user_details}
+        }).then(response => {
+            if (response.msg) {
+                $('#message-success').append('<div class="alert alert-success" role="alert">' + response.msg + '</div>');
+            }
+            setTimeout(function () {
+                $('#message-success').html('');
+            }, 4000);
+        }).catch(response => {
+            const error = response['responseJSON'];
+            $('#message-danger').append(`<div class="alert alert-danger" role="alert">${error}</div>`);
+            setTimeout(function () {
+                $('#message-danger').html('');
+            }, 4000);
+        });
+    });
 
-				//console.log(Response);
-				if (Response.success) {
-					$('#message-success').append('<div class="alert alert-success" role="alert">'+Response.success+'</div>');
-				}
+    // ?Masked phone number
+    $('#form-biodata #phone-number').mask('254799999999');
 
-				setTimeout(function(){
-			        $('#message-success').html('');
-			    }, 5000);
-			},
+    // Bio data form
+    $('#form-biodata').on('submit', function (e) {
+        e.preventDefault();
+        const url = `${baseURL}/user`;
+        const formdata = {};
+        $(this).serializeArray().forEach(entry => {
+            formdata[entry.name] = entry.value;
+        });
+        const {_token, _method, organization, phone_number, address, city, country } = formdata;
+        const customer_biodata = {organization, phone_number, address, city, country};
 
-			error: response => {
-				const errors = response.responseJSON;
-				$('#message-danger').append(`<div class="alert alert-danger" role="alert">${errors.email[0]}</div>`);
+        $.ajax({
+            type: 'post',
+            url,
+            data: { _token, _method, customer_biodata}
+        }).then(response => {
+            if (response.msg) {
+                $('#bio-success').append('<p>' + response.msg + '</p>');
+            }
+            setTimeout(function () {
+                $('#bio-success').html('');
+            }, 4000);
+        }).catch(response => {
+            const error = response['responseJSON'];
+            $('#bio-danger').append(`<p>${error}</p>`);
+            setTimeout(function () {
+                $('#bio-danger').html('');
+            }, 4000);
+        });
+    });
 
-				setTimeout(function(){
-			        $('#message-danger').html('');
-			    }, 5000);
-			}
-		});
-	});
-
-
-	// Bio data form
-	$('#form-biodata').submit(function(e) {
-		e.preventDefault();
-
-		var route = $('#form-biodata').data('route');
-		var form_data = $(this);
-		$('.alert').remove();
-		$.ajax({
-			type: 'POST',
-			url: route,
-			data:form_data.serialize(),
-			success: function(Response) {
-
-				if (Response.success) {
-					$('#bio-success').append('<div class="alert alert-success" role="alert">'+Response.success+'</div>');
-				}
-
-				setTimeout(function(){
-			        $('#bio-success').html('');
-			    }, 5000);
-			},
-			error: function(Response) {
-				var i, x = "";
-				var errors = Response.responseJSON;
-				//console.log(errors);
-				for (i in errors) {
-				  	x = errors[i];
-				  	$('#bio-danger').append(`<div class="alert alert-danger" role="alert">${x}</div>`);
-				}
-				setTimeout(function(){
-			        $('#bio-danger').html('');
-			    }, 5000);
-			}
-		});
-	});
-
-
-	// Change password form
-	$('#form-change-password').submit(function(e) {
-		e.preventDefault();
-
-		var route = $('#form-change-password').data('route');
-		var form_data = $(this);
-		$('.alert').remove();
-		$.ajax({
-			type: 'POST',
-			url: route,
-			data:form_data.serialize(),
-			success: function(Response) {
-
-				if (Response.success) {
-					$('#password-success').append('<div class="alert alert-success" role="alert">'+Response.success+'</div>');
-				}
-				setTimeout(function(){
-			        $('#password-success').html('');
-			    }, 5000);
-			},
-			error: function(Response) {
-
-				var i, x = "";
-				var errors = Response.responseJSON;
-				//console.log(errors);
-				for (i in errors) {
-				  	x = errors[i];
-				  	$('#password-danger').append(`<div class="alert alert-danger" role="alert">${x}</div>`);
-				}
-				setTimeout(function(){
-			        $('#password-danger').html('');
-			    }, 5000);
-			}
-		});
-	});
-
+    // Change password form
+    $('#form-change-password').on('submit', function (e) {
+        e.preventDefault();
+        const url = `${baseURL}/user/password`;
+        const data = $(this).serializeArray();
+        $.ajax({
+            type: 'post',
+            url,
+            data
+        }).then(response => {
+            if (response.msg) {
+                $('#password-success').append('<p>' + response.msg + '</p>');
+                $("#form-change-password")[0].reset();
+            }
+            setTimeout(function () {
+                $('#password-success').html('');
+            }, 4000);
+        }).catch(response => {
+            const error = response['responseJSON'];
+            $('#password-danger').append(`<p>${error}</p>`);
+            setTimeout(function () {
+                $('#password-danger').html('');
+            }, 4000);
+        });
+    });
 });

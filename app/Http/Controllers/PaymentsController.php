@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Log;
 
 class PaymentsController extends Controller
 {
@@ -50,7 +51,7 @@ class PaymentsController extends Controller
             event(new PaymentReceived(Payment::find($payment['id'])));
 
             // redirect to cart killing sessions
-            return redirect('/destroycart');
+            return redirect('/destroycart')->with(['success' => 'Payment made successfully']);
         } catch (Exception $e) {
             return redirect('/domaincart')->withException($e);
         }
@@ -66,8 +67,7 @@ class PaymentsController extends Controller
     public function store(Request $request)
     {
         $res = $request->all();
-
-        $order = Order::with('customer')->findOrFail($res['id']);
+        $order = Order::with('customer')->where('order_id',$res['id'])->first();
         $order->update(['paid' => true]);
         $order->save();
 
@@ -84,50 +84,5 @@ class PaymentsController extends Controller
         ], $payment_details);
 
         return \response()->json(['payment' => $payment]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -11,8 +11,9 @@ class Order extends Model
     use SoftDeletes;
 
     protected $primaryKey = 'order_id';
+    public $incrementing = false;
 
-    protected $fillable = ['customer_id', 'total_amount', 'currency'];
+    protected $guarded = [];
 
     public function order_items()
     {
