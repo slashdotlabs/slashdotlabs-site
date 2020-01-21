@@ -25,8 +25,8 @@
         <p class="text-muted">
             Your account’s vital information.
             <!-- Alert Messages -->
-            <div class="alert-success" id="message-success"></div>
-            <div class="alert-danger" id="message-danger"></div>
+            <div id="message-success"></div>
+            <div id="message-danger"></div>
             <!-- End of Alert Messages -->
         </p>
         <!-- Profile Form -->
@@ -78,7 +78,7 @@
     </div>
  </div>
 <!--END User Account Settings -->
- 
+
 <!--User Password Settings -->
 <div class="block pull-r-l">
     <div class="block-header bg-body-light">
@@ -93,8 +93,8 @@
         <p class="text-muted">
             Your account password.
             <!-- Alert Messages -->
-            <div class="alert-success" id="password-success"></div>
-            <div class="alert-danger" id="password-danger"></div>
+            <div id="password-success"></div>
+            <div id="password-danger"></div>
             <!-- End of Alert Messages -->
         </p>
         <form id="form-change-password" data-route="{{ url('password/'.$user->id)}}" method="post">
@@ -160,8 +160,8 @@
         <p class="text-muted">
             This information is only used for invoicing.
             <!-- Alert Messages -->
-            <div class="alert-success" id="bio-success"></div>
-            <div class="alert-danger" id="bio-danger"></div>
+            <div id="bio-success"></div>
+            <div id="bio-danger"></div>
             <!-- End of Alert Messages -->
         </p>
             <form id="form-biodata" data-route="{{ url('bio/'.$user->id)}}" method="post">
@@ -178,7 +178,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-15">
                     <label for="side-overlay-profile-name">Address</label>
                     <div class="input-group">

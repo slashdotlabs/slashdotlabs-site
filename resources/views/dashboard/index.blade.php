@@ -30,7 +30,7 @@
             </div>
             <div class="block-content block-content-full">
                 @if(empty($customer_domains))
-                    <p>You have no registered domains</p>
+                    <p>You have no registered domains yet.</p>
                 @else
                     <table id="tb-customer-domains" class="table table-bordered table-striped table-vcenter w-100">
                         <thead class="text-uppercase text-center">
@@ -78,7 +78,7 @@
             </div>
             <div class="block-content block-content-full">
                 @if(empty($ssl_certificates))
-                    <p>You have no ssl certificates</p>
+                    <p>You have no SSL Certificates yet.</p>
                 @else
                     <table id="tb-ssl-certificates" class="table table-bordered table-striped table-vcenter">
                         <thead class="text-uppercase">
@@ -122,7 +122,7 @@
             </div>
             <div class="block-content block-content-full">
                 @if(empty($hosting_packages))
-                    <p>You have no packages</p>
+                    <p>You have no packages yet.</p>
                 @else
                     <table id="tb-hosting-packages" class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
                         <thead class="text-uppercase">

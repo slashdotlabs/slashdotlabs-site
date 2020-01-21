@@ -164,22 +164,39 @@ $(function () {
   });
   $('#btn-add-product').click(function (e) {
     e.preventDefault();
-    $(this).html('Sending..');
     var storeUrl = "".concat(baseURL, "/admin/products/");
     $.ajax({
       data: $('#add-product-form').serialize(),
       url: storeUrl,
       type: "POST",
       dataType: 'json',
-      success: function success(data) {
-        $('#productForm').trigger("reset"); //Add Notifications
-
+      success: function success(response) {
+        $('#productForm').trigger("reset");
         $('#modal-add-product').modal('hide');
         dtProducts.ajax.reload();
+
+        if (response.success) {
+          $('#success-msg').append('<div class="alert alert-success" role="alert">' + response.success + '</div>');
+        }
+
+        setTimeout(function () {
+          $('#success-msg').html('');
+        }, 5000);
       },
-      error: function error(data) {
-        console.log('Error:', data);
-        $('#saveBtn').html('Add Product');
+      error: function error(response) {
+        var i,
+            x = "";
+        var errors = response.responseJSON;
+        console.log(errors);
+
+        for (i in errors) {
+          x = errors[i];
+          $('#error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">".concat(x, "</div>"));
+        }
+
+        setTimeout(function () {
+          $('#error-msg').html('');
+        }, 5000);
       }
     });
   });
@@ -223,14 +240,35 @@ $(function () {
     $.ajax({
       url: targetURL,
       method: 'put',
-      data: {
-        'product_details': product_details
-      }
-    }).then(function (res) {
-      console.log(res);
-      dtProducts.ajax.reload(); // remove modal
+      data: product_details,
+      success: function success(Response) {
+        dtProducts.ajax.reload();
+        editProductsModal.modal('hide');
+        $('#success-msg').append('<div class="alert alert-success" role="alert">Product updated successfully. </div>');
+        setTimeout(function () {
+          $('#success-msg').html('');
+        }, 5000);
+      },
+      error: function error(Response) {
+        var i,
+            x = "";
+        var errors = Response.responseJSON;
+        console.log(errors);
 
-      editProductsModal.modal('hide');
+        for (i in errors) {
+          x = errors[i];
+          $('#update-error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">".concat(x, "</div>"));
+        }
+
+        setTimeout(function () {
+          $('#update-error-msg').html('');
+        }, 5000);
+      } // }).then(res => {
+      //     console.log(res);
+      //     dtProducts.ajax.reload();
+      //     // remove modal
+      //     editProductsModal.modal('hide');
+
     });
   });
 });
@@ -244,7 +282,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/steekam/public_html/slashdot_dashboard/resources/js/pages/admin_products.js */"./resources/js/pages/admin_products.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_products.js */"./resources/js/pages/admin_products.js");
 
 
 /***/ })

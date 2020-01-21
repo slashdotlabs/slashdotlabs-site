@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
-
+use Validator;
+use Illuminate\Validation\Rule;
 
 
 class ProductsController extends Controller
@@ -14,11 +14,7 @@ class ProductsController extends Controller
     {
         $this->middleware(['auth', 'verified']);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -43,90 +39,78 @@ class ProductsController extends Controller
         }
         return view('admin.products');
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        Product::updateOrCreate(['id' => $request->product_id],
-        ['product_name' => $request->product_name, 'product_description' => $request->product_description,
-        'product_type' => $request->product_type, 'price' => $request->product_price]);
+        //validation
+        $record = $request->all();
+        $rules =[
+            'product_name' => "required|unique:products,product_name",
+            'product_type' => "required:products,product_type",
+            'product_description' => "required:products,product_description",
+            'product_price' => "required|numeric:products,price"
+        ];
+        $messages = [
+            'product_name.required' => 'The product name is required.',
+            'product_name.unique' => 'A product with that name already exists!',
+            'product_description.required' => 'The product description is required.',
+            'product_type.required' => 'Please select a product type.',
+            'product_price.required' => 'The product price is required.',
+            'product_price.numeric' => 'Please enter a numeric value in the product price field.',
+        ];
 
-        return response()->json(['success'=>'Product saved successfully.']);
+        $validator = Validator::make($record, $rules, $messages);
+
+        //check validation
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+            $response = $validator->errors();
+        }
+        //save
+        else {
+            Product::updateOrCreate(['id' => $request->product_id],
+            ['product_name' => $request->product_name, 'product_description' => $request->product_description,
+            'product_type' => $request->product_type, 'price' => $request->product_price]);
+            $response = ['success' => 'Product saved successfully.'];
+
+        }
+        return response()->json($response);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        // TODO: validation
+        $record = $request->all();
+        $rules =[
+            'product_type' => 'required',
+            'product_description' => 'required',
+            'price' => 'required|numeric',
+            'product_name' => [ 'required', Rule::unique('products','product_name')->ignore($id)]
+        ];
+        $messages = [
+            'product_name.required' => 'The product name is required.',
+            'product_name.unique' => 'A product with that name already exists!',
+            'product_description.required' => 'The product description is required.',
+            'product_type.required' => 'Please select a product type.',
+            'price.required' => 'The product price is required.',
+            'price.numeric' => 'Please enter a numeric value in the product price field.',
+        ];
+        $validator = Validator::make($record, $rules, $messages);
 
-        $updated_record = Product::find($id)->update($request->get('product_details'));
-        return \response()->json([
-            'msg' => 'Updated product successfully',
-            'product' => $updated_record
-        ]);
+        //check validation
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+            $Response = $validator->errors();
+        }
+        //save
+        else {
+            $updated_record = Product::find($id)->update($request->only([
+                'product_type', 'product_description', 'price', 'product_name'
+            ]));
+            $Response = ['success' => 'Product updated successfully.'];
+            return \response()->json([
+                'product' => $updated_record,
+            ]);
+        }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-    /*
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'product_name' => ['required', 'string', 'max:255'],
-            'product_description' => ['required', 'string', 'max:255'],
-            'product_type' => ['required', Rule::in(['hosting','ssl_certificate','domain'])],
-            'product_price' => ['required', 'decimal', 'max:255'],
-        ]);
-    } */
 }
