@@ -9,5 +9,6 @@
     "/css/themes/pulse.css": "/css/themes/pulse.css",
     "/js/pages/admin_orders.js": "/js/pages/admin_orders.js",
     "/js/pages/admin_products.js": "/js/pages/admin_products.js",
-    "/js/pages/admin_users.js": "/js/pages/admin_users.js"
+    "/js/pages/admin_users.js": "/js/pages/admin_users.js",
+    "/js/pages/customer_dashboard.js": "/js/pages/customer_dashboard.js"
 }
