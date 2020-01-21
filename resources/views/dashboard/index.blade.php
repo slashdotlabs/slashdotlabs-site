@@ -12,9 +12,11 @@
     <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/jquery-validation/additional-methods.js') }}"></script>
     <script src="{{ asset('/js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+    <script src="{{ asset('/js/plugins/masked-inputs/jquery.maskedinput.min.js') }}"></script>
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/customer_dashboard.js') }}"></script>
+    <script src="{{ asset('js/pages/customer_forms.js') }}"></script>
 @endsection
 
 
@@ -29,7 +31,7 @@
                 <h3 class="block-title" id="domains">Registered Domains</h3>
             </div>
             <div class="block-content block-content-full">
-                @if(empty($customer_domains))
+                @if($customer_domains->isEmpty())
                     <p>You have no registered domains</p>
                 @else
                     <table id="tb-customer-domains" class="table table-bordered table-striped table-vcenter w-100">
@@ -49,7 +51,7 @@
                                 <td>{{ $domain['product']['domain_name'] }}</td>
                                 <td>{{ $domain['expiry_date'] }}</td>
                                 <td>
-                                    @switch($domain->get_item_status())
+                                    @switch($domain['item_status'])
                                         @case('active')
                                         <span class="badge badge-success">Active</span>
                                         @break
@@ -78,7 +80,7 @@
             </div>
             <div class="block-content block-content-full">
                 @if(empty($ssl_certificates))
-                    <p>You have no ssl certificates</p>
+                    <p>You have no SSL Certificates yet.</p>
                 @else
                     <table id="tb-ssl-certificates" class="table table-bordered table-striped table-vcenter">
                         <thead class="text-uppercase">
@@ -96,7 +98,7 @@
                                 <td>{{ $certificate['product']['product_name'] }}</td>
                                 <td>{{ $certificate['expiry_date'] }}</td>
                                 <td>
-                                    @switch($certificate->get_item_status())
+                                    @switch($certificate['item_status'])
                                         @case('active')
                                         <span class="badge badge-success">Active</span>
                                         @break
@@ -122,16 +124,16 @@
             </div>
             <div class="block-content block-content-full">
                 @if(empty($hosting_packages))
-                    <p>You have no packages</p>
+                    <p>You have no packages yet.</p>
                 @else
                     <table id="tb-hosting-packages" class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
                         <thead class="text-uppercase">
                         <tr>
-                            <td>order id</td>
-                            <td>package name</td>
-                            <td>package description</td>
-                            <td>Expiry Date</td>
-                            <td>Status</td>
+                            <th>order id</th>
+                            <th>package name</th>
+                            <th>package description</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -142,7 +144,7 @@
                                 <td>{{ $package['product']['product_description'] }}</td>
                                 <td>{{ $package['expiry_date'] }}</td>
                                 <td>
-                                    @switch($package->get_item_status())
+                                    @switch($package['item_status'])
                                         @case('active')
                                         <span class="badge badge-success">Active</span>
                                         @break

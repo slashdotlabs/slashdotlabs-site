@@ -10,6 +10,7 @@ use App\Orders\OrderHandler;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class DomainCartController extends Controller
 {
@@ -68,6 +69,7 @@ class DomainCartController extends Controller
 
         // Create request with order and order details
         $order_details = [
+            'order_id' => now()->getTimestamp(),
             'total_amount' => $domaincart_meta['ipaytotal'],
             'currency' => $domaincart_meta['ses_csymbol']
         ];
@@ -100,10 +102,10 @@ class DomainCartController extends Controller
         ]);
         try {
             $created_order_response = $orderHandler->store($dataToSend);
-            if ($created_order_response->status() != 200) throw $created_order_response->exception;
+            if ($created_order_response->status() != 200) throw new \Exception('Error processing request. Contact admin');
             $created_order = $created_order_response->getData(true)['order'];
 
-            event(new OrderCreated(Order::find($created_order['order_id'])));
+            event(new OrderCreated(Order::where('order_id',$created_order['order_id'])->first()));
 
             return $paymentGateway->charge([
                 'order_id' => $created_order['order_id'],
@@ -112,7 +114,8 @@ class DomainCartController extends Controller
                 'email' => $created_order['customer']['email']
             ]);
         } catch(\Exception $e) {
-           return back()->withException($e);
+            Log::debug($e);
+           return back()->withErrors($e->getMessage());
         }
     }
 

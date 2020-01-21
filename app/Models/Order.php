@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,8 +11,9 @@ class Order extends Model
     use SoftDeletes;
 
     protected $primaryKey = 'order_id';
+    public $incrementing = false;
 
-    protected $fillable = ['customer_id', 'total_amount', 'currency'];
+    protected $guarded = [];
 
     public function order_items()
     {
@@ -26,5 +28,10 @@ class Order extends Model
     public function payment()
     {
         return $this->hasOne('App\Models\Payment', 'order_id');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return $this->attributes['created_at'] = (new Carbon($value))->toFormattedDateString();
     }
 }

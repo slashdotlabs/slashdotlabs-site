@@ -14,7 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->bigIncrements('order_id');
+            $table->bigInteger('order_id');
             $table->bigInteger("customer_id");
             $table->decimal("total_amount");
             $table->string("currency");
@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
 
             $table->softDeletes();
             $table->timestamps();
+            $table->primary('order_id');
         });
     }
 

@@ -32,9 +32,9 @@
         </div>
     </div>
 </div>
-<!-- END Confirm Suspend Product Modal -->
+<!-- END Confirm Suspend Order Modal -->
 
-<!-- Confirm Restore Product Modal -->
+<!-- Confirm Restore Order Modal -->
 <div class="modal fade" id="modal-restore-order" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -65,7 +65,7 @@
         </div>
     </div>
 </div>
-<!-- END Confirm Restore Product Modal -->
+<!-- END Confirm Restore Order Modal -->
 <!-- END Order Modals -->
 
 <!-- Product Modals-->
@@ -85,6 +85,9 @@
                 </div>
             <form id="add-product-form">
                 <div class="block-content">
+                    <!-- Error Alert Message -->
+                        <div id="add-error-msg"> </div>
+                    <!-- End of Error Alert Message -->
                     <input type="hidden" name="product_id" id="product_id"> <!-- Hidden Product ID -->
                 <div class="form-group">
                     <div class="form-group">
@@ -113,7 +116,7 @@
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-alt-success" data-dismiss="modal" id="btn-add-product">Add Product</button>
+                    <button type="button" class="btn btn-alt-success" id="btn-add-product">Add Product</button>
             </div>
         </form>
         </div>
@@ -135,6 +138,9 @@
                     </div>
                 </div>
                 <div class="block-content">
+                    <!-- Error Alert Message -->
+                    <div id="update-error-msg"> </div>
+                    <!-- End of Error Alert Message -->
                 <form id="update-product-form" method="post">
                     @method('put')
                     <input type="hidden" name="product_id">
@@ -144,7 +150,7 @@
                     </div>
                     <div class="form-group">
                         <label for="product-description">Description</label>
-                        <textarea class="form-control" id="edit-product-description" name="product_description" rows="4" placeholder="Enter the new product description.."></textarea>
+                        <textarea class="form-control" id="edit-product-description" name="product_description" rows="4" placeholder="Enter the new product description.." required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="product-type">Type</label>
@@ -152,7 +158,7 @@
                             <option value="">Select a product type</option>
                             <option value="domain">Domain</option>
                             <option value="hosting">Hosting Package</option>
-                            <option value="ssl_certificate">SSL Certificates</option>
+                            <option value="ssl_certificate">SSL Certificate</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -185,18 +191,31 @@
                     </div>
                 </div>
                 <div class="block-content">
-                    <div class="form-group">
-                        <div class="font-w600"> Are you sure you want to suspend this product? </div>
-                        <br/>
+                    <!-- Error Alert Message -->
+                    <div id="suspend-error-msg"> </div>
+                    <!-- End of Error Alert Message -->
+                    <form id="suspend-product-form" method="post">
+                        @method('put')
+                        <input type="hidden" name="product_id">
+                        <div class="form-group">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <div class="form-material form-material">
+                                        <input type="text" class="form-control form-control-sm" id="suspend-product-name" name="material-input-size-sm" disabled>
+                                        <label for="material-input-size-sm">Product Name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="font-w600"> Are you sure you want to suspend this product? </div>
+                        </div>
                         <div class="alert alert-info" role="alert">
                             <i class="fa fa-info" aria-hidden="true"></i>
                             &ensp;This product will be hidden from your users but it will still be available in the database.
-                         </div>
-                    </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal" data-toggle="modal" data-target="#modal-restore-product" >Suspend</button>
+                    <button type="button" class="btn btn-alt-dark" id="btn-suspend-product" >Suspend</button>
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
             </div>
         </div>

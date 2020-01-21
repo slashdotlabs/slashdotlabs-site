@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Slash Dot Labs</title>
-        
+
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -24,7 +24,10 @@
         @yield('css_after')
 
         <!-- Scripts -->
-        <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
+        <script>
+            window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};
+            const baseURL = "{{ url('/') }}";
+        </script>
     </head>
     <body>
         <div id="page-container" class="enable-page-overlay sidebar-inverse side-scroll page-header-fixed page-header-inverse main-content-boxed">

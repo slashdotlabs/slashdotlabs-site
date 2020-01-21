@@ -28,6 +28,7 @@ mix
     .js('resources/js/pages/admin_products.js', 'public/js/pages/admin_products.js')
     .js('resources/js/pages/admin_orders.js', 'public/js/pages/admin_orders.js')
     .js('resources/js/pages/admin_users.js', 'public/js/pages/admin_users.js')
+    .js('resources/js/pages/customer_dashboard.js', 'public/js/pages/customer_dashboard.js')
 
 
     /* Tools */

@@ -11,6 +11,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use Exception;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use function response;
 
 class OrderHandler
@@ -70,7 +71,8 @@ class OrderHandler
 
             return response()->json(['order' => $order->load('customer', 'customer.customer_biodata')]);
         } catch (Exception $e) {
-            return response()->withException($e);
+            Log::debug($e);
+            return response()->json($e, 422);
         }
     }
 }

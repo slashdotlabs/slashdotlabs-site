@@ -1,87 +1,87 @@
 /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
+/******/  // The module cache
+/******/  var installedModules = {};
 /******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
+/******/  // The require function
+/******/  function __webpack_require__(moduleId) {
 /******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
+/******/    // Check if module is in cache
+/******/    if(installedModules[moduleId]) {
+/******/      return installedModules[moduleId].exports;
+/******/    }
+/******/    // Create a new module (and put it into the cache)
+/******/    var module = installedModules[moduleId] = {
+/******/      i: moduleId,
+/******/      l: false,
+/******/      exports: {}
+/******/    };
 /******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/    // Execute the module function
+/******/    modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
+/******/    // Flag the module as loaded
+/******/    module.l = true;
 /******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/    // Return the exports of the module
+/******/    return module.exports;
+/******/  }
 /******/
 /******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/  // expose the modules object (__webpack_modules__)
+/******/  __webpack_require__.m = modules;
+/******/
+/******/  // expose the module cache
+/******/  __webpack_require__.c = installedModules;
+/******/
+/******/  // define getter function for harmony exports
+/******/  __webpack_require__.d = function(exports, name, getter) {
+/******/    if(!__webpack_require__.o(exports, name)) {
+/******/      Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/    }
+/******/  };
+/******/
+/******/  // define __esModule on exports
+/******/  __webpack_require__.r = function(exports) {
+/******/    if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/      Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/    }
+/******/    Object.defineProperty(exports, '__esModule', { value: true });
+/******/  };
+/******/
+/******/  // create a fake namespace object
+/******/  // mode & 1: value is a module id, require it
+/******/  // mode & 2: merge all properties of value into the ns
+/******/  // mode & 4: return value when already ns object
+/******/  // mode & 8|1: behave like require
+/******/  __webpack_require__.t = function(value, mode) {
+/******/    if(mode & 1) value = __webpack_require__(value);
+/******/    if(mode & 8) return value;
+/******/    if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/    var ns = Object.create(null);
+/******/    __webpack_require__.r(ns);
+/******/    Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/    if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/    return ns;
+/******/  };
+/******/
+/******/  // getDefaultExport function for compatibility with non-harmony modules
+/******/  __webpack_require__.n = function(module) {
+/******/    var getter = module && module.__esModule ?
+/******/      function getDefault() { return module['default']; } :
+/******/      function getModuleExports() { return module; };
+/******/    __webpack_require__.d(getter, 'a', getter);
+/******/    return getter;
+/******/  };
+/******/
+/******/  // Object.prototype.hasOwnProperty.call
+/******/  __webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/  // __webpack_public_path__
+/******/  __webpack_require__.p = "/";
+/******/
+/******/
+/******/  // Load entry module and return exports
+/******/  return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -128,6 +128,9 @@ $(function () {
       data: 'price',
       name: 'price'
     }, {
+      data: 'suspended',
+      name: 'suspended'
+    }, {
       data: 'action',
       name: 'action'
     }],
@@ -138,22 +141,34 @@ $(function () {
       targets: [0, 4],
       "class": 'text-right'
     }, {
-      targets: 5,
+      targets: [5, 6],
       "class": 'text-center'
     }, {
-      targets: 0,
-      width: "13%"
-    }, {
-      targets: 4,
-      width: "13%"
-    }, {
-      targets: 5,
-      width: "18%"
-    }, {
-      targets: 5,
+      targets: 6,
       orderable: false
     }, {
-      targets: 0
+      targets: 5,
+      render: function render(data, type, row) {
+        return data == '1' ? "<span class=\"badge badge-warning\">Suspended</span>" : "<span class=\"badge badge-success\">Active</span>";
+      } //render buttons based on suspended value edit/suspend and edit/restore **pass row id **
+      //   return data +' ('+ row[3]+')';
+      //         '<div class="btn-group">
+      //       <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
+      //            Edit
+      //        </button>
+      //      &emsp;
+      //  <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
+      //          Suspend
+      //      </button>
+      //      </div>';
+      // },
+      // {targets: 6, render : function (data, type, row) {
+      //     return data == '1' ? `<span class="badge badge-warning">Suspended</span>`
+      //     :
+      //     `<span class="badge badge-success">Active</span>`
+      //   }
+      //
+
     }]
   });
   $('#createNewProduct').click(function () {
@@ -164,22 +179,39 @@ $(function () {
   });
   $('#btn-add-product').click(function (e) {
     e.preventDefault();
-    $(this).html('Sending..');
     var storeUrl = "".concat(baseURL, "/admin/products/");
     $.ajax({
       data: $('#add-product-form').serialize(),
       url: storeUrl,
       type: "POST",
       dataType: 'json',
-      success: function success(data) {
-        $('#productForm').trigger("reset"); //Add Notifications
-
+      success: function success(response) {
+        $('#productForm').trigger("reset");
         $('#modal-add-product').modal('hide');
         dtProducts.ajax.reload();
+
+        if (response.success) {
+          $('#success-msg').append('<div class="alert alert-success" role="alert">' + response.success + '</div>');
+        }
+
+        setTimeout(function () {
+          $('#success-msg').html('');
+        }, 5000);
       },
-      error: function error(data) {
-        console.log('Error:', data);
-        $('#saveBtn').html('Add Product');
+      error: function error(response) {
+        var i,
+            x = "";
+        var errors = response.responseJSON;
+        console.log(errors);
+
+        for (i in errors) {
+          x = errors[i];
+          $('#error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">".concat(x, "</div>"));
+        }
+
+        setTimeout(function () {
+          $('#error-msg').html('');
+        }, 5000);
       }
     });
   });
@@ -223,14 +255,88 @@ $(function () {
     $.ajax({
       url: targetURL,
       method: 'put',
-      data: {
-        'product_details': product_details
-      }
-    }).then(function (res) {
-      console.log(res);
-      dtProducts.ajax.reload(); // remove modal
+      data: product_details,
+      success: function success(Response) {
+        dtProducts.ajax.reload();
+        editProductsModal.modal('hide');
+        $('#success-msg').append('<div class="alert alert-success" role="alert">Product updated successfully.</div>');
+        setTimeout(function () {
+          $('#success-msg').html('');
+        }, 5000);
+      },
+      error: function error(Response) {
+        var i,
+            x = "";
+        var errors = Response.responseJSON;
+        console.log(errors);
 
-      editProductsModal.modal('hide');
+        for (i in errors) {
+          x = errors[i];
+          $('#update-error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">".concat(x, "</div>"));
+        }
+
+        setTimeout(function () {
+          $('#update-error-msg').html('');
+        }, 5000);
+      } // }).then(res => {
+      //     console.log(res);
+      //     dtProducts.ajax.reload();
+      //     // remove modal
+      //     editProductsModal.modal('hide');
+
+    });
+  }); //Suspend product. Fetch product to modal.
+
+  var suspendProductModal = $('#modal-suspend-product');
+  var suspendProductForm = $('#suspend-product-form');
+  tbProducts.on('click', '.suspend-product', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var rowData = dtProducts.row(_this.closest('tr')).data();
+    suspendProductForm.find('[name=product_id]').val(rowData['id']);
+    suspendProductForm.find('#suspend-product-name').val(rowData['product_name']);
+    suspendProductModal.modal('show');
+  }); //Suspend Product
+
+  $('#btn-suspend-product').on('click', function (event) {
+    return suspendProductForm.trigger('submit');
+  });
+  suspendProductForm.on('submit', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var productId = _this.find('input[name=product_id]').val();
+
+    var targetURL = "".concat(baseURL, "/admin/products/suspend/").concat(productId);
+    var product_info = {};
+
+    _this.serializeArray().filter(function (field) {
+      return !['product_id', '_method'].includes(field.name);
+    }).forEach(function (field) {
+      product_info[field.name] = field.value;
+    });
+
+    $.ajax({
+      url: targetURL,
+      method: 'put',
+      data: product_info,
+      success: function success(resp) {
+        dtProducts.ajax.reload();
+        suspendProductModal.modal('hide');
+        $('#success-msg').append('<div class="alert alert-success" role="alert">Product has been suspended.</div>');
+        setTimeout(function () {
+          $('#success-msg').html('');
+        }, 5000);
+      },
+      error: function error(resp) {
+        $('#suspend-error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">An error occurred. Please try again</div>");
+        setTimeout(function () {
+          $('#suspend-error-msg').html('');
+        }, 5000);
+      }
     });
   });
 });
@@ -244,7 +350,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\SLASHDOT_Labs\resources\js\pages\admin_products.js */"./resources/js/pages/admin_products.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_products.js */"./resources/js/pages/admin_products.js");
 
 
 /***/ })

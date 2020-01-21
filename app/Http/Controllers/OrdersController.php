@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
@@ -20,7 +21,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $order_items = OrderItem::with(['order', 'order.customer', 'product'])->get();
-        return view('admin.orders', ['order_items' => $order_items]);
+        $orders = Order::with(['customer', 'order_items', 'order_items.product'])->get();
+        return view('admin.orders', ['orders' => $orders]);
     }
 }

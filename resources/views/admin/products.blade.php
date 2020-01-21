@@ -14,6 +14,18 @@
     <script src="{{ asset('js/pages/admin_products.js') }}"></script>
 @endsection
 
+<!-- Error Handling -->
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+<!-- Error Handling -->
+
 @section('content')
     <!-- Hero -->
     <div class="bg-image" style="background-image: url('../media/photos/products.jpg');">
@@ -123,8 +135,12 @@
         <div class="content-heading">
             Products
         </div>
+
         <div class="block block-rounded">
             <div class="block-content">
+                <!-- Success Alert Message -->
+                    <div id="success-msg"></div>
+                <!-- End of Success Alert Messages -->
                 <!-- Products Table -->
                 <table id="tb-products" class="table table-sm table-bordered table-striped table-vcenter" >
                     <thead class="text-uppercase">
@@ -134,6 +150,7 @@
                             <th>Type</th>
                             <th>Description</th>
                             <th>Price (KES) </th>
+                            <th>Status </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
