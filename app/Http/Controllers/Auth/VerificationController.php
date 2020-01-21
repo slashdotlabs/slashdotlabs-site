@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Auth;
 
 class VerificationController extends Controller
 {
@@ -41,7 +42,7 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('verify');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
@@ -61,5 +62,35 @@ class VerificationController extends Controller
         $request->user()->sendEmailVerificationNotification();
 
         return back()->with('resend_sent', "A verification email has been resent to you :)");
+    }
+
+    /**
+     * Mark the authenticated user's email address as verified.
+     *
+     * @param Request $request
+     * @return RedirectResponse|Redirector
+     *
+     * @throws AuthorizationException
+     */
+    public function verify(Request $request)
+    {
+        $user = User::findOrfail($request->route('id'));
+        if (!hash_equals((string)$request->route('id'), (string)$user->getKey())) {
+            throw new AuthorizationException;
+        }
+
+        if (!hash_equals((string)$request->route('hash'), sha1($user->getEmailForVerification()))) {
+            throw new AuthorizationException;
+        }
+
+        if ($user->hasVerifiedEmail()) {
+            return redirect($this->redirectPath());
+        }
+
+        if ($user->markEmailAsVerified()) {
+            event(new Verified($user));
+        }
+
+        return redirect($this->redirectPath())->with('verified', true);
     }
 }

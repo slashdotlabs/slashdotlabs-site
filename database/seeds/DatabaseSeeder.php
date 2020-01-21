@@ -11,11 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call([
-             ProductsSeeder::class,
-             UsersSeeder::class,
-             OrdersSeeder::class,
-             UsersSeeder::class,
-         ]);
+        if (config('app.env') === 'local') {
+            $this->call([
+                ProductsSeeder::class,
+                UsersSeeder::class,
+                OrdersSeeder::class,
+                UsersSeeder::class,
+            ]);
+        } else {
+            $this->call([
+                ProductsSeeder::class,
+            ]);
+        }
     }
 }

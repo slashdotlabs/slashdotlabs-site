@@ -12,9 +12,11 @@
     <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/jquery-validation/additional-methods.js') }}"></script>
     <script src="{{ asset('/js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+    <script src="{{ asset('/js/plugins/masked-inputs/jquery.maskedinput.min.js') }}"></script>
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/customer_dashboard.js') }}"></script>
+    <script src="{{ asset('js/pages/customer_forms.js') }}"></script>
 @endsection
 
 
@@ -29,7 +31,7 @@
                 <h3 class="block-title" id="domains">Registered Domains</h3>
             </div>
             <div class="block-content block-content-full">
-                @if(empty($customer_domains))
+                @if($customer_domains->isEmpty())
                     <p>You have no registered domains</p>
                 @else
                     <table id="tb-customer-domains" class="table table-bordered table-striped table-vcenter w-100">

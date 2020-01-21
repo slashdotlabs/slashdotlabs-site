@@ -18,17 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
 // Customer update routes
-Route::patch('/user/{id}', 'DashboardController@update')->name('user.update');
-Route::patch('/password/{id}', 'DashboardController@changePassword')->name('user.changepassword');
-Route::patch('/bio/{id}', 'DashboardController@changeBio')->name('user.changeinfo');
+Route::patch('/user', 'UsersController@update')->name('user.update');
+Route::patch('/user/password', 'UsersController@changePassword')->name('user.changepassword');
 
 Route::redirect('/home', wordpress_url('/'));
 
-
-
 // Authentication routes
 Auth::routes(['verify' => true]);
-
 
 // DomainCart routes
 Route::get('/domaincart', 'DomainCartController@index')->name('domaincart');
