@@ -150,6 +150,7 @@
                             <th>Type</th>
                             <th>Description</th>
                             <th>Price (KES) </th>
+                            <th>Status </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
