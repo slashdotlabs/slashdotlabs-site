@@ -128,6 +128,9 @@ $(function () {
       data: 'price',
       name: 'price'
     }, {
+      data: 'suspended',
+      name: 'suspended'
+    }, {
       data: 'action',
       name: 'action'
     }],
@@ -138,22 +141,34 @@ $(function () {
       targets: [0, 4],
       "class": 'text-right'
     }, {
-      targets: 5,
+      targets: [5, 6],
       "class": 'text-center'
     }, {
-      targets: 0,
-      width: "13%"
-    }, {
-      targets: 4,
-      width: "13%"
-    }, {
-      targets: 5,
-      width: "18%"
-    }, {
-      targets: 5,
+      targets: 6,
       orderable: false
     }, {
-      targets: 0
+      targets: 5,
+      render: function render(data, type, row) {
+        return data == '1' ? "<span class=\"badge badge-warning\">Suspended</span>" : "<span class=\"badge badge-success\">Active</span>";
+      } //render buttons based on suspended value edit/suspend and edit/restore **pass row id **
+      //   return data +' ('+ row[3]+')';
+      //         '<div class="btn-group">
+      //       <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
+      //            Edit
+      //        </button>
+      //      &emsp;
+      //  <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
+      //          Suspend
+      //      </button>
+      //      </div>';
+      // },
+      // {targets: 6, render : function (data, type, row) {
+      //     return data == '1' ? `<span class="badge badge-warning">Suspended</span>`
+      //     :
+      //     `<span class="badge badge-success">Active</span>`
+      //   }
+      //
+
     }]
   });
   $('#createNewProduct').click(function () {
@@ -244,7 +259,7 @@ $(function () {
       success: function success(Response) {
         dtProducts.ajax.reload();
         editProductsModal.modal('hide');
-        $('#success-msg').append('<div class="alert alert-success" role="alert">Product updated successfully. </div>');
+        $('#success-msg').append('<div class="alert alert-success" role="alert">Product updated successfully.</div>');
         setTimeout(function () {
           $('#success-msg').html('');
         }, 5000);
@@ -269,6 +284,59 @@ $(function () {
       //     // remove modal
       //     editProductsModal.modal('hide');
 
+    });
+  }); //Suspend product. Fetch product to modal.
+
+  var suspendProductModal = $('#modal-suspend-product');
+  var suspendProductForm = $('#suspend-product-form');
+  tbProducts.on('click', '.suspend-product', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var rowData = dtProducts.row(_this.closest('tr')).data();
+    suspendProductForm.find('[name=product_id]').val(rowData['id']);
+    suspendProductForm.find('#suspend-product-name').val(rowData['product_name']);
+    suspendProductModal.modal('show');
+  }); //Suspend Product
+
+  $('#btn-suspend-product').on('click', function (event) {
+    return suspendProductForm.trigger('submit');
+  });
+  suspendProductForm.on('submit', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var productId = _this.find('input[name=product_id]').val();
+
+    var targetURL = "".concat(baseURL, "/admin/products/suspend/").concat(productId);
+    var product_info = {};
+
+    _this.serializeArray().filter(function (field) {
+      return !['product_id', '_method'].includes(field.name);
+    }).forEach(function (field) {
+      product_info[field.name] = field.value;
+    });
+
+    $.ajax({
+      url: targetURL,
+      method: 'put',
+      data: product_info,
+      success: function success(resp) {
+        dtProducts.ajax.reload();
+        suspendProductModal.modal('hide');
+        $('#success-msg').append('<div class="alert alert-success" role="alert">Product has been suspended.</div>');
+        setTimeout(function () {
+          $('#success-msg').html('');
+        }, 5000);
+      },
+      error: function error(resp) {
+        $('#suspend-error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">An error occurred. Please try again</div>");
+        setTimeout(function () {
+          $('#suspend-error-msg').html('');
+        }, 5000);
+      }
     });
   });
 });

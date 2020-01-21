@@ -24,8 +24,6 @@ Route::patch('/bio/{id}', 'DashboardController@changeBio')->name('user.changeinf
 
 Route::redirect('/home', wordpress_url('/'));
 
-
-
 // Authentication routes
 Auth::routes(['verify' => true]);
 
@@ -51,13 +49,13 @@ Route::view('/admin/dashboard', 'admin.dashboard');
 
 //Admin Products Resource Route
 Route::resource('admin/products', 'ProductsController');
+Route::put('admin/products/suspend/{id}', 'ProductsController@suspend')->name('products.suspend');
 
 //Admin Orders Resource Route
 Route::resource('admin/orders', 'OrdersController');
 
 //Admin Users Resource Route
 Route::resource('admin/users', 'UsersController');
-
 
 //Nameserver resource
 Route::resource('nameservers', 'NameserversController')->only('store');

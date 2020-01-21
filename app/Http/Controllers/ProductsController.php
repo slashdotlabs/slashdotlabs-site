@@ -27,8 +27,8 @@ class ProductsController extends Controller
                                 <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
                                      Edit
                                  </button>
-                                &emsp;&emsp;
-                                <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
+                                &emsp;
+                                <button type="button" class="btn btn-sm btn-outline-dark suspend-product" data-id="'.$row->id.'" >
                                     Suspend
                                 </button>
                             </div>';
@@ -112,5 +112,16 @@ class ProductsController extends Controller
                 'product' => $updated_record,
             ]);
         }
+    }
+
+    public function suspend($id){
+
+        $suspended_record = Product::find($id)
+                            ->update(['suspended' => 1]);
+        $resp = ['success' => 'Product suspended successfully.'];
+        return \response()->json([
+            'product' => $suspended_record,
+            'Product suspended successfully' => $resp
+        ]);
     }
 }
