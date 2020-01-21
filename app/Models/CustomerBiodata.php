@@ -8,8 +8,6 @@ class CustomerBiodata extends Model
 {
     protected $guarded = [];
 
-    protected $fillable = ['phone_number', 'address', 'city', 'country', 'organization'];
-    
     protected $table = 'customer_biodata';
 
     public function customer()

@@ -102,7 +102,7 @@ class DomainCartController extends Controller
         ]);
         try {
             $created_order_response = $orderHandler->store($dataToSend);
-            if ($created_order_response->status() != 200) throw $created_order_response->exception;
+            if ($created_order_response->status() != 200) throw new \Exception('Error processing request. Contact admin');
             $created_order = $created_order_response->getData(true)['order'];
 
             event(new OrderCreated(Order::where('order_id',$created_order['order_id'])->first()));
