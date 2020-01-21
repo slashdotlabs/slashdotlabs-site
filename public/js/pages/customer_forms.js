@@ -18,14 +18,14 @@ $(function () {
             data: { _token, _method, user_details}
         }).then(response => {
             if (response.msg) {
-                $('#message-success').append('<p>' + response.msg + '</p>');
+                $('#message-success').append('<div class="alert alert-success" role="alert">' + response.msg + '</div>');
             }
             setTimeout(function () {
                 $('#message-success').html('');
             }, 4000);
         }).catch(response => {
             const error = response['responseJSON'];
-            $('#message-danger').append(`<p>${error}</p>`);
+            $('#message-danger').append(`<div class="alert alert-danger" role="alert">${error}</div>`);
             setTimeout(function () {
                 $('#message-danger').html('');
             }, 4000);

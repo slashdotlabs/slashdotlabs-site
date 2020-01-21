@@ -23,8 +23,8 @@
     <div class="block-content">
         <p class="text-muted"> Your account’s vital information.</p>
         <!-- Alert Messages -->
-        <div class="alert-success" id="message-success"></div>
-        <div class="alert-danger" id="message-danger"></div>
+        <div id="message-success"></div>
+        <div id="message-danger"></div>
         <!-- End of Alert Messages -->
         <!-- Profile Form -->
         <form id="form-profile" method="post">
@@ -74,7 +74,6 @@
         </form>
     </div>
 </div><!--END User Account Settings -->
-
 <!--User Password Settings -->
 <div class="block pull-r-l">
     <div class="block-header bg-body-light">
@@ -88,8 +87,8 @@
         <p class="text-muted">
             Your account password.
             <!-- Alert Messages -->
-        <div class="alert-success" id="password-success"></div>
-        <div class="alert-danger" id="password-danger"></div>
+        <div id="password-success"></div>
+        <div id="password-danger"></div>
         <!-- End of Alert Messages --></p>
         <form id="form-change-password" method="post">
             <div class="form-group mb-15">
@@ -151,8 +150,8 @@
     <div class="block-content">
         <p class="text-muted">This information is only used for invoicing. </p>
         <!-- Alert Messages -->
-        <div class="alert-success" id="bio-success"></div>
-        <div class="alert-danger" id="bio-danger"></div>
+        <div id="bio-success"></div>
+        <div id="bio-danger"></div>
 
         <form id="form-biodata" method="post">
             @csrf

@@ -49,27 +49,35 @@ $(() => {
 
     $('#btn-add-product').click(function (e) {
         e.preventDefault();
-        $(this).html('Sending..');
-
         var storeUrl = `${baseURL}/admin/products/`;
-
         $.ajax({
         data: $('#add-product-form').serialize(),
         url: storeUrl,
         type: "POST",
         dataType: 'json',
-        success: function (data) {
-
+        success: function (response) {
             $('#productForm').trigger("reset");
-            //Add Notifications
             $('#modal-add-product').modal('hide');
             dtProducts.ajax.reload();
-
+            if (response.success) {
+                $('#success-msg').append('<div class="alert alert-success" role="alert">'+response.success+'</div>');
+            }
+            setTimeout(function(){
+                $('#success-msg').html('');
+            }, 5000);
         },
-        error: function (data) {
-            console.log('Error:', data);
-            $('#saveBtn').html('Add Product');
-        }
+        error: function (response) {
+                var i, x = "";
+				var errors = response.responseJSON;
+				console.log(errors);
+				for (i in errors) {
+                    x = errors[i];
+				  	$('#error-msg').append(`<div class="alert alert-danger" role="alert">${x}</div>`);
+				}
+				setTimeout(function(){
+			        $('#error-msg').html('');
+			    }, 5000);
+			}
     });
     });
 
@@ -107,14 +115,32 @@ $(() => {
         $.ajax({
             url: targetURL,
             method: 'put',
-            data: {
-                'product_details': product_details,
-            }
-        }).then(res => {
-            console.log(res);
-            dtProducts.ajax.reload();
-            // remove modal
-            editProductsModal.modal('hide');
+            data: product_details,
+            success: Response => {
+                dtProducts.ajax.reload();
+                editProductsModal.modal('hide');
+                $('#success-msg').append('<div class="alert alert-success" role="alert">Product updated successfully.</div>');
+                setTimeout(function(){
+                    $('#success-msg').html('');
+                }, 5000);
+            },
+            error: Response => {
+                var i, x = "";
+				var errors = Response.responseJSON;
+				console.log(errors);
+				for (i in errors) {
+                    x = errors[i];
+				  	$('#update-error-msg').append(`<div class="alert alert-danger" role="alert">${x}</div>`);
+				}
+				setTimeout(function(){
+			        $('#update-error-msg').html('');
+			    }, 5000);
+			}
+                // }).then(res => {
+        //     console.log(res);
+        //     dtProducts.ajax.reload();
+        //     // remove modal
+        //     editProductsModal.modal('hide');
         })
     });
 });

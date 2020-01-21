@@ -80,7 +80,7 @@
             </div>
             <div class="block-content block-content-full">
                 @if(empty($ssl_certificates))
-                    <p>You have no ssl certificates</p>
+                    <p>You have no SSL Certificates yet.</p>
                 @else
                     <table id="tb-ssl-certificates" class="table table-bordered table-striped table-vcenter">
                         <thead class="text-uppercase">
@@ -124,7 +124,7 @@
             </div>
             <div class="block-content block-content-full">
                 @if(empty($hosting_packages))
-                    <p>You have no packages</p>
+                    <p>You have no packages yet.</p>
                 @else
                     <table id="tb-hosting-packages" class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
                         <thead class="text-uppercase">
