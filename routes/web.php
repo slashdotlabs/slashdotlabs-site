@@ -33,7 +33,7 @@ Route::get('/domaincart/order_checkout', 'DomainCartController@order_checkout')-
 Route::get('/destroycart', function(){
     session_start();
     session_destroy();
-    return redirect('/domaincart');
+    return redirect('/domaincart')->with('success', session('sucess'));
 });
 
 //Payment routes

@@ -53,7 +53,7 @@
                             <div class="bg-body-dark block-content">
                                 <div class="form-group text-center">
                                     Already remember your password?
-                                    <a class="link-effect mr-10 mb-5 d-inline-block" href="{{ url('register') }}">
+                                    <a class="link-effect mr-10 mb-5 d-inline-block" href="{{ url('login') }}">
                                         <i class="si si-login mr-5"></i> Login instead
                                     </a>
                                 </div>

@@ -41,7 +41,7 @@ class DashboardController extends Controller
                 'user' => Auth::user()->load('customer_biodata'),
                 "customer_domains" => $domains_order_items,
                 'hosting_packages' => $product_order_items->get('hosting'),
-                'ssl_certificates' => $product_order_items->get('hosting'),
+                'ssl_certificates' => $product_order_items->get('ssl_certificates'),
             ]);
     }
 }
