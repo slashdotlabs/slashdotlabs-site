@@ -150,33 +150,18 @@ $(function () {
       targets: 5,
       render: function render(data, type, row) {
         return data == '1' ? "<span class=\"badge badge-warning\">Suspended</span>" : "<span class=\"badge badge-success\">Active</span>";
-      } //TODO: render buttons based on suspended value edit/suspend and edit/restore **pass row id **
-      //   return data +' ('+ row[3]+')';
-      //         '<div class="btn-group">
-      //       <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
-      //            Edit
-      //        </button>
-      //      &emsp;
-      //  <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
-      //          Suspend
-      //      </button>
-      //      </div>';
-      // },
-      // {targets: 6, render : function (data, type, row) {
-      //     return data == '1' ? `<span class="badge badge-warning">Suspended</span>`
-      //     :
-      //     `<span class="badge badge-success">Active</span>`
-      //   }
-      //
+      } //TODO: render buttons based on suspended value edit/suspend and edit/restore - remove from controller
 
     }]
-  });
+  }); //Show Add Product Modal
+
   $('#createNewProduct').click(function () {
     $('#btn-add-product').val("create-product");
     $('#product_id').val('');
     $('#add-product-form').trigger("reset");
     $('#modal-add-product').modal('show');
-  });
+  }); //Add Product
+
   $('#btn-add-product').click(function (e) {
     e.preventDefault();
     var storeUrl = "".concat(baseURL, "/admin/products/");
@@ -206,11 +191,11 @@ $(function () {
 
         for (i in errors) {
           x = errors[i];
-          $('#error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">".concat(x, "</div>"));
+          $('#add-error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">".concat(x, "</div>"));
         }
 
         setTimeout(function () {
-          $('#error-msg').html('');
+          $('#add-error-msg').html('');
         }, 5000);
       }
     });
@@ -278,7 +263,8 @@ $(function () {
         setTimeout(function () {
           $('#update-error-msg').html('');
         }, 5000);
-      } // }).then(res => {
+      } // response to ajax function without error handling
+      // }).then(res => {
       //     console.log(res);
       //     dtProducts.ajax.reload();
       //     // remove modal
@@ -403,7 +389,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\SLASHDOT_Labs\resources\js\pages\admin_products.js */"./resources/js/pages/admin_products.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_products.js */"./resources/js/pages/admin_products.js");
 
 
 /***/ })
