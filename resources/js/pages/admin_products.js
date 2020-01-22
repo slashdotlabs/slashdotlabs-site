@@ -214,6 +214,59 @@ $(() => {
             }
         });
     });
+
+    //Fetch product to restore modal.
+    const restoreProductModal = $('#modal-restore-product');
+    const restoreProductForm = $('#restore-product-form');
+
+    tbProducts.on('click','.restore-product',event =>{
+        event.preventDefault();
+        const _this = $(event.target);
+        const rowData = dtProducts.row(_this.closest('tr')).data();
+
+        restoreProductForm.find('[name=product_id]').val(rowData['id']);
+        restoreProductForm.find('#restore-product-name').val(rowData['product_name']);
+
+        restoreProductModal.modal('show');
+
+    });
+
+    //Restore Product
+    $('#btn-restore-product').on('click',event => restoreProductForm.trigger('submit') );
+    restoreProductForm.on('submit',event => {
+        event.preventDefault();
+        const _this = $(event.target);
+        const productId = _this.find('input[name=product_id]').val();
+        const targetURL = `${baseURL}/admin/products/restore/${productId}`;
+        const product_record = {};
+        _this.serializeArray().filter(field => !['product_id','_method'].includes(field.name))
+        .forEach(field => {
+            product_record[field.name] = field.value;
+        });
+
+        $.ajax({
+            url: targetURL,
+            method: 'put',
+            data: product_record,
+            success: resp => {
+                dtProducts.ajax.reload();
+                restoreProductModal.modal('hide');
+                $('#success-msg').append('<div class="alert alert-success" role="alert">Product has been restored successfully.</div>');
+                    setTimeout(function(){
+                        $('#success-msg').html('');
+                    }, 5000);
+
+            },
+            error: resp => {
+				  	$('#restore-error-msg').append(`<div class="alert alert-danger" role="alert">An error occurred. Please try again</div>`);
+				    setTimeout(function(){
+			            $('#restore-error-msg').html('');
+			        }, 5000);
+            }
+        });
+    });
+
 });
+
 
 

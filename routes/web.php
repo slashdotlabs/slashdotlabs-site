@@ -45,9 +45,10 @@ Route::resource('orders', 'OrdersController')->only(['index']);
 //Admin Dashboard Route
 Route::get('/admin/dashboard', 'AdminDashboardController@index');
 
-//Admin Products Resource Route
+//Admin Products Resource Routes + Suspend and Restore
 Route::resource('admin/products', 'ProductsController');
 Route::put('admin/products/suspend/{id}', 'ProductsController@suspend')->name('products.suspend');
+Route::put('admin/products/restore/{id}', 'ProductsController@restore')->name('products.restore');
 
 //Admin Orders Resource Route
 Route::resource('admin/orders', 'OrdersController');

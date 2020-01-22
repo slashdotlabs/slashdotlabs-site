@@ -165,3 +165,6 @@
     </div>
 @endsection
 
+@section('modals')
+    @include('admin.partials.modals.restore_product_modal')
+@endsection
