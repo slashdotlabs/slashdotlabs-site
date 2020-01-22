@@ -1,5 +1,14 @@
 @extends('layouts.master_admin')
 
+@section('js_after')
+    <!-- Page JS Plugins -->
+    <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('/js/plugins/jquery-validation/additional-methods.js') }}"></script>
+
+    <!-- Page JS Code -->
+    <script src="{{ asset('js/pages/admin_settings.js') }}"></script>
+@endsection
+
 @section('content')
     <!-- Hero -->
     <div class="bg-image" style="background-image: url('../media/photos/animals.jpg');">

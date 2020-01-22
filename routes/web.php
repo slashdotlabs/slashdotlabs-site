@@ -44,6 +44,8 @@ Route::resource('orders', 'OrdersController')->only(['index']);
 
 //Admin Dashboard Route
 Route::get('/admin/dashboard', 'AdminDashboardController@index');
+Route::patch('/admin/user', 'UsersController@update')->name('admin.update');
+Route::patch('/admin/password', 'UsersController@changePassword')->name('admin.changepassword');
 
 //Admin Products Resource Routes + Suspend and Restore
 Route::resource('admin/products', 'ProductsController');
