@@ -40,6 +40,87 @@
     <!-- END Breadcrumb -->
     <!-- Page Content -->
     <div class="content">
+        <!-- Overview -->
+        <h2 class="content-heading">Overview</h2>
+        <div class="row gutters-tiny">
+            <!-- All Customers -->
+            <div class="col-md-6 col-xl-3">
+                <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
+                    <div class="block-content block-content-full block-sticky-options">
+                        <div class="block-options">
+                            <div class="block-options-item">
+                                <i class="fa fa-users fa-2x text-info-light"></i>
+                            </div>
+                        </div>
+                        <div class="py-20 text-center">
+                            <div class="font-size-h2 font-w700 mb-0 text-info" data-toggle="countTo" data-to="{{ $customers->count() }}">0</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Customers</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- END Customers -->
+
+            <!-- Employees -->
+            <div class="col-md-6 col-xl-3">
+                <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
+                    <div class="block-content block-content-full block-sticky-options">
+                        <div class="block-options">
+                            <div class="block-options-item">
+                                <i class="fa fa-user fa-2x text-danger-light"></i>
+                            </div>
+                        </div>
+                        <div class="py-20 text-center">
+                            <div class="font-size-h2 font-w700 mb-0 text-warning" data-toggle="countTo" data-to="{{ $employees->count() }}">0</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Employees</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- END Employees -->
+
+            <!-- Admins -->
+            <div class="col-md-6 col-xl-3">
+                <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
+                    <div class="block-content block-content-full block-sticky-options">
+                        <div class="block-options">
+                            <div class="block-options-item">
+                                <i class="fa fa-building fa-2x text-warning-light"></i>
+                            </div>
+                        </div>
+                        <div class="py-20 text-center">
+                            <div class="font-size-h2 font-w700 mb-0 text-danger" data-toggle="countTo" data-to="{{ $admins->count() }}">0</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Admins</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- END Admins -->
+
+            <!-- Add User -->
+            <div class="col-md-6 col-xl-3">
+                <a class="block block-rounded block-link-shadow" id="createNewProduct">
+                    <div class="block-content block-content-full block-sticky-options">
+                        <div class="block-options">
+                            <div class="block-options-item">
+                                <i class="fa fa-archive fa-2x text-success-light"></i>
+                            </div>
+                        </div>
+                        <div class="py-20 text-center">
+                            <div class="font-size-h2 font-w700 mb-0 text-success">
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">New User</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- END Add User -->
+        </div>
+        <!-- END Overview -->
+
+
+
         <!-- Users Table -->
         <h2 class="content-heading">Users</h2>
         <div class="block block-rounded">

@@ -56,7 +56,17 @@ class UsersController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('admin.users');
+
+        $customers = User::where('user_type', 'customer');
+        $admins = User::where('user_type', 'admin');
+        $employees = User::where('user_type', 'employee');
+
+        return view('admin.users',
+            [
+                'customers' => $customers,
+                'admins' => $admins,
+                'employees' => $employees,
+        ]);
     }
 
     /**
