@@ -43,7 +43,7 @@ Route::get('/payment/process', 'PaymentsController@create');
 Route::resource('orders', 'OrdersController')->only(['index']);
 
 //Admin Dashboard Route
-Route::view('/admin/dashboard', 'admin.dashboard');
+Route::get('/admin/dashboard', 'AdminDashboardController@index');
 
 //Admin Products Resource Route
 Route::resource('admin/products', 'ProductsController');
@@ -54,6 +54,9 @@ Route::resource('admin/orders', 'OrdersController');
 
 //Admin Users Resource Route
 Route::resource('admin/users', 'UsersController');
+Route::put('admin/users/suspend/{id}', 'UsersController@suspend')->name('users.suspend');
+Route::put('admin/users/restore/{id}', 'UsersController@restore')->name('users.restore');
+
 
 //Nameserver resource
 Route::resource('nameservers', 'NameserversController')->only('store');

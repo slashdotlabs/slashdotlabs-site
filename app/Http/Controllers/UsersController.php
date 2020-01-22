@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CustomerBiodata;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,10 +25,38 @@ class UsersController extends Controller
      *
      * @return Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('admin.users', ['users' => $users]);
+        // $users = User::all();
+        // return view('admin.users', ['users' => $users]);
+        if ($request->ajax()) {
+            $data = User::latest()->get();
+            return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        if ($row->suspended == 0) {
+
+                            $buttons =
+                           '<div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-dark suspend-user" data-id="'.$row->id.'" >
+                                    Suspend
+                                </button>
+                            </div>';
+                            return $buttons;
+                        } else {
+                            $buttons = 
+                            '<div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-primary restore-user" data-id="'.$row->id.'" >
+                                    Restore
+                                </button>
+                            </div>';
+                            return $buttons;
+                        }
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('admin.users');
     }
 
     /**
@@ -121,5 +150,27 @@ class UsersController extends Controller
             'current_password' => 'required',
             'new_password' => 'required|confirmed|min:8',
         ], $messages);
+    }
+
+     public function suspend($id){
+
+        $suspended_record = User::find($id)
+                            ->update(['suspended' => 1]);
+        $resp = ['success' => 'User suspended successfully.'];
+        return \response()->json([
+            'user' => $suspended_record,
+            'User suspended successfully' => $resp
+        ]);
+    }
+
+     public function restore($id){
+
+        $restored_record = User::find($id)
+                            ->update(['suspended' => 0]);
+        $response = ['success' => 'User restored successfully.'];
+        return \response()->json([
+            'user' => $restored_record,
+            'User restored successfully' => $response
+        ]);
     }
 }
