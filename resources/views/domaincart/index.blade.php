@@ -2,7 +2,7 @@
 
 @extends('layouts.master_dashboard')
 @section("css_before")
-    <link href="{{ asset("css/cwhoisstyles.css")  }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset("css/domaincart.css")  }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
                         <i class="si si-close"></i> Empty Cart </a>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content whois-content">
                 @if(session('errors'))
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

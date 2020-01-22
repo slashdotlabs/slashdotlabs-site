@@ -24,7 +24,7 @@ Route::patch('/user/password', 'UsersController@changePassword')->name('user.cha
 Route::redirect('/home', wordpress_url('/'));
 
 // Authentication routes
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 // DomainCart routes
 Route::get('/domaincart', 'DomainCartController@index')->name('domaincart');

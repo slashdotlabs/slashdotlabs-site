@@ -150,7 +150,7 @@ $(function () {
       targets: 5,
       render: function render(data, type, row) {
         return data == '1' ? "<span class=\"badge badge-warning\">Suspended</span>" : "<span class=\"badge badge-success\">Active</span>";
-      } //render buttons based on suspended value edit/suspend and edit/restore **pass row id **
+      } //TODO: render buttons based on suspended value edit/suspend and edit/restore **pass row id **
       //   return data +' ('+ row[3]+')';
       //         '<div class="btn-group">
       //       <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
@@ -285,7 +285,7 @@ $(function () {
       //     editProductsModal.modal('hide');
 
     });
-  }); //Suspend product. Fetch product to modal.
+  }); //Fetch product to suspend modal.
 
   var suspendProductModal = $('#modal-suspend-product');
   var suspendProductForm = $('#suspend-product-form');
@@ -350,7 +350,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_products.js */"./resources/js/pages/admin_products.js");
+module.exports = __webpack_require__(/*! /home/steekam/public_html/slashdot_dashboard/resources/js/pages/admin_products.js */"./resources/js/pages/admin_products.js");
 
 
 /***/ })
