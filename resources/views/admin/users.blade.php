@@ -40,15 +40,16 @@
     <!-- END Breadcrumb -->
     <!-- Page Content -->
     <div class="content">
-
         <!-- Users Table -->
         <h2 class="content-heading">Users</h2>
         <div class="block block-rounded">
+            
             <div class="block-content">
-                @if(empty($users))
-                    <p>No users are available in the database.</p>
-                @else
-                <table id="tb-users" class="table table-sm table-bordered table-striped table-vcenter">
+                <!-- Success Alert Message -->
+                    <div id="success-msg"></div>
+                <!-- End of Success Alert Messages -->
+                <!-- Products Table -->
+                <table id="tb-users" class="table table-sm table-bordered table-striped table-vcenter" >
                     <thead class="text-uppercase">
                         <tr>
                             <th>User ID</th>
@@ -56,51 +57,19 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>User Type</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $user)
-                        <tr>
-                            <td>
-                                {{ $user['id'] }}
-                            </td>
-                            <td>
-                                {{ $user['first_name'] }}
-                            </td>
-                            <td>
-                               {{ $user['last_name'] }}
-                            </td>
-                            <td>
-                                {{ $user['email']}}
-                            </td>
-                            <td>
-                                {{ $user['user_type']}}
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-user" >
-                                        Suspend
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
                     </tbody>
                 </table>
-                @endif
+
+            <!-- END Products Table -->
             </div>
         </div>
-        <!-- END Users Table -->
     </div>
 @endsection
 
-@section('users_ajax')
-<!--Products AJAX Script -->
-<script type="text/javascript">
-    $(document).ready(function(){
 
-    });
-    </script>
-@endsection
 

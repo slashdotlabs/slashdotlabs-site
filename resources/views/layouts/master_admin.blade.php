@@ -80,6 +80,6 @@
 @include('admin.partials.modals')
 
 </body>
-@yield('users_ajax')
+
 @yield('orders_ajax')
 </html>
