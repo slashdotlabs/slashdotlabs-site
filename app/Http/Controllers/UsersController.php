@@ -44,9 +44,9 @@ class UsersController extends Controller
                             </div>';
                             return $buttons;
                         } else {
-                            $buttons = 
+                            $buttons =
                             '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-primary restore-user" data-id="'.$row->id.'" >
+                                <button type="button" class="btn btn-sm btn-outline-dark restore-user" data-id="'.$row->id.'" >
                                     Restore
                                 </button>
                             </div>';

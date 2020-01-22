@@ -38,28 +38,12 @@ $(() => {
                 return data == '1' ? `<span class="badge badge-warning">Suspended</span>` :
                 `<span class="badge badge-success">Active</span>`
             },
-                //TODO: render buttons based on suspended value edit/suspend and edit/restore **pass row id **
-            //   return data +' ('+ row[3]+')';
-            //         '<div class="btn-group">
-            //       <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
-            //            Edit
-            //        </button>
-            //      &emsp;
-            //  <button type="button" class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#modal-suspend-product" >
-            //          Suspend
-            //      </button>
-            //      </div>';
-            // },
-            // {targets: 6, render : function (data, type, row) {
-            //     return data == '1' ? `<span class="badge badge-warning">Suspended</span>`
-            //     :
-            //     `<span class="badge badge-success">Active</span>`
-            //   }
-            //
+            //TODO: render buttons based on suspended value edit/suspend and edit/restore - remove from controller
+
         },
         ]
     });
-
+    //Show Add Product Modal
     $('#createNewProduct').click(function () {
         $('#btn-add-product').val("create-product");
         $('#product_id').val('');
@@ -67,6 +51,7 @@ $(() => {
         $('#modal-add-product').modal('show');
     });
 
+    //Add Product
     $('#btn-add-product').click(function (e) {
         e.preventDefault();
         var storeUrl = `${baseURL}/admin/products/`;
@@ -92,10 +77,10 @@ $(() => {
 				console.log(errors);
 				for (i in errors) {
                     x = errors[i];
-				  	$('#error-msg').append(`<div class="alert alert-danger" role="alert">${x}</div>`);
+				  	$('#add-error-msg').append(`<div class="alert alert-danger" role="alert">${x}</div>`);
 				}
 				setTimeout(function(){
-			        $('#error-msg').html('');
+			        $('#add-error-msg').html('');
 			    }, 5000);
 			}
     });
@@ -156,7 +141,8 @@ $(() => {
 			        $('#update-error-msg').html('');
 			    }, 5000);
 			}
-                // }).then(res => {
+        // response to ajax function without error handling
+        // }).then(res => {
         //     console.log(res);
         //     dtProducts.ajax.reload();
         //     // remove modal

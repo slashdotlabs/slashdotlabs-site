@@ -27,7 +27,6 @@
 
 <!-- Scripts -->
     <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
-
 </head>
 <body>
 <div id="page-container" class="sidebar-o sidebar-inverse enable-page-overlay side-scroll page-header-glass page-header-inverse main-content-boxed">
@@ -48,7 +47,6 @@
     @include('admin.partials.overlay')
 
     <!-- Toasts -->
-
 
     <!-- Main Container -->
     <main id="main-container">
@@ -77,9 +75,5 @@
 
 @yield('js_after')
 
-@include('admin.partials.modals')
-
 </body>
-
-@yield('orders_ajax')
 </html>

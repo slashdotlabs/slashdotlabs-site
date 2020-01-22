@@ -43,7 +43,7 @@
         <!-- Users Table -->
         <h2 class="content-heading">Users</h2>
         <div class="block block-rounded">
-            
+
             <div class="block-content">
                 <!-- Success Alert Message -->
                     <div id="success-msg"></div>
@@ -70,6 +70,9 @@
         </div>
     </div>
 @endsection
-
+@section('modals')
+    @include('admin.partials.modals.suspend_user_modal')
+    @include('admin.partials.modals.restore_user_modal')
+@endsection
 
 

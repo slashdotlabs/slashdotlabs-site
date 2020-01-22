@@ -166,5 +166,9 @@
 @endsection
 
 @section('modals')
+    @include('admin.partials.modals.add_product_modal')
+    @include('admin.partials.modals.edit_product_modal')
+    @include('admin.partials.modals.suspend_product_modal')
     @include('admin.partials.modals.restore_product_modal')
 @endsection
+

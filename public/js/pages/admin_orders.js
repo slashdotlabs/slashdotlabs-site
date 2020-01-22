@@ -182,7 +182,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\SLASHDOT_Labs\resources\js\pages\admin_orders.js */"./resources/js/pages/admin_orders.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_orders.js */"./resources/js/pages/admin_orders.js");
 
 
 /***/ })
