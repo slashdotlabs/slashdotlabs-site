@@ -1,63 +1,60 @@
-  <!-- Overview -->
-  <h2 class="h4 font-w300">Overview</h2>
-  <div class="row">
-      <div class="col-md-6 col-xl-3">
-          <a class="block block-link-shadow" href="#domains">
-              <div class="block-content block-content-full text-center">
-                  <div class="p-20 mb-5">
-                      <i class="fa fa-3x fa-globe text-primary"></i>
-                  </div>
-                  <p class="font-size-lg font-w600 mb-0">
+<!-- Overview -->
+<h2 class="h4 font-w300">Overview</h2>
+<div class="row">
 
-                  </p>
-                  <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                      Active Domains <!-- TODO: count of domain records -->
-                </p>
-              </div>
-          </a>
-      </div>
-      <div class="col-md-6 col-xl-3">
-          <a class="block block-link-shadow" href="#certificate">
-              <div class="block-content block-content-full text-center">
-                  <div class="p-20 mb-5">
-                      <i class="fa fa-3x fa-certificate text-warning"></i>
-                  </div>
-                  <p class="font-size-lg font-w600 mb-0">
-                  </p>
-                  <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                      SSL Certificates <!-- TODO: count of ssl certificates -->
-                  </p>
-              </div>
-          </a>
-      </div>
-      <div class="col-md-6 col-xl-3">
-        <a class="block block-link-shadow" href="#packages" >
-            <div class="block-content block-content-full text-center">
-                <div class="p-20 mb-5">
-                    <i class="fa fa-3x fa-diamond text-pulse"></i>
-                </div>
-                <p class="font-size-lg font-w600 mb-0">
-
-                </p>
-                <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                    Hosting Packages    <!-- TODO: count of hosting packages -->
-                </p>
+  <!-- Active Domains Overview -->
+  <div class="col-md-6 col-xl-4">
+    <a class="block block-rounded block-transparent bg-gd-elegance" href="#domains">
+      <div class="block-content block-content-full block-sticky-options">
+        <div class="block-options">
+            <div class="block-options-item">
+              <i class="fa fa-2x fa-globe text-white-op"></i>
             </div>
-        </a>
-    </div>
-    <div class="col-md-6 col-xl-3">
-        <a class="block block-link-shadow"  href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
-            <div class="block-content block-content-full text-center">
-                <div class="p-20 mb-5">
-                    <i class="fa fa-3x fa-user text-success"></i>
-                </div>
-                <p class="font-size-lg font-w600 mb-0">
-                </p>
-                <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                    User Profile
-                </p>
-            </div>
-        </a>
-    </div>
+        </div>
+        <div class="py-20 text-center">
+          <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="">0</div>
+          <div class="font-size-sm font-w600 text-uppercase text-white-op">Active Domains</div>
+        </div>
+      </div>
+    </a>
   </div>
-  <!-- END Overview -->
+  <!-- End Active Domains Overview -->
+
+<!-- SSL Certificates Overview -->
+  <div class="col-md-6 col-xl-4">
+    <a class="block block-rounded block-transparent bg-gd-dusk" href="#certificate">
+      <div class="block-content block-content-full block-sticky-options">
+        <div class="block-options">
+          <div class="block-options-item">
+            <i class="fa fa-2x fa-certificate text-white-op"></i>
+          </div>
+        </div>
+        <div class="py-20 text-center">
+          <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="">0</div>
+          <div class="font-size-sm font-w600 text-uppercase text-white-op">SSL Certificates</div>
+        </div>
+      </div>
+    </a>
+  </div>
+<!-- End Overview -->
+
+<!-- Hosting Packages Overview -->
+  <div class="col-md-6 col-xl-4">
+    <a class="block block-rounded block-transparent bg-gd-sea" href="#packages">
+      <div class="block-content block-content-full block-sticky-options">
+        <div class="block-options">
+          <div class="block-options-item">
+            <i class="fa fa-2x fa-diamond text-white-op"></i>
+          </div>
+          </div>
+          <div class="py-20 text-center">
+            <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="">0</div>
+            <div class="font-size-sm font-w600 text-uppercase text-white-op">Hosting Packages</div>
+        </div>
+      </div>
+    </a>
+  </div>
+<!-- End Hosting Packages Overview -->
+
+</div>
+<!-- END Overview -->
