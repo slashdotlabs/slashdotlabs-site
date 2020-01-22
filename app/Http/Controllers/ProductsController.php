@@ -53,7 +53,16 @@ class ProductsController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('admin.products');
+        $domains = Product::where('product_type', 'domain');
+        $hosting = Product::where('product_type', 'hosting');
+        $ssl_certificates = Product::where('product_type', 'ssl_certificate');
+
+        return view('admin.products',
+         [
+            'domains' => $domains,
+            'hosting' => $hosting,
+            'ssl_certificates' => $ssl_certificates,
+        ]);
     }
 
     public function store(Request $request)
