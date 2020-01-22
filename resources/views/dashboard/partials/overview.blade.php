@@ -44,7 +44,7 @@
       <div class="block-content block-content-full block-sticky-options">
         <div class="block-options">
           <div class="block-options-item">
-            <i class="fa fa-2x fa-diamond text-white-op">gi</i>
+            <i class="fa fa-2x fa-diamond text-white-op"></i>
           </div>
           </div>
           <div class="py-20 text-center">
