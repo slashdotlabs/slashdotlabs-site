@@ -1,4 +1,3 @@
-<!-- TODO: Change Button Names on Suspend and Restore -->
 
 <!-- Order Modals -->
 <!-- Confirm Suspend Order Modal -->
@@ -222,40 +221,6 @@
     </div>
 </div>
 <!-- END Confirm Suspend Product Modal -->
-
-<!-- Confirm Restore Product Modal -->
-<div class="modal fade" id="modal-restore-product" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="block block-themed block-transparent mb-0">
-                <div class="block-header bg-primary-dark">
-                    <h3 class="block-title">Restore Product</h3>
-                    <div class="block-options">
-                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                            <i class="si si-close"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="block-content">
-                <div class="form-group">
-                    <div class="font-w600"> Are you sure you want to restore this product? </div>
-                    <br/>
-                    <div class="alert alert-info" role="alert">
-                        <i class="fa fa-info" aria-hidden="true"></i>
-                        &nbsp;This product will now be available to your users.
-                     </div>
-                </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-alt-dark" data-dismiss="modal">Restore</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END Confirm Restore Product Modal -->
-
 <!-- END Product Modals -->
 
 <!-- User Modals -->

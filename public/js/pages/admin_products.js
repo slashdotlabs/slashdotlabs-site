@@ -150,7 +150,7 @@ $(function () {
       targets: 5,
       render: function render(data, type, row) {
         return data == '1' ? "<span class=\"badge badge-warning\">Suspended</span>" : "<span class=\"badge badge-success\">Active</span>";
-      } //render buttons based on suspended value edit/suspend and edit/restore **pass row id **
+      } //TODO: render buttons based on suspended value edit/suspend and edit/restore **pass row id **
       //   return data +' ('+ row[3]+')';
       //         '<div class="btn-group">
       //       <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
@@ -285,7 +285,7 @@ $(function () {
       //     editProductsModal.modal('hide');
 
     });
-  }); //Suspend product. Fetch product to modal.
+  }); //Fetch product to suspend modal.
 
   var suspendProductModal = $('#modal-suspend-product');
   var suspendProductForm = $('#suspend-product-form');
@@ -335,6 +335,59 @@ $(function () {
         $('#suspend-error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">An error occurred. Please try again</div>");
         setTimeout(function () {
           $('#suspend-error-msg').html('');
+        }, 5000);
+      }
+    });
+  }); //Fetch product to restore modal.
+
+  var restoreProductModal = $('#modal-restore-product');
+  var restoreProductForm = $('#restore-product-form');
+  tbProducts.on('click', '.restore-product', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var rowData = dtProducts.row(_this.closest('tr')).data();
+    restoreProductForm.find('[name=product_id]').val(rowData['id']);
+    restoreProductForm.find('#restore-product-name').val(rowData['product_name']);
+    restoreProductModal.modal('show');
+  }); //Restore Product
+
+  $('#btn-restore-product').on('click', function (event) {
+    return restoreProductForm.trigger('submit');
+  });
+  restoreProductForm.on('submit', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var productId = _this.find('input[name=product_id]').val();
+
+    var targetURL = "".concat(baseURL, "/admin/products/restore/").concat(productId);
+    var product_record = {};
+
+    _this.serializeArray().filter(function (field) {
+      return !['product_id', '_method'].includes(field.name);
+    }).forEach(function (field) {
+      product_record[field.name] = field.value;
+    });
+
+    $.ajax({
+      url: targetURL,
+      method: 'put',
+      data: product_record,
+      success: function success(resp) {
+        dtProducts.ajax.reload();
+        restoreProductModal.modal('hide');
+        $('#success-msg').append('<div class="alert alert-success" role="alert">Product has been restored successfully.</div>');
+        setTimeout(function () {
+          $('#success-msg').html('');
+        }, 5000);
+      },
+      error: function error(resp) {
+        $('#restore-error-msg').append("<div class=\"alert alert-danger\" role=\"alert\">An error occurred. Please try again</div>");
+        setTimeout(function () {
+          $('#restore-error-msg').html('');
         }, 5000);
       }
     });
