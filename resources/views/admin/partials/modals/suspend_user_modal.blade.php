@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="font-w600"> Are you sure you want to suspend this User? </div>
+                            <div class="font-w600"> Are you sure you want to suspend this user? </div>
                         </div>
                         <div class="alert alert-info" role="alert">
                             <i class="fa fa-info" aria-hidden="true"></i>

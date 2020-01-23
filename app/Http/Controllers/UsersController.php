@@ -69,6 +69,54 @@ class UsersController extends Controller
         ]);
     }
 
+    //Admin add users
+
+    public function store(Request $request)
+    {
+        //validation
+        $record = $request->all();
+        $rules =[
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'user_type' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+
+        ];
+        $messages = [
+            'first_name.required' => 'The first name is required.',
+            'last_name.required' => 'The last name is required.',
+            'user_type.required' => 'The user type is required.',
+            'email.required' => 'The email address is required.',
+            'email.email' => 'Please enter the email address in the correct format.',
+            'password.required' => 'Please enter the user password.',
+            'password.min:8' => 'The minimum password length is 8 characters.',
+        ];
+
+        $validator = Validator::make($record, $rules, $messages);
+
+        //check validation
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+            $response = $validator->errors();
+        }
+        //save
+        else {
+            //hash password
+            $hashed_password = Hash::make($request['password']);
+
+            User::updateOrCreate(['id' => $request->user_id],
+            ['first_name' => $request->first_name, 'last_name' => $request->last_name,
+            'email' => $request->email, 'user_type' => $request->user_type, 'password' => $hashed_password]);
+            $response = ['success' => 'User added successfully.'];
+
+        }
+        return response()->json($response);
+
+        //TODO: send verififcation email with credentials
+
+    }
+
     /**
      * Update user data
      *
