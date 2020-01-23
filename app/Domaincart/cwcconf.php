@@ -86,7 +86,7 @@ $vendoremail="info@slashdotlabs.com";               // Your email to receive ord
 $vendoremail2="accounts@ipayafrica.com";                                // Optional second admin email address
 $vendorcompany="Slash Dot Labs Ltd.";
 $columns=3;                                      // Number of columns in domain extensions table
-global $csymbol, $csymbol;
+global $csymbol, $csymbol,$decimalplaces;
 $csymbol="KES "; 		                               // Symbol to use for currency. Displayed before amount.
 $csymbol2="";                                    // Currency symbol to display after amount (leave as "" if not required)
 $decimalplaces=2;																 // Most currencies have 2 but some like Yen have 0.

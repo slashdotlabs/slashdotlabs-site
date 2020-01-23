@@ -34,7 +34,7 @@
                     <a href="{{ wordpress_url('/contact') }}" class="text-uppercase"><i class=""></i>Contact</a>
                 </li>
                 <li>
-                    <a href="{{ url('/domaincart') }}" class="text-uppercase"><i class="si si-basket mr-5"></i>Domain Shop</a>
+                    <a href="{{ url('/domaincart') }}" class="text-uppercase"><i class="si si-basket mr-5"></i>Shop</a>
                 </li>
             </ul>
             <!-- END Header Navigation -->

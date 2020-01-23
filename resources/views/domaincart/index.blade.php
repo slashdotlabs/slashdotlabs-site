@@ -24,13 +24,12 @@
     <div class="content">
         <div class="block block-themed">
             <div class="block-header">
-                <h3 class="block-title">Domain Cart</h3>
-                <div class="block-options">
+                <div class="block-options w-100 d-flex justify-content-end">
                     <a href="{{ url('destroycart') }}" type="button" class="btn btn-sm btn-alt-primary ">
                         <i class="si si-close"></i> Empty Cart </a>
                 </div>
             </div>
-            <div class="block-content whois-content">
+            <div class="block-content bg-body-light">
                 @if(session('errors'))
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -40,8 +39,6 @@
                     </div>
                 @endif
                 <?php include(app_path("Domaincart/cwhoiscart.php")); ?>
-
-
             </div>
         </div>
         @if($cwaction=='checkout'|| $cwaction=='addout')
@@ -103,7 +100,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-sm-12 d-flex align-items-end">
-                                    <button type="submit" class="btn btn-alt-primary">Proceed to Payment</button>
+                                    <button type="submit" class="btn btn-brand-orange text-uppercase">Proceed to Payment</button>
                                 </div>
                             </div>
                         </form>
