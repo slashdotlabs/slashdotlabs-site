@@ -69,6 +69,7 @@ $(() => {
             $('#modal-add-user').modal('hide');
             dtUsers.ajax.reload();
             if (response.success) {
+                console.log(response.success);
                 $('#success-msg').append('<div class="alert alert-success" role="alert">'+response.success+'</div>');
             }
             setTimeout(function(){

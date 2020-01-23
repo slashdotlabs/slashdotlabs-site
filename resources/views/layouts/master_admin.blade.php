@@ -76,7 +76,5 @@
 <!-- Sweetalert -->
 @include('sweetalert::alert')
 
-@include('admin.partials.modals')
-
 </body>
 </html>
