@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomerDomain;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
@@ -36,9 +37,12 @@ class DashboardController extends Controller
             $domain_order_item->product->load('nameservers');
         })->values();
 
+       // dd($order_items);
+
         return view('dashboard.index',
             [
                 'user' => Auth::user()->load('customer_biodata'),
+                'registered_domains' => Auth::user()->customer_domains,
                 "customer_domains" => $domains_order_items,
                 'hosting_packages' => $product_order_items->get('hosting'),
                 'ssl_certificates' => $product_order_items->get('ssl_certificates'),
