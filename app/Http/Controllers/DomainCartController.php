@@ -57,9 +57,6 @@ class DomainCartController extends Controller
         $domaincart = collect($_SESSION);
         // cart item entry keys: removed, domain, hostdesc, hostsetup, hostprice, hostrecurr, regtype, regperiod, regprice
 
-        // contact form values TODO: remove
-        $domaincart_contact = $domaincart->get('contact_form_values');
-
         // meta data of cart
         $domaincart_meta = $domaincart->only(['ses_csymbol', 'ses_csymbol2', 'numberofitems', 'numberremoved', 'ipaytotal']);
 
@@ -105,7 +102,7 @@ class DomainCartController extends Controller
             'order_details' => $order_details,
             'domain_order_items' => $domain_order_items,
             'hosting_order_items' => $hosting_order_items,
-            'contact_details' => $domaincart_contact
+            'contact_details' => $request->except('_token')
         ]);
         try {
             $created_order_response = $orderHandler->store($dataToSend);
@@ -148,9 +145,16 @@ class DomainCartController extends Controller
 
     private function validate_contact_form($data)
     {
-        dd($data);
-        $rules = [];
-        $messages = [];
-        Validator::make($data, $rules, $messages);
+        $rules = [
+            'organization' => 'required',
+            'phone_number' => 'required|regex:/(2547)[0-9]{8}/',
+            'address' => 'required',
+            'city' => 'required',
+            'country' => 'required'
+        ];
+        $messages = [
+            'phone_number.regex' => 'Enter a valid phone number'
+        ];
+        Validator::make($data, $rules, $messages)->validate();
     }
 }

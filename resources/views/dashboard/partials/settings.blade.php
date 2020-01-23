@@ -1,16 +1,9 @@
+@php
+    if(empty($user)) {
+        $user = Auth::user()->load('customer_biodata');
+    }
+@endphp
 <!-- User Settings -->
-<!-- Handle form errors -->
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-<!-- End of error Handling -->
-
 <!--User Account Settings -->
 <div class="block pull-r-l">
     <div class="block-header bg-body-light">
@@ -73,8 +66,7 @@
             </div>
         </form>
     </div>
-</div><!--END User Account Settings -->
-<!--User Password Settings -->
+</div><!--END User Account Settings --><!--User Password Settings -->
 <div class="block pull-r-l">
     <div class="block-header bg-body-light">
         <h3 class="block-title">
@@ -142,7 +134,7 @@
 <div class="block pull-r-l">
     <div class="block-header bg-body-light">
         <h3 class="block-title">
-            <i class="fa fa-fw fa-credit-card-alt font-size-default mr-5"></i>Billing Information </h3>
+            <i class="fa fa-fw fa-credit-card-alt font-size-default mr-5"></i>Contact Information </h3>
         <div class="block-options">
             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
         </div>

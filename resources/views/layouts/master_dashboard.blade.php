@@ -63,5 +63,6 @@
         @include('sweetalert::alert')
 
         @yield('js_after')
+        <script src="{{ asset('js/pages/customer_forms.js') }}"></script>
     </body>
 </html>
