@@ -3,7 +3,7 @@
 
 // Search section
 global $lang;
-$lang['CheckButton'] = "Check";
+$lang['CheckButton'] = "Check availability";
 // The next two tip lines can be left blank "" if you wish
 $lang['TipLine1'] = "Type your domain name. If no extension is selected, .com is assumed";
 $lang['TipLine2'] = "Tip: For hosting only type domain name & any extension.";

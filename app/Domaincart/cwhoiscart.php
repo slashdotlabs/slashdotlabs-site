@@ -1294,7 +1294,7 @@ if (($cwaction=="check") || ($cwaction=="remove") || ($cwaction=="add")  || (($c
 	print("<form name=\"searchform\" method=\"get\" OnSubmit=\"return CheckIt(this);\">\n");
 	print("<table class=\"table table-borderless cwhoissearch\">\n");
 	print("<tr>\n");
-	print("<td  class=\"cwhoissearch\"><small class=\"cwhoissearch\">\n");
+	print("<td  class=\"cwhoissearch\"><small class=\"cwhoissearch font-size-md \">\n");
   $showsearchturing=false;
   if ($SearchTuring)
   {
@@ -1326,13 +1326,13 @@ if (($cwaction=="check") || ($cwaction=="remove") || ($cwaction=="add")  || (($c
 	print("</small></td>\n");
 	print("</tr>\n");
 	print("<tr>\n");
-	print("<td  class=\"cwhoissearch\">\n");
+	print("<td  class=\"cwhoissearch d-flex\">\n");
 	print("<input type=\"hidden\" name=\"cwaction\" value=\"\">");
 	if ($dropdownsearch==true)
 	{
 	  $hidecheckboxes=true;
-	  print("<input type=\"text\" name=\"domain\" value=\"$domain\"size=\"30\" class=\"cwhoissearch\">&nbsp;\n");
-    print ("<select name=\"dropdownext\" class=\"cwhoissearch\">\n");
+	  print("<input type=\"text\" name=\"domain\" value=\"$domain\" style='flex:2;' class=\"cwhoissearch form-control form-control-lg  \">&nbsp;\n");
+    print ("<select name=\"dropdownext\"  class=\"cwhoissearch form-control w-25 form-control-lg  \">\n");
     for ($k=1;$k<=$numdomreg;$k++)
     {
       $dt=strtok($register[$k-1],",");
@@ -1349,11 +1349,11 @@ if (($cwaction=="check") || ($cwaction=="remove") || ($cwaction=="add")  || (($c
       print (">All</option>\n");
 	  }
     print ("</select>&nbsp\n");
-	  print("<input type=\"submit\" name=\"Check\" value=\"".$lang['CheckButton']."\" class=\"cwhois cwhoissearch\">\n");
+	  print("<input type=\"submit\" name=\"Check\" value=\"".$lang['CheckButton']."\" class=\"cwhois cwhoissearch btn btn-lg btn-brand-orange text-uppercase font-size-sm\">\n");
 	}
 	else
 	{
-	  print("<input type=\"text\" name=\"domain\" value=\"$domain$domainext\"size=\"30\" class=\"cwhois cwhoissearch\">&nbsp;&nbsp;<input type=\"submit\" name=\"Check\" value=\"".$lang['CheckButton']."\" class=\"cwhoissearch\">\n");
+	  print("<input type=\"text\" name=\"domain\" value=\"$domain$domainext\" class=\"cwhois cwhoissearch\">&nbsp;&nbsp;<input type=\"submit\" name=\"Check\" value=\"".$lang['CheckButton']."\" class=\"cwhoissearch\">\n");
 	}
 	print("</td>\n");
 	print("</tr>\n");
@@ -1453,38 +1453,40 @@ if ($cwaction=="check")
 	if ($spacetohyphen==true)
 		$domain=str_replace(" ","-",$domain);
 	print("<div class=\"cwhoisresults\"> <form method=\"get\">\n");
-	print("<table class=\"table table-borderless cwhoisresults\" >\n");
+	print("<table class=\"table table-striped table-bordered table-responsive-md cwhoisresults\" >\n");
 	print "<input class=\"form-control cwhoisresults\" name=\"cwaction\" type=\"hidden\" value=\"\">\n";
 	print "<input class=\"form-control cwhoisresults\" name=\"page\" type=\"hidden\" value=\"\">\n";
 	// Column headings
-	print("<tr>\n");
-	print("<td   class=\"cwhoisresults\">\n");
+    print("<thead class='text-uppercase'>\n");
+    print("<tr>\n");
+	print("<th   class=\"cwhoisresults\">\n");
 	print("<b class=\"cwhoisresults\">".$lang['Domain']."</b>");
-	print("</td>\n");
+	print("</th>\n");
 
-	print("<td   class=\"cwhoisresults\">\n");
+	print("<th   class=\"cwhoisresults\">\n");
 	print("<b class=\"cwhoisresults\">".$lang['Available']."</b>");
-	print("</td>\n");
+	print("</th>\n");
 
-	print("<td   class=\"cwhoisresults\">\n");
+	print("<th nowrap   class=\"cwhoisresults\">\n");
 	print("<b class=\"cwhoisresults\">".$lang['DomainOpt']."</b>");
-	print("</td>\n");
+	print("</th>\n");
 
   if ($NarrowCart!=true)
   {
-  	print("<td   class=\"cwhoisresults\">\n");
+  	print("<th   class=\"cwhoisresults\">\n");
   	if ($numhost>0)
   		print("<b class=\"cwhoisresults\">".$lang['HostingOpt']."</b>");
   	else
   		print("&nbsp;");
-  	print("</td>\n");
+  	print("</th>\n");
   }
 
 
-	print("<td   class=\"cwhoisresults\">\n");
+	print("<th   class=\"cwhoisresults\">\n");
 	print("<b class=\"cwhoisresults\">".$lang['Buy']."</b>");
-	print("</td>\n");
-	print("</tr>\n");
+	print("</th>\n");
+    print("</tr>\n");
+    print("</thead>\n");
 	// If user entered domain extension then just deal with that one domain.
 	// If not then we should deal with each domain checkbox that is set
 	if ($domainext!="")
@@ -1544,11 +1546,14 @@ if ($cwaction=="check")
     $max=$row;
 	}
 	print("<tr>\n");
-	print("<td   class=\"cwhoisresults\" colspan=5 align=\"right\">\n");
+	print("<td   class=\"cwhoisresults\" colspan=5>\n");
 	if ($canbuy>0)
 	{
+		print("<div class='d-flex justify-content-end align-items-center'>");
 		print ("<input class=\"form-control cwhoisresults\" name=\"n\" type=\"hidden\" value=\"$max\">\n");
-		print("<input class=\"form-control cwhoisresults btn\" type=\"button\" value=\"".$lang['AddButton']."\" OnClick=\"AddToCart(this.form);\">&nbsp;&nbsp;<input class=\"form-control btn cwhoisresults\" type=\"button\" value=\"".$lang['CheckoutButton']."\" OnClick=\"AddOut(this.form);\">\n");
+		print("<input class=\"mr-5 text-uppercase font-size-default cwhoisresults btn btn-brand-orange btn-lg\" type=\"button\" value=\"".$lang['AddButton']."\" OnClick=\"AddToCart(this.form);\">\n");
+		print("<input class=\" text-uppercase font-size-default btn btn-brand-orange btn-lg cwhoisresults\" type=\"button\" value=\"".$lang['CheckoutButton']."\" OnClick=\"AddOut(this.form);\">\n");
+		print("</div>");
 	}
 	print("</td>\n");
 	print("</tr>\n");
@@ -1619,35 +1624,35 @@ function displaydomain($k,$domain,$dt,$checkbuy)
   print ("<input name=\"d$k\" type=\"hidden\" value=\"$domain\">\n");
   print ("<input name=\"x$k\" type=\"hidden\" value=\"$dt\">\n");
   // Domain column
-  print("<td   class=\"cwhoisresults\"><p class=\"cwhoisresults\">\n");
+  print("<td   class=\"cwhoisresults\"><p class=\"cwhoisresults font-size-lg font-weight-bolder\">\n");
   print("$domain$dt");
   print("</p></td>\n");
 
   // Available column
-  print("<td   class=\"cwhoisresults\"><p class=\"cwhoisresults\">\n");
+  print("<td   class=\"cwhoisresults\"><p class=\"cwhoisresults text-center font-size-md\">\n");
   if ($i==0)
-    print($lang['Yes']);
+      print('<span class="badge badge-success">'.$lang['Yes'].'</span>');
   if ($i==6)
-    print($lang['Premium']);
+      print('<span class="badge badge-brand-orange">'.$lang['Premium'].'</span>');
   if ($i==1)
   {
-    print($lang['No']);
+      print('<span class="badge badge-warning">'.$lang['No'].'</span>');
     if ($allowlookup)
       print (" (<a class=\"cwhoisresults\" href=\"javascript: void whois('$domain$dt')\">".$lang['Lookup']."</a>)");
   }
   if ($i==2)
-    print($lang['CannotVerify']);
+      print('<span class="badge badge-danger">'.$lang['CannotVerify'].'</span>');
   if ($i==3)
-    print($lang['InvalidDomain']);
+      print('<span class="badge badge-danger">'.$lang['InvalidDomain'].'</span>');
   if ($i==5)
-    print($lang['WhoisProblem']);
+      print('<span class="badge badge-danger">'.$lang['WhoisProblem'].'</span>');
   print("</p></td>\n");
 
   // Domain Options column
   print("<td   class=\"cwhoisresults\">\n");
   if (($i==0) && ($registersupported>=0))
   {
-    print "<select class=\"cwhoisresults\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\">\n";
+    print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\">\n";
     if (($numhost>0) && ($AllowHostingOnly==true))
       print "<option value=\"-1\">".$lang['HostingOnly']."</option>\n";
     // We need to add an option for each registration period
@@ -1690,7 +1695,7 @@ function displaydomain($k,$domain,$dt,$checkbuy)
   {
     if (($numhost>0) && ($AllowHostingOnly==true))
     {
-      print "<select class=\"cwhoisresults\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\">\n";
+      print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\">\n";
       print "<option value=\"-1\">".$lang['HostingOnly']."</option>\n";
       print "</select>\n";
     }
@@ -1699,7 +1704,7 @@ function displaydomain($k,$domain,$dt,$checkbuy)
   }
   if (($i==6) && ($registersupported>=0) && ($premium!=""))
   {
-    print "<select class=\"cwhoisresults\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\">\n";
+    print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\">\n";
     if (($numhost>0) && ($AllowHostingOnly==true))
       print "<option value=\"-1\">".$lang['HostingOnly']."</option>\n";
     $pc=substr($premium,0,1);
@@ -1716,7 +1721,7 @@ function displaydomain($k,$domain,$dt,$checkbuy)
   {
     if (($numhost>0) && ($AllowHostingOnly==true))
     {
-      print "<select class=\"cwhoisresults\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\" >\n";
+      print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\" >\n";
       print "<option value=\"-1\">".$lang['HostingOnly']."</option>\n";
       print "</select>\n";
     }
@@ -1725,7 +1730,7 @@ function displaydomain($k,$domain,$dt,$checkbuy)
   }
   if (($i==1) && (($transfersupported>=0) || ($renewsupported>=0)))
   {
-    print "<select class=\"cwhoisresults\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\" >\n";
+    print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\" >\n";
     if (($numhost>0) && ($AllowHostingOnly==true))
       print "<option value=\"-1\">".$lang['HostingOnly']."</option>\n";
     // We need to add an option for each registration period if transfer supported
@@ -1800,7 +1805,7 @@ function displaydomain($k,$domain,$dt,$checkbuy)
   {
     if (($numhost>0) && ($AllowHostingOnly==true))
     {
-      print "<select class=\"cwhoisresults\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\" >\n";
+      print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\" >\n";
       print "<option value=\"-1\">".$lang['HostingOnly']."</option>\n";
       print "</select>\n";
     }
@@ -1811,7 +1816,7 @@ function displaydomain($k,$domain,$dt,$checkbuy)
   {
     if (($numhost>0) && ($AllowHostingOnly==true))
     {
-      print "<select class=\"cwhoisresults\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\" >\n";
+      print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"r$k\" id=\"domainselectmenu$k\" >\n";
       print "<option value=\"-1\">".$lang['HostingOnly']."</option>\n";
       print "</select>\n";
     }
@@ -1825,13 +1830,13 @@ function displaydomain($k,$domain,$dt,$checkbuy)
   print("</td>\n");
   // Hosting Options column
   if ($NarrowCart)
-    print "<tr><td   class=\"cwhoisresults\">&nbsp;</td><td   class=\"cwhoisresults\">&nbsp;</td>\n";
+    print "<tr><td   class=\"cwhoisresults form-control\">&nbsp;</td><td   class=\"cwhoisresults\">&nbsp;</td>\n";
   print("<td   class=\"cwhoisresults\">\n");
   if ($numhost>0)
   {
     if (($i==0) || ($i==6))
     {
-      print "<select class=\"cwhoisresults\" size=\"1\" name=\"h$k\" id=\"hostingselectmenu$k\" onChange=\"hostingplanchange('".$domain."','".$dt."','".$k."')\">\n";
+      print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"h$k\" id=\"hostingselectmenu$k\" onChange=\"hostingplanchange('".$domain."','".$dt."','".$k."')\">\n";
       // If we can register the domain also give option for no hosting
       if ($AllowNoHosting==true)
       {
@@ -1854,7 +1859,7 @@ function displaydomain($k,$domain,$dt,$checkbuy)
     }
     if (($i==1) && ($AllowHostingOnly))
     {
-      print "<select class=\"cwhoisresults\" size=\"1\" name=\"h$k\" id=\"hostingselectmenu$k\" onChange=\"hostingplanchange('".$domain."','".$dt."','".$k."')\">\n";
+      print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"h$k\" id=\"hostingselectmenu$k\" onChange=\"hostingplanchange('".$domain."','".$dt."','".$k."')\">\n";
       // If we can transfer or renew the domain also give option for no hosting
       if ($AllowNoHosting==true)
       {
@@ -1881,7 +1886,7 @@ function displaydomain($k,$domain,$dt,$checkbuy)
     }
     if (($i==2) || ($i==5) && ($AllowHostingOnly))
     {
-      print "<select class=\"cwhoisresults\" size=\"1\" name=\"h$k\" id=\"hostingselectmenu$k\">\n";
+      print "<select class=\"cwhoisresults form-control\" size=\"1\" name=\"h$k\" id=\"hostingselectmenu$k\">\n";
       // We need to add an option for each hosting package
       for ($j=0;$j<$numhost;$j++)
       {
@@ -1933,7 +1938,10 @@ function displaydomain($k,$domain,$dt,$checkbuy)
     if (($checkbuy==1) || (($checkbuy==2) && ($allowregistration==1)))
 	    print "<input class=\"form-control cwhoisresults\" name=\"buy$k\" type=\"checkbox\" checked >\n";
 	  else
-	    print "<input class=\"form-control cwhoisresults\" name=\"buy$k\" type=\"checkbox\" >\n";
+	      print('<div class="custom-control custom-checkbox">');
+	    print "<input class=\"custom-control-input\" name=\"buy$k\" id=\"buy$k\" type=\"checkbox\" >\n";
+	    print("<label class=\"custom-control-label\" for=\"buy$k\">");
+	    print('</div>');
   }
   else
     print("&nbsp;");
@@ -1954,38 +1962,40 @@ if (($cwaction=="check") || ($cwaction=="add") || ($cwaction=="remove") || (($cw
 	if (($_SESSION['numberofitems']-$_SESSION['numberremoved'])>0)
 	{
 	  print("<div class=\"cwhoisshop\"><form method=\"get\">\n");
-	  print("<table class=\"table table-borderless cwhoisshop\" >\n");
+	  print("<table class=\"table table-striped table-bordered table-responsive-md cwhoisshop\" >\n");
 	  print "<input name=\"cwaction\" type=\"hidden\" value=\"\">\n";
 	  print "<input name=\"page\" type=\"hidden\" value=\"\">\n";
 	  // Column headings
-	  print("<tr>\n");
+        print("<thead>\n");
+        print("<tr>\n");
 	  print("<td   class=\"cwhoisshop\" colspan=\"5\">\n");
-	  print("<big class=\"cwhoisshop\">".$lang['ShoppingCart']."</big><br><HR class=\"cwhoisshop\">");
+	  print("<span class=\"cwhoisshop block-title\">".$lang['ShoppingCart']."</span><br>");
 	  print("</td>");
 	  print("</tr>\n");
-	  print("<tr>\n");
-	  print("<td   class=\"cwhoisshop\">\n");
+	  print("<tr class='text-uppercase'>\n");
+	  print("<th   class=\"cwhoisshop\">\n");
 	  print("<b class=\"cwhoisshop\">".$lang['Domain']."</b>");
-	  print("</td>\n");
-	  print("<td   class=\"cwhoisshop\">\n");
+	  print("</th>\n");
+	  print("<th  nowrap class=\"cwhoisshop\">\n");
 	  print("<b class=\"cwhoisshop\">".$lang['DomainOpt']."</b>");
-	  print("</td>\n");
+	  print("</th>\n");
 	  if ($NarrowCart!=true)
 	  {
-  	  print("<td   class=\"cwhoisshop\">\n");
+  	  print("<th   class=\"cwhoisshop\">\n");
 	    if ($numhost>0)
 		    print("<b class=\"cwhoisshop\">".$lang['HostingOpt']."</b>");
 	    else
 		    print("&nbsp;");
-	    print("</td>\n");
+	    print("</th>\n");
 	  }
-	  print("<td   class=\"cwhoisshop\">\n");
+	  print("<th   class=\"cwhoisshop\">\n");
 	  print("<b class=\"cwhoisshop\">".$lang['Subtotal']."</b>");
-	  print("</td>\n");
-	  print("<td   class=\"cwhoisshop\">\n");
+	  print("</th>\n");
+	  print("<th   class=\"cwhoisshop\">\n");
 	  print("<b class=\"cwhoisshop\">".$lang['Remove']."</b>");
-	  print("</td>\n");
+	  print("</th>\n");
 	  print("</tr>\n");
+	  print("</thead>\n");
 	  $total=0.00;
 	  $recurringtotal=0.00;
 	  for ($k=1;$k<=$_SESSION['numberofitems'];$k++)
@@ -1993,8 +2003,8 @@ if (($cwaction=="check") || ($cwaction=="add") || ($cwaction=="remove") || (($cw
 	    if ($_SESSION['removed'.$k]==False)
 	    {
 	      $subtotal=0.00;
-	      print("<tr>\n");
-	      print("<td   class=\"cwhoisshop\"><p class=\"cwhoisshop\">\n");
+	      print("<tr class='font-size-lg'>\n");
+	      print("<td   class=\"cwhoisshop\"><p class=\"font-weight-bolder cwhoisshop\">\n");
 	      print($_SESSION['domain'.$k]);
 	      print("</p></td>");
 	      print("<td   class=\"cwhoisshop\"><p class=\"cwhoisshop\">\n");
@@ -2004,24 +2014,24 @@ if (($cwaction=="check") || ($cwaction=="add") || ($cwaction=="remove") || (($cw
 	      {
 		      print($lang['Register']." ");
 		      print($_SESSION['regperiod'.$k]);
-		      print(" ".$lang['Year']." $csymbol");
-		      print($_SESSION['regprice'.$k]);
+		      print(" ".$lang['Year']." <br>");
+		      print("<span class='font-size-md text-muted'>$csymbol ".$_SESSION['regprice'.$k]."</span>");
 		      print $csymbol2;
 	      }
 	      if ($_SESSION['regtype'.$k]=="T")
 	      {
 		      print($lang['Transfer']." ");
 		      print($_SESSION['regperiod'.$k]);
-		      print(" ".$lang['Year']." $csymbol");
-		      print($_SESSION['regprice'.$k]);
+              print(" ".$lang['Year']." <br>");
+              print("<span class='font-size-md text-muted'>$csymbol ".$_SESSION['regprice'.$k]."</span>");
 		      print $csymbol2;
 	      }
 	      if ($_SESSION['regtype'.$k]=="N")
 	      {
 		      print($lang['Renew']." ");
 		      print($_SESSION['regperiod'.$k]);
-		      print(" ".$lang['Year']." $csymbol");
-		      print($_SESSION['regprice'.$k]);
+              print(" ".$lang['Year']." <br>");
+              print("<span class='font-size-md text-muted'>$csymbol ".$_SESSION['regprice'.$k]."</span>");
 		      print $csymbol2;
 	      }
 	      $subtotal=$subtotal+$_SESSION['regprice'.$k];
@@ -2043,7 +2053,7 @@ if (($cwaction=="check") || ($cwaction=="add") || ($cwaction=="remove") || (($cw
 		      {
 		      // Check to see if recurring billing
 		      if ($hostsetup==0)
-			      print "$hostdesc $csymbol$hostprice$csymbol2";
+			      print "$hostdesc <br> <span class='font-size-md text-muted'>$csymbol $hostprice</span>$csymbol2";
 		      else
 			      print "$hostdesc $csymbol$hostprice$csymbol2 (".$lang['Setup']." $csymbol$hostsetup$csymbol2)";
 		      $subtotal=$subtotal+$hostprice+$hostsetup;
@@ -2054,11 +2064,14 @@ if (($cwaction=="check") || ($cwaction=="add") || ($cwaction=="remove") || (($cw
 	      else
 	        print("&nbsp;");
 	      print("</p></td>\n");
-	      print("<td   class=\"cwhoisshop\" align=\"right\"><p class=\"cwhoisshop\">\n");
+	      print("<td   class=\"cwhoisshop\" align=\"right\"><p class=\"font-size-md cwhoisshop\">\n");
 	      printf("$csymbol%01.".$decimalplaces."f".$csymbol2,$subtotal);
 	      print("</p></td>\n");
 	      print("<td   class=\"cwhoisshop\" align=\"center\">\n");
-	      print "<input class=\"form-control cwhoisshop\" name=\"rem$k\" type=\"checkbox\" value=\"ON\">\n";
+            print('<div class="custom-control custom-checkbox">');
+	      print "<input class=\"custom-control-input cwhoisshop\" id=\"rem$k\" name=\"rem$k\" type=\"checkbox\" value=\"ON\">\n";
+            print("<label class=\"custom-control-label\" for=\"rem$k\">");
+            print('</div>');
 	      print("</td>\n");
         if ($NarrowCart)
           print "</tr>\n";
@@ -2081,8 +2094,8 @@ if (($cwaction=="check") || ($cwaction=="add") || ($cwaction=="remove") || (($cw
 	  {
 	    print("<tr>\n");
 	    print("<td   class=\"cwhoisshop\" align=\"right\" colspan=\"4\">\n");
-	    printf("<B class=\"cwhoisshop\">".$lang['Total']."&nbsp;&nbsp;$csymbol%01.".$decimalplaces."f".$csymbol2,$total);
-	    print("</B></td>");
+	    printf("<span class=\"font-size-md font-weight-bold cwhoisshop\">".$lang['Total']."&nbsp;&nbsp;$csymbol%01.".$decimalplaces."f".$csymbol2,$total);
+	    print("</span></td>");
 	    print("<td   class=\"cwhoisshop\"><p class=\"cwhoisshop\">\n");
 	    print("&nbsp;");
 	    print("</p></td>\n");
@@ -2090,7 +2103,8 @@ if (($cwaction=="check") || ($cwaction=="add") || ($cwaction=="remove") || (($cw
 	  }
 	  print("<tr>\n");
 	  print("<td   class=\"cwhoisshop\" align=\"right\" colspan=\"5\">\n");
-	  print("<input class=\"form-control btn cwhoisshop\" type=\"button\" value=\"".$lang['UpdateButton']."\" onclick=\"RemoveFromCart(this.form);\" >&nbsp;&nbsp;<input class=\"form-control btn cwhoisshop\" type=\"button\" value=\"".$lang['CheckoutButton']."\" onclick=\"Checkout(this.form);\" >\n");
+	  print("<input class=\"font-size-default text-uppercase btn btn-brand-orange btn-lg mr-5 cwhoisshop\" type=\"button\" value=\"".$lang['UpdateButton']."\" onclick=\"RemoveFromCart(this.form);\" >\n");
+	  print("<input class=\"font-size-default text-uppercase btn btn-brand-orange btn-lg cwhoisshop\" type=\"button\" value=\"".$lang['CheckoutButton']."\" onclick=\"Checkout(this.form);\" >");
 	  print("</td>");
 	  print("</TR>\n");
 	  print("</table>\n");
@@ -2143,11 +2157,11 @@ if (($cwaction=="checkout") || ($cwaction=="addout"))
 	{
 	  print("<div class=\"cwhoisverify\"><form method=\"get\" action=$page>\n");
 	  print "<hr class=\"cwhoisverify\">";
-	  print("<table class=\"table table-borderless cwhoisverify\" >\n");
+	  print("<table class=\"table table-striped table-bordered table-responsive-md cwhoisverify\" >\n");
 	  print "<input name=\"cwaction\" type=\"hidden\" value=\"\">\n";
 	  print("<tr>\n");
 	  print("<td   class=\"cwhoisverify\" colspan=\"5\">\n");
-	  print("<big class=\"cwhoisverify\">".$lang['YourOrder']."</big><BR>");
+	  print("<span class=\"block-title cwhoisverify\">".$lang['YourOrder']."</span>");
 	  print("</td>");
 	  print("</tr>\n");
 	  // Set tax to 0 as it cannot be calculated until address entered
@@ -2166,7 +2180,7 @@ if (($cwaction=="checkout") || ($cwaction=="addout"))
     }
 	  print("<tr>\n");
 	  print("<td   class=\"cwhoisverify\" align=\"right\" colspan=\"5\">\n");
-	  print("<input class=\"cwhoisverify cwhois\" type=\"submit\" value=\"".$lang['ModifyButton']."\" >\n");
+	  print("<input class=\"btn btn-lg btn-brand-orange font-size-default text-uppercase cwhoisverify cwhois\" type=\"submit\" value=\"".$lang['ModifyButton']."\" >\n");
 	  print("</td>");
 	  print("</TR>\n");
 //	  print("<tr>\n");
@@ -4782,7 +4796,7 @@ function orderdetailshtml(&$total,&$recurringtotal,$cssstyle)
 	// End
 	$buf="";
   // Column headings
-  $buf.="<tr>\n";
+  $buf.="<tr class='text-uppercase'>\n";
   $buf.="<td  class=\"".$cssstyle."\">\n";
   $buf.="<b class=\"".$cssstyle."\">".$lang['Domain']."</b>";
   $buf.="</td>\n";
@@ -4853,8 +4867,8 @@ function orderdetailshtml(&$total,&$recurringtotal,$cssstyle)
 	      $carthostingsetup.=$_SESSION['hostsetup'.$k];
 	      // End
         $subtotal=0.00;
-        $buf.="<tr>\n";
-        $buf.="<td  class=\"".$cssstyle."\"><p class=\"".$cssstyle."\">\n";
+        $buf.="<tr class='font-size-lg'>\n";
+        $buf.="<td  class=\"".$cssstyle."\"><p class=\"font-weight-bolder ".$cssstyle."\">\n";
         $buf.=$_SESSION['domain'.$k];
         $buf.="</p></td>";
         $buf.="<td  class=\"".$cssstyle."\"><p class=\"".$cssstyle."\">\n";
@@ -4911,8 +4925,8 @@ function orderdetailshtml(&$total,&$recurringtotal,$cssstyle)
           $buf.="&nbsp;";
         $buf.="</p></td>\n";
         $buf.="<td  class=\"".$cssstyle."\" align=\"right\"><p class=\"".$cssstyle."\">\n";
-        $cartitemtotal.=sprintf("%01.".$decimalplaces."f",$subtotal);
-        $buf.=sprintf("$csymbol%01.".$decimalplaces."f".$csymbol2,$subtotal);
+        $cartitemtotal.=sprintf("%0.".$decimalplaces."f",$subtotal);
+        $buf.=sprintf("$csymbol%0.".$decimalplaces."f".$csymbol2,$subtotal);
         $buf.="</p></td>\n";
         $buf.="<td  class=\"".$cssstyle."\" align=\"right\"><p class=\"".$cssstyle."\">\n";
         if ($recurringtotal>0.00)
@@ -5087,11 +5101,11 @@ function orderdetailshtml(&$total,&$recurringtotal,$cssstyle)
     $buf.="</TR>\n";
   }
   // Totals
-  $buf.="<tr>\n";
+  $buf.="<tr class='font-size-lg'>\n";
   $buf.="<td  class=\"".$cssstyle."\" align=\"right\" colspan=\"3\">\n";
-  $buf.="<b class=\"".$cssstyle."\">".$lang['Total']."</b></td>";
+  $buf.="<span class=\" text-uppercase ".$cssstyle."\">".$lang['Total']."</span></td>";
   $buf.="\n";
-  $buf.="<td  class=\"".$cssstyle."\" align=\"right\"><b class=\"".$cssstyle."\">\n";
+  $buf.="<td  class=\"  ".$cssstyle."\" align=\"right\"><b class=\"".$cssstyle."\">\n";
   $buf.=sprintf("$csymbol%01.".$decimalplaces."f$csymbol2",$total);
   $buf.="</b></td>";
   if ($recurringtotal>0.00)

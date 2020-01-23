@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerBiodata;
+use App\Mail\UserCredentials;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -11,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use function response;
 
@@ -82,7 +85,6 @@ class UsersController extends Controller
             'last_name' => 'required',
             'user_type' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8',
 
         ];
         $messages = [
@@ -91,8 +93,6 @@ class UsersController extends Controller
             'user_type.required' => 'The user type is required.',
             'email.required' => 'The email address is required.',
             'email.email' => 'Please enter the email address in the correct format.',
-            'password.required' => 'Please enter the user password.',
-            'password.min:8' => 'The minimum password length is 8 characters.',
         ];
 
         $validator = Validator::make($record, $rules, $messages);
@@ -104,18 +104,20 @@ class UsersController extends Controller
         }
         //save
         else {
-            //hash password
-            $hashed_password = Hash::make($request['password']);
+            //generate and hash password
+            $password =  Str::random(15); //it works uhhaha
+            $hashed_password = Hash::make($password);
 
-            User::updateOrCreate(['id' => $request->user_id],
+            $user = User::updateOrCreate(['id' => $request->user_id],
             ['first_name' => $request->first_name, 'last_name' => $request->last_name,
             'email' => $request->email, 'user_type' => $request->user_type, 'password' => $hashed_password]);
             $response = ['success' => 'User added successfully.'];
 
+
+            Mail::to($request->user())->send(new UserCredentials($user));
+
         }
         return response()->json($response);
-
-        //TODO: send verififcation email with credentials
 
     }
 

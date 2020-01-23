@@ -125,6 +125,7 @@ class RegisterController extends Controller
             case ('customer'):
                 return redirect('/');
             case ('admin'):
+                return redirect('/admin/dashboard');
             case ('employee'):
                 return redirect('/admin/dashboard');
             default:

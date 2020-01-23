@@ -6063,6 +6063,7 @@ $(function () {
         dtUsers.ajax.reload();
 
         if (response.success) {
+          console.log(response.success);
           $('#success-msg').append('<div class="alert alert-success" role="alert">' + response.success + '</div>');
         }
 
@@ -6198,6 +6199,7 @@ $(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! C:\wamp64\www\SLASHDOT_Labs\resources\js\pages\admin_users.js */"./resources/js/pages/admin_users.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_users.js */"./resources/js/pages/admin_users.js");
 
 
 /***/ })
