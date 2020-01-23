@@ -15,6 +15,12 @@
 @endsection
 
 @section('content')
+    @php
+        if(session('payment_success')){
+            alert()->success('Order created', session('payment_success'));
+            session()->forget('payment_success');
+        }
+    @endphp
     <div class="content">
         <div class="block block-themed">
             <div class="block-header">
@@ -31,14 +37,6 @@
                             <span aria-hidden="true">×</span>
                         </button>
                         <p>{{ session('errors')->first() }}</p>
-                    </div>
-                @endif
-                @if(session('success'))
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <p>{{ session('success') }}</p>
                     </div>
                 @endif
                 <?php include(app_path("Domaincart/cwhoiscart.php")); ?>

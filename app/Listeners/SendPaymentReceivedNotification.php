@@ -26,6 +26,9 @@ class SendPaymentReceivedNotification
      */
     public function handle(PaymentReceived $event)
     {
+        // Create success message
+        session()->put('payment_success', 'Your order has been created and you\'re payment is being processed');
+
         // Notify vendor
         Notification::route('mail', config('mail.vendor_from.address'))
             ->notify(new PaymentReceivedNotification($event->payment));
