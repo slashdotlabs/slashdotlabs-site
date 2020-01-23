@@ -52,14 +52,14 @@ $(function () {
             data: { _token, _method, customer_biodata}
         }).then(response => {
             if (response.msg) {
-                $('#bio-success').append('<p>' + response.msg + '</p>');
+                $('#bio-success').append('<div class="alert alert-success" role="alert">' + response.msg + '</div>');
             }
             setTimeout(function () {
                 $('#bio-success').html('');
             }, 4000);
         }).catch(response => {
             const error = response['responseJSON'];
-            $('#bio-danger').append(`<p>${error}</p>`);
+            $('#bio-danger').append(`<div class="alert alert-danger" role="alert">${error}</div>`);
             setTimeout(function () {
                 $('#bio-danger').html('');
             }, 4000);
@@ -77,7 +77,7 @@ $(function () {
             data
         }).then(response => {
             if (response.msg) {
-                $('#password-success').append('<p>' + response.msg + '</p>');
+                $('#password-success').append('<div class="alert alert-success" role="alert">' + response.msg + '</div>');
                 $("#form-change-password")[0].reset();
             }
             setTimeout(function () {
@@ -85,7 +85,7 @@ $(function () {
             }, 4000);
         }).catch(response => {
             const error = response['responseJSON'];
-            $('#password-danger').append(`<p>${error}</p>`);
+            $('#password-danger').append(`<div class="alert alert-danger" role="alert">${error}</div>`);
             setTimeout(function () {
                 $('#password-danger').html('');
             }, 4000);

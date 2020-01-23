@@ -1,3 +1,5 @@
+import { removeObserver } from "simplebar";
+
 $(() => {
 
     $.ajaxSetup({
@@ -45,6 +47,50 @@ $(() => {
         ]
     });
 
+    //Show Add User Modal
+    $('#createNewUser').click(function () {
+        $('#btn-add-user').val("create-user");
+        $('#user_id').val('');
+        $('#add-user-form').trigger("reset");
+        $('#modal-add-user').modal('show');
+    });
+
+    //Add User
+    $('#btn-add-user').click(function (e) {
+        e.preventDefault();
+        var storeUrl = `${baseURL}/admin/users/`;
+        $.ajax({
+        data: $('#add-user-form').serialize(),
+        url: storeUrl,
+        type: "POST",
+        dataType: 'json',
+        success: function (response) {
+            $('#add-user-form').trigger("reset");
+            $('#modal-add-user').modal('hide');
+            dtUsers.ajax.reload();
+            if (response.success) {
+                $('#success-msg').append('<div class="alert alert-success" role="alert">'+response.success+'</div>');
+            }
+            setTimeout(function(){
+                $('#success-msg').html('');
+            }, 5000);
+        },
+        error: function (response) {
+                var i, x = "";
+				var errors = response.responseJSON;
+				console.log(errors);
+				for (i in errors) {
+                    x = errors[i];
+				  	$('#add-error-msg').append(`<div class="alert alert-danger" role="alert">${x}</div>`);
+				}
+				setTimeout(function(){
+			        $('#add-error-msg').html('');
+			    }, 5000);
+			}
+    });
+    });
+
+
 
     const suspendUserModal = $('#modal-suspend-user');
     // show suspend user modal
@@ -55,7 +101,7 @@ $(() => {
 
          // Fill modal with data
         suspendUserForm.find('[name=user_id]').val(rowData['id']);
-        suspendUserForm.find('#suspend-user-name').val(rowData['first_name']);
+        suspendUserForm.find('#suspend-user-name').val(rowData['first_name'].concat(' ').concat(rowData['last_name']));
         // Show modal
         suspendUserModal.modal('show');
     });
@@ -69,7 +115,7 @@ $(() => {
 
          // Fill modal with data
         restoreUserForm.find('[name=user_id]').val(rowData['id']);
-        restoreUserForm.find('#restore-user-name').val(rowData['first_name']);
+        restoreUserForm.find('#restore-user-name').val(rowData['first_name'].concat(' ').concat(rowData['last_name']));
         // Show modal
         restoreUserModal.modal('show');
     });
@@ -130,7 +176,7 @@ $(() => {
                 suspendUserModal.modal('hide');
             },
             error: Response => {
-                
+
                 var errors = Response.responseJSON;
                 console.log(errors);
             }

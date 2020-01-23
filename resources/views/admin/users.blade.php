@@ -67,7 +67,7 @@
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
                             <div class="block-options-item">
-                                <i class="fa fa-user fa-2x text-danger-light"></i>
+                                <i class="fa fa-address-card-o fa-2x text-danger-light"></i>
                             </div>
                         </div>
                         <div class="py-20 text-center">
@@ -85,7 +85,7 @@
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
                             <div class="block-options-item">
-                                <i class="fa fa-building fa-2x text-warning-light"></i>
+                                <i class="fa fa-id-badge fa-2x text-warning-light"></i>
                             </div>
                         </div>
                         <div class="py-20 text-center">
@@ -99,11 +99,11 @@
 
             <!-- Add User -->
             <div class="col-md-6 col-xl-3">
-                <a class="block block-rounded block-link-shadow" id="createNewProduct">
+                <a class="block block-rounded block-link-shadow" id="createNewUser">
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
                             <div class="block-options-item">
-                                <i class="fa fa-archive fa-2x text-success-light"></i>
+                                <i class="fa fa-user fa-2x text-success-light"></i>
                             </div>
                         </div>
                         <div class="py-20 text-center">
@@ -152,6 +152,7 @@
     </div>
 @endsection
 @section('modals')
+    @include('admin.partials.modals.add_user_modal')
     @include('admin.partials.modals.suspend_user_modal')
     @include('admin.partials.modals.restore_user_modal')
 @endsection
