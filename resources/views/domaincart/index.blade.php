@@ -51,16 +51,11 @@
                 <div class="block-header">
                     <h3 class="block-title">Checkout Information</h3>
                 </div>
-                <div class="block-content">
-                    @guest
-                        <p class="font-size-md">For you to proceed with your order, you need to be logged in</p>
-                        <div class="d-flex mb-5">
-                            <a href="{{ url('/register') }}" class="btn btn-alt-primary mr-2">Create Account</a>
-                            <a href="{{ url('/login') }}" class="btn btn-primary">Login</a>
-                        </div>
-                    @endguest
-
+                <div class="block-content pb-20">
                     @auth
+                        @php
+                            $customer_biodata = Auth::user()->load('customer_biodata')->customer_biodata
+                        @endphp
                         <span class="font-size-md text-uppercase">Contact Details</span>
                         <hr>
                         <form action="{{ url('domaincart/order_checkout') }}" method="post">
@@ -68,7 +63,7 @@
                             <div class="form-group row">
                                 <div class="col-md-6 col-sm-12">
                                     <label for="contact-organization">Organization</label>
-                                    <input type="text" class="form-control @error('organization') is-invalid @enderror" id="contact-organization" name="organization" value="{{ old('organization') }}" required>
+                                    <input type="text" class="form-control @error('organization') is-invalid @enderror" id="contact-organization" name="organization" value="{{ old('organization', ($customer_biodata ? $customer_biodata->organization : '')) }}">
                                     @error('organization')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -76,7 +71,8 @@
 
                                 <div class="col-md-6 col-sm-12">
                                     <label for="contact-phone-number">Phone number</label>
-                                    <input type="text" class="form-control phone-mask @error('phone_number') is-invalid @enderror" id="contact-phone-number" name="phone_number" value="{{ old('phone_number') }}" placeholder="2547xxxxxxxx" required>
+                                    <input type="text" class="form-control phone-mask @error('phone_number') is-invalid @enderror" data-toggle="popover" data-placement="top" data-content="This phone number will be used in mobile money option on iPay" data-original-title="Mobile Payment" id="contact-phone-number"
+                                           name="phone_number" value="{{ old('phone_number', ($customer_biodata ? $customer_biodata->phone_number : '')) }}" placeholder="2547xxxxxxxx" required>
                                     @error('phone_number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -85,7 +81,7 @@
                             <div class="form-group row">
                                 <div class="col-md-6 col-sm-12">
                                     <label for="contact-address">Address</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="contact-address" name="address" value="{{ old('address') }}" required>
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="contact-address" name="address" value="{{ old('address', ($customer_biodata ? $customer_biodata->address : '')) }}" required>
                                     @error('address')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -93,7 +89,7 @@
 
                                 <div class="col-md-6 col-sm-12">
                                     <label for="contact-city">City</label>
-                                    <input type="text" class="form-control @error('city') is-invalid @enderror" id="contact-city" name="city" value="{{ old('city') }}" required>
+                                    <input type="text" class="form-control @error('city') is-invalid @enderror" id="contact-city" name="city" value="{{ old('city', ($customer_biodata ? $customer_biodata->city : '')) }}" required>
                                     @error('city')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -102,7 +98,7 @@
                             <div class="form-group row">
                                 <div class="col-md-6 col-sm-12">
                                     <label for="contact-country">Country</label>
-                                    <input type="text" class="form-control @error('country') is-invalid @enderror" id="contact-country" name="country" value="{{ old('country') }}" required>
+                                    <input type="text" class="form-control @error('country') is-invalid @enderror" id="contact-country" name="country" value="{{ old('country', ($customer_biodata ? $customer_biodata->country : '')) }}" required>
                                     @error('country')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

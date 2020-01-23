@@ -21,15 +21,7 @@ class OrderHandler
         try {
             $customer = \request()->user();
             // Update or create biodata details
-            CustomerBiodata::updateOrCreate(
-                ['customer_id' => $customer->id],
-                [
-                    'phone_number' => $data['contact_details']['tel'],
-                    'address' => $data['contact_details']['str1'],
-                    'city' => $data['contact_details']['city'],
-                    'country' => $data['contact_details']['country'],
-                    'organization' => $data['contact_details']['org']
-                ]);
+            CustomerBiodata::updateOrCreate(['customer_id' => $customer->id], $data['contact_details']);
             $order = new Order($data->get('order_details'));
             $order->customer()->associate($customer);
             $order->save();

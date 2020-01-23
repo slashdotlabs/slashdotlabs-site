@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\CustomerBiodata;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
-use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+use Yajra\DataTables\Facades\DataTables;
+use function response;
 
 class UsersController extends Controller
 {
@@ -24,6 +25,7 @@ class UsersController extends Controller
      * Display a listing of the resource.
      *
      * @return Factory|View
+     * @throws \Exception
      */
     public function index(Request $request)
     {
@@ -32,29 +34,29 @@ class UsersController extends Controller
         if ($request->ajax()) {
             $data = User::latest()->get();
             return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                        if ($row->suspended == 0) {
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    if ($row->suspended == 0) {
 
-                            $buttons =
-                           '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-dark suspend-user" data-id="'.$row->id.'" >
+                        $buttons =
+                            '<div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-dark suspend-user" data-id="' . $row->id . '" >
                                     Suspend
                                 </button>
                             </div>';
-                            return $buttons;
-                        } else {
-                            $buttons =
+                        return $buttons;
+                    } else {
+                        $buttons =
                             '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-dark restore-user" data-id="'.$row->id.'" >
+                                <button type="button" class="btn btn-sm btn-outline-dark restore-user" data-id="' . $row->id . '" >
                                     Restore
                                 </button>
                             </div>';
-                            return $buttons;
-                        }
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                        return $buttons;
+                    }
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
 
         $customers = User::where('user_type', 'customer');
@@ -66,7 +68,7 @@ class UsersController extends Controller
                 'customers' => $customers,
                 'admins' => $admins,
                 'employees' => $employees,
-        ]);
+            ]);
     }
 
     /**
@@ -162,23 +164,25 @@ class UsersController extends Controller
         ], $messages);
     }
 
-     public function suspend($id){
+    public function suspend($id)
+    {
 
         $suspended_record = User::find($id)
-                            ->update(['suspended' => 1]);
+            ->update(['suspended' => 1]);
         $resp = ['success' => 'User suspended successfully.'];
-        return \response()->json([
+        return response()->json([
             'user' => $suspended_record,
             'User suspended successfully' => $resp
         ]);
     }
 
-     public function restore($id){
+    public function restore($id)
+    {
 
         $restored_record = User::find($id)
-                            ->update(['suspended' => 0]);
+            ->update(['suspended' => 0]);
         $response = ['success' => 'User restored successfully.'];
-        return \response()->json([
+        return response()->json([
             'user' => $restored_record,
             'User restored successfully' => $response
         ]);
