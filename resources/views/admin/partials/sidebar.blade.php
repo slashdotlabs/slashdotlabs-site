@@ -1,3 +1,18 @@
+@section('admin_settings')
+    <li class="nav-main-heading">
+        <span class="sidebar-mini-visible">SU</span><span class="sidebar-mini-hidden">SYSTEM</span></li>
+    <li>
+    <li>
+        <a href="{{ url('/admin/users') }}"><i class="fa fa-users"></i><span class="sidebar-mini-hide">Users</span></a>
+    </li>
+    <li>
+        <a href="{{ url('/admin/domaincart_config') }}"><i class="fa fa-edit"></i><span class="sidebar-mini-hide">Domaincart Config</span></a>
+    </li>
+    <li>
+        <a href="{{ url('/admin/system_logs') }}"><i class="fa fa-list-alt"></i><span class="sidebar-mini-hide">Logs</span></a>
+    </li>
+@endsection
+
 <div class="sidebar-content">
     <!-- Side Header -->
     <div class="content-header content-header-fullrow px-15 bg-black-op-10">
@@ -61,19 +76,12 @@
             <li>
                 <a href="{{ url('/admin/payments') }}"><i class="fa fa-money"></i><span class="sidebar-mini-hide">Payments</span></a>
             </li>
-            <li class="nav-main-heading">
-                <span class="sidebar-mini-visible">SU</span><span class="sidebar-mini-hidden">SYSTEM</span></li>
-            <li>
-            <li>
-                <a href="{{ url('/admin/users') }}"><i class="fa fa-users"></i><span class="sidebar-mini-hide">Users</span></a>
-            </li>
-            <li>
-                <a href="{{ url('/admin/domaincart_config') }}"><i class="fa fa-edit"></i><span class="sidebar-mini-hide">Domaincart Config</span></a>
-            </li>
-            <li>
-                <a href="{{ url('/admin/system_logs') }}"><i class="fa fa-list-alt"></i><span class="sidebar-mini-hide">Logs</span></a>
-            </li>
+
+            @if (Auth::user()->user_type == 'admin')
+                @yield('admin_settings')
+            @endif
         </ul>
     </div>
     <!-- END Side Navigation -->
 </div>
+

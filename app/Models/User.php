@@ -29,6 +29,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public function get_name()
     {
         return ($this->first_name)[0] . ". " . $this->last_name;

@@ -39,10 +39,6 @@
                             <option value="admin">Administrator</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="password"> Password</label>
-                        <input type="password" class="form-control form-control-m" id="password" name="password" placeholder="Enter the user password.." value ="" required>
-                    </div>
                 </div>
                 </div>
             </div>
