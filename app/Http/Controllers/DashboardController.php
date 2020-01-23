@@ -44,7 +44,6 @@ class DashboardController extends Controller
         return view('dashboard.index',
             [
                 'user' => Auth::user()->load('customer_biodata'),
-                'registered_domains' => Auth::user()->customer_domains,
                 "customer_domains" => $domains_order_items,
                 'hosting_packages' => $product_order_items->get('hosting'),
                 'ssl_certificates' => $product_order_items->get('ssl_certificates'),
