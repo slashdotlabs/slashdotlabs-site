@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="py-20 text-center">
-          <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="">0</div>
+          <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="{{ $customer_domains ? $customer_domains->count() : 0 }}">0</div>
           <div class="font-size-sm font-w600 text-uppercase text-white-op">Active Domains</div>
         </div>
       </div>
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="py-20 text-center">
-          <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="">0</div>
+          <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="{{ $ssl_certificates ? $ssl_certificates->count() : 0 }}">0</div>
           <div class="font-size-sm font-w600 text-uppercase text-white-op">SSL Certificates</div>
         </div>
       </div>
@@ -48,7 +48,7 @@
           </div>
           </div>
           <div class="py-20 text-center">
-            <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="">0</div>
+            <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="{{ $hosting_packages ? $hosting_packages->count() : 0 }}">0</div>
             <div class="font-size-sm font-w600 text-uppercase text-white-op">Hosting Packages</div>
         </div>
       </div>
