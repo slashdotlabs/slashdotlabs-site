@@ -26751,6 +26751,7 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(/*! C:\wamp64\www\SLASHDOT_Labs\resources\js\codebase\app.js */"./resources/js/codebase/app.js");
 module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\codebase\app.js */"./resources/js/codebase/app.js");
 
 

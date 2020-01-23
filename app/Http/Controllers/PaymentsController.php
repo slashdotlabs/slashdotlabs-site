@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
+use Yajra\DataTables\Facades\DataTables;
 
 class PaymentsController extends Controller
 {
@@ -21,9 +22,16 @@ class PaymentsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $data = Payment::latest()->with('customer')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+
+        return view('admin.payments');
     }
 
     /**

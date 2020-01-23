@@ -60,6 +60,9 @@ Route::middleware(['auth.staff'])->group(function () {
     //Admin Orders Resource Route
     Route::resource('admin/orders', 'OrdersController');
 
+    // Admin Payments Resource Route
+    Route::resource('admin/payments', 'PaymentsController');
+
     //Admin Users Resource Route
     Route::resource('admin/users', 'UsersController');
     Route::put('admin/users/suspend/{id}', 'UsersController@suspend')->name('users.suspend');

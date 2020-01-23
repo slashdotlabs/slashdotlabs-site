@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -357,16 +357,15 @@ $(function () {
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /*!********************************************************!*\
   !*** multi ./resources/js/pages/customer_dashboard.js ***!
   \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(/*! C:\wamp64\www\SLASHDOT_Labs\resources\js\pages\customer_dashboard.js */"./resources/js/pages/customer_dashboard.js");
 module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\customer_dashboard.js */"./resources/js/pages/customer_dashboard.js");
-
-
 /***/ })
 
 /******/ });
