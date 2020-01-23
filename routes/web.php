@@ -34,7 +34,7 @@ Route::middleware(['auth.customer'])->group(function () {
     //Nameserver resource
     Route::resource('nameservers', 'NameserversController')->only('store');
 
-    Route::get('/domaincart/order_checkout', 'DomainCartController@order_checkout')->name('domaincart.order_checkout');
+    Route::post('/domaincart/order_checkout', 'DomainCartController@order_checkout')->name('domaincart.order_checkout');
 });
 
 Route::get('/destroycart', function () {
