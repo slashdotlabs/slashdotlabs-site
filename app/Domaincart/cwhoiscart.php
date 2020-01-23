@@ -1317,8 +1317,8 @@ if (($cwaction=="check") || ($cwaction=="remove") || ($cwaction=="add")  || (($c
   }
   else
     $_SESSION['captchasearchcheck']=false;
-  print "<br/></br>";
-  print "<br/></br>";
+//  print "<br/></br>";
+//  print "<br/></br>";
   if ($lang['TipLine1']!="")
 	  print($lang['TipLine1']."<BR>\n");
   if ($lang['TipLine2']!="")
@@ -2169,925 +2169,931 @@ if (($cwaction=="checkout") || ($cwaction=="addout"))
 	  print("<input class=\"cwhoisverify cwhois\" type=\"submit\" value=\"".$lang['ModifyButton']."\" >\n");
 	  print("</td>");
 	  print("</TR>\n");
-	  print("<tr>\n");
-	  print("<td   class=\"cwhoisverify\" align=\"right\" colspan=\"5\">\n");
-	  print("</td>");
-	  print("</TR>\n");
+//	  print("<tr>\n");
+//	  print("<td   class=\"cwhoisverify\" align=\"right\" colspan=\"5\">\n");
+//	  print("</td>");
+//	  print("</TR>\n");
 	  print("</table>\n");
-	  print("<hr class=\"cwhoisverify\">");
+//	  print("<hr class=\"cwhoisverify\">");
 
 	  print("</form></div>\n");
 	}
-	if ($paymenttarget!="")
-	  print "<div class=\"cwhoiscontact\"><form action=\"".$paymentpage."\" target=\"".$paymenttarget."\" method=\"get\" name=\"contactform\" onSubmit=\"return validate(this)\">\n";
-	else
-	  print "<div class=\"cwhoiscontact\"><form action=\"".$paymentpage."\" method=\"get\" name=\"contactform\" id=\"contactform\" onSubmit=\"return validate(this)\">\n";
-	print "<input name=\"cwaction\" type=\"hidden\" value=\"order\">\n";
+
+//	Prints the contact form
+//	if ($paymenttarget!="")
+//	  print "<div class=\"cwhoiscontact\"><form action=\"".$paymentpage."\" target=\"".$paymenttarget."\" method=\"get\" name=\"contactform\" onSubmit=\"return validate(this)\">\n";
+//	else
+//	  print "<div class=\"cwhoiscontact\"><form action=\"".$paymentpage."\" method=\"get\" name=\"contactform\" id=\"contactform\" onSubmit=\"return validate(this)\">\n";
+//	print "<input name=\"cwaction\" type=\"hidden\" value=\"order\">\n";
+//
+//
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Replacement form fields and validation can go here. Delete all lines in this
 	// section and replace with you own form fields. Don't include the <form> or
 	// </form> though.
-	print "<script language=\"JavaScript\">\n";
-	print "<!-- JavaScript\n";
-	print "  function validate(form)\n";
-	print "  {\n";
-	if ($overallagree!="")
-	{
-	  print "if (!form.cfOverallAgree.checked)\n";
-	  print "{\n";
-	  print "  alert(\"".$lang['OverallAlert']."\")\n";
-	  print "  form.cfOverallAgree.focus()\n";
-	  print "  return(false)\n";
-	  print "}\n";
-	}
-	if (($buyregister==1) && ($registeragree!=""))
-	{
-	  print "if (!form.cfRegisterAgree.checked)\n";
-	  print "{\n";
-	  print "  alert(\"".$lang['RegAlert']."\")\n";
-	  print "  form.cfRegisterAgree.focus()\n";
-	  print "  return(false)\n";
-	  print "}\n";
-	}
-	if (($buytransfer==1) && ($transferagree!=""))
-	{
-	  print "if (!form.cfTransferAgree.checked)\n";
-	  print "{\n";
-	  print "  alert(\"".$lang['TransferAlert']."\")\n";
-	  print "  form.cfTransferAgree.focus()\n";
-	  print "  return(false)\n";
-	  print "}\n";
-	}
-	if (($buyrenew==1) && ($renewagree!=""))
-	{
-	  print "if (!form.cfRenewAgree.checked)\n";
-	  print "{\n";
-	  print "  alert(\"".$lang['RenewAlert']."\")\n";
-	  print "  form.cfRenewAgree.focus()\n";
-	  print "  return(false)\n";
-	  print "}\n";
-	}
-	if (($buyhosting==1) && ($hostagree!=""))
-	{
-	  print "if (!form.cfHostAgree.checked)\n";
-	  print "{\n";
-	  print "  alert(\"".$lang['HostAlert']."\")\n";
-	  print "  form.cfHostAgree.focus()\n";
-	  print "  return(false)\n";
-	  print "}\n";
-	}
-  // Create form validation code for required fields
-  $passfield=false;
-  $verifypassfield=false;
-  $ra_paymenttypefield=false;
-	for ($k=0;$k<count($cform);$k++)
-	{
-  	$formv=explode(",",$cform[$k]);
-    if (strcasecmp($formv[0],"ra_paymenttype")==0)
-      $ra_paymenttypefield=true;
-    if (strcasecmp($formv[0],"password")==0)
-      $passfield=true;
-    if (strcasecmp($formv[0],"verifypassword")==0)
-    {
-      $verifypassfield=true;
-      $verifypasswordmsg=$formv[2];
-    }
-	}
-	if ($ra_paymenttypefield)
-	{
-    print "var paytype=form.cfra_paymenttype[getSelectedButton(form.cfra_paymenttype)].value\n";
-    print "paytype=paytype.toLowerCase();\n";
-	}
-  else
-    print "var paytype=\"\"\n";
-	for ($k=0;$k<count($cform);$k++)
-	{
-  	$formv=explode(",",$cform[$k]);
-    switch (strtolower($formv[0]))
-    {
-      case "email":
-        if ($formv[2]!="")
-        {
-    			print "if (ValidEmail(form.cfemail.value)== false)\n";
-    			print "{\n";
-    			print "  alert(\"$formv[2]\")\n";
-    			print "  form.cfemail.focus()\n";
-    			print "  return(false)\n";
-    			print "}\n";
-        }
-        break;
-      case "cc_name":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
-        	print "{\n";
-      		print "if (form.cf".$formv[0].".value==\"\")\n";
-      		print "{\n";
-      		print "  alert(\"$formv[2]\")\n";
-      		print "  form.cf$formv[0].focus()\n";
-      		print "  return(false)\n";
-      		print "}\n";
-      		print "}\n";
-        }
-        break;
-      case "cc_number":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
-        	print "{\n";
-    			print "if (validateCreditCard(form.cfcc_number.value)== false)\n";
-    			print "{\n";
-    			print "  alert(\"$formv[2]\")\n";
-    			print "  form.cfcc_number.focus()\n";
-    			print "  return(false)\n";
-    			print "}\n";
-      		print "}\n";
-        }
-        break;
-      case "cc_expiry":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
-        	print "{\n";
-          print "  if (validateDateMMYY(form.cfcc_expiry.value,getTodayMMYY(),\"12/99\")==false)\n";
-          print "  {\n";
-    			print "    alert(\"$formv[2]\")\n";
-          print "    form.cfcc_expiry.focus()\n";
-          print "    return (false)\n";
-          print "  }  \n";
-      		print "}\n";
-        }
-        break;
-      case "cc_securitycode":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
-        	print "{\n";
-          print "  if (validateSecCode(form.cfcc_securitycode.value)==false)\n";
-          print "  {\n";
-    			print "    alert(\"$formv[2]\")\n";
-          print "    form.cfcc_securitycode.focus()\n";
-          print "    return (false)\n";
-          print "  }  \n";
-      		print "}\n";
-        }
-        break;
-      case "cc_start":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
-        	print "{\n";
-          print "  if (form.cfcc_start.value!=\"\")\n";
-          print "  {\n";
-          print "    if (validateDateMMYY(form.cfcc_start.value,\"01/01\",getTodayMMYY())==false)\n";
-          print "    {\n";
-    			print "      alert(\"$formv[2]\")\n";
-          print "      form.cfcc_start.focus()\n";
-          print "      return (false)\n";
-          print "    }\n";
-          print "  }\n";
-      		print "}\n";
-        }
-        break;
-      case "cc_issuenumber":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
-        	print "{\n";
-      		print "if (form.cf".$formv[0].".value==\"\")\n";
-      		print "{\n";
-      		print "  alert(\"$formv[2]\")\n";
-      		print "  form.cf$formv[0].focus()\n";
-      		print "  return(false)\n";
-      		print "}\n";
-      		print "}\n";
-        }
-        break;
-      case "cc_cardtype":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
-        	print "{\n";
-      		print "if (form.cf".$formv[0].".selectedIndex==0)\n";
-      		print "{\n";
-      		print "  alert(\"$formv[2]\")\n";
-      		print "  form.cf$formv[0].focus()\n";
-      		print "  return(false)\n";
-      		print "}\n";
-      		print "}\n";
-        }
-        break;
-      case "ba_accountname":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
-        	print "{\n";
-      		print "if (form.cf".$formv[0].".value==\"\")\n";
-      		print "{\n";
-      		print "  alert(\"$formv[2]\")\n";
-      		print "  form.cf$formv[0].focus()\n";
-      		print "  return(false)\n";
-      		print "}\n";
-      		print "}\n";
-        }
-        break;
-      case "ba_bankname":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
-        	print "{\n";
-      		print "if (form.cf".$formv[0].".value==\"\")\n";
-      		print "{\n";
-      		print "  alert(\"$formv[2]\")\n";
-      		print "  form.cf$formv[0].focus()\n";
-      		print "  return(false)\n";
-      		print "}\n";
-      		print "}\n";
-        }
-        break;
-      case "ba_accountnumber":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
-        	print "{\n";
-      		print "if (form.cf".$formv[0].".value==\"\")\n";
-      		print "{\n";
-      		print "  alert(\"$formv[2]\")\n";
-      		print "  form.cf$formv[0].focus()\n";
-      		print "  return(false)\n";
-      		print "}\n";
-      		print "}\n";
-        }
-        break;
-      case "ba_accounttype":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
-        	print "{\n";
-      		print "if (form.cf".$formv[0].".value==\"\")\n";
-      		print "{\n";
-      		print "  alert(\"$formv[2]\")\n";
-      		print "  form.cf$formv[0].focus()\n";
-      		print "  return(false)\n";
-      		print "}\n";
-      		print "}\n";
-        }
-        break;
-      case "ba_branchcode":
-        if ($formv[2]!="")
-        {
-        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
-        	print "{\n";
-      		print "if (form.cf".$formv[0].".value==\"\")\n";
-      		print "{\n";
-      		print "  alert(\"$formv[2]\")\n";
-      		print "  form.cf$formv[0].focus()\n";
-      		print "  return(false)\n";
-      		print "}\n";
-      		print "}\n";
-        }
-        break;
-      default:
-        if ($formv[2]!="")
-        {
-          if (substr($formv[0],0,3)=="cb_")
-          {
-      			print "if (form.cf".$formv[0].".checked==false)\n";
-      			print "{\n";
-      			print "  alert(\"$formv[2]\")\n";
-      			print "  form.cf$formv[0].focus()\n";
-      			print "  return(false)\n";
-      			print "}\n";
-          }
-          if (substr($formv[0],0,3)=="dm_")
-          {
-      			print "if (form.cf".$formv[0].".selectedIndex==0)\n";
-      			print "{\n";
-      			print "  alert(\"$formv[2]\")\n";
-      			print "  form.cf$formv[0].focus()\n";
-      			print "  return(false)\n";
-      			print "}\n";
-          }
-          if ((substr($formv[0],0,3)!="cb_") && (substr($formv[0],0,3)!="dm_") && (substr($formv[0],0,3)!="ra_"))
-          {
-      			print "if (form.cf".$formv[0].".value==\"\")\n";
-      			print "{\n";
-      			print "  alert(\"$formv[2]\")\n";
-      			print "  form.cf$formv[0].focus()\n";
-      			print "  return(false)\n";
-      			print "}\n";
-          }
-        }
-    }
-	}
-	// If password and verify password fields defined then check they match
-	if ($passfield && $verifypassfield)
-	{
-	  print "if (form.cfpassword.value!=form.cfverifypassword.value)\n";
-	  print "{\n";
-		print "  alert(\"$verifypasswordmsg\")\n";
-		print "  form.cfverifypassword.focus()\n";
-		print "  return(false)\n";
-	  print "}\n";
-	}
-	// If Checkout Turing required then check something is entered
-	if ($CheckoutTuring)
-	{
-	  print "if (form.turing.value==\"\")\n";
-	  print "{\n";
-		print "  alert(\"".$lang['TuringCodeRequired']."\")\n";
-		print "  form.turing.focus()\n";
-		print "  return(false)\n";
-	  print "}\n";
-	}
-	print "return(true)\n";
-	print "}\n";
- 	print "\n";
-	print "function ValidEmail (emailStr)\n";
-	print "{\n";
-	print "var emailPat=/^(.+)@(.+)$/\n";
-	print "var specialChars=\"\\\\(\\\\)<>@,;:\\\\\\\\\\\\\\\"\\\\.\\\\[\\\\]\"\n";
-	print "var validChars=\"\\[^\\\\s\" + specialChars + \"\\]\"\n";
-	print "var quotedUser=\"(\\\"[^\\\"]*\\\")\"\n";
-	print "var ipDomainPat=/^\[(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\]$/\n";
-	print "var atom=validChars + '+'\n";
-	print "var word=\"(\" + atom + \"|\" + quotedUser + \")\"\n";
-	print "var userPat=new RegExp(\"^\" + word + \"(\\\\.\" + word + \")*$\")\n";
-	print "var domainPat=new RegExp(\"^\" + atom + \"(\\\\.\" + atom +\")*$\")\n";
-	print "var matchArray=emailStr.match(emailPat)\n";
-	print "if (matchArray==null)\n";
-	print " return false\n";
-	print "var user=matchArray[1]\n";
-	print "var domain=matchArray[2]\n";
-	print "if (user.match(userPat)==null)\n";
-	print "    return false\n";
-	print "var IPArray=domain.match(ipDomainPat)\n";
-	print "if (IPArray!=null) {\n";
-	print "  for (var i=1;i<=4;i++)\n";
-	print "  {\n";
-	print "    if (IPArray[i]>255)\n";
-	print "      return false\n";
-	print "  }\n";
-	print "  return true\n";
-	print "}\n";
-	print "var domainArray=domain.match(domainPat)\n";
-	print "if (domainArray==null)\n";
-	print "    return false\n";
-	print "var atomPat=new RegExp(atom,\"g\")\n";
-	print "var domArr=domain.match(atomPat)\n";
-	print "var len=domArr.length\n";
-	print "if (domArr[domArr.length-1].length<2 ||\n";
-	print "    domArr[domArr.length-1].length>4)\n";
-	print "   return false\n";
-	print "if (len<2)\n";
-	print "   return false\n";
-	print "return true;\n";
-	print "}\n";
-
-  print "function validateCreditCard(s)\n";
-  print "{\n";
-  print "// remove non-numerics\n";
-  print "var v = \"0123456789\";\n";
-  print "var CC = \"\";\n";
-  print "for (i=0; i < s.length; i++)\n";
-  print "{\n";
-  print "  x = s.charAt(i);\n";
-  print "  if (v.indexOf(x,0) != -1)\n";
-  print "  CC += x;\n";
-  print "}\n";
-  print "  if (CC.length > 19)\n";
-  print "       return (false);\n";
-  print "  if (CC.length < 13)\n";
-  print "       return (false);\n";
-  print "  sum = 0; mul = 1; l = CC.length;\n";
-  print "  for (i = 0; i < l; i++) \n";
-  print "  {\n";
-  print "    digit = CC.substring(l-i-1,l-i);\n";
-  print "    tproduct = parseInt(digit ,10)*mul;\n";
-  print "    if (tproduct >= 10)\n";
-  print "      sum += (tproduct % 10) + 1;\n";
-  print "    else\n";
-  print "      sum += tproduct;\n";
-  print "    if (mul == 1)\n";
-  print "      mul++;\n";
-  print "    else\n";
-  print "      mul--;\n";
-  print "  }\n";
-  print "  if ((sum % 10) == 0)\n";
-  print "    return (true);\n";
-  print "  else\n";
-  print "    return (false);\n";
-  print "}\n";
-
-  print "function validateDateMMYY(s,first,last)\n";
-  print "{\n";
-  print "  var p=-1;\n";
-  print "  for (var k=0;k<s.length;k++)\n";
-  print "  {\n";
-  print "    if ((s.charAt(k)==\"/\") || (s.charAt(k)==\"\\\\\"))\n";
-  print "	  p=k\n";
-  print "  }\n";
-  print "  if (p==-1)\n";
-  print "    return(false)\n";
-  print "  var m=s.substring(0,p)\n";
-  print "  var y=s.substring(p+1,s.length)\n";
-  print "  if ((m<1) || (m>12))\n";
-  print "    return(false)\n";
-  print "  if ((y<1) || (y>99))\n";
-  print "    return(false)\n";
-  print "  if (m.length<2)\n";
-  print "    m=\"0\".concat(m)\n";
-  print "  if (y.length<2)\n";
-  print "    y=\"0\".concat(y)\n";
-  print "  var min=first.substring(3,5)+first.substring(0,2)\n";
-  print "  var max=last.substring(3,5)+last.substring(0,2)\n";
-  print "  var comps=y.concat(m)\n";
-  print "  if (comps<min)\n";
-  print "    return(false)\n";
-  print "  if (comps>max)\n";
-  print "    return(false)\n";
-  print "  return(true)\n";
-  print "}\n";
-  print "\n";
-  print "function getTodayMMYY()\n";
-  print "{\n";
-  print "  var today=new Date()\n";
-  print "  var mmyy=\"\";\n";
-  print "  var m=today.getMonth()+1\n";
-  print "  if (m<10)\n";
-  print "    mmyy=\"0\"+m.toString()\n";
-  print "  else\n";
-  print "    mmyy=+m.toString()\n";
-  print "  mmyy=mmyy+\"/\"\n";
-  print "  var y=today.getFullYear()\n";
-  print "  mmyy=mmyy+y.toString().substring(2,4)\n";
-  print "  return (mmyy)	\n";
-  print "}\n";
-  print "function validateSecCode(s)\n";
-  print "{\n";
-  print "  if ((s.length!=3) && (s.length!=4))\n";
-  print "    return (false)\n";
-  print "  for (var k=0;k<s.length;k++)\n";
-  print "  {\n";
-  print "    if ((s.charAt(k)<\"0\") || (s.charAt(k)>\"9\"))\n";
-  print "	  return(false)\n";
-  print "  }\n";
-  print "  return(true)\n";
-  print "}\n";
-  print "function getSelectedButton(buttonGroup)\n";
-  print "  {\n";
-  print "		for (var i=0; i<buttonGroup.length; i++)\n";
-  print "		{\n";
-  print "			if (buttonGroup[i].checked)\n";
-  print "			{\n";
-  print "				return (i)\n";
-  print "			}\n";
-  print "		}\n";
-  print "	  return(0)\n";
-  print "	}\n";
-	print "function paymenttypeclicked()\n";
-	print "{\n";
-  print "  var paytype=document.contactform.cfra_paymenttype[getSelectedButton(document.contactform.cfra_paymenttype)].value\n";
-  print "  paytype=paytype.toLowerCase();\n";
-	print "  if (paytype==\"credit card\")\n";
-	print "  {\n";
-	print "    var creditcarddisabled=false\n";
-	print "    var banktransferdisabled=true\n";
-	print "  }\n";
-	print "  if (paytype==\"bank transfer\")\n";
-	print "  {\n";
-	print "    var creditcarddisabled=true\n";
-	print "    var banktransferdisabled=false\n";
-	print "  }\n";
-	for ($k=0;$k<count($cform);$k++)
-	{
-  	$formv=explode(",",$cform[$k]);
-    if (strcasecmp($formv[0],"cc_cardtype")==0)
-    	print "  document.contactform.cfcc_cardtype.disabled=creditcarddisabled\n";
-    if (strcasecmp($formv[0],"cc_name")==0)
-    	print "  document.contactform.cfcc_name.disabled=creditcarddisabled\n";
-    if (strcasecmp($formv[0],"cc_number")==0)
-    	print "  document.contactform.cfcc_number.disabled=creditcarddisabled\n";
-    if (strcasecmp($formv[0],"cc_expiry")==0)
-    	print "  document.contactform.cfcc_expiry.disabled=creditcarddisabled\n";
-    if (strcasecmp($formv[0],"cc_securitycode")==0)
-    	print "  document.contactform.cfcc_securitycode.disabled=creditcarddisabled\n";
-    if (strcasecmp($formv[0],"cc_start")==0)
-    	print "  document.contactform.cfcc_start.disabled=creditcarddisabled\n";
-    if (strcasecmp($formv[0],"cc_issuenumber")==0)
-    	print "  document.contactform.cfcc_issuenumber.disabled=creditcarddisabled\n";
-    if (strcasecmp($formv[0],"ba_accountname")==0)
-    	print "  document.contactform.cfba_accountname.disabled=banktransferdisabled\n";
-    if (strcasecmp($formv[0],"ba_bankname")==0)
-    	print "  document.contactform.cfba_bankname.disabled=banktransferdisabled\n";
-    if (strcasecmp($formv[0],"ba_accountnumber")==0)
-    	print "  document.contactform.cfba_accountnumber.disabled=banktransferdisabled\n";
-    if (strcasecmp($formv[0],"ba_accounttype")==0)
-    	print "  document.contactform.cfba_accounttype.disabled=banktransferdisabled\n";
-    if (strcasecmp($formv[0],"ba_branchcode")==0)
-    	print "  document.contactform.cfba_branchcode.disabled=banktransferdisabled\n";
-	}
-	print "}\n";
-
-	print "\n";
-	print "  // - JavaScript - -->\n";
-	print "  </script>\n";
-  if ((($buyregister==1) && ($registeragree!="")) || (($buytransfer==1) && ($transferagree!="")) || (($buyrenew==1) && ($renewagree!="")) || (($buyhosting==1) && ($hostagree!="")) || ($overallagree!=""))
-	{
-	  print "<table class=\"table table-borderless cwhoiscontact\" >\n";
-	  print "<tr>\n";
-	  print "<td   class=\"cwhoiscontact\"><big class=\"cwhoiscontact\">".$lang['Agreements']."</big></td>\n";
-	  print "</tr>\n";
-	  if ($overallagree!="")
-	  {
-	    print "<tr>\n";
-	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfOverallAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
-      // Insert hyperlink in relevant part of text
-      $agreetext=explode("!!!",$lang['OverallAgree']);
-      print "&nbsp;&nbsp;".$agreetext[0];
-      if (count($agreetext)>1)
-        print "<a class=\"cwhoiscontact\" href=\"$overallagree\" target=\"_blank\">".$agreetext[1]."</a>";
-      if (count($agreetext)>2)
-        print $agreetext[2];
-	    print "</p></td>\n";
-	    print "</tr>\n";
-	  }
-	  if (($buyregister==1) && ($registeragree!=""))
-	  {
-	    print "<tr>\n";
-	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfRegisterAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
-      // Insert hyperlink in relevant part of text
-      $agreetext=explode("!!!",$lang['RegAgree']);
-      print "&nbsp;&nbsp;".$agreetext[0];
-      if (count($agreetext)>1)
-        print "<a class=\"cwhoiscontact\" href=\"$registeragree\" target=\"_blank\">".$agreetext[1]."</a>";
-      if (count($agreetext)>2)
-        print $agreetext[2];
-	    print "</p></td>\n";
-	    print "</tr>\n";
-	  }
-	  if (($buytransfer==1) && ($transferagree!=""))
-	  {
-	    print "<tr>\n";
-	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfTransferAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
-      // Insert hyperlink in relevant part of text
-      $agreetext=explode("!!!",$lang['TransferAgree']);
-      print "&nbsp;&nbsp;".$agreetext[0];
-      if (count($agreetext)>1)
-        print "<a class=\"cwhoiscontact\" href=\"$transferagree\" target=\"_blank\">".$agreetext[1]."</a>";
-      if (count($agreetext)>2)
-        print $agreetext[2];
-	    print "</p></td>\n";
-	    print "</tr>\n";
-	  }
-	  if (($buyrenew==1) && ($renewagree!=""))
-	  {
-	    print "<tr>\n";
-	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfRenewAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
-      // Insert hyperlink in relevant part of text
-      $agreetext=explode("!!!",$lang['RenewAgree']);
-      print "&nbsp;&nbsp;".$agreetext[0];
-      if (count($agreetext)>1)
-        print "<a class=\"cwhoiscontact\" href=\"$renewagree\" target=\"_blank\">".$agreetext[1]."</a>";
-      if (count($agreetext)>2)
-        print $agreetext[2];
-	    print "</p></td>\n";
-	    print "</tr>\n";
-	  }
-	  if (($buyhosting==1) && ($hostagree!=""))
-	  {
-	    print "<tr>\n";
-	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfHostAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
-      // Insert hyperlink in relevant part of text
-      $agreetext=explode("!!!",$lang['HostAgree']);
-      print "&nbsp;&nbsp;".$agreetext[0];
-      if (count($agreetext)>1)
-        print "<a class=\"cwhoiscontact\" href=\"$hostagree\" target=\"_blank\">".$agreetext[1]."</a>";
-      if (count($agreetext)>2)
-        print $agreetext[2];
-	    print "</p></td>\n";
-	    print "</tr>\n";
-	  }
-	  print"</table>\n";
-	  print"<BR>";
-	}
-	print "  <table class=\"table table-borderless cwhoiscontact\" >\n";
-	print "  <tr>\n";
-	if (!isset($_SESSION['loggedIn'])) print "  <td   class=\"cwhoiscontact\" colspan=\"2\"><big class=\"cwhoiscontact text-center\">".$lang['ContactDetails']."</big></td>\n";
-	//	print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">&nbsp;</p></td>\n";
-	print "  </tr>\n";
-
-  // Create table row and text input for each form field
-	if (!$_SESSION['loggedIn'])
-	{
-	 for ($k=0;$k<count($cform);$k++) {
-	  	$formv=explode(",",$cform[$k]);
-	  	$varval="cf".$formv[0];
-	    if (($checkoutcouponerror>0) && ($formv[0]=="couponcode"))
-	    {
-	      print "  <tr>\n";
-		    print "  <td   class=\"cwhoiscontact\">&nbsp;</td><td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\" style=\"color:#FF0000\">";
-		    if ($checkoutcouponerror==1)
-		      print $lang['CouponNotValid'];
-		    if ($checkoutcouponerror==2)
-		      print $lang['CouponExpired'];
-		    print "</p></td>\n";
-		    print "  </tr>\n";
-	    }
-			print "  <tr>\n";
-			print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">\n";
-	    print "  ".$formv[1];
-	    if ($formv[2]!="")
-	      print "*";
-	    print "</p></td>";
-		  switch (strtolower($formv[0]))
-		  {
-				case "total":
-					print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" disabled type=\"text\" name=\"cf".$formv[0]."\" value=\"$total\"></td>\n";
-					break;
-				case "curr":
-					print "<td   class=\"cwhoiscontact\"><select class=\"cwhoiscontact\" name=\"cf".$formv[0]."\">\n";
-					for ($j=3;$j<count($formv);$j++)
-					{
-						print "<option value=\"".$formv[$j]."\"";
-						if ($$varval==$formv[$j]) print " selected";
-						print ">".$formv[$j]."</option>\n";
-					}
-					print "</select></td>\n";
-					break;
-		    case "password":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"password\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		    case "verifypassword":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"password\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		    case "cc_number":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"23\" size=\"35\"></td>\n";
-			    break;
-		    case "cc_expiry":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"5\" size=\"5\"></td>\n";
-			    break;
-		    case "cc_start":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"5\" size=\"5\"></td>\n";
-			    break;
-		    case "cc_securitycode":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"4\" size=\"5\"></td>\n";
-			    break;
-		    case "cc_name":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		    case "cc_issuenumber":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		    case "cc_cardtype":
-	        print "<td   class=\"cwhoiscontact\"><select class=\"cwhoiscontact\" name=\"cf".$formv[0]."\">\n";
-	        for ($j=3;$j<count($formv);$j++)
-	        {
-	          print "<option value=\"".$formv[$j]."\"";
-	          if ($$varval==$formv[$j]) print " selected";
-	          print ">".$formv[$j]."</option>\n";
-	        }
-	        print "</select></td>\n";
-			    break;
-		    case "ba_accountname":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		    case "ba_bankname":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		    case "ba_accountnumber":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		    case "ba_accounttype":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		    case "ba_branchcode":
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		    case "ra_paymenttype":
-	  		    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"radio\" name=\"cf".$formv[0]."\" value=\"".$formv[3]."\"";
-	          if (($checkoutturingerror==true) || ($checkoutcouponerror>0))
-	          {
-	  		    if ($$varval==$formv[3])
-	  		      print " checked=\"checked\" ";
-	          }
-	          else
-	          {
-	  		    if (strtolower($formv[4])=="checked")
-	  		      print " checked=\"checked\" ";
-	          }
-	  		    print " onClick=\"paymenttypeclicked();\"></td>\n";
-			    break;
-		    default:
-		      if (substr($formv[0],0,3)=="ta_")
-		  	    print "<td   class=\"cwhoiscontact\"><textarea class=\"cwhoiscontact\" name=\"cf".$formv[0]."\" cols=\"40\" rows=\"5\">".$$varval."</textarea></td>\n";
-		      if (substr($formv[0],0,3)=="cb_")
-		      {
-	  		    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"checkbox\" name=\"cf".$formv[0]."\" value=\"".$formv[3]."\"";
-	          if (($checkoutturingerror==true) || ($checkoutcouponerror>0))
-	          {
-	  		      if ($$varval==$formv[3])
-	  		        print " checked=\"checked\" ";
-	          }
-	          else
-	          {
-	  		      if (strtolower($formv[4])=="checked")
-	  		        print " checked=\"checked\" ";
-	          }
-	  		    print "></td>\n";
-					}
-		      if (substr($formv[0],0,3)=="ra_")
-		      {
-	  		    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"radio\" name=\"cf".$formv[0]."\" value=\"".$formv[3]."\"";
-	          if (($checkoutturingerror==true) || ($checkoutcouponerror>0))
-	          {
-	  		    if ($$varval==$formv[3])
-	  		      print " checked=\"checked\" ";
-	          }
-	          else
-	          {
-	  		      if (strtolower($formv[4])=="checked")
-	  		        print " checked=\"checked\" ";
-	          }
-	  		    print "></td>\n";
-					}
-		      if (substr($formv[0],0,3)=="dm_")
-		      {
-	          print "<td   class=\"cwhoiscontact\"><select class=\"cwhoiscontact\" name=\"cf".$formv[0]."\">\n";
-	          for ($j=3;$j<count($formv);$j++)
-	          {
-	            print "<option value=\"".$formv[$j]."\"";
-	            if ($$varval==$formv[$j]) print " selected";
-	            print ">".$formv[$j]."</option>\n";
-	          }
-	          print "</select></td>\n";
-		      }
-		      if ((substr($formv[0],0,3)!="ta_") && (substr($formv[0],0,3)!="cb_") && (substr($formv[0],0,3)!="ra_") && (substr($formv[0],0,3)!="dm_"))
-			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-			    break;
-		  }
-			print "  </tr>\n";
-		}
-	} else {
-		for ($k=0;$k<count($cform);$k++) {
-			$formv=explode(",",$cform[$k]);
-			$varval="cf".$formv[0];
-			print "  <tr>\n";
-			print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">\n";
-			print "  ".$formv[1];
-			if ($formv[2]!="") print "*";
-			print "</p></td>";
-			switch (strtolower($formv[0]))
-			{
-				case "password":
-					print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"password\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-					break;
-				case "verifypassword":
-					print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"password\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-					break;
-				case "curr":
-					print "<td   class=\"cwhoiscontact\"><select class=\"cwhoiscontact\" name=\"cf".$formv[0]."\">\n";
-					for ($j=3;$j<count($formv);$j++)
-					{
-						print "<option value=\"".$formv[$j]."\"";
-						if ($$varval==$formv[$j]) print " selected";
-						print ">".$formv[$j]."</option>\n";
-					}
-					print "</select></td>\n";
-					break;
-					case "email":
-						print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
-						break;
-				default:
-					break;
-			}
-			print "  </tr>\n";
-		}
-	}
-
-/*
-	// If mollieideal used then get bank code (this list may need updating once in a while
-	if (false!==strpos(strtolower($payprocess),"mollieideal"))
-	{
-    $url="https://secure.mollie.nl/xml/ideal?a=banklist";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-    curl_close($ch);
-	  print "  <tr>\n";
-	  print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">\n";
-	  print "  ".$lang['IdealBankList'];
-	  print " </p></td><td   class=\"cwhoiscontact\">\n";
-	  print " <select class=\"cwhoiscontact\" size=\"1\" name=\"cfmollieidealbank\">\n";
-	  $pos=0;
-	  do
-	  {
-	    $pos1=strpos($response,"<bank_id>",$pos);
-	    $pos2=strpos($response,"</bank_id>",$pos1);
-	    if ((false!==$pos1) && (false!==$pos2))
-	    {
-  	    $bankcode=substr($response,$pos1+9,$pos2-$pos1-9);
-  	    $pos=$pos2+10;
-  	    $pos1=strpos($response,"<bank_name>",$pos);
-  	    $pos2=strpos($response,"</bank_name>",$pos1);
-  	    $bankname=substr($response,$pos1+11,$pos2-$pos1-11);
-  	    $pos=$pos2+12;
-        print " <option value=\"$bankcode\">$bankname</option>\n";
-  	  }
-  	  else
-  	    $pos++;
-	  }
-	  while ($pos<strlen($response));
-	  print " </select>\n";
-	  print " </td>\n";
-	  print " </tr>\n";
-	}
-	*/
-
-  // If more than one payment processor selected then offer choice.
-  $pprocs=explode(",",$payprocess);
-  $pprocsname=explode(",",$payprocessnames);
-  if (count($pprocs)>0)
-  {
-	  print "  <tr>\n";
-	  print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">\n";
-	  print "  ".$lang['PayMethod'];
-	  print " </p></td><td   class=\"cwhoiscontact\">\n";
-	  print " <select disabled class=\"cwhoiscontact\" size=\"1\" name=\"paymethod\">\n";
-    for ($k=0;$k<count($pprocs);$k++)
-    {
-		  print " <option value=\"".$pprocs[$k]."\">";
-		  if (isset($pprocsname[$k]))
-		  	print $pprocsname[$k];
-		  else
-			  print $pprocs[$k];
-		  print "</option>\n";
-	  }
-	  print " </select>\n";
-	  print " </td>\n";
-	  print " </tr>\n";
-  }
-	// print "<tr>\n";
-	// print "<td class='cwhoiscontact'>\n";
-	// print "<p class='cwhoiscontact'> Currency</p>\n";
-	// print "</td>\n";
-	// print "<td class='cwhoiscontact'>\n";
-	// print "<select class='cwhoiscontact' name='ipaycurr'>\n";
-	// print "<option value='KES'>KES</option><option value='USD'>USD</option>\n";
-	// print "</select>\n";
-	// print "</td>\n";
-	// print "</tr>\n";
-  if ($checkoutcouponerror>0)
-  {
-    print "<script language=\"JavaScript\">\n";
-    print "<!-- JavaScript\n";
-    print "document.contactform.cfcouponcode.focus()\n";
-    print "// - JavaScript - -->\n";
-    print "</script>\n";
-  }
-  // If required display turing code
-  if ($CheckoutTuring)
-  {
-    if ($checkoutturingerror==true)
-    {
-      print "  <tr>\n";
-	    print "  <td   class=\"cwhoiscontact\">&nbsp;</td><td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\" style=\"color:#FF0000\">".$lang['TuringCodeRequired']."</p></td>\n";
-	    print "  </tr>\n";
-    }
-    print "  <tr>\n";
-	  print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">".$lang['TuringCode']."*</p></td><td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"turing\" id=\"turing\" size=\"10\">&nbsp;<img class=\"cwhoiscontact\" id=\"turingimage\" name=\"turingimage\" src=\"".$FilePath."turingimagecw.php\" align=\"absmiddle\" width=\"60\" height=\"30\"></td>\n";
-	  print "  </tr>\n";
-    if ($checkoutturingerror==true)
-    {
-      print "<script language=\"JavaScript\">\n";
-      print "<!-- JavaScript\n";
-      print "document.contactform.turing.focus()\n";
-      print "// - JavaScript - -->\n";
-      print "</script>\n";
-    }
-  }
-
-	print "<br/>";
-
-  print "  <tr>\n";
-	print "  <td   class=\"cwhoiscontact\">&nbsp;</td><td   class=\"cwhoiscontact\" align=\"right\"><input class=\"form-control btn cwhois cwhoiscontact\" type=\"submit\" name=\"button2\" value=\" ".$lang['CheckoutButton']." \" ></td>\n";
-	print "  </tr>\n";
-	print "  </table>\n";
-	if ($ra_paymenttypefield)
-	{
-  	print "<script language=\"JavaScript\">\n";
-	  print "<!-- JavaScript\n";
-	  print "paymenttypeclicked()\n";
-  	print "// - JavaScript - -->\n";
-	  print "</script>\n";
-	}
-
+//	print "<script language=\"JavaScript\">\n";
+//	print "<!-- JavaScript\n";
+//	print "  function validate(form)\n";
+//	print "  {\n";
+//	if ($overallagree!="")
+//	{
+//	  print "if (!form.cfOverallAgree.checked)\n";
+//	  print "{\n";
+//	  print "  alert(\"".$lang['OverallAlert']."\")\n";
+//	  print "  form.cfOverallAgree.focus()\n";
+//	  print "  return(false)\n";
+//	  print "}\n";
+//	}
+//	if (($buyregister==1) && ($registeragree!=""))
+//	{
+//	  print "if (!form.cfRegisterAgree.checked)\n";
+//	  print "{\n";
+//	  print "  alert(\"".$lang['RegAlert']."\")\n";
+//	  print "  form.cfRegisterAgree.focus()\n";
+//	  print "  return(false)\n";
+//	  print "}\n";
+//	}
+//	if (($buytransfer==1) && ($transferagree!=""))
+//	{
+//	  print "if (!form.cfTransferAgree.checked)\n";
+//	  print "{\n";
+//	  print "  alert(\"".$lang['TransferAlert']."\")\n";
+//	  print "  form.cfTransferAgree.focus()\n";
+//	  print "  return(false)\n";
+//	  print "}\n";
+//	}
+//	if (($buyrenew==1) && ($renewagree!=""))
+//	{
+//	  print "if (!form.cfRenewAgree.checked)\n";
+//	  print "{\n";
+//	  print "  alert(\"".$lang['RenewAlert']."\")\n";
+//	  print "  form.cfRenewAgree.focus()\n";
+//	  print "  return(false)\n";
+//	  print "}\n";
+//	}
+//	if (($buyhosting==1) && ($hostagree!=""))
+//	{
+//	  print "if (!form.cfHostAgree.checked)\n";
+//	  print "{\n";
+//	  print "  alert(\"".$lang['HostAlert']."\")\n";
+//	  print "  form.cfHostAgree.focus()\n";
+//	  print "  return(false)\n";
+//	  print "}\n";
+//	}
+//  // Create form validation code for required fields
+//  $passfield=false;
+//  $verifypassfield=false;
+//  $ra_paymenttypefield=false;
+//	for ($k=0;$k<count($cform);$k++)
+//	{
+//  	$formv=explode(",",$cform[$k]);
+//    if (strcasecmp($formv[0],"ra_paymenttype")==0)
+//      $ra_paymenttypefield=true;
+//    if (strcasecmp($formv[0],"password")==0)
+//      $passfield=true;
+//    if (strcasecmp($formv[0],"verifypassword")==0)
+//    {
+//      $verifypassfield=true;
+//      $verifypasswordmsg=$formv[2];
+//    }
+//	}
+//	if ($ra_paymenttypefield)
+//	{
+//    print "var paytype=form.cfra_paymenttype[getSelectedButton(form.cfra_paymenttype)].value\n";
+//    print "paytype=paytype.toLowerCase();\n";
+//	}
+//  else
+//    print "var paytype=\"\"\n";
+//	for ($k=0;$k<count($cform);$k++)
+//	{
+//  	$formv=explode(",",$cform[$k]);
+//    switch (strtolower($formv[0]))
+//    {
+//      case "email":
+//        if ($formv[2]!="")
+//        {
+//    			print "if (ValidEmail(form.cfemail.value)== false)\n";
+//    			print "{\n";
+//    			print "  alert(\"$formv[2]\")\n";
+//    			print "  form.cfemail.focus()\n";
+//    			print "  return(false)\n";
+//    			print "}\n";
+//        }
+//        break;
+//      case "cc_name":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//      		print "if (form.cf".$formv[0].".value==\"\")\n";
+//      		print "{\n";
+//      		print "  alert(\"$formv[2]\")\n";
+//      		print "  form.cf$formv[0].focus()\n";
+//      		print "  return(false)\n";
+//      		print "}\n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "cc_number":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//    			print "if (validateCreditCard(form.cfcc_number.value)== false)\n";
+//    			print "{\n";
+//    			print "  alert(\"$formv[2]\")\n";
+//    			print "  form.cfcc_number.focus()\n";
+//    			print "  return(false)\n";
+//    			print "}\n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "cc_expiry":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//          print "  if (validateDateMMYY(form.cfcc_expiry.value,getTodayMMYY(),\"12/99\")==false)\n";
+//          print "  {\n";
+//    			print "    alert(\"$formv[2]\")\n";
+//          print "    form.cfcc_expiry.focus()\n";
+//          print "    return (false)\n";
+//          print "  }  \n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "cc_securitycode":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//          print "  if (validateSecCode(form.cfcc_securitycode.value)==false)\n";
+//          print "  {\n";
+//    			print "    alert(\"$formv[2]\")\n";
+//          print "    form.cfcc_securitycode.focus()\n";
+//          print "    return (false)\n";
+//          print "  }  \n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "cc_start":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//          print "  if (form.cfcc_start.value!=\"\")\n";
+//          print "  {\n";
+//          print "    if (validateDateMMYY(form.cfcc_start.value,\"01/01\",getTodayMMYY())==false)\n";
+//          print "    {\n";
+//    			print "      alert(\"$formv[2]\")\n";
+//          print "      form.cfcc_start.focus()\n";
+//          print "      return (false)\n";
+//          print "    }\n";
+//          print "  }\n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "cc_issuenumber":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//      		print "if (form.cf".$formv[0].".value==\"\")\n";
+//      		print "{\n";
+//      		print "  alert(\"$formv[2]\")\n";
+//      		print "  form.cf$formv[0].focus()\n";
+//      		print "  return(false)\n";
+//      		print "}\n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "cc_cardtype":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"credit card\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//      		print "if (form.cf".$formv[0].".selectedIndex==0)\n";
+//      		print "{\n";
+//      		print "  alert(\"$formv[2]\")\n";
+//      		print "  form.cf$formv[0].focus()\n";
+//      		print "  return(false)\n";
+//      		print "}\n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "ba_accountname":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//      		print "if (form.cf".$formv[0].".value==\"\")\n";
+//      		print "{\n";
+//      		print "  alert(\"$formv[2]\")\n";
+//      		print "  form.cf$formv[0].focus()\n";
+//      		print "  return(false)\n";
+//      		print "}\n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "ba_bankname":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//      		print "if (form.cf".$formv[0].".value==\"\")\n";
+//      		print "{\n";
+//      		print "  alert(\"$formv[2]\")\n";
+//      		print "  form.cf$formv[0].focus()\n";
+//      		print "  return(false)\n";
+//      		print "}\n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "ba_accountnumber":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//      		print "if (form.cf".$formv[0].".value==\"\")\n";
+//      		print "{\n";
+//      		print "  alert(\"$formv[2]\")\n";
+//      		print "  form.cf$formv[0].focus()\n";
+//      		print "  return(false)\n";
+//      		print "}\n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "ba_accounttype":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//      		print "if (form.cf".$formv[0].".value==\"\")\n";
+//      		print "{\n";
+//      		print "  alert(\"$formv[2]\")\n";
+//      		print "  form.cf$formv[0].focus()\n";
+//      		print "  return(false)\n";
+//      		print "}\n";
+//      		print "}\n";
+//        }
+//        break;
+//      case "ba_branchcode":
+//        if ($formv[2]!="")
+//        {
+//        	print "if ((paytype==\"bank transfer\") || (paytype==\"\"))\n";
+//        	print "{\n";
+//      		print "if (form.cf".$formv[0].".value==\"\")\n";
+//      		print "{\n";
+//      		print "  alert(\"$formv[2]\")\n";
+//      		print "  form.cf$formv[0].focus()\n";
+//      		print "  return(false)\n";
+//      		print "}\n";
+//      		print "}\n";
+//        }
+//        break;
+//      default:
+//        if ($formv[2]!="")
+//        {
+//          if (substr($formv[0],0,3)=="cb_")
+//          {
+//      			print "if (form.cf".$formv[0].".checked==false)\n";
+//      			print "{\n";
+//      			print "  alert(\"$formv[2]\")\n";
+//      			print "  form.cf$formv[0].focus()\n";
+//      			print "  return(false)\n";
+//      			print "}\n";
+//          }
+//          if (substr($formv[0],0,3)=="dm_")
+//          {
+//      			print "if (form.cf".$formv[0].".selectedIndex==0)\n";
+//      			print "{\n";
+//      			print "  alert(\"$formv[2]\")\n";
+//      			print "  form.cf$formv[0].focus()\n";
+//      			print "  return(false)\n";
+//      			print "}\n";
+//          }
+//          if ((substr($formv[0],0,3)!="cb_") && (substr($formv[0],0,3)!="dm_") && (substr($formv[0],0,3)!="ra_"))
+//          {
+//      			print "if (form.cf".$formv[0].".value==\"\")\n";
+//      			print "{\n";
+//      			print "  alert(\"$formv[2]\")\n";
+//      			print "  form.cf$formv[0].focus()\n";
+//      			print "  return(false)\n";
+//      			print "}\n";
+//          }
+//        }
+//    }
+//	}
+//	// If password and verify password fields defined then check they match
+//	if ($passfield && $verifypassfield)
+//	{
+//	  print "if (form.cfpassword.value!=form.cfverifypassword.value)\n";
+//	  print "{\n";
+//		print "  alert(\"$verifypasswordmsg\")\n";
+//		print "  form.cfverifypassword.focus()\n";
+//		print "  return(false)\n";
+//	  print "}\n";
+//	}
+//	// If Checkout Turing required then check something is entered
+//	if ($CheckoutTuring)
+//	{
+//	  print "if (form.turing.value==\"\")\n";
+//	  print "{\n";
+//		print "  alert(\"".$lang['TuringCodeRequired']."\")\n";
+//		print "  form.turing.focus()\n";
+//		print "  return(false)\n";
+//	  print "}\n";
+//	}
+//	print "return(true)\n";
+//	print "}\n";
+// 	print "\n";
+//	print "function ValidEmail (emailStr)\n";
+//	print "{\n";
+//	print "var emailPat=/^(.+)@(.+)$/\n";
+//	print "var specialChars=\"\\\\(\\\\)<>@,;:\\\\\\\\\\\\\\\"\\\\.\\\\[\\\\]\"\n";
+//	print "var validChars=\"\\[^\\\\s\" + specialChars + \"\\]\"\n";
+//	print "var quotedUser=\"(\\\"[^\\\"]*\\\")\"\n";
+//	print "var ipDomainPat=/^\[(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\]$/\n";
+//	print "var atom=validChars + '+'\n";
+//	print "var word=\"(\" + atom + \"|\" + quotedUser + \")\"\n";
+//	print "var userPat=new RegExp(\"^\" + word + \"(\\\\.\" + word + \")*$\")\n";
+//	print "var domainPat=new RegExp(\"^\" + atom + \"(\\\\.\" + atom +\")*$\")\n";
+//	print "var matchArray=emailStr.match(emailPat)\n";
+//	print "if (matchArray==null)\n";
+//	print " return false\n";
+//	print "var user=matchArray[1]\n";
+//	print "var domain=matchArray[2]\n";
+//	print "if (user.match(userPat)==null)\n";
+//	print "    return false\n";
+//	print "var IPArray=domain.match(ipDomainPat)\n";
+//	print "if (IPArray!=null) {\n";
+//	print "  for (var i=1;i<=4;i++)\n";
+//	print "  {\n";
+//	print "    if (IPArray[i]>255)\n";
+//	print "      return false\n";
+//	print "  }\n";
+//	print "  return true\n";
+//	print "}\n";
+//	print "var domainArray=domain.match(domainPat)\n";
+//	print "if (domainArray==null)\n";
+//	print "    return false\n";
+//	print "var atomPat=new RegExp(atom,\"g\")\n";
+//	print "var domArr=domain.match(atomPat)\n";
+//	print "var len=domArr.length\n";
+//	print "if (domArr[domArr.length-1].length<2 ||\n";
+//	print "    domArr[domArr.length-1].length>4)\n";
+//	print "   return false\n";
+//	print "if (len<2)\n";
+//	print "   return false\n";
+//	print "return true;\n";
+//	print "}\n";
+//
+//  print "function validateCreditCard(s)\n";
+//  print "{\n";
+//  print "// remove non-numerics\n";
+//  print "var v = \"0123456789\";\n";
+//  print "var CC = \"\";\n";
+//  print "for (i=0; i < s.length; i++)\n";
+//  print "{\n";
+//  print "  x = s.charAt(i);\n";
+//  print "  if (v.indexOf(x,0) != -1)\n";
+//  print "  CC += x;\n";
+//  print "}\n";
+//  print "  if (CC.length > 19)\n";
+//  print "       return (false);\n";
+//  print "  if (CC.length < 13)\n";
+//  print "       return (false);\n";
+//  print "  sum = 0; mul = 1; l = CC.length;\n";
+//  print "  for (i = 0; i < l; i++) \n";
+//  print "  {\n";
+//  print "    digit = CC.substring(l-i-1,l-i);\n";
+//  print "    tproduct = parseInt(digit ,10)*mul;\n";
+//  print "    if (tproduct >= 10)\n";
+//  print "      sum += (tproduct % 10) + 1;\n";
+//  print "    else\n";
+//  print "      sum += tproduct;\n";
+//  print "    if (mul == 1)\n";
+//  print "      mul++;\n";
+//  print "    else\n";
+//  print "      mul--;\n";
+//  print "  }\n";
+//  print "  if ((sum % 10) == 0)\n";
+//  print "    return (true);\n";
+//  print "  else\n";
+//  print "    return (false);\n";
+//  print "}\n";
+//
+//  print "function validateDateMMYY(s,first,last)\n";
+//  print "{\n";
+//  print "  var p=-1;\n";
+//  print "  for (var k=0;k<s.length;k++)\n";
+//  print "  {\n";
+//  print "    if ((s.charAt(k)==\"/\") || (s.charAt(k)==\"\\\\\"))\n";
+//  print "	  p=k\n";
+//  print "  }\n";
+//  print "  if (p==-1)\n";
+//  print "    return(false)\n";
+//  print "  var m=s.substring(0,p)\n";
+//  print "  var y=s.substring(p+1,s.length)\n";
+//  print "  if ((m<1) || (m>12))\n";
+//  print "    return(false)\n";
+//  print "  if ((y<1) || (y>99))\n";
+//  print "    return(false)\n";
+//  print "  if (m.length<2)\n";
+//  print "    m=\"0\".concat(m)\n";
+//  print "  if (y.length<2)\n";
+//  print "    y=\"0\".concat(y)\n";
+//  print "  var min=first.substring(3,5)+first.substring(0,2)\n";
+//  print "  var max=last.substring(3,5)+last.substring(0,2)\n";
+//  print "  var comps=y.concat(m)\n";
+//  print "  if (comps<min)\n";
+//  print "    return(false)\n";
+//  print "  if (comps>max)\n";
+//  print "    return(false)\n";
+//  print "  return(true)\n";
+//  print "}\n";
+//  print "\n";
+//  print "function getTodayMMYY()\n";
+//  print "{\n";
+//  print "  var today=new Date()\n";
+//  print "  var mmyy=\"\";\n";
+//  print "  var m=today.getMonth()+1\n";
+//  print "  if (m<10)\n";
+//  print "    mmyy=\"0\"+m.toString()\n";
+//  print "  else\n";
+//  print "    mmyy=+m.toString()\n";
+//  print "  mmyy=mmyy+\"/\"\n";
+//  print "  var y=today.getFullYear()\n";
+//  print "  mmyy=mmyy+y.toString().substring(2,4)\n";
+//  print "  return (mmyy)	\n";
+//  print "}\n";
+//  print "function validateSecCode(s)\n";
+//  print "{\n";
+//  print "  if ((s.length!=3) && (s.length!=4))\n";
+//  print "    return (false)\n";
+//  print "  for (var k=0;k<s.length;k++)\n";
+//  print "  {\n";
+//  print "    if ((s.charAt(k)<\"0\") || (s.charAt(k)>\"9\"))\n";
+//  print "	  return(false)\n";
+//  print "  }\n";
+//  print "  return(true)\n";
+//  print "}\n";
+//  print "function getSelectedButton(buttonGroup)\n";
+//  print "  {\n";
+//  print "		for (var i=0; i<buttonGroup.length; i++)\n";
+//  print "		{\n";
+//  print "			if (buttonGroup[i].checked)\n";
+//  print "			{\n";
+//  print "				return (i)\n";
+//  print "			}\n";
+//  print "		}\n";
+//  print "	  return(0)\n";
+//  print "	}\n";
+//	print "function paymenttypeclicked()\n";
+//	print "{\n";
+//  print "  var paytype=document.contactform.cfra_paymenttype[getSelectedButton(document.contactform.cfra_paymenttype)].value\n";
+//  print "  paytype=paytype.toLowerCase();\n";
+//	print "  if (paytype==\"credit card\")\n";
+//	print "  {\n";
+//	print "    var creditcarddisabled=false\n";
+//	print "    var banktransferdisabled=true\n";
+//	print "  }\n";
+//	print "  if (paytype==\"bank transfer\")\n";
+//	print "  {\n";
+//	print "    var creditcarddisabled=true\n";
+//	print "    var banktransferdisabled=false\n";
+//	print "  }\n";
+//	for ($k=0;$k<count($cform);$k++)
+//	{
+//  	$formv=explode(",",$cform[$k]);
+//    if (strcasecmp($formv[0],"cc_cardtype")==0)
+//    	print "  document.contactform.cfcc_cardtype.disabled=creditcarddisabled\n";
+//    if (strcasecmp($formv[0],"cc_name")==0)
+//    	print "  document.contactform.cfcc_name.disabled=creditcarddisabled\n";
+//    if (strcasecmp($formv[0],"cc_number")==0)
+//    	print "  document.contactform.cfcc_number.disabled=creditcarddisabled\n";
+//    if (strcasecmp($formv[0],"cc_expiry")==0)
+//    	print "  document.contactform.cfcc_expiry.disabled=creditcarddisabled\n";
+//    if (strcasecmp($formv[0],"cc_securitycode")==0)
+//    	print "  document.contactform.cfcc_securitycode.disabled=creditcarddisabled\n";
+//    if (strcasecmp($formv[0],"cc_start")==0)
+//    	print "  document.contactform.cfcc_start.disabled=creditcarddisabled\n";
+//    if (strcasecmp($formv[0],"cc_issuenumber")==0)
+//    	print "  document.contactform.cfcc_issuenumber.disabled=creditcarddisabled\n";
+//    if (strcasecmp($formv[0],"ba_accountname")==0)
+//    	print "  document.contactform.cfba_accountname.disabled=banktransferdisabled\n";
+//    if (strcasecmp($formv[0],"ba_bankname")==0)
+//    	print "  document.contactform.cfba_bankname.disabled=banktransferdisabled\n";
+//    if (strcasecmp($formv[0],"ba_accountnumber")==0)
+//    	print "  document.contactform.cfba_accountnumber.disabled=banktransferdisabled\n";
+//    if (strcasecmp($formv[0],"ba_accounttype")==0)
+//    	print "  document.contactform.cfba_accounttype.disabled=banktransferdisabled\n";
+//    if (strcasecmp($formv[0],"ba_branchcode")==0)
+//    	print "  document.contactform.cfba_branchcode.disabled=banktransferdisabled\n";
+//	}
+//	print "}\n";
+//
+//	print "\n";
+//	print "  // - JavaScript - -->\n";
+//	print "  </script>\n";
+//  if ((($buyregister==1) && ($registeragree!="")) || (($buytransfer==1) && ($transferagree!="")) || (($buyrenew==1) && ($renewagree!="")) || (($buyhosting==1) && ($hostagree!="")) || ($overallagree!=""))
+//	{
+//	  print "<table class=\"table table-borderless cwhoiscontact\" >\n";
+//	  print "<tr>\n";
+//	  print "<td   class=\"cwhoiscontact\"><big class=\"cwhoiscontact\">".$lang['Agreements']."</big></td>\n";
+//	  print "</tr>\n";
+//	  if ($overallagree!="")
+//	  {
+//	    print "<tr>\n";
+//	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfOverallAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
+//      // Insert hyperlink in relevant part of text
+//      $agreetext=explode("!!!",$lang['OverallAgree']);
+//      print "&nbsp;&nbsp;".$agreetext[0];
+//      if (count($agreetext)>1)
+//        print "<a class=\"cwhoiscontact\" href=\"$overallagree\" target=\"_blank\">".$agreetext[1]."</a>";
+//      if (count($agreetext)>2)
+//        print $agreetext[2];
+//	    print "</p></td>\n";
+//	    print "</tr>\n";
+//	  }
+//	  if (($buyregister==1) && ($registeragree!=""))
+//	  {
+//	    print "<tr>\n";
+//	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfRegisterAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
+//      // Insert hyperlink in relevant part of text
+//      $agreetext=explode("!!!",$lang['RegAgree']);
+//      print "&nbsp;&nbsp;".$agreetext[0];
+//      if (count($agreetext)>1)
+//        print "<a class=\"cwhoiscontact\" href=\"$registeragree\" target=\"_blank\">".$agreetext[1]."</a>";
+//      if (count($agreetext)>2)
+//        print $agreetext[2];
+//	    print "</p></td>\n";
+//	    print "</tr>\n";
+//	  }
+//	  if (($buytransfer==1) && ($transferagree!=""))
+//	  {
+//	    print "<tr>\n";
+//	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfTransferAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
+//      // Insert hyperlink in relevant part of text
+//      $agreetext=explode("!!!",$lang['TransferAgree']);
+//      print "&nbsp;&nbsp;".$agreetext[0];
+//      if (count($agreetext)>1)
+//        print "<a class=\"cwhoiscontact\" href=\"$transferagree\" target=\"_blank\">".$agreetext[1]."</a>";
+//      if (count($agreetext)>2)
+//        print $agreetext[2];
+//	    print "</p></td>\n";
+//	    print "</tr>\n";
+//	  }
+//	  if (($buyrenew==1) && ($renewagree!=""))
+//	  {
+//	    print "<tr>\n";
+//	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfRenewAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
+//      // Insert hyperlink in relevant part of text
+//      $agreetext=explode("!!!",$lang['RenewAgree']);
+//      print "&nbsp;&nbsp;".$agreetext[0];
+//      if (count($agreetext)>1)
+//        print "<a class=\"cwhoiscontact\" href=\"$renewagree\" target=\"_blank\">".$agreetext[1]."</a>";
+//      if (count($agreetext)>2)
+//        print $agreetext[2];
+//	    print "</p></td>\n";
+//	    print "</tr>\n";
+//	  }
+//	  if (($buyhosting==1) && ($hostagree!=""))
+//	  {
+//	    print "<tr>\n";
+//	    print "<td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" name=\"cfHostAgree\" value=\"".$lang['Agreed']."\" type=\"checkbox\">\n";
+//      // Insert hyperlink in relevant part of text
+//      $agreetext=explode("!!!",$lang['HostAgree']);
+//      print "&nbsp;&nbsp;".$agreetext[0];
+//      if (count($agreetext)>1)
+//        print "<a class=\"cwhoiscontact\" href=\"$hostagree\" target=\"_blank\">".$agreetext[1]."</a>";
+//      if (count($agreetext)>2)
+//        print $agreetext[2];
+//	    print "</p></td>\n";
+//	    print "</tr>\n";
+//	  }
+//	  print"</table>\n";
+//	  print"<BR>";
+//	}
+//	print "  <table class=\"table table-borderless cwhoiscontact\" >\n";
+//	print "  <tr>\n";
+//	if (!isset($_SESSION['loggedIn'])) print "  <td   class=\"cwhoiscontact\" colspan=\"2\"><big class=\"cwhoiscontact text-center\">".$lang['ContactDetails']."</big></td>\n";
+//	//	print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">&nbsp;</p></td>\n";
+//	print "  </tr>\n";
+//
+//  // Create table row and text input for each form field
+//	if (!$_SESSION['loggedIn'])
+//	{
+//	 for ($k=0;$k<count($cform);$k++) {
+//	  	$formv=explode(",",$cform[$k]);
+//	  	$varval="cf".$formv[0];
+//	    if (($checkoutcouponerror>0) && ($formv[0]=="couponcode"))
+//	    {
+//	      print "  <tr>\n";
+//		    print "  <td   class=\"cwhoiscontact\">&nbsp;</td><td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\" style=\"color:#FF0000\">";
+//		    if ($checkoutcouponerror==1)
+//		      print $lang['CouponNotValid'];
+//		    if ($checkoutcouponerror==2)
+//		      print $lang['CouponExpired'];
+//		    print "</p></td>\n";
+//		    print "  </tr>\n";
+//	    }
+//			print "  <tr>\n";
+//			print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">\n";
+//	    print "  ".$formv[1];
+//	    if ($formv[2]!="")
+//	      print "*";
+//	    print "</p></td>";
+//		  switch (strtolower($formv[0]))
+//		  {
+//				case "total":
+//					print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" disabled type=\"text\" name=\"cf".$formv[0]."\" value=\"$total\"></td>\n";
+//					break;
+//				case "curr":
+//					print "<td   class=\"cwhoiscontact\"><select class=\"cwhoiscontact\" name=\"cf".$formv[0]."\">\n";
+//					for ($j=3;$j<count($formv);$j++)
+//					{
+//						print "<option value=\"".$formv[$j]."\"";
+//						if ($$varval==$formv[$j]) print " selected";
+//						print ">".$formv[$j]."</option>\n";
+//					}
+//					print "</select></td>\n";
+//					break;
+//		    case "password":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"password\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		    case "verifypassword":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"password\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		    case "cc_number":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"23\" size=\"35\"></td>\n";
+//			    break;
+//		    case "cc_expiry":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"5\" size=\"5\"></td>\n";
+//			    break;
+//		    case "cc_start":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"5\" size=\"5\"></td>\n";
+//			    break;
+//		    case "cc_securitycode":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"4\" size=\"5\"></td>\n";
+//			    break;
+//		    case "cc_name":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		    case "cc_issuenumber":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		    case "cc_cardtype":
+//	        print "<td   class=\"cwhoiscontact\"><select class=\"cwhoiscontact\" name=\"cf".$formv[0]."\">\n";
+//	        for ($j=3;$j<count($formv);$j++)
+//	        {
+//	          print "<option value=\"".$formv[$j]."\"";
+//	          if ($$varval==$formv[$j]) print " selected";
+//	          print ">".$formv[$j]."</option>\n";
+//	        }
+//	        print "</select></td>\n";
+//			    break;
+//		    case "ba_accountname":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		    case "ba_bankname":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		    case "ba_accountnumber":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		    case "ba_accounttype":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		    case "ba_branchcode":
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		    case "ra_paymenttype":
+//	  		    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"radio\" name=\"cf".$formv[0]."\" value=\"".$formv[3]."\"";
+//	          if (($checkoutturingerror==true) || ($checkoutcouponerror>0))
+//	          {
+//	  		    if ($$varval==$formv[3])
+//	  		      print " checked=\"checked\" ";
+//	          }
+//	          else
+//	          {
+//	  		    if (strtolower($formv[4])=="checked")
+//	  		      print " checked=\"checked\" ";
+//	          }
+//	  		    print " onClick=\"paymenttypeclicked();\"></td>\n";
+//			    break;
+//		    default:
+//		      if (substr($formv[0],0,3)=="ta_")
+//		  	    print "<td   class=\"cwhoiscontact\"><textarea class=\"cwhoiscontact\" name=\"cf".$formv[0]."\" cols=\"40\" rows=\"5\">".$$varval."</textarea></td>\n";
+//		      if (substr($formv[0],0,3)=="cb_")
+//		      {
+//	  		    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"checkbox\" name=\"cf".$formv[0]."\" value=\"".$formv[3]."\"";
+//	          if (($checkoutturingerror==true) || ($checkoutcouponerror>0))
+//	          {
+//	  		      if ($$varval==$formv[3])
+//	  		        print " checked=\"checked\" ";
+//	          }
+//	          else
+//	          {
+//	  		      if (strtolower($formv[4])=="checked")
+//	  		        print " checked=\"checked\" ";
+//	          }
+//	  		    print "></td>\n";
+//					}
+//		      if (substr($formv[0],0,3)=="ra_")
+//		      {
+//	  		    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"radio\" name=\"cf".$formv[0]."\" value=\"".$formv[3]."\"";
+//	          if (($checkoutturingerror==true) || ($checkoutcouponerror>0))
+//	          {
+//	  		    if ($$varval==$formv[3])
+//	  		      print " checked=\"checked\" ";
+//	          }
+//	          else
+//	          {
+//	  		      if (strtolower($formv[4])=="checked")
+//	  		        print " checked=\"checked\" ";
+//	          }
+//	  		    print "></td>\n";
+//					}
+//		      if (substr($formv[0],0,3)=="dm_")
+//		      {
+//	          print "<td   class=\"cwhoiscontact\"><select class=\"cwhoiscontact\" name=\"cf".$formv[0]."\">\n";
+//	          for ($j=3;$j<count($formv);$j++)
+//	          {
+//	            print "<option value=\"".$formv[$j]."\"";
+//	            if ($$varval==$formv[$j]) print " selected";
+//	            print ">".$formv[$j]."</option>\n";
+//	          }
+//	          print "</select></td>\n";
+//		      }
+//		      if ((substr($formv[0],0,3)!="ta_") && (substr($formv[0],0,3)!="cb_") && (substr($formv[0],0,3)!="ra_") && (substr($formv[0],0,3)!="dm_"))
+//			    print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//			    break;
+//		  }
+//			print "  </tr>\n";
+//		}
+//	} else {
+//		for ($k=0;$k<count($cform);$k++) {
+//			$formv=explode(",",$cform[$k]);
+//			$varval="cf".$formv[0];
+//			print "  <tr>\n";
+//			print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">\n";
+//			print "  ".$formv[1];
+//			if ($formv[2]!="") print "*";
+//			print "</p></td>";
+//			switch (strtolower($formv[0]))
+//			{
+//				case "password":
+//					print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"password\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//					break;
+//				case "verifypassword":
+//					print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"password\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//					break;
+//				case "curr":
+//					print "<td   class=\"cwhoiscontact\"><select class=\"cwhoiscontact\" name=\"cf".$formv[0]."\">\n";
+//					for ($j=3;$j<count($formv);$j++)
+//					{
+//						print "<option value=\"".$formv[$j]."\"";
+//						if ($$varval==$formv[$j]) print " selected";
+//						print ">".$formv[$j]."</option>\n";
+//					}
+//					print "</select></td>\n";
+//					break;
+//					case "email":
+//						print "<td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"cf".$formv[0]."\" value=\"".$$varval."\" maxlength=\"50\" size=\"35\"></td>\n";
+//						break;
+//				default:
+//					break;
+//			}
+//			print "  </tr>\n";
+//		}
+//	}
+//
+///*
+//	// If mollieideal used then get bank code (this list may need updating once in a while
+//	if (false!==strpos(strtolower($payprocess),"mollieideal"))
+//	{
+//    $url="https://secure.mollie.nl/xml/ideal?a=banklist";
+//    $ch = curl_init();
+//    curl_setopt($ch, CURLOPT_URL, $url);
+//    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//    $response = curl_exec($ch);
+//    curl_close($ch);
+//	  print "  <tr>\n";
+//	  print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">\n";
+//	  print "  ".$lang['IdealBankList'];
+//	  print " </p></td><td   class=\"cwhoiscontact\">\n";
+//	  print " <select class=\"cwhoiscontact\" size=\"1\" name=\"cfmollieidealbank\">\n";
+//	  $pos=0;
+//	  do
+//	  {
+//	    $pos1=strpos($response,"<bank_id>",$pos);
+//	    $pos2=strpos($response,"</bank_id>",$pos1);
+//	    if ((false!==$pos1) && (false!==$pos2))
+//	    {
+//  	    $bankcode=substr($response,$pos1+9,$pos2-$pos1-9);
+//  	    $pos=$pos2+10;
+//  	    $pos1=strpos($response,"<bank_name>",$pos);
+//  	    $pos2=strpos($response,"</bank_name>",$pos1);
+//  	    $bankname=substr($response,$pos1+11,$pos2-$pos1-11);
+//  	    $pos=$pos2+12;
+//        print " <option value=\"$bankcode\">$bankname</option>\n";
+//  	  }
+//  	  else
+//  	    $pos++;
+//	  }
+//	  while ($pos<strlen($response));
+//	  print " </select>\n";
+//	  print " </td>\n";
+//	  print " </tr>\n";
+//	}
+//	*/
+//
+//  // If more than one payment processor selected then offer choice.
+//  $pprocs=explode(",",$payprocess);
+//  $pprocsname=explode(",",$payprocessnames);
+//  if (count($pprocs)>0)
+//  {
+//	  print "  <tr>\n";
+//	  print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">\n";
+//	  print "  ".$lang['PayMethod'];
+//	  print " </p></td><td   class=\"cwhoiscontact\">\n";
+//	  print " <select disabled class=\"cwhoiscontact\" size=\"1\" name=\"paymethod\">\n";
+//    for ($k=0;$k<count($pprocs);$k++)
+//    {
+//		  print " <option value=\"".$pprocs[$k]."\">";
+//		  if (isset($pprocsname[$k]))
+//		  	print $pprocsname[$k];
+//		  else
+//			  print $pprocs[$k];
+//		  print "</option>\n";
+//	  }
+//	  print " </select>\n";
+//	  print " </td>\n";
+//	  print " </tr>\n";
+//  }
+//	// print "<tr>\n";
+//	// print "<td class='cwhoiscontact'>\n";
+//	// print "<p class='cwhoiscontact'> Currency</p>\n";
+//	// print "</td>\n";
+//	// print "<td class='cwhoiscontact'>\n";
+//	// print "<select class='cwhoiscontact' name='ipaycurr'>\n";
+//	// print "<option value='KES'>KES</option><option value='USD'>USD</option>\n";
+//	// print "</select>\n";
+//	// print "</td>\n";
+//	// print "</tr>\n";
+//  if ($checkoutcouponerror>0)
+//  {
+//    print "<script language=\"JavaScript\">\n";
+//    print "<!-- JavaScript\n";
+//    print "document.contactform.cfcouponcode.focus()\n";
+//    print "// - JavaScript - -->\n";
+//    print "</script>\n";
+//  }
+//  // If required display turing code
+//  if ($CheckoutTuring)
+//  {
+//    if ($checkoutturingerror==true)
+//    {
+//      print "  <tr>\n";
+//	    print "  <td   class=\"cwhoiscontact\">&nbsp;</td><td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\" style=\"color:#FF0000\">".$lang['TuringCodeRequired']."</p></td>\n";
+//	    print "  </tr>\n";
+//    }
+//    print "  <tr>\n";
+//	  print "  <td   class=\"cwhoiscontact\"><p class=\"cwhoiscontact\">".$lang['TuringCode']."*</p></td><td   class=\"cwhoiscontact\"><input class=\"form-control cwhoiscontact\" type=\"text\" name=\"turing\" id=\"turing\" size=\"10\">&nbsp;<img class=\"cwhoiscontact\" id=\"turingimage\" name=\"turingimage\" src=\"".$FilePath."turingimagecw.php\" align=\"absmiddle\" width=\"60\" height=\"30\"></td>\n";
+//	  print "  </tr>\n";
+//    if ($checkoutturingerror==true)
+//    {
+//      print "<script language=\"JavaScript\">\n";
+//      print "<!-- JavaScript\n";
+//      print "document.contactform.turing.focus()\n";
+//      print "// - JavaScript - -->\n";
+//      print "</script>\n";
+//    }
+//  }
+//
+//	print "<br/>";
+//
+//  print "  <tr>\n";
+//	print "  <td   class=\"cwhoiscontact\">&nbsp;</td><td   class=\"cwhoiscontact\" align=\"right\"><input class=\"form-control btn cwhois cwhoiscontact\" type=\"submit\" name=\"button2\" value=\" ".$lang['CheckoutButton']." \" ></td>\n";
+//	print "  </tr>\n";
+//	print "  </table>\n";
+//	if ($ra_paymenttypefield)
+//	{
+//  	print "<script language=\"JavaScript\">\n";
+//	  print "<!-- JavaScript\n";
+//	  print "paymenttypeclicked()\n";
+//  	print "// - JavaScript - -->\n";
+//	  print "</script>\n";
+//	}
+//
 // Replacement form and validation code ends here
 //////////////////////////////////////////////////////////////////////////////////
-	print "  </form></div>\n";
+//	print "  </form></div>\n";
 }
+
+// When contact form is filled and customer checks out
 if ($cwaction=="order")
 {
     // Get all form variables

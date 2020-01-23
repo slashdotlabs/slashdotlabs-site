@@ -16,7 +16,8 @@ class DomainCartController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth'])->except('index');
+        $this->middleware(['auth.checkout'])->only('index');
     }
 
     public function index()
@@ -40,7 +41,8 @@ class DomainCartController extends Controller
 
         return view('domaincart.index')->with([
             'domain_products' => $domain_products->values()->toArray(),
-            'hosting_packages' => $hosting_packages->values()->toArray()
+            'hosting_packages' => $hosting_packages->values()->toArray(),
+            'cwaction' => request()->get('cwaction')
         ]);
     }
 
