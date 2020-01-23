@@ -1,0 +1,399 @@
+.whois-content {
+  /*  .cwhoissearch is the search and suggest part of the cart (normal cart mode) */
+  /*  .cwhoischeckbox is the domain extension checkbox part of the cart (normal cart mode) */
+  /*  .cwhoisresults is the search results part of the cart (normal cart mode) */
+  /*  .cwhoisshop is the current cart contents part (normal cart mode) */
+  /*  .cwhoisverify is the cart summary at the top of the contact form */
+  /*  .cwhoiscontact is the contact form */
+  /*  .cwhoislookup is the whois lookup  */
+  /* Simple hosting mode step 1*/
+  /* Simple hosting mode step 2 (registering domain)*/
+  /* Simple hosting mode step 2b (existing domain)*/
+}
+.whois-content .cwhoissearch {
+  position: static;
+}
+.whois-content p.cwhoissearch {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8pt;
+  color: #330099;
+  font-weight: normal;
+  position: static;
+}
+.whois-content small.cwhoissearch {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  color: #1f2732;
+  font-weight: normal;
+  position: static;
+}
+.whois-content input.cwhoissearch {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+  width: 70%;
+  background-color: #f4f4f5;
+  padding: 18px;
+  border: 0;
+}
+.whois-content select.cwhoissearch {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content table.cwhoissearch {
+  position: static;
+  width: 100%;
+}
+.whois-content .cwhoischeckbox {
+  position: static;
+}
+.whois-content p.cwhoischeckbox {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content input.cwhoischeckbox {
+  position: static;
+}
+.whois-content table.cwhoischeckbox {
+  position: static;
+}
+.whois-content .cwhoisresults {
+  position: static;
+  border-bottom: 1px solid #eee;
+  padding: 5px;
+}
+.whois-content .cwhoisresults p {
+  border-bottom: 0px;
+}
+.whois-content p.cwhoisresults {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content b.cwhoisresults {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: bold;
+  position: static;
+}
+.whois-content input.cwhoisresults {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content select.cwhoisresults {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+  border: 0;
+  background-color: #f4f4f5;
+}
+.whois-content a.cwhoisresults {
+  position: static;
+}
+.whois-content table.cwhoisresults {
+  position: static;
+}
+.whois-content .cwhoisshop {
+  position: static;
+  padding-top: 4px;
+  padding-right: 20px;
+}
+.whois-content .cwhoisshop td {
+  border-bottom: 1px solid #eee;
+}
+.whois-content p.cwhoisshop {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+  border: 0px;
+}
+.whois-content b.cwhoisshop {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: bold;
+  position: static;
+  border: 0;
+}
+.whois-content big.cwhoisshop {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14pt;
+  color: #330099;
+  font-weight: normal;
+  position: static;
+  border: 0;
+}
+.whois-content input.cwhoisshop {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content hr.cwhoisshop {
+  position: static;
+}
+.whois-content table.cwhoisshop {
+  position: static;
+}
+.whois-content .cwhoisverify {
+  position: static;
+  padding: 6px;
+}
+.whois-content .cwhoisverify tr {
+  border-bottom: 1px solid #eee;
+}
+.whois-content p.cwhoisverify {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content b.cwhoisverify {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: bold;
+  position: static;
+}
+.whois-content big.cwhoisverify {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14pt;
+  color: #330099;
+  font-weight: normal;
+  position: static;
+}
+.whois-content strong.cwhoisverify {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #FF0000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content input.cwhoisverify {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content hr.cwhoisverify {
+  position: static;
+}
+.whois-content table.cwhoisverify {
+  position: static;
+}
+.whois-content .cwhoiscontact {
+  position: static;
+}
+.whois-content p.cwhoiscontact {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content b.cwhoiscontact {
+  position: static;
+}
+.whois-content big.cwhoiscontact {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14pt;
+  color: #330099;
+  font-weight: normal;
+  position: static;
+}
+.whois-content input.cwhoiscontact {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+  padding: 6px;
+  border: 0;
+  background-color: #eee;
+}
+.whois-content select.cwhoiscontact {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content textarea.cwhoiscontact {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content a.cwhoiscontact {
+  position: static;
+}
+.whois-content table.cwhoiscontact {
+  position: static;
+}
+.whois-content .cwhoislookup {
+  position: static;
+}
+.whois-content p.cwhoislookup {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content a.cwhoislookup {
+  position: static;
+}
+.whois-content input.lookup {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content .cwhoissimplestep1 {
+  position: static;
+}
+.whois-content p.cwhoissimplestep1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content input.cwhoissimplestep1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content select.cwhoissimplestep1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content table.cwhoissimplestep1 {
+  position: static;
+}
+.whois-content .cwhoissimplestep2 {
+  position: static;
+}
+.whois-content p.cwhoissimplestep2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content a.cwhoissimplestep2 {
+  position: static;
+}
+.whois-content input.cwhoissimplestep2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content select.cwhoissimplestep2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content table.cwhoissimplestep2 {
+  position: static;
+}
+.whois-content .cwhoissimplestep2b {
+  position: static;
+}
+.whois-content p.cwhoissimplestep2b {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content input.cwhoissimplestep2b {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #000000;
+  font-weight: normal;
+  position: static;
+}
+.whois-content table.cwhoissimplestep2b {
+  position: static;
+}
+.whois-content [type=button]:not(:disabled).cwhois,
+.whois-content [type=reset]:not(:disabled).cwhois,
+.whois-content [type=submit]:not(:disabled).cwhois,
+.whois-content [type=button]:not(:disabled).cwhoisshop,
+.whois-content [type=reset]:not(:disabled).cwhoisshop,
+.whois-content [type=submit]:not(:disabled).cwhoisshop,
+.whois-content [type=button]:not(:disabled).cwhoisresults,
+.whois-content [type=reset]:not(:disabled).cwhoisresults,
+.whois-content [type=submit]:not(:disabled).cwhoisresults,
+.whois-content button:not(:disabled).cwhoissearch,
+.whois-content [type=submit]:not(:disabled).cwhoissearch {
+  cursor: pointer;
+  width: 20%;
+  background-color: #f1894c;
+  padding: 18px;
+}
+.whois-content .bg-orange {
+  background-color: #f1894c;
+}
+.whois-content [type=button]:not(:disabled), .whois-content [type=reset]:not(:disabled), .whois-content [type=submit]:not(:disabled), .whois-content button:not(:disabled).cwhoisresults {
+  padding: 18px;
+  border: 0;
+}
+.whois-content .top-footer {
+  background-color: #040964;
+  color: #fff;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  border-radius: 20% 20% 0 0;
+}
+.whois-content button .btn btn-outline-success my-2 my-sm-0 {
+  padding: 2px;
+}
+.whois-content .copyrights {
+  background-color: #f79403;
+  height: 38px;
+  text-align: center;
+  font-size: 11px;
+  color: #333;
+  padding: 30px;
+}
+.whois-content .form-control {
+  margin-right: 7px !important;
+  border: 0px !important;
+  border-radius: 0px !important;
+  font-size: 10px !important;
+}

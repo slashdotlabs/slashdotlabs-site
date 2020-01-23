@@ -6,20 +6,19 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class AuthenticateStaff
 {
     /**
      * Handle an incoming request.
      *
      * @param Request $request
      * @param Closure $next
-     * @param string|null $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect(user_type_redirect_path(Auth::guard($guard)->user()->user_type));
+        if (Auth::check() && !in_array(Auth::user()->user_type, ['admin', 'employee'])) {
+            return redirect(user_type_redirect_path(Auth::user()->user_type));
         }
 
         return $next($request);

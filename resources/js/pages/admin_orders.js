@@ -4,20 +4,31 @@ $(() => {
         sWrapper: "dataTables_wrapper dt-bootstrap4"
     });
 
+    // Set default properties
+    const toast = Swal.mixin({
+        buttonsStyling: false,
+        customClass: {
+            confirmButton: 'btn btn-alt-success m-5',
+            cancelButton: 'btn btn-alt-danger m-5',
+            input: 'form-control'
+        }
+    });
 
-    // Orders datatable
+
+    // ?Orders datatable
     const tbOrders = $('#tb-orders');
     const dtOrders = tbOrders.DataTable({
         columnDefs: [
-            {targets: [1], class: 'text-left'},
+            {targets: [1, 4], class: 'text-left'},
             {targets: [0, 2], class: 'text-right'},
-            {targets: [4, 5], class: 'text-center'},
-            {targets: 0, width: "11%"},
+            {targets: [5], class: 'text-center'},
+            {targets: [0,2], width: "13%"},
+            {targets: [1], width: "20%"},
             {targets: [4, 5], orderable: false},
         ]
     });
 
-    // display order details
+    // ?display order details
     const tbOrderDetails = $('#tb-order-items');
     const orderDetailsModal = $('#order-details-modal');
     const dtOrderDetails = tbOrderDetails.DataTable({
@@ -62,5 +73,4 @@ $(() => {
 
         orderDetailsModal.modal('show');
     });
-
 });

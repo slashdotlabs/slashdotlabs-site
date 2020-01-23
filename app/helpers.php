@@ -25,3 +25,19 @@ function get_product_type(\App\Models\OrderItem $order_item)
         return $type;
     }
 }
+
+function user_type_redirect_path($user_type)
+{
+    switch ($user_type) {
+        case ('customer'):
+            return '/';
+            break;
+        case ('admin'):
+        case ('employee'):
+            return '/admin/dashboard';
+            break;
+        default:
+            return '/home';
+            break;
+    }
+}

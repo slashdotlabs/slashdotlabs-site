@@ -8,15 +8,18 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Orders\OrderHandler;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class DomainCartController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth'])->except('index');
+        $this->middleware(['auth.checkout'])->only('index');
     }
 
     public function index()
@@ -40,17 +43,21 @@ class DomainCartController extends Controller
 
         return view('domaincart.index')->with([
             'domain_products' => $domain_products->values()->toArray(),
-            'hosting_packages' => $hosting_packages->values()->toArray()
+            'hosting_packages' => $hosting_packages->values()->toArray(),
+            'cwaction' => request()->get('cwaction')
         ]);
     }
 
-    public function order_checkout(OrderHandler $orderHandler,  PaymentGatewayContract $paymentGateway)
+    public function order_checkout(Request $request,OrderHandler $orderHandler, PaymentGatewayContract $paymentGateway)
     {
+        // validate contact form details
+        $this->validate_contact_form($request->all());
+
         session_start();
         $domaincart = collect($_SESSION);
         // cart item entry keys: removed, domain, hostdesc, hostsetup, hostprice, hostrecurr, regtype, regperiod, regprice
 
-        // contact form values
+        // contact form values TODO: remove
         $domaincart_contact = $domaincart->get('contact_form_values');
 
         // meta data of cart
@@ -82,7 +89,7 @@ class DomainCartController extends Controller
         })->map(function ($item) use (&$domaincart_meta) {
             $item['currency'] = $domaincart_meta['ses_csymbol'];
             return $item;
-        });;
+        });
 
         // Get hosting items only
         $hosting_order_items = $domaincart_products->filter(function ($item) {
@@ -102,10 +109,10 @@ class DomainCartController extends Controller
         ]);
         try {
             $created_order_response = $orderHandler->store($dataToSend);
-            if ($created_order_response->status() != 200) throw new \Exception('Error processing request. Contact admin');
+            if ($created_order_response->status() != 200) throw new Exception('Error processing request. Contact admin');
             $created_order = $created_order_response->getData(true)['order'];
 
-            event(new OrderCreated(Order::where('order_id',$created_order['order_id'])->first()));
+            event(new OrderCreated(Order::where('order_id', $created_order['order_id'])->first()));
 
             return $paymentGateway->charge([
                 'order_id' => $created_order['order_id'],
@@ -113,9 +120,9 @@ class DomainCartController extends Controller
                 'phone_number' => $created_order['customer']['customer_biodata']['phone_number'],
                 'email' => $created_order['customer']['email']
             ]);
-        } catch(\Exception $e) {
+        } catch (Exception $e) {
             Log::debug($e);
-           return back()->withErrors($e->getMessage());
+            return back()->withErrors($e->getMessage());
         }
     }
 
@@ -137,5 +144,13 @@ class DomainCartController extends Controller
             'expiry_date' => Carbon::now()->addYear(),
             'hosting_name' => $item['hostdesc']
         ];
+    }
+
+    private function validate_contact_form($data)
+    {
+        dd($data);
+        $rules = [];
+        $messages = [];
+        Validator::make($data, $rules, $messages);
     }
 }
