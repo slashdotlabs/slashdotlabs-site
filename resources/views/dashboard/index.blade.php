@@ -16,7 +16,6 @@
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/customer_dashboard.js') }}"></script>
-    <script src="{{ asset('js/pages/customer_forms.js') }}"></script>
 @endsection
 
 

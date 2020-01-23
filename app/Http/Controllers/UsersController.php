@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\CustomerBiodata;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
-use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+use Yajra\DataTables\Facades\DataTables;
+use function response;
 
 class UsersController extends Controller
 {
@@ -24,6 +25,7 @@ class UsersController extends Controller
      * Display a listing of the resource.
      *
      * @return Factory|View
+     * @throws \Exception
      */
     public function index(Request $request)
     {
@@ -32,29 +34,29 @@ class UsersController extends Controller
         if ($request->ajax()) {
             $data = User::latest()->get();
             return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                        if ($row->suspended == 0) {
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    if ($row->suspended == 0) {
 
-                            $buttons =
-                           '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-dark suspend-user" data-id="'.$row->id.'" >
+                        $buttons =
+                            '<div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-dark suspend-user" data-id="' . $row->id . '" >
                                     Suspend
                                 </button>
                             </div>';
-                            return $buttons;
-                        } else {
-                            $buttons =
+                        return $buttons;
+                    } else {
+                        $buttons =
                             '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-dark restore-user" data-id="'.$row->id.'" >
+                                <button type="button" class="btn btn-sm btn-outline-dark restore-user" data-id="' . $row->id . '" >
                                     Restore
                                 </button>
                             </div>';
-                            return $buttons;
-                        }
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                        return $buttons;
+                    }
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
 
         $customers = User::where('user_type', 'customer');
@@ -66,7 +68,55 @@ class UsersController extends Controller
                 'customers' => $customers,
                 'admins' => $admins,
                 'employees' => $employees,
-        ]);
+            ]);
+    }
+
+    //Admin add users
+
+    public function store(Request $request)
+    {
+        //validation
+        $record = $request->all();
+        $rules =[
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'user_type' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+
+        ];
+        $messages = [
+            'first_name.required' => 'The first name is required.',
+            'last_name.required' => 'The last name is required.',
+            'user_type.required' => 'The user type is required.',
+            'email.required' => 'The email address is required.',
+            'email.email' => 'Please enter the email address in the correct format.',
+            'password.required' => 'Please enter the user password.',
+            'password.min:8' => 'The minimum password length is 8 characters.',
+        ];
+
+        $validator = Validator::make($record, $rules, $messages);
+
+        //check validation
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+            $response = $validator->errors();
+        }
+        //save
+        else {
+            //hash password
+            $hashed_password = Hash::make($request['password']);
+
+            User::updateOrCreate(['id' => $request->user_id],
+            ['first_name' => $request->first_name, 'last_name' => $request->last_name,
+            'email' => $request->email, 'user_type' => $request->user_type, 'password' => $hashed_password]);
+            $response = ['success' => 'User added successfully.'];
+
+        }
+        return response()->json($response);
+
+        //TODO: send verififcation email with credentials
+
     }
 
     /**
@@ -162,23 +212,25 @@ class UsersController extends Controller
         ], $messages);
     }
 
-     public function suspend($id){
+    public function suspend($id)
+    {
 
         $suspended_record = User::find($id)
-                            ->update(['suspended' => 1]);
+            ->update(['suspended' => 1]);
         $resp = ['success' => 'User suspended successfully.'];
-        return \response()->json([
+        return response()->json([
             'user' => $suspended_record,
             'User suspended successfully' => $resp
         ]);
     }
 
-     public function restore($id){
+    public function restore($id)
+    {
 
         $restored_record = User::find($id)
-                            ->update(['suspended' => 0]);
+            ->update(['suspended' => 0]);
         $response = ['success' => 'User restored successfully.'];
-        return \response()->json([
+        return response()->json([
             'user' => $restored_record,
             'User restored successfully' => $response
         ]);

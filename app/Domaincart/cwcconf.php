@@ -96,7 +96,7 @@ $cwhoismode=0;                   								 // Set to 1 to use simple hosting mode
 global $AllowHostingOnly, $AllowNoHosting, $AssumeAll;
 $AllowNoHosting=true;														 // Set to false to force hosting plan to be selected
 $AllowHostingOnly=true;												 	 // Set to false to force domain purchase or transfer
-$AssumeAll=true;																 // When true if no check boxes ticked and no extension typed then check all
+$AssumeAll=false;																 // When true if no check boxes ticked and no extension typed then check all
 																								 // When false first extension (check box) is assumed
 $SimpleHostingOnly=false;                        // When true hosting only.(Removes radio boxes from simple hosting mode)
 $SimpleRegisterOnly=false;                       // When true remove register option from simple hosting mode.
@@ -117,8 +117,8 @@ $HTMLEmail="Y";                                  // Set to Y for HTML format ema
 $spacetohyphen=true;														 // if set to true converts spaces to hyphens in domain names. false disables.
 $hidecheckboxes=false;													 // Set to true to hide checkboxes. This will check all domain extensions without user selecting them.
 $NarrowCart=false;															 // Set to true to make the cart narrower in normal cart mode
-$DefaultBuy=1;                                   // 1 checks buy checkboxes. 0 leaves them unchecked. 2 check only those for available domains
-$dropdownsearch=false;                             // Set to true for drop down menu instead of checkboxes
+$DefaultBuy=0;                                   // 1 checks buy checkboxes. 0 leaves them unchecked. 2 check only those for available domains
+$dropdownsearch=true;                             // Set to true for drop down menu instead of checkboxes
 $allowlookup=true;                               // Set to false to disable the whois lookup link
 $CheckoutTuring=false;                           // Set to true to require turing on checkout. false disables this.
 $LookupTuring=false;                             // Set to true to require turing for full lookup. false disables this.

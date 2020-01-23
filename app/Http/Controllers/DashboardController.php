@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth', 'auth.customer']);
     }
 
     /**
@@ -24,7 +24,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $order_items = Order::has('payment')->with('order_items', 'order_items.product')->get()
+        $order_items = Order::has('payment')->with('order_items', 'order_items.product')
+            ->where('customer_id', Auth::id())
+            ->get()
             ->flatMap(function ($order) {
                 return $order->order_items;
             });

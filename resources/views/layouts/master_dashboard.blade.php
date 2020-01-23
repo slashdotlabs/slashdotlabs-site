@@ -31,8 +31,11 @@
     </head>
     <body>
         <div id="page-container" class="enable-page-overlay sidebar-inverse side-scroll page-header-fixed page-header-inverse main-content-boxed">
-           <!-- Sideoverlay -->
-            @include('dashboard.partials.sideoverlay')
+            @auth
+                <!-- Sideoverlay -->
+                @include('dashboard.partials.sideoverlay')
+            @endauth
+
             <!-- Header -->
             @include('dashboard.partials.header')
 
@@ -60,5 +63,6 @@
         @include('sweetalert::alert')
 
         @yield('js_after')
+        <script src="{{ asset('js/pages/customer_forms.js') }}"></script>
     </body>
 </html>

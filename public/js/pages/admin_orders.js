@@ -97,27 +97,39 @@ $(function () {
   // Override a few DataTable defaults
   jQuery.extend(jQuery.fn.dataTable.ext.classes, {
     sWrapper: "dataTables_wrapper dt-bootstrap4"
-  }); // Orders datatable
+  }); // Set default properties
+
+  var toast = Swal.mixin({
+    buttonsStyling: false,
+    customClass: {
+      confirmButton: 'btn btn-alt-success m-5',
+      cancelButton: 'btn btn-alt-danger m-5',
+      input: 'form-control'
+    }
+  }); // ?Orders datatable
 
   var tbOrders = $('#tb-orders');
   var dtOrders = tbOrders.DataTable({
     columnDefs: [{
-      targets: [1],
+      targets: [1, 4],
       "class": 'text-left'
     }, {
       targets: [0, 2],
       "class": 'text-right'
     }, {
-      targets: [4, 5],
+      targets: [5],
       "class": 'text-center'
     }, {
-      targets: 0,
-      width: "11%"
+      targets: [0, 2],
+      width: "13%"
+    }, {
+      targets: [1],
+      width: "20%"
     }, {
       targets: [4, 5],
       orderable: false
     }]
-  }); // display order details
+  }); // ?display order details
 
   var tbOrderDetails = $('#tb-order-items');
   var orderDetailsModal = $('#order-details-modal');
@@ -182,7 +194,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\slashdot-site\resources\js\pages\admin_orders.js */"./resources/js/pages/admin_orders.js");
+module.exports = __webpack_require__(/*! /home/steekam/public_html/slashdot_dashboard/resources/js/pages/admin_orders.js */"./resources/js/pages/admin_orders.js");
 
 
 /***/ })

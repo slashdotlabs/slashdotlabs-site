@@ -19,6 +19,7 @@ mix
     .sass('resources/sass/codebase/themes/elegance.scss', 'public/css/themes/')
     .sass('resources/sass/codebase/themes/flat.scss', 'public/css/themes/')
     .sass('resources/sass/codebase/themes/pulse.scss', 'public/css/themes/')
+    .sass('resources/sass/custom/cwhoisstyle.scss', 'public/css/domaincart.css')
 
     /* JS */
     .js('resources/js/app.js', 'public/js/laravel.app.js')

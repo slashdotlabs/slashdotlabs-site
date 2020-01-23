@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
@@ -41,20 +42,29 @@ class LoginController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param User $user
+     * Show the application's login form.
+     *
+     * @return Factory|Response|View
+     */
+    public function showLoginForm()
+    {
+        // Check redirect path from the cart
+        $parsed_url = parse_url(url()->previous());
+        if (array_key_exists('path', $parsed_url) && $parsed_url['path'] == '/domaincart') {
+            session()->put('pending_checkout_url', url()->previous());
+        }
+
+        return view('auth.login');
+    }
+
+    /**
+     * Get the post register / login redirect path.
+     *
      * @return string
      */
-    public function authenticated(Request $request, User $user)
+    public function redirectPath()
     {
-        switch ($user->user_type) {
-            case ('customer'):
-                return redirect('/');
-            case ('admin'):
-            case ('employee'):
-                return redirect('/admin/dashboard');
-            default:
-                return false;
-        }
+        $user = $this->guard()->user();
+        return  user_type_redirect_path($user->user_type);
     }
 }

@@ -38,9 +38,9 @@ class PaymentsController extends Controller
             $res = request()->all();
 
             // Log
-            Log::channel('ipay')->debug(['fields_retuned' => $res]);
+            if (config('app.env') == 'local') Log::channel('ipay')->debug(['fields_retuned' => $res]);
 
-            // get status state TODO: track transactions made in the database
+            // get status state
             $status_res = $paymentGateway->get_status_state($res['status']);
             if (!$status_res['process']) throw new Exception($status_res['state']);
 
@@ -67,7 +67,7 @@ class PaymentsController extends Controller
     public function store(Request $request)
     {
         $res = $request->all();
-        $order = Order::with('customer')->where('order_id',$res['id'])->first();
+        $order = Order::with('customer')->where('order_id', $res['id'])->first();
         $order->update(['paid' => true]);
         $order->save();
 
