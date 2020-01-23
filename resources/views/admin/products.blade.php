@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-info" data-toggle="countTo" data-to="24">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-info" data-toggle="countTo" data-to="{{ $domains->count() }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Domains</div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-warning" data-toggle="countTo" data-to="15">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-warning" data-toggle="countTo" data-to="{{ $hosting->count() }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Hosting Packages</div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-danger" data-toggle="countTo" data-to="4">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-danger" data-toggle="countTo" data-to="{{ $ssl_certificates->count() }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">SSL Certificates</div>
                         </div>
                     </div>
@@ -163,5 +163,12 @@
         </div>
         <!-- END Products -->
     </div>
+@endsection
+
+@section('modals')
+    @include('admin.partials.modals.add_product_modal')
+    @include('admin.partials.modals.edit_product_modal')
+    @include('admin.partials.modals.suspend_product_modal')
+    @include('admin.partials.modals.restore_product_modal')
 @endsection
 

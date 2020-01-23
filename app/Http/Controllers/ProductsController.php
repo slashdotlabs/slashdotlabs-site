@@ -22,6 +22,7 @@ class ProductsController extends Controller
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
+                        if ($row->suspended == 0){
                            $buttons =
                            '<div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
@@ -33,11 +34,35 @@ class ProductsController extends Controller
                                 </button>
                             </div>';
                             return $buttons;
+                        }
+                        else{
+                            $buttons =
+                           '<div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="'.$row->id.'">
+                                     Edit
+                                 </button>
+                                &emsp;
+                                <button type="button" class="btn btn-sm btn-outline-dark restore-product" data-id="'.$row->id.'" >
+                                    Restore
+                                </button>
+                            </div>';
+                            return $buttons;
+
+                        }
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('admin.products');
+        $domains = Product::where('product_type', 'domain');
+        $hosting = Product::where('product_type', 'hosting');
+        $ssl_certificates = Product::where('product_type', 'ssl_certificate');
+
+        return view('admin.products',
+         [
+            'domains' => $domains,
+            'hosting' => $hosting,
+            'ssl_certificates' => $ssl_certificates,
+        ]);
     }
 
     public function store(Request $request)
@@ -122,6 +147,17 @@ class ProductsController extends Controller
         return \response()->json([
             'product' => $suspended_record,
             'Product suspended successfully' => $resp
+        ]);
+    }
+
+    public function restore($id){
+
+        $restored_record = Product::find($id)
+                            ->update(['suspended' => 0]);
+        $res = ['success' => 'Product restored successfully.'];
+        return \response()->json([
+            'product' => $restored_record,
+            'Product suspended successfully' => $res
         ]);
     }
 }
