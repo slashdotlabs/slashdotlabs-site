@@ -70,11 +70,13 @@
 <!-- Laravel Scaffolding JS -->
 <script src="{{ mix('js/laravel.app.js') }}"></script>
 
-
-@yield('js_after')
-
 <!-- Sweetalert -->
 @include('sweetalert::alert')
+
+@yield('js_after')
+@auth
+<script src="{{ asset('js/pages/profile_forms.js') }}"></script>
+@endauth
 
 </body>
 </html>

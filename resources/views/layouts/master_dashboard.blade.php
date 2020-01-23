@@ -63,6 +63,8 @@
         @include('sweetalert::alert')
 
         @yield('js_after')
-        <script src="{{ asset('js/pages/customer_forms.js') }}"></script>
+        @auth
+            <script src="{{ asset('js/pages/profile_forms.js') }}"></script>
+        @endauth
     </body>
 </html>

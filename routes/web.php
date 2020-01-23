@@ -21,19 +21,17 @@ Route::redirect('/home', wordpress_url('/'));
 Auth::routes();
 Route::get('/domaincart', 'DomainCartController@index')->name('domaincart');
 
+// Customer update routes
+Route::patch('/user', 'UsersController@update')->name('user.update');
+Route::patch('/user/password', 'UsersController@changePassword')->name('user.changepassword');
 
 /**
  * Customer only routes
  */
 Route::middleware(['auth.customer'])->group(function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
-    // Customer update routes
-    Route::patch('/user', 'UsersController@update')->name('user.update');
-    Route::patch('/user/password', 'UsersController@changePassword')->name('user.changepassword');
-
     //Nameserver resource
     Route::resource('nameservers', 'NameserversController')->only('store');
-
     Route::post('/domaincart/order_checkout', 'DomainCartController@order_checkout')->name('domaincart.order_checkout');
 });
 

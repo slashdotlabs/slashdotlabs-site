@@ -2,7 +2,7 @@ $(function () {
     // Customer profile form
     $('#form-profile').on('submit', function (e) {
         e.preventDefault();
-        const url = `${baseURL}/admin/user`;
+        const url = `${baseURL}/user`;
         const formdata = {};
         $(this).serializeArray().forEach(entry => {
             formdata[entry.name] = entry.value;
@@ -32,10 +32,46 @@ $(function () {
         });
     });
 
+    if($.isFunction($.fn.mask)) {
+        // ?Masked phone number
+        $('#form-biodata #phone-number').mask('254799999999');
+    }
+
+    // Bio data form
+    $('#form-biodata').on('submit', function (e) {
+        e.preventDefault();
+        const url = `${baseURL}/user`;
+        const formdata = {};
+        $(this).serializeArray().forEach(entry => {
+            formdata[entry.name] = entry.value;
+        });
+        const {_token, _method, organization, phone_number, address, city, country } = formdata;
+        const customer_biodata = {organization, phone_number, address, city, country};
+
+        $.ajax({
+            type: 'post',
+            url,
+            data: { _token, _method, customer_biodata}
+        }).then(response => {
+            if (response.msg) {
+                $('#bio-success').append('<div class="alert alert-success" role="alert">' + response.msg + '</div>');
+            }
+            setTimeout(function () {
+                $('#bio-success').html('');
+            }, 4000);
+        }).catch(response => {
+            const error = response['responseJSON'];
+            $('#bio-danger').append(`<div class="alert alert-danger" role="alert">${error}</div>`);
+            setTimeout(function () {
+                $('#bio-danger').html('');
+            }, 4000);
+        });
+    });
+
     // Change password form
     $('#form-change-password').on('submit', function (e) {
         e.preventDefault();
-        const url = `${baseURL}/admin/password`;
+        const url = `${baseURL}/user/password`;
         const data = $(this).serializeArray();
         $.ajax({
             type: 'post',

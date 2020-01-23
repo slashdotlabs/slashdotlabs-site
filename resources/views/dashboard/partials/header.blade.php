@@ -41,8 +41,18 @@
         </div>
         <!-- END Middle Section -->
 
-        @auth
-            <!-- Right Section -->
+    @guest
+        <!-- Right Section -->
+            <div class="content-header-section">
+                <div class="">
+                    <a href="{{ url('/login') }}" class="btn btn-outline-brand-orange "> Login </a>
+                    <a href="{{ url('/register') }}" class="btn btn-brand-orange"> Register </a>
+                </div>
+            </div>
+    @endguest
+
+    @auth
+        <!-- Right Section -->
             <div class="content-header-section">
                 <!-- User Dropdown -->
                 <div class="btn-group" role="group">
@@ -54,8 +64,7 @@
                     <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
                         <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
                         <a class="dropdown-item" href="{{ url('/') }}"> <i class="si si-compass mr-5"></i> Dashboard
-                        </a> <a class="dropdown-item" href="{{ url('/domaincart') }}">
-                            <i class="si si-basket mr-5"></i> Domain Cart </a>
+                        </a>
                         <!-- Toggle Side Overlay -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                         <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">

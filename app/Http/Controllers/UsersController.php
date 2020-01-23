@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomerBiodata;
 use App\Models\User;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,14 +19,15 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth']);
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Factory|View
-     * @throws \Exception
+     * @throws Exception
      */
     public function index(Request $request)
     {
@@ -77,7 +79,7 @@ class UsersController extends Controller
     {
         //validation
         $record = $request->all();
-        $rules =[
+        $rules = [
             'first_name' => 'required',
             'last_name' => 'required',
             'user_type' => 'required',
@@ -101,21 +103,18 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
             $response = $validator->errors();
-        }
-        //save
+        } //save
         else {
             //hash password
             $hashed_password = Hash::make($request['password']);
 
             User::updateOrCreate(['id' => $request->user_id],
-            ['first_name' => $request->first_name, 'last_name' => $request->last_name,
-            'email' => $request->email, 'user_type' => $request->user_type, 'password' => $hashed_password]);
+                ['first_name' => $request->first_name, 'last_name' => $request->last_name,
+                    'email' => $request->email, 'user_type' => $request->user_type, 'password' => $hashed_password]);
             $response = ['success' => 'User added successfully.'];
 
         }
         return response()->json($response);
-
-        //TODO: send verififcation email with credentials
 
     }
 

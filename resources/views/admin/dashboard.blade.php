@@ -6,18 +6,18 @@
     <script src="{{ asset('/js/plugins/jquery-validation/additional-methods.js') }}"></script>
 
     <!-- Page JS Code -->
-    <script src="{{ asset('js/pages/admin_settings.js') }}"></script>
+
 @endsection
 
 @section('content')
     <!-- Hero -->
-    <div class="bg-image" style="background-image: url('../media/photos/animals.jpg');">
+    <div class="bg-image" style="background-image: url('{{ asset('/media/photos/animals.jpg') }}');">
         <div class="bg-black-op-75">
             <div class="content content-top content-full text-center">
                 <div class="py-20">
                     <h1 class="h2 font-w700 text-white mb-10">Dashboard</h1>
                     <h2 class="h4 font-w400 text-white-op mb-0">
-                        Welcome,&nbsp;{{Auth::user()->first_name }}&nbsp;{{Auth::user()->last_name }}!
+                        Welcome,&nbsp;{{Auth::user()->get_fullname() }} :)
                     </h2>
                 </div>
             </div>
