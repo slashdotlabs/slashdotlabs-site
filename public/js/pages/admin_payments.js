@@ -81,120 +81,83 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/pages/admin_orders.js":
-/*!********************************************!*\
-  !*** ./resources/js/pages/admin_orders.js ***!
-  \********************************************/
+/***/ "./resources/js/pages/admin_payments.js":
+/*!**********************************************!*\
+  !*** ./resources/js/pages/admin_payments.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(function () {
-  // Override a few DataTable defaults
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  }); // Override a few DataTable defaults
+
   jQuery.extend(jQuery.fn.dataTable.ext.classes, {
     sWrapper: "dataTables_wrapper dt-bootstrap4"
-  }); // Set default properties
+  }); // Payments datatable
 
-  var toast = Swal.mixin({
-    buttonsStyling: false,
-    customClass: {
-      confirmButton: 'btn btn-alt-success m-5',
-      cancelButton: 'btn btn-alt-danger m-5',
-      input: 'form-control'
-    }
-  }); // ?Orders datatable
-
-  var tbOrders = $('#tb-orders');
-  var dtOrders = tbOrders.DataTable({
-    columnDefs: [{
-      targets: [1, 4],
-      "class": 'text-left'
-    }, {
-      targets: [0, 2],
-      "class": 'text-right'
-    }, {
-      targets: [5],
-      "class": 'text-center'
-    }, {
-      targets: [0, 2],
-      width: "13%"
-    }, {
-      targets: [1],
-      width: "20%"
-    }, {
-      targets: [4, 5],
-      orderable: false
-    }]
-  }); // ?display order details
-
-  var tbOrderDetails = $('#tb-order-items');
-  var orderDetailsModal = $('#order-details-modal');
-  var dtOrderDetails = tbOrderDetails.DataTable({
-    paging: false,
+  var tbPayments = $('#tb-payments');
+  var dtPayments = tbPayments.DataTable({
+    ajax: {
+      url: "".concat(baseURL, "/admin/payments"),
+      method: 'GET',
+      dataSrc: 'data'
+    },
     columns: [{
-      data: function data(record) {
-        return record['product']['product_name'] ? record['product']['product_name'] : record['product']['domain_name'];
-      }
+      data: 'DT_RowIndex',
+      name: 'DT_RowIndex'
     }, {
-      data: function data(record) {
-        return record['product']['product_type'] ? record['product']['product_type'].toUpperCase() : 'domain'.toUpperCase();
-      }
+      data: function data(entry) {
+        return "".concat(entry['customer']['first_name'], " ").concat(entry['customer']['last_name']);
+      },
+      name: 'customer'
     }, {
-      data: 'expiry_date'
+      data: 'order_id',
+      name: 'order_id'
     }, {
-      data: function data(record) {
-        switch (record['item_status']) {
-          case 'active':
-            return "<span class=\"badge badge-success\">Active</span>";
-
-          case 'expiring_soon':
-            return "<span class=\"badge badge-warning\">Expiring Soon</span>";
-
-          case 'expired':
-            return "<span class=\"badge badge-danger\">Expired</span>";
-        }
-      }
+      data: 'payment_type',
+      name: 'payment_type'
+    }, {
+      data: 'payment_ref',
+      name: 'payment_refa'
+    }, {
+      data: 'amount',
+      name: 'amount'
+    }, {
+      data: 'currency',
+      name: 'currency'
     }],
     columnDefs: [{
-      targets: [1, 2],
+      targets: [1, 3, 6],
       "class": 'text-left'
     }, {
-      targets: [3],
-      "class": 'text-center'
+      targets: [0, 2, 5],
+      "class": 'text-right'
     }, {
-      targets: [3],
-      orderable: false
+      targets: 0,
+      width: "12%"
     }]
-  });
-  tbOrders.on('click', '.show-order-items', function (event) {
-    var _this = $(event.target);
-
-    var orderDetails = _this.data('order-items');
-
-    var orderId = _this.data('order-id');
-
-    orderDetailsModal.find('#order-id').text(orderId);
-    dtOrderDetails.clear();
-    dtOrderDetails.rows.add(orderDetails).draw();
-    dtOrderDetails.columns.adjust().draw();
-    orderDetailsModal.modal('show');
   });
 });
 
 /***/ }),
 
-/***/ 3:
-/*!**************************************************!*\
-  !*** multi ./resources/js/pages/admin_orders.js ***!
-  \**************************************************/
+/***/ 5:
+/*!****************************************************!*\
+  !*** multi ./resources/js/pages/admin_payments.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\SLASHDOT_Labs\resources\js\pages\admin_orders.js */"./resources/js/pages/admin_orders.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\SLASHDOT_Labs\resources\js\pages\admin_payments.js */"./resources/js/pages/admin_payments.js");
 
 
 /***/ })

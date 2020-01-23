@@ -26751,7 +26751,7 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/steekam/public_html/slashdot_dashboard/resources/js/codebase/app.js */"./resources/js/codebase/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\SLASHDOT_Labs\resources\js\codebase\app.js */"./resources/js/codebase/app.js");
 
 
 /***/ })
