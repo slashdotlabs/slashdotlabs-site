@@ -1,13 +1,17 @@
 @component('mail::message')
-# Hello {{ $user-> first_name }} {{ $user-> last_name }} !
+Hello!
 
-Welcome to  {{ config('app.name') }}. <br>
+An account has been created on  {{ config('app.name') }} using this email.<br>
 
 Before accessing the system, you will need to set your password. <br>
 
-Follow this link to set your password: <a href="http://localhost:8000/password/reset"> Reset Password </a> <br>
+@component('mail::button', ['url' => $url, 'color' => 'blue'])
+Set Password
+@endcomponent
 
-Enter <strong> {{ $user-> email }} </strong> as your email address.<br>
+The password set link will expire in {{$count}} minutes. <br>
+
+If this email was not meant for you, just ignore it.
 
 <div style="margin-top: 1rem; margin-bottom: 1rem;">
     Thanks,<br>

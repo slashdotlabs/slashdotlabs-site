@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerBiodata;
-use App\Mail\UserCredentials;
-use Illuminate\Support\Facades\Mail;
+use App\Events\AdminRegisterUserEvent;
 use App\Models\User;
 use Exception;
 use Illuminate\Contracts\View\Factory;
@@ -86,8 +85,7 @@ class UsersController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'user_type' => 'required',
-            'email' => 'required|email',
-
+            'email' => 'required|email|unique:users,email',
         ];
         $messages = [
             'first_name.required' => 'The first name is required.',
@@ -95,6 +93,7 @@ class UsersController extends Controller
             'user_type.required' => 'The user type is required.',
             'email.required' => 'The email address is required.',
             'email.email' => 'Please enter the email address in the correct format.',
+            'email.unique' => 'An account with this email address exists!',
         ];
 
         $validator = Validator::make($record, $rules, $messages);
@@ -106,16 +105,20 @@ class UsersController extends Controller
         } //save
         else {
             //generate and hash password
-            $password =  Str::random(15); //it works uhhaha
+            $password =  Str::random(15);
             $hashed_password = Hash::make($password);
 
-            $user = User::updateOrCreate(['id' => $request->user_id],
-                ['first_name' => $request->first_name, 'last_name' => $request->last_name,
-                    'email' => $request->email, 'user_type' => $request->user_type, 'password' => $hashed_password]);
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'user_type' => $request->user_type,
+                'password' => $hashed_password
+            ]);
+            
             $response = ['success' => 'User added successfully.'];
 
-
-            Mail::to($request->user())->send(new UserCredentials($user));
+            event(new AdminRegisterUserEvent($user));
 
         }
         return response()->json($response);

@@ -11,6 +11,8 @@
 |
 */
 
+use App\Models\User;
+use App\Notifications\CredentialsEmailNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -67,6 +69,13 @@ Route::middleware(['auth.staff'])->group(function () {
     Route::resource('admin/users', 'UsersController');
     Route::put('admin/users/suspend/{id}', 'UsersController@suspend')->name('users.suspend');
     Route::put('admin/users/restore/{id}', 'UsersController@restore')->name('users.restore');
+});
+//Admin Create User - Email Credentials Route
+Route::get('mail', function () {
+    $user = User::inRandomOrder()->first();
+
+    return (new CredentialsEmailNotification)
+                ->toMail($user);
 });
 
 

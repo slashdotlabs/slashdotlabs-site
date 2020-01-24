@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\AdminRegisterUserEvent;
 use App\Events\OrderCreated;
 use App\Events\PaymentReceived;
 use App\Listeners\SendOrderCreatedNotification;
 use App\Listeners\SendPaymentReceivedNotification;
+use App\Listeners\SendUserCredentialsEmailListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,7 +28,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         PaymentReceived::class => [
             SendPaymentReceivedNotification::class
-        ]
+        ],
+        AdminRegisterUserEvent::class => [
+            SendUserCredentialsEmailListener::class
+        ],
     ];
 
     /**
