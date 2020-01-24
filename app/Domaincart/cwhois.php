@@ -311,6 +311,7 @@ $dtd[]=".geo.jp,whois.jprs.jp,no match,0";
 $dtd[]=".jp,whois.jprs.jp,no match,0";
 $dtd[]=".ac.ke,whois.kenic.or.ke,no match,0";
 $dtd[]=".co.ke,whois.kenic.or.ke,no match,0";
+$dtd[]=".ke,whois.kenic.or.ke,no match,0";
 $dtd[]=".go.ke,whois.kenic.or.ke,no match,0";
 $dtd[]=".ne.ke,whois.kenic.or.ke,no match,0";
 $dtd[]=".or.ke,whois.kenic.or.ke,no match,0";
