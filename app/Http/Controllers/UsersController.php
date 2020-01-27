@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerBiodata;
 use App\Events\AdminRegisterUserEvent;
+use App\Models\CustomerBiodata;
 use App\Models\User;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\View\View;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Yajra\DataTables\Facades\DataTables;
 use function response;
 
@@ -33,8 +34,8 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        // $users = User::all();
-        // return view('admin.users', ['users' => $users]);
+        $this->authorize('viewAny', User::class);
+
         if ($request->ajax()) {
             $data = User::latest()->get();
             return DataTables::of($data)
@@ -77,6 +78,11 @@ class UsersController extends Controller
 
     //Admin add users
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
     public function store(Request $request)
     {
         $this->authorize('create', User::class);
@@ -107,7 +113,7 @@ class UsersController extends Controller
         } //save
         else {
             //generate and hash password
-            $password =  Str::random(15);
+            $password = Str::random(15);
             $hashed_password = Hash::make($password);
 
             $user = User::create([

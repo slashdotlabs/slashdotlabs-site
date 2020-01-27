@@ -17,8 +17,7 @@
                 <div class="py-20">
                     <h1 class="h2 font-w700 text-white mb-10">Dashboard</h1>
                     <h2 class="h4 font-w400 text-white-op mb-0">
-                        Welcome,&nbsp;{{Auth::user()->full_name }} :)
-                    </h2>
+                        Welcome,&nbsp;{{Auth::user()->full_name }} :) </h2>
                 </div>
             </div>
         </div>
@@ -78,9 +77,22 @@
 
             <!-- System Users -->
             <div class="col-md-6 col-xl-4 block block-rounded block-transparent bg-gd-sea">
-                @if (Auth::user()->can('create', App\Models\User::class))
-                    <a href="/admin/users">
-                @endif
+                @can('create', \App\Models\User::class)
+                    <a href="{{ url('/admin/users') }}">
+                        <div class="block-content block-content-full block-sticky-options">
+                            <div class="block-options">
+                                <div class="block-options-item">
+                                    <i class="fa fa-users text-white-op"></i>
+                                </div>
+                            </div>
+                            <div class="py-20 text-center">
+                                <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="{{ $users->count() }}">0</div>
+                                <div class="font-size-sm font-w600 text-uppercase text-white-op">System Users</div>
+                            </div>
+                        </div>
+                    </a>
+                @endcan
+                @cannot('create', \App\Models\User::class)
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
                             <div class="block-options-item">
@@ -92,7 +104,7 @@
                             <div class="font-size-sm font-w600 text-uppercase text-white-op">System Users</div>
                         </div>
                     </div>
-                </a>
+                @endcannot
             </div>
             <!-- END System Users -->
         </div>
