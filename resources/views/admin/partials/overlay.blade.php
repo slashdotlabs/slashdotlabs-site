@@ -16,7 +16,7 @@
                     <img class="img-avatar img-avatar32" src="{{ asset('media/avatars/avatar15.jpg') }}" alt="">
                 </a>
                 <a class="align-middle link-effect text-primary-dark font-w600" href="javascript:void(0)">
-                    {{Auth::user()->first_name }}&nbsp;{{Auth::user()->last_name }}</a>
+                    {{Auth::user()->full_name }}</a>
             </div>
             <!-- END User Info -->
         </div>

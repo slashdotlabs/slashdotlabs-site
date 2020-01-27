@@ -60,22 +60,15 @@ Route::middleware(['auth.staff'])->group(function () {
     Route::put('admin/products/restore/{id}', 'ProductsController@restore')->name('products.restore');
 
     //Admin Orders Resource Route
-    Route::resource('admin/orders', 'OrdersController');
+    Route::resource('admin/orders', 'OrdersController')->only('index');
+    Route::post('admin/orders/{order_id}/cancel', 'OrdersController@cancel')->name('orders.cancel');
 
     // Admin Payments Resource Route
-    Route::resource('admin/payments', 'PaymentsController');
+    Route::resource('admin/payments', 'PaymentsController')->only(['index', 'store']);
 
     //Admin Users Resource Route
     Route::resource('admin/users', 'UsersController');
     Route::put('admin/users/suspend/{id}', 'UsersController@suspend')->name('users.suspend');
     Route::put('admin/users/restore/{id}', 'UsersController@restore')->name('users.restore');
 });
-//Admin Create User - Email Credentials Route
-Route::get('mail', function () {
-    $user = User::inRandomOrder()->first();
-
-    return (new CredentialsEmailNotification)
-                ->toMail($user);
-});
-
 

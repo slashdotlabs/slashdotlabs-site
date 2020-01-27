@@ -29,15 +29,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = ['full_name'];
 
-    public function get_name()
+    public function getFullNameAttribute()
     {
-        return ($this->first_name)[0] . ". " . $this->last_name;
-    }
-
-    public function get_fullname()
-    {
-        return $this->first_name . " " . $this->last_name;
+        return "{$this->first_name} {$this->last_name}";
     }
 
     public function customer_biodata()

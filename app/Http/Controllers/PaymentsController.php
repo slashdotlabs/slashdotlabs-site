@@ -7,12 +7,15 @@ use App\Events\PaymentReceived;
 use App\Models\Order;
 use App\Models\Payment;
 use Exception;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 use Yajra\DataTables\Facades\DataTables;
 
 class PaymentsController extends Controller
@@ -20,7 +23,9 @@ class PaymentsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @param Request $request
+     * @return Factory|Response|View
+     * @throws Exception
      */
     public function index(Request $request)
     {
@@ -74,23 +79,44 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
+        $is_manual = $request->boolean('manual_payment', false);
         $res = $request->all();
-        $order = Order::with('customer')->where('order_id', $res['id'])->first();
-        $order->update(['paid' => true]);
-        $order->save();
-
+        if($is_manual){
+            $validator = $this->validate_manual_payments($res);
+            if ($validator->fails()) return \response()->json($validator->errors()->first());
+        }
+        // ?Check if it's from iPay or if it's a manual payment entry
+        $order_id = $is_manual ? $res['order_id'] : $res['id'];
         $payment_details = [
-            'payment_type' => $res['channel'],
-            'amount' => $res['mc'],
+            'payment_type' => $is_manual ? $res['payment_type'] : $res['channel'],
+            'amount' => $is_manual ? $res['amount'] : $res['mc'],
             'currency' => 'KES'
         ];
+
+        $order = Order::with('customer')->where('order_id', $order_id)->first();
+        $order->update(['paid' => true]);
+        $order->save();
 
         $payment = Payment::updateOrCreate([
             'customer_id' => $order->customer->id,
             'order_id' => $order->order_id,
-            'payment_ref' => $res['txncd'],
+            'payment_ref' => $is_manual ? $res['payment_ref'] : $res['txncd'],
         ], $payment_details);
 
         return \response()->json(['payment' => $payment]);
+    }
+
+    private function validate_manual_payments($data)
+    {
+        $rules = [
+            'payment_type' => 'required',
+            'payment_ref' => 'required',
+            'amount' => 'required:digits',
+            'order_id' => 'required'
+        ];
+        $messages = [
+            'amount.digits' => 'Enter a valid amount'
+        ];
+        return Validator::make($data, $rules, $messages);
     }
 }

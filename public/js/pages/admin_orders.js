@@ -110,6 +110,27 @@ $(function () {
 
   var tbOrders = $('#tb-orders');
   var dtOrders = tbOrders.DataTable({
+    scrollX: true,
+    ajax: {
+      url: "".concat(baseURL, "/admin/orders"),
+      method: 'get',
+      dataSrc: ''
+    },
+    columns: [{
+      data: 'order_id'
+    }, {
+      data: function data(order) {
+        return order['customer']['full_name'];
+      }
+    }, {
+      data: 'total_amount'
+    }, {
+      data: 'created_at'
+    }, {
+      data: 'status_badge'
+    }, {
+      data: 'action'
+    }],
     columnDefs: [{
       targets: [1, 4],
       "class": 'text-left'
@@ -173,15 +194,94 @@ $(function () {
   tbOrders.on('click', '.show-order-items', function (event) {
     var _this = $(event.target);
 
-    var orderDetails = _this.data('order-items');
-
-    var orderId = _this.data('order-id');
-
+    var rowData = dtOrders.row(_this.closest('tr')).data();
+    var orderDetails = rowData['order_items'];
+    var orderId = rowData['order_id'];
     orderDetailsModal.find('#order-id').text(orderId);
     dtOrderDetails.clear();
     dtOrderDetails.rows.add(orderDetails).draw();
     dtOrderDetails.columns.adjust().draw();
     orderDetailsModal.modal('show');
+  }); // ?Suspend order event
+
+  tbOrders.on('click', '.btn-cancel-order', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var rowData = dtOrders.row(_this.closest('tr')).data(); // ?Confirm cancel order
+
+    toast.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, cancel order!',
+      cancelButtonText: 'Don\'t cancel order'
+    }).then(function (result) {
+      if (result.value) {
+        Codebase.blocks('#orders-block', 'state_loading'); //? Cancel order
+
+        axios.post("".concat(baseURL, "/admin/orders/").concat(rowData['order_id'], "/cancel")).then(function (res) {
+          console.log(res);
+
+          if (res.data['success']) {
+            // Success
+            toast.fire('Cancelled!', "Order: ".concat(res.data['order']['order_id'], " has been cancelled."), 'success');
+            dtOrders.ajax.reload();
+          }
+        })["catch"](function (res) {
+          //console.log(res);
+          toast.fire('Error!', "An unexpected error occurred, contact support.", 'danger');
+        })["finally"](function () {
+          return Codebase.blocks('#orders-block', 'state_normal');
+        });
+      }
+    });
+  }); // ?Payment addition
+  // ?Show modal
+
+  var orderPaymentModal = $('#order-payment-modal');
+  var orderPaymentForm = $('#order-payment-form');
+  tbOrders.on('click', '.btn-add-payment', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var rowData = dtOrders.row(_this.closest('tr')).data();
+    orderPaymentModal.find('#order-id').text(rowData['order_id']);
+    orderPaymentForm.find('[name=order_id]').val(rowData['order_id']);
+    orderPaymentModal.modal('show');
+  }); // ?On modal hide
+
+  orderPaymentModal.on('hide.bs.modal', function () {
+    orderPaymentForm[0].reset();
+  }); // ?Form submission
+
+  orderPaymentForm.on('submit', function (event) {
+    event.preventDefault();
+
+    var _this = $(event.target);
+
+    var data = new FormData(_this[0]);
+    Codebase.blocks('#add-payment-block', 'state_loading');
+    axios.post("".concat(baseURL, "/admin/payments"), data).then(function (res) {
+      console.log(res); // Success
+
+      toast.fire('Success!', "Order: <span class=\"text-info\">".concat(res.data['payment']['order_id'], "</span> has been paid."), 'success');
+      dtOrders.ajax.reload();
+      orderPaymentModal.modal('hide');
+    })["catch"](function (res) {
+      console.log("Runnung catch");
+      console.log({
+        res: res
+      });
+      toast.fire('Error!', "An unexpected error occurred, contact support.", 'warning');
+    })["finally"](function () {
+      Codebase.blocks('#add-payment-block', 'state_normal');
+
+      _this[0].reset();
+    });
   });
 });
 

@@ -34,7 +34,9 @@ mix
 
 
     /* Tools */
-    .browserSync('localhost:8000', { notify: false })
+    .browserSync({
+        proxy: 'localhost:8000', notify: false
+    })
 
     /* Options */
     .options({
