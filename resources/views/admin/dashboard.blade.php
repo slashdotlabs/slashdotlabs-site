@@ -58,7 +58,6 @@
                 </a>
             </div>
             <!-- END Earnings -->
-
             <!-- Orders -->
             <div class="col-md-6 col-xl-4">
                 <a class="block block-rounded block-transparent bg-gd-dusk" href="/admin/orders">
@@ -77,9 +76,11 @@
             </div>
             <!-- END Orders -->
 
-            <!-- New Customers -->
-            <div class="col-md-6 col-xl-4">
-                <a class="block block-rounded block-transparent bg-gd-sea" href="/admin/users">
+            <!-- System Users -->
+            <div class="col-md-6 col-xl-4 block block-rounded block-transparent bg-gd-sea">
+                @if (Auth::user()->can('create', App\Models\User::class))
+                    <a href="/admin/users">
+                @endif
                     <div class="block-content block-content-full block-sticky-options">
                         <div class="block-options">
                             <div class="block-options-item">
