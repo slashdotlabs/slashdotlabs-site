@@ -79,6 +79,8 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create', User::class);
+
         //validation
         $record = $request->all();
         $rules = [
@@ -115,7 +117,7 @@ class UsersController extends Controller
                 'user_type' => $request->user_type,
                 'password' => $hashed_password
             ]);
-            
+
             $response = ['success' => 'User added successfully.'];
 
             event(new AdminRegisterUserEvent($user));
