@@ -310,7 +310,7 @@
                     <h3>Contact Us</h3>
                     <p>If you have any questions about this Privacy Policy, You can contact us:</p>
                     <ul>
-                        <li>By visiting this page on our website: https://slashdotlabs.com/contact/</li>
+                        <li>By visiting this page on our website: <a href = "https://slashdotlabs.com/contact"> Contact Us </a> </li>
                     </ul>
                 </div>
             </div>

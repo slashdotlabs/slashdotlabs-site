@@ -76,4 +76,6 @@
         </div>
     </div>
 <!-- END Page Content -->
+@include('auth.partials.modals')
+
 @endsection

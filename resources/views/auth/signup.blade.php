@@ -102,6 +102,6 @@
     </div>
 </div>
 <!-- END Page Content -->
-@include('auth.layouts.modals')
+@include('auth.partials.modals')
 
 @endsection
