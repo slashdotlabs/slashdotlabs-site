@@ -12,6 +12,7 @@
                     </div>
                 </div>
             <form id="add-product-form">
+                @csrf
                 <div class="block-content">
                     <!-- Error Alert Message -->
                         <div id="add-error-msg"> </div>

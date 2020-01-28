@@ -31,7 +31,7 @@
                         <input type="email" class="form-control form-control-m" id="email" name="email" placeholder="Enter the email address.." value ="" required>
                     </div>
                     <div class="form-group">
-                        <label for="user-type">User Type</label>
+                        <label for="user_type">User Type</label>
                         <select class="form-control form-control-m" id="user_type" name="user_type" required>
                             <option value="">Select a user type</option>
                             <option value="customer">Customer</option>

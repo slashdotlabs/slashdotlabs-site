@@ -1,5 +1,3 @@
-import { removeObserver } from "simplebar";
-
 $(() => {
 
     $.ajaxSetup({
@@ -34,16 +32,17 @@ $(() => {
             {data: 'action', name: 'action'},
         ],
         columnDefs: [
-            {targets: [1,2,3,4], class: 'text-left'},
+            {targets: [1, 2, 3, 4], class: 'text-left'},
             {targets: 0, class: 'text-right'},
-            {targets: [5,6], class: 'text-center'},
+            {targets: [5, 6], class: 'text-center'},
             {targets: 0, width: "10%"},
             {targets: 6, orderable: false},
-            {targets: 5, render : function (data, type, row) {
-                return data == '1' ? `<span class="badge badge-warning">Suspended</span>` :
-                `<span class="badge badge-success">Active</span>`
+            {
+                targets: 5, render: function (data, type, row) {
+                    return data == '1' ? `<span class="badge badge-warning">Suspended</span>` :
+                        `<span class="badge badge-success">Active</span>`
+                },
             },
-        },
         ]
     });
 
@@ -58,39 +57,36 @@ $(() => {
     //Add User
     $('#btn-add-user').click(function (e) {
         e.preventDefault();
-        var storeUrl = `${baseURL}/admin/users/`;
+        const storeUrl = `${baseURL}/admin/users`;
         $.ajax({
-        data: $('#add-user-form').serialize(),
-        url: storeUrl,
-        type: "POST",
-        dataType: 'json',
-        success: function (response) {
-            $('#add-user-form').trigger("reset");
-            $('#modal-add-user').modal('hide');
-            dtUsers.ajax.reload();
-            if (response.success) {
-                console.log(response.success);
-                $('#success-msg').append('<div class="alert alert-success" role="alert">'+response.success+'</div>');
-            }
-            setTimeout(function(){
-                $('#success-msg').html('');
-            }, 5000);
-        },
-        error: function (response) {
-                var i, x = "";
-				var errors = response.responseJSON;
-				console.log(errors);
-				for (i in errors) {
+            data: $('#add-user-form').serialize(),
+            url: storeUrl,
+            type: "POST",
+            dataType: 'json',
+            success: function (response) {
+                $('#add-user-form').trigger("reset");
+                $('#modal-add-user').modal('hide');
+                dtUsers.ajax.reload();
+                if (response.success) {
+                    $('#success-msg').append('<div class="alert alert-success" role="alert">' + response.success + '</div>');
+                }
+                setTimeout(function () {
+                    $('#success-msg').html('');
+                }, 5000);
+            },
+            error: function (response) {
+                let i, x = "";
+                let errors = response.responseJSON;
+                for (i in errors) {
                     x = errors[i];
-				  	$('#add-error-msg').append(`<div class="alert alert-danger" role="alert">${x}</div>`);
-				}
-				setTimeout(function(){
-			        $('#add-error-msg').html('');
-			    }, 5000);
-			}
+                    $('#add-error-msg').append(`<div class="alert alert-danger" role="alert">${x}</div>`);
+                }
+                setTimeout(function () {
+                    $('#add-error-msg').html('');
+                }, 5000);
+            }
+        });
     });
-    });
-
 
 
     const suspendUserModal = $('#modal-suspend-user');
@@ -100,7 +96,7 @@ $(() => {
         const _this = $(event.target);
         const rowData = dtUsers.row(_this.closest('tr')).data();
 
-         // Fill modal with data
+        // Fill modal with data
         suspendUserForm.find('[name=user_id]').val(rowData['id']);
         suspendUserForm.find('#suspend-user-name').val(rowData['first_name'].concat(' ').concat(rowData['last_name']));
         // Show modal
@@ -114,7 +110,7 @@ $(() => {
         const _this = $(event.target);
         const rowData = dtUsers.row(_this.closest('tr')).data();
 
-         // Fill modal with data
+        // Fill modal with data
         restoreUserForm.find('[name=user_id]').val(rowData['id']);
         restoreUserForm.find('#restore-user-name').val(rowData['first_name'].concat(' ').concat(rowData['last_name']));
         // Show modal
@@ -122,31 +118,23 @@ $(() => {
     });
 
     // Suspend the users account
-    $('#btn-suspend-user').on('click',event => suspendUserForm.trigger('submit') );
-    suspendUserForm.on('submit',event => {
+    $('#btn-suspend-user').on('click', event => suspendUserForm.trigger('submit'));
+    suspendUserForm.on('submit', event => {
         event.preventDefault();
         const _this = $(event.target);
         const userId = _this.find('input[name=user_id]').val();
         const targetURL = `${baseURL}/admin/users/suspend/${userId}`;
-        const user_info = {};
-        _this.serializeArray().filter(field => !['user_id','_method'].includes(field.name))
-        .forEach(field => {
-            user_info[field.name] = field.value;
-        });
-
-        console.log(targetURL);
 
         $.ajax({
             url: targetURL,
-            method: 'put',
-            data: user_info,
+            method: 'post',
+            data: _this.serialize(),
             success: Response => {
                 dtUsers.ajax.reload();
                 suspendUserModal.modal('hide');
             },
             error: Response => {
-                //var i, x = "";
-                var errors = Response.responseJSON;
+                const errors = Response.responseJSON;
                 console.log(errors);
             }
         })
@@ -154,31 +142,23 @@ $(() => {
 
 
     // Restore the users account
-    $('#btn-restore-user').on('click',event => restoreUserForm.trigger('submit') );
-    restoreUserForm.on('submit',event => {
+    $('#btn-restore-user').on('click', event => restoreUserForm.trigger('submit'));
+    restoreUserForm.on('submit', event => {
         event.preventDefault();
         const _this = $(event.target);
         const userId = _this.find('input[name=user_id]').val();
         const targetURL = `${baseURL}/admin/users/restore/${userId}`;
-        const user_info = {};
-        _this.serializeArray().filter(field => !['user_id','_method'].includes(field.name))
-        .forEach(field => {
-            user_info[field.name] = field.value;
-        });
-
-        console.log(targetURL);
 
         $.ajax({
             url: targetURL,
-            method: 'put',
-            data: user_info,
+            method: 'post',
+            data: _this.serialize(),
             success: Response => {
                 dtUsers.ajax.reload();
                 suspendUserModal.modal('hide');
             },
             error: Response => {
-
-                var errors = Response.responseJSON;
+                const errors = Response.responseJSON;
                 console.log(errors);
             }
         })

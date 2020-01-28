@@ -23,7 +23,7 @@
                         <input type="text" class="form-control form-control-m" id="edit-product-name" name="product_name" placeholder="Enter the new product name.." required>
                     </div>
                     <div class="form-group">
-                        <label for="product-description">Description</label>
+                        <label for="edit-product-description">Description</label>
                         <textarea class="form-control" id="edit-product-description" name="product_description" rows="4" placeholder="Enter the new product description.." required></textarea>
                     </div>
                     <div class="form-group">

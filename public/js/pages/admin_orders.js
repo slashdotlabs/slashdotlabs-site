@@ -266,17 +266,14 @@ $(function () {
     var data = new FormData(_this[0]);
     Codebase.blocks('#add-payment-block', 'state_loading');
     axios.post("".concat(baseURL, "/admin/payments"), data).then(function (res) {
-      console.log(res); // Success
-
+      // Success
       toast.fire('Success!', "Order: <span class=\"text-info\">".concat(res.data['payment']['order_id'], "</span> has been paid."), 'success');
       dtOrders.ajax.reload();
       orderPaymentModal.modal('hide');
     })["catch"](function (res) {
-      console.log("Runnung catch");
-      console.log({
-        res: res
-      });
-      toast.fire('Error!', "An unexpected error occurred, contact support.", 'warning');
+      if (res['data']) {
+        toast.fire('Error!', "An unexpected error occurred, contact support.", 'warning');
+      }
     })["finally"](function () {
       Codebase.blocks('#add-payment-block', 'state_normal');
 

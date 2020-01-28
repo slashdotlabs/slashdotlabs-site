@@ -54,7 +54,7 @@ $(() => {
     //Add Product
     $('#btn-add-product').click(function (e) {
         e.preventDefault();
-        var storeUrl = `${baseURL}/admin/products/`;
+        const storeUrl = `${baseURL}/admin/products`;
         $.ajax({
         data: $('#add-product-form').serialize(),
         url: storeUrl,
@@ -111,16 +111,11 @@ $(() => {
         const _this = $(event.target);
         const productId = _this.find('input[name=product_id]').val();
         const targetURL = `${baseURL}/admin/products/${productId}`;
-        const product_details = {};
-        _this.serializeArray().filter(field => !['product_id','_method'].includes(field.name))
-        .forEach(field => {
-            product_details[field.name] = field.value;
-        });
 
         $.ajax({
             url: targetURL,
-            method: 'put',
-            data: product_details,
+            method: 'POST',
+            data: _this.serialize(),
             success: Response => {
                 dtProducts.ajax.reload();
                 editProductsModal.modal('hide');
@@ -130,8 +125,8 @@ $(() => {
                 }, 5000);
             },
             error: Response => {
-                var i, x = "";
-				var errors = Response.responseJSON;
+                let i, x = "";
+				let errors = Response.responseJSON;
 				console.log(errors);
 				for (i in errors) {
                     x = errors[i];
@@ -141,13 +136,7 @@ $(() => {
 			        $('#update-error-msg').html('');
 			    }, 5000);
 			}
-        // response to ajax function without error handling
-        // }).then(res => {
-        //     console.log(res);
-        //     dtProducts.ajax.reload();
-        //     // remove modal
-        //     editProductsModal.modal('hide');
-        })
+        });
     });
 
     //Fetch product to suspend modal.
@@ -173,16 +162,11 @@ $(() => {
         const _this = $(event.target);
         const productId = _this.find('input[name=product_id]').val();
         const targetURL = `${baseURL}/admin/products/suspend/${productId}`;
-        const product_info = {};
-        _this.serializeArray().filter(field => !['product_id','_method'].includes(field.name))
-        .forEach(field => {
-            product_info[field.name] = field.value;
-        });
 
         $.ajax({
             url: targetURL,
-            method: 'put',
-            data: product_info,
+            method: 'POST',
+            data: _this.serialize(),
             success: resp => {
                 dtProducts.ajax.reload();
                 suspendProductModal.modal('hide');
@@ -224,16 +208,11 @@ $(() => {
         const _this = $(event.target);
         const productId = _this.find('input[name=product_id]').val();
         const targetURL = `${baseURL}/admin/products/restore/${productId}`;
-        const product_record = {};
-        _this.serializeArray().filter(field => !['product_id','_method'].includes(field.name))
-        .forEach(field => {
-            product_record[field.name] = field.value;
-        });
 
         $.ajax({
             url: targetURL,
-            method: 'put',
-            data: product_record,
+            method: 'post',
+            data: _this.serialize(),
             success: resp => {
                 dtProducts.ajax.reload();
                 restoreProductModal.modal('hide');

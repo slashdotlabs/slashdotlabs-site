@@ -164,7 +164,7 @@ $(function () {
 
   $('#btn-add-product').click(function (e) {
     e.preventDefault();
-    var storeUrl = "".concat(baseURL, "/admin/products/");
+    var storeUrl = "".concat(baseURL, "/admin/products");
     $.ajax({
       data: $('#add-product-form').serialize(),
       url: storeUrl,
@@ -229,18 +229,10 @@ $(function () {
     var productId = _this.find('input[name=product_id]').val();
 
     var targetURL = "".concat(baseURL, "/admin/products/").concat(productId);
-    var product_details = {};
-
-    _this.serializeArray().filter(function (field) {
-      return !['product_id', '_method'].includes(field.name);
-    }).forEach(function (field) {
-      product_details[field.name] = field.value;
-    });
-
     $.ajax({
       url: targetURL,
-      method: 'put',
-      data: product_details,
+      method: 'POST',
+      data: _this.serialize(),
       success: function success(Response) {
         dtProducts.ajax.reload();
         editProductsModal.modal('hide');
@@ -263,13 +255,7 @@ $(function () {
         setTimeout(function () {
           $('#update-error-msg').html('');
         }, 5000);
-      } // response to ajax function without error handling
-      // }).then(res => {
-      //     console.log(res);
-      //     dtProducts.ajax.reload();
-      //     // remove modal
-      //     editProductsModal.modal('hide');
-
+      }
     });
   }); //Fetch product to suspend modal.
 
@@ -297,18 +283,10 @@ $(function () {
     var productId = _this.find('input[name=product_id]').val();
 
     var targetURL = "".concat(baseURL, "/admin/products/suspend/").concat(productId);
-    var product_info = {};
-
-    _this.serializeArray().filter(function (field) {
-      return !['product_id', '_method'].includes(field.name);
-    }).forEach(function (field) {
-      product_info[field.name] = field.value;
-    });
-
     $.ajax({
       url: targetURL,
-      method: 'put',
-      data: product_info,
+      method: 'POST',
+      data: _this.serialize(),
       success: function success(resp) {
         dtProducts.ajax.reload();
         suspendProductModal.modal('hide');
@@ -350,18 +328,10 @@ $(function () {
     var productId = _this.find('input[name=product_id]').val();
 
     var targetURL = "".concat(baseURL, "/admin/products/restore/").concat(productId);
-    var product_record = {};
-
-    _this.serializeArray().filter(function (field) {
-      return !['product_id', '_method'].includes(field.name);
-    }).forEach(function (field) {
-      product_record[field.name] = field.value;
-    });
-
     $.ajax({
       url: targetURL,
-      method: 'put',
-      data: product_record,
+      method: 'post',
+      data: _this.serialize(),
       success: function success(resp) {
         dtProducts.ajax.reload();
         restoreProductModal.modal('hide');

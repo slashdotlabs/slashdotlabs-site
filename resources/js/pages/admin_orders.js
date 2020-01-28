@@ -163,7 +163,6 @@ $(() => {
 
         axios.post(`${baseURL}/admin/payments`, data)
             .then(res => {
-                console.log(res);
                 // Success
                 toast.fire(
                     'Success!',
@@ -174,13 +173,13 @@ $(() => {
                 orderPaymentModal.modal('hide');
             })
             .catch(res => {
-                console.log("Runnung catch");
-                console.log({res});
-                toast.fire(
-                    'Error!',
-                    `An unexpected error occurred, contact support.`,
-                    'warning'
-                );
+                if(res['data']) {
+                    toast.fire(
+                        'Error!',
+                        `An unexpected error occurred, contact support.`,
+                        'warning'
+                    );
+                }
             })
             .finally(() => {
                 Codebase.blocks('#add-payment-block', 'state_normal');
