@@ -4,10 +4,18 @@
 
 A customer on {{ config('app.name') }} has made an order and made payment.
 
+## Client Information:
+@component('mail::table')
+| Bio    |  Organization    |
+| :---- | :-----|
+{{ $payment->customer->full_name }} | {{ $payment->customer->customer_biodata->organization }},
+{{ $payment->customer->email }} | {{ $payment->customer->customer_biodata->address }}, {{ $payment->customer->customer_biodata->city }}
+{{ $payment->customer->customer_biodata->phone_number }}|  {{ $payment->customer->customer_biodata->country }}
+@endcomponent
+
 ## Order Summary
 
-<strong>Client Name:</strong> {{ $payment->customer->first_name.' ',$payment->customer->last_name }} <br>
-<strong>Order No.</strong> : {{ $payment->order->order_id }}
+Order No. : <strong>{{ $payment->order->order_id }}</strong>
 
 @component('mail::table')
 | Name          | Type          | Expiry Date  | Price ({{ $payment->order->currency }}) |

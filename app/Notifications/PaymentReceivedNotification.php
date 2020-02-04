@@ -45,7 +45,7 @@ class PaymentReceivedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('mail.order.payment', ['payment' => $this->payment->load('order', 'order.order_items.product')]);
+    return (new MailMessage)->markdown('mail.order.payment', ['payment' => $this->payment->load('order', 'order.order_items.product', 'customer.customer_biodata')]);
     }
 
     /**
