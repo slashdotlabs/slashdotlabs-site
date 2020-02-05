@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-info" data-toggle="countTo" data-to="{{ $counts['customer'] }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-info" data-toggle="countTo" data-to="{{ $counts['customer'] ?? 0 }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Customers</div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-warning" data-toggle="countTo" data-to="{{ $counts['employee'] }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-warning" data-toggle="countTo" data-to="{{ $counts['employee'] ?? 0 }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Employees</div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-danger" data-toggle="countTo" data-to="{{ $counts['admin'] }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-danger" data-toggle="countTo" data-to="{{ $counts['admin'] ?? 0 }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Administrators</div>
                         </div>
                     </div>
