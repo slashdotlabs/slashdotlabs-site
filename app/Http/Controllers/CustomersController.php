@@ -9,7 +9,7 @@ class CustomersController extends Controller
 {
     public function index()
     {
-        $customers = User::ofType('customer')->with('customer_biodata')->get();
+        $customers = User::ofType('customer')->with('customer_biodata')->latest()->get();
         return view('admin.customers', ['customers' => $customers ]);
     }
 }
