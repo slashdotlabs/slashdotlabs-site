@@ -43,13 +43,13 @@ class UsersController extends Controller
                 ->addColumn('action', function ($row) {
                     return $row->suspended ?
                         '<div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-alt-warning suspend-user" data-id="' . $row->id . '" >
-                                Suspend
-                            </button>
-                        </div>' :
-                        '<div class="btn-group">
                             <button type="button" class="btn btn-sm btn-alt-success restore-user" data-id="' . $row->id . '" >
                                 Restore
+                            </button>
+                        </div>':
+                    '<div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-alt-warning suspend-user" data-id="' . $row->id . '" >
+                                Suspend
                             </button>
                         </div>';
                 })
