@@ -16,7 +16,7 @@
 
 @section('content')
     <!-- Hero -->
-    <div class="bg-image" style="background-image: url('../media/photos/payments.jpeg');">
+    <div class="bg-image" style="background-image: url('{{ asset('media/photos/payments.jpeg') }}');">
         <div class="bg-black-op-75">
             <div class="content content-top content-full text-center">
                 <div class="py-20">
@@ -50,17 +50,14 @@
                     <table id="tb-payments" class="table table-bordered table-striped table-vcenter">
                         <thead class="text-uppercase">
                         <tr>
-                            <th>Payment ID </th>
-                            <th>Customer ID</th>
-                            <th>Order ID</th>
-                            <th>Payment Type</th>
-                            <th>Reference no</th>
-                            <th>Amount</th>
-                            <th>Currency</th>
+                            <th>#</th>
+                            <th>Customer Name</th>
+                            <th>Order</th>
+                            <th>channel</th>
+                            <th>Reference</th>
+                            <th>Amount (KES)</th>
                         </tr>
                         </thead>
-                        <tbody> 
-                        </tbody>
                     </table>
             <!-- END Payments Table -->
             </div>

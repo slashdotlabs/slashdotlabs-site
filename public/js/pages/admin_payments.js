@@ -116,7 +116,7 @@ $(function () {
       name: 'DT_RowIndex'
     }, {
       data: function data(entry) {
-        return "".concat(entry['customer']['first_name'], " ").concat(entry['customer']['last_name']);
+        return entry['customer']['full_name'];
       },
       name: 'customer'
     }, {
@@ -124,26 +124,25 @@ $(function () {
       name: 'order_id'
     }, {
       data: 'payment_type',
-      name: 'payment_type'
+      name: 'payment_type',
+      width: '15%'
     }, {
       data: 'payment_ref',
-      name: 'payment_refa'
+      name: 'payment_ref'
     }, {
       data: 'amount',
-      name: 'amount'
-    }, {
-      data: 'currency',
-      name: 'currency'
+      name: 'amount',
+      width: '15%'
     }],
     columnDefs: [{
-      targets: [1, 3, 6],
-      "class": 'text-left'
-    }, {
       targets: [0, 2, 5],
       "class": 'text-right'
     }, {
       targets: 0,
-      width: "12%"
+      width: "1%"
+    }, {
+      targets: [0, 4],
+      orderable: false
     }]
   });
 });
