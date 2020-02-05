@@ -58,5 +58,7 @@ Route::middleware(['auth','auth.staff', 'auth.suspended'])->group(function () {
     Route::resource('admin/users', 'UsersController');
     Route::put('admin/users/suspend/{id}', 'UsersController@suspend')->name('users.suspend');
     Route::put('admin/users/restore/{id}', 'UsersController@restore')->name('users.restore');
+
+    Route::get('admin/customers', 'CustomersController@index');
 });
 

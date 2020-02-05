@@ -17,7 +17,7 @@
 
 @section('content')
     <!-- Hero -->
-    <div class="bg-image" style="background-image: url('../media/photos/users.jpg');">
+    <div class="bg-image" style="background-image: url('{{ asset('media/photos/users.jpg') }}');">
         <div class="bg-black-op-75">
             <div class="content content-top content-full text-center">
                 <div class="py-20">

@@ -1,18 +1,3 @@
-@section('admin_settings')
-    <li class="nav-main-heading">
-        <span class="sidebar-mini-visible">SU</span><span class="sidebar-mini-hidden">SYSTEM</span></li>
-    <li>
-    <li>
-        <a href="{{ url('/admin/users') }}"><i class="fa fa-users"></i><span class="sidebar-mini-hide">Users</span></a>
-    </li>
-    <li>
-        <a href="{{ url('/admin/domaincart_config') }}"><i class="fa fa-edit"></i><span class="sidebar-mini-hide">Domaincart Config</span></a>
-    </li>
-    <li>
-        <a href="{{ url('/admin/system_logs') }}"><i class="fa fa-list-alt"></i><span class="sidebar-mini-hide">Logs</span></a>
-    </li>
-@endsection
-
 <div class="sidebar-content">
     <!-- Side Header -->
     <div class="content-header content-header-fullrow px-15 bg-black-op-10">
@@ -36,29 +21,6 @@
     </div>
     <!-- END Side Header -->
 
-    <!-- Side User -->
-    <div class="content-side content-side-full content-side-user px-10 align-parent d-none">
-        <!-- Visible only in mini mode -->
-        <div class="sidebar-mini-visible-b align-v animated fadeIn">
-            <img class="img-avatar img-avatar32" src="{{ asset('/media/avatars/avatar15.jpg') }}" alt="">
-        </div>
-        <!-- END Visible only in mini mode -->
-
-        <!-- Visible only in normal mode -->
-        <div class="sidebar-mini-hidden-b text-center">
-            <a class="img-link"> <img class="img-avatar" src="{{ asset('/media/avatars/avatar15.jpg') }}" alt=""> </a>
-            <ul class="list-inline mt-10">
-                <li class="list-inline-item">
-                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" data-toggle="layout" data-action="side_overlay_toggle">
-                        {{Auth::user()->first_name }}&nbsp;{{Auth::user()->last_name }}
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- END Visible only in normal mode -->
-    </div>
-    <!-- END Side User -->
-
     <!-- Side Navigation -->
     <div class="content-side content-side-full">
         <ul class="nav-main">
@@ -76,9 +38,23 @@
             <li>
                 <a href="{{ url('/admin/payments') }}"><i class="fa fa-money"></i><span class="sidebar-mini-hide">Payments</span></a>
             </li>
+            <li>
+                <a href="{{ url('/admin/customers') }}"><i class="fa fa-user-o"></i><span class="sidebar-mini-hide">Customers</span></a>
+            </li>
 
             @if (Auth::user()->user_type == 'admin')
-                @yield('admin_settings')
+                <li class="nav-main-heading">
+                    <span class="sidebar-mini-visible">SU</span><span class="sidebar-mini-hidden">SYSTEM</span></li>
+                <li>
+                <li>
+                    <a href="{{ url('/admin/users') }}"><i class="fa fa-users"></i><span class="sidebar-mini-hide">Users</span></a>
+                </li>
+                <li>
+                    <a href="{{ url('/admin/domaincart_config') }}"><i class="fa fa-edit"></i><span class="sidebar-mini-hide">Domaincart Config</span></a>
+                </li>
+                <li>
+                    <a href="{{ url('/admin/system_logs') }}"><i class="fa fa-list-alt"></i><span class="sidebar-mini-hide">Logs</span></a>
+                </li>
             @endif
         </ul>
     </div>

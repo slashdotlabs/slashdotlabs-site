@@ -4,9 +4,6 @@
     <!-- Page JS Plugins -->
     <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/jquery-validation/additional-methods.js') }}"></script>
-
-    <!-- Page JS Code -->
-
 @endsection
 
 @section('content')
