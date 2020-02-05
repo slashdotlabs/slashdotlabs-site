@@ -41,38 +41,27 @@ class UsersController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    if ($row->suspended == 0) {
-
-                        $buttons =
-                            '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-dark suspend-user" data-id="' . $row->id . '" >
-                                    Suspend
-                                </button>
-                            </div>';
-                        return $buttons;
-                    } else {
-                        $buttons =
-                            '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-dark restore-user" data-id="' . $row->id . '" >
-                                    Restore
-                                </button>
-                            </div>';
-                        return $buttons;
-                    }
+                    return $row->suspended ?
+                        '<div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-alt-warning suspend-user" data-id="' . $row->id . '" >
+                                Suspend
+                            </button>
+                        </div>' :
+                        '<div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-alt-success restore-user" data-id="' . $row->id . '" >
+                                Restore
+                            </button>
+                        </div>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
 
-        $customers = User::where('user_type', 'customer');
-        $admins = User::where('user_type', 'admin');
-        $employees = User::where('user_type', 'employee');
+        $counts = User::all()->countBy(function ($user) { return $user['user_type']; });
 
         return view('admin.users',
             [
-                'customers' => $customers,
-                'admins' => $admins,
-                'employees' => $employees,
+                'counts' => $counts,
             ]);
     }
 

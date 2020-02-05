@@ -32,7 +32,7 @@
     <div class="bg-body-light border-b">
         <div class="content py-5 text-center">
             <nav class="breadcrumb bg-body-light mb-0">
-                <a class="breadcrumb-item" href="/admin/dashboard">Home</a>
+                <a class="breadcrumb-item" href="{{ url('admin/dashboard') }}">Home</a>
                 <span class="breadcrumb-item active">System Users</span>
             </nav>
         </div>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-info" data-toggle="countTo" data-to="{{ $customers->count() }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-info" data-toggle="countTo" data-to="{{ $counts['customer'] }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Customers</div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-warning" data-toggle="countTo" data-to="{{ $employees->count() }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-warning" data-toggle="countTo" data-to="{{ $counts['employee'] }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Employees</div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-danger" data-toggle="countTo" data-to="{{ $admins->count() }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-danger" data-toggle="countTo" data-to="{{ $counts['admin'] }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Administrators</div>
                         </div>
                     </div>
@@ -130,12 +130,11 @@
                     <div id="success-msg"></div>
                 <!-- End of Success Alert Messages -->
                 <!-- Products Table -->
-                <table id="tb-users" class="table table-sm table-bordered table-striped table-vcenter" >
+                <table id="tb-users" class="table table-bordered table-striped table-vcenter" >
                     <thead class="text-uppercase">
                         <tr>
-                            <th>User ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th>#</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>User Type</th>
                             <th>Status</th>

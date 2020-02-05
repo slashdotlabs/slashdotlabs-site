@@ -117,11 +117,8 @@ $(function () {
       data: 'DT_RowIndex',
       name: 'DT_RowIndex'
     }, {
-      data: 'first_name',
-      name: 'first_name'
-    }, {
-      data: 'last_name',
-      name: 'last_name'
+      data: 'full_name',
+      name: 'full_name'
     }, {
       data: 'email',
       name: 'email'
@@ -129,34 +126,29 @@ $(function () {
       data: 'user_type',
       name: 'user_type'
     }, {
-      data: 'suspended',
+      data: function data(row) {
+        return row['suspended'] === "1" ? "<span class=\"badge badge-warning\">Suspended</span>" : "<span class=\"badge badge-success\">Active</span>";
+      },
       name: 'suspended'
     }, {
       data: 'action',
       name: 'action'
     }],
     columnDefs: [{
-      targets: [1, 2, 3, 4],
-      "class": 'text-left'
-    }, {
       targets: 0,
-      "class": 'text-right'
+      "class": 'text-right',
+      width: "1%"
     }, {
-      targets: [5, 6],
-      "class": 'text-center'
-    }, {
-      targets: 0,
-      width: "10%"
-    }, {
-      targets: 6,
-      orderable: false
-    }, {
-      targets: 5,
-      render: function render(data, type, row) {
-        return data == '1' ? "<span class=\"badge badge-warning\">Suspended</span>" : "<span class=\"badge badge-success\">Active</span>";
+      targets: 3,
+      render: function render(data) {
+        return data.charAt(0).toUpperCase() + data.slice(1);
       }
+    }, {
+      targets: [0, 5],
+      orderable: false
     }]
-  }); //Show Add User Modal
+  }); //Show
+  // User Modal
 
   $('#createNewUser').click(function () {
     $('#btn-add-user').val("create-user");
