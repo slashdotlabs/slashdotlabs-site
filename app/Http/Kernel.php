@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'auth.staff' => \App\Http\Middleware\AuthenticateStaff::class,
         'auth.customer' => \App\Http\Middleware\AuthenticateCustomer::class,
         'auth.checkout' => \App\Http\Middleware\AuthenticteIfCheckout::class,
+        'auth.suspended' => \App\Http\Middleware\AuthenticateSuspended::class,
     ];
 
     /**

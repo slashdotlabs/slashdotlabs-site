@@ -2,7 +2,7 @@
 
 
 @section('content')
-<!-- Page Content -->
+    <!-- Page Content -->
     <div class="bg-pattern" style="background-image: url(' {{ asset("media/various/bg-pattern-inverse.png") }}');">
         <div class="row mx-0 justify-content-center">
             <div class="col-lg-5 col-md-6 col-sm-12">
@@ -10,9 +10,8 @@
                     <!-- Header -->
                     <div class="py-20 text-center">
                         <a class="font-w700 mr-5" href="{{ url('/home') }}">
-                             <img src="{{ asset('media/favicons/favicon-32x31.png') }}" alt="">
-                            <span class="font-size-xl text-primary-dark">{{config('app.name')}}</span>
-                        </a>
+                            <img src="{{ asset('media/favicons/favicon-32x31.png') }}" alt="">
+                            <span class="font-size-xl text-primary-dark">{{config('app.name')}}</span> </a>
                     </div>
                     <!-- END Header -->
 
@@ -21,7 +20,8 @@
                         @csrf
                         <div class="block block-themed block-rounded block-shadow">
                             <div class="block-header">
-                                <h3 class="block-title font-size-md">Welcome to Your Dashboard  -  <small class="font-size-sm">It’s a great day today!</small></h3>
+                                <h3 class="block-title font-size-md">Welcome to Your Dashboard -
+                                    <small class="font-size-sm">It’s a great day today!</small></h3>
                             </div>
 
                             <div class="block-content">
@@ -33,6 +33,14 @@
                                     {{ $message }}
                                 </div>
                                 @enderror
+                                @if(session('error_msg'))
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        {{ session('error_msg') }}
+                                    </div>
+                                @endif
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <label for="login-email">Email</label>
@@ -62,11 +70,9 @@
                             <div class="bg-body-dark block-content">
                                 <div class="form-group text-center">
                                     <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="{{ url('register') }}">
-                                        <i class="fa fa-plus mr-5"></i> Create Account
-                                    </a>
+                                        <i class="fa fa-plus mr-5"></i> Create Account </a>
                                     <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="{{ url('password/reset') }}">
-                                        <i class="fa fa-warning mr-5"></i> Forgot Password
-                                    </a>
+                                        <i class="fa fa-warning mr-5"></i> Forgot Password </a>
                                 </div>
                             </div>
                         </div>
@@ -76,5 +82,5 @@
             </div>
         </div>
     </div>
-<!-- END Page Content -->
+    <!-- END Page Content -->
 @endsection
