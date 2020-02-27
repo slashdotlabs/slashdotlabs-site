@@ -52,14 +52,14 @@
                     <p>No orders are available in the database.</p>
             @else
                 <!-- Orders Table -->
-                    <table id="tb-orders" class="table table-bordered table-striped w-100 table-vcenter">
+                    <table id="tb-orders" class="table table-borderless table-striped w-100 table-vcenter">
                         <thead class="text-uppercase">
                         <tr>
                             <th>Order ID</th>
+                            <th>Status</th>
                             <th>Customer</th>
                             <th>Price (KES)</th>
                             <th>Purchase Date</th>
-                            <th>Payment</th>
                             <th>Actions</th>
                         </tr>
                         </thead>

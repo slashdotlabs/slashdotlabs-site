@@ -1,5 +1,31 @@
 @extends('layouts.master_admin')
 
+@section('css_before')
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/plugins/sweetalert2/sweetalert2.min.css') }}">
+@endsection
+
+@section('js_after')
+    <!-- Page JS Plugins -->
+    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    <!-- Page JS Code -->
+    {{--    <script src="{{ asset('js/pages/admin_customers.js') }}"></script>--}}
+    <script>
+        // Override a few DataTable defaults
+        jQuery.extend(jQuery.fn.dataTable.ext.classes, {
+            sWrapper: "dataTables_wrapper dt-bootstrap4"
+        });
+
+        //? Customers datatable
+        const tbCustomers = $('#tb-customers');
+        tbCustomers.DataTable();
+    </script>
+@endsection
+
 @section('content')
     <!-- Hero -->
     <div class="bg-image" style="background-image: url('{{ asset('media/photos/users.jpg') }}');">
@@ -26,7 +52,7 @@
 
     <div class="content">
         <!-- Customers -->
-        <div class="block block-rounded" id="orders-block">
+        <div class="block block-rounded" id="customers-block">
             <div class="block-header block-header-default">
                 <h3 class="block-title">Customers</h3>
             </div>
@@ -35,10 +61,9 @@
                     <p>No customers are available in the database.</p>
             @else
                 <!-- Customers Table -->
-                    <table id="tb-orders" class="table table-bordered table-striped w-100 table-vcenter">
+                    <table id="tb-customers" class="table table-borderless table-striped table-vcenter table-responsive w-100">
                         <thead class="text-uppercase">
                         <tr>
-                            <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -49,21 +74,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @php($count = 1)
                         @foreach($customers as $customer)
                             <tr>
-                                <td>{{ $count++ }}</td>
                                 <td nowrap>{{ $customer['full_name'] }}</td>
                                 <td nowrap>{{ $customer['email'] }}</td>
                                 <td>{{ $customer['customer_biodata']['phone_number'] ?? 'N/A' }}</td>
                                 <td>{{ $customer['customer_biodata']['organization'] ?? 'N/A' }}</td>
                                 <td>{{ $customer['customer_biodata']['address'] ?? 'N/A' }}</td>
-                                <td>{{ $customer['customer_biodata']['city'] }} / {{ $customer['customer_biodata']['country'] }} </td>
+                                <td>{{ $customer['customer_biodata']['city'] ?? '' }} / {{ $customer['customer_biodata']['country'] ?? '' }} </td>
                                 <td>
                                     @if($customer['suspended'])
-                                        <span class="btn btn-alt-danger btn-sm">Suspended</span>
+                                        <span class="badge badge-warning">Suspended</span>
                                     @else
-                                        <span class="btn btn-alt-success btn-sm">Active</span>
+                                        <span class="badge badge-success">Active</span>
                                     @endif
                                 </td>
                             </tr>
@@ -74,6 +97,6 @@
             <!-- END Customers Table -->
             </div>
         </div>
-        <!-- END Orders -->
+        <!-- END Customers -->
     </div>
 @endsection

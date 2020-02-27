@@ -40,20 +40,6 @@ class Order extends Model
 
     public function getActionAttribute()
     {
-        $unpaid_options = $this->paid ? '<a class="dropdown-item" href="javascript:void(0)"> No Actions </a>'
-            : '<a class="dropdown-item btn-add-payment" href="javascript:void(0)"> Add payment </a>
-                 <div class="dropdown-divider"></div>
-                 <a class="dropdown-item btn-cancel-order" href="javascript:void(0)"> Cancel Order </a>';
-        return '<div class="btn-group" role="group">
-                    <button type="button" class="btn btn-sm btn-alt-info show-order-items">
-                        Order Items
-                    </button>
-                    <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="dropdown">
-                        <i class="si si-arrow-down"></i>
-                    </button>
-                   <div class="dropdown-menu">'
-                    . $unpaid_options .
-                   '</div>
-                </div>';
+       return view('components.orders-actions', ['paid' => $this->paid ])->render();
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class OrdersController extends Controller
@@ -22,7 +21,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->with(['customer', 'order_items', 'order_items.product'])->get();
+        $orders = Order::latest()
+            ->with(['customer', 'order_items', 'order_items.product'])
+            ->get();
         if (request()->ajax()) {
             return response()->json($orders);
         }
@@ -40,6 +41,6 @@ class OrdersController extends Controller
     {
         $order = Order::findOrFail($order_id);
         $order->delete();
-        return response()->json(['success' => true, 'order' => $order ]);
+        return response()->json(['success' => true, 'order' => $order]);
     }
 }

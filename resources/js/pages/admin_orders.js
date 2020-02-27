@@ -26,18 +26,17 @@ $(() => {
         },
         columns: [
             {data: 'order_id'},
+            {data: 'status_badge'},
             {data: order => order['customer']['full_name']},
             {data: 'total_amount'},
             {data: 'created_at'},
-            {data: 'status_badge'},
             {data: 'action'}
         ],
         columnDefs: [
-            {targets: [1, 4], class: 'text-left'},
-            {targets: [0, 2], class: 'text-right'},
+            {targets: [0, 3], class: 'text-right'},
             {targets: [5], class: 'text-center'},
-            {targets: [0, 2], width: "13%"},
-            {targets: [1], width: "20%"},
+            {targets: [0, 1], width: "13%"},
+            {targets: [2], width: "20%"},
             {targets: [4, 5], orderable: false},
         ]
     });
