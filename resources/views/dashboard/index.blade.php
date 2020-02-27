@@ -72,50 +72,6 @@
             </div>
         </div>
 
-        <!-- SSL Certificates -->
-        <div class="block">
-            <div class="block-header block-header-default">
-                <h3 class="block-title" id="certificate">SSL Certificates</h3>
-            </div>
-            <div class="block-content block-content-full">
-                @if(empty($ssl_certificates))
-                    <p>You have no SSL Certificates yet.</p>
-                @else
-                    <table id="tb-ssl-certificates" class="table table-bordered table-striped table-vcenter">
-                        <thead class="text-uppercase">
-                        <tr>
-                            <th class="ID">Order id</th>
-                            <th>Certificate Name</th>
-                            <th>Expiry Date</th>
-                            <th>status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($ssl_certificates as $certificate)
-                            <tr>
-                                <td>{{ $certificate['order_id'] }}</td>
-                                <td>{{ $certificate['product']['product_name'] }}</td>
-                                <td>{{ $certificate['expiry_date'] }}</td>
-                                <td>
-                                    @switch($certificate['item_status'])
-                                        @case('active')
-                                        <span class="badge badge-success">Active</span>
-                                        @break
-                                        @case('expiring_soon')
-                                        <span class="badge badge-warning">Expiring Soon</span>
-                                        @break
-                                        @case('expired')
-                                        <span class="badge badge-danger">Expired</span>
-                                    @endswitch
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                @endif
-            </div>
-        </div>
-
         <!-- Packages -->
         <div class="block">
             <div class="block-header block-header-default">
@@ -161,8 +117,52 @@
                 @endif
             </div>
         </div>
-        <!-- END Page Content -->
+
+        <!-- SSL Certificates -->
+        <div class="block">
+            <div class="block-header block-header-default">
+                <h3 class="block-title" id="certificate">SSL Certificates</h3>
+            </div>
+            <div class="block-content block-content-full">
+                @if(empty($ssl_certificates))
+                    <p>You have no SSL Certificates yet.</p>
+                @else
+                    <table id="tb-ssl-certificates" class="table table-bordered table-striped table-vcenter">
+                        <thead class="text-uppercase">
+                        <tr>
+                            <th class="ID">Order id</th>
+                            <th>Certificate Name</th>
+                            <th>Expiry Date</th>
+                            <th>status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($ssl_certificates as $certificate)
+                            <tr>
+                                <td>{{ $certificate['order_id'] }}</td>
+                                <td>{{ $certificate['product']['product_name'] }}</td>
+                                <td>{{ $certificate['expiry_date'] }}</td>
+                                <td>
+                                    @switch($certificate['item_status'])
+                                        @case('active')
+                                        <span class="badge badge-success">Active</span>
+                                        @break
+                                        @case('expiring_soon')
+                                        <span class="badge badge-warning">Expiring Soon</span>
+                                        @break
+                                        @case('expired')
+                                        <span class="badge badge-danger">Expired</span>
+                                    @endswitch
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                @endif
+            </div>
+        </div>
     </div>
+    <!-- END Page Content -->
 @endsection
 
 @section('modals')
