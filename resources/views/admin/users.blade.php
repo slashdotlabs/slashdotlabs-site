@@ -130,7 +130,7 @@
                     <div id="success-msg"></div>
                 <!-- End of Success Alert Messages -->
                 <!-- Products Table -->
-                <table id="tb-users" class="table table-bordered table-striped table-vcenter" >
+                <table id="tb-users" class="table table-borderless table-striped table-vcenter" >
                     <thead class="text-uppercase">
                         <tr>
                             <th>#</th>

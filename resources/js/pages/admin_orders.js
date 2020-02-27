@@ -27,7 +27,7 @@ $(() => {
         columns: [
             {data: 'order_id'},
             {data: 'status_badge'},
-            {data: order => order['customer']['full_name']},
+            {data: ({customer}) => customer['full_name']},
             {data: 'total_amount'},
             {data: 'created_at'},
             {data: 'action'}

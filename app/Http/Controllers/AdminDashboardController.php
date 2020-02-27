@@ -17,12 +17,11 @@ class AdminDashboardController extends Controller
 
     public function index()
     {
-        $counts = [
-            'users' => User::count(),
-            'products' => Product::count(),
-            'orders' => Order::count(),
-        ];
-
+        $counts = (array) DB::query()
+            ->selectSub(User::getQuery()->selectRaw('count(*)'), 'users')
+            ->selectSub(Product::getQuery()->selectRaw('count(*)'), 'products')
+            ->selectSub(Order::getQuery()->selectRaw('count(*)'), 'orders')
+            ->first();
         return view('admin.dashboard', compact(['counts']));
     }
 }

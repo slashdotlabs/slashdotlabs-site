@@ -112,11 +112,9 @@ $(function () {
       dataSrc: 'data'
     },
     columns: [{
-      data: 'DT_RowIndex',
-      name: 'DT_RowIndex'
-    }, {
-      data: function data(entry) {
-        return entry['customer']['full_name'];
+      data: function data(_ref) {
+        var customer = _ref.customer;
+        return customer['full_name'];
       },
       name: 'customer'
     }, {
@@ -135,13 +133,10 @@ $(function () {
       width: '15%'
     }],
     columnDefs: [{
-      targets: [0, 2, 5],
+      targets: [2, 4],
       "class": 'text-right'
     }, {
-      targets: 0,
-      width: "1%"
-    }, {
-      targets: [0, 4],
+      targets: [3],
       orderable: false
     }]
   });

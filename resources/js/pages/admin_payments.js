@@ -21,22 +21,15 @@ $(() => {
             dataSrc: 'data'
         },
         columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {
-                data: entry => {
-                    return entry['customer']['full_name'];
-                },
-                name: 'customer'
-            },
+            {data: ({customer}) => customer['full_name'], name: 'customer'},
             {data: 'order_id', name: 'order_id'},
             {data: 'payment_type', name: 'payment_type', width:'15%'},
             {data: 'payment_ref', name: 'payment_ref'},
             {data: 'amount', name: 'amount', width:'15%'},
         ],
         columnDefs: [
-            {targets: [0, 2, 5], class: 'text-right'},
-            {targets: 0, width: "1%"},
-            {targets: [0, 4], orderable: false}
+            {targets: [ 2, 4], class: 'text-right'},
+            {targets: [3], orderable: false}
         ]
     });
 

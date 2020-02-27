@@ -16,19 +16,19 @@
 
 <!-- Error Handling -->
 @if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 <!-- Error Handling -->
 
 @section('content')
     <!-- Hero -->
-    <div class="bg-image" style="background-image: url('../media/photos/products.jpg');">
+    <div class="bg-image" style="background-image: url('{{ asset('media/photos/products.jpg') }}');">
         <div class="bg-black-op-75">
             <div class="content content-top content-full text-center">
                 <div class="py-20">
@@ -43,7 +43,7 @@
     <div class="bg-body-light border-b">
         <div class="content py-5 text-center">
             <nav class="breadcrumb bg-body-light mb-0">
-                <a class="breadcrumb-item" href="/admin/dashboard">Home</a>
+                <a class="breadcrumb-item" href="{{ url('/admin/dashboard') }}">Home</a>
                 <span class="breadcrumb-item active">Products</span>
             </nav>
         </div>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-info" data-toggle="countTo" data-to="{{ $domains->count() }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-info" data-toggle="countTo" data-to="{{ $counts['domain'] }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Domains</div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-warning" data-toggle="countTo" data-to="{{ $hosting->count() }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-warning" data-toggle="countTo" data-to="{{ $counts['hosting'] }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">Hosting Packages</div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-danger" data-toggle="countTo" data-to="{{ $ssl_certificates->count() }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-danger" data-toggle="countTo" data-to="{{ $counts['ssl_certificate'] }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-muted">SSL Certificates</div>
                         </div>
                     </div>
@@ -139,26 +139,38 @@
         <div class="block block-rounded">
             <div class="block-content">
                 <!-- Success Alert Message -->
-                    <div id="success-msg"></div>
+                <div id="success-msg"></div>
                 <!-- End of Success Alert Messages -->
                 <!-- Products Table -->
-                <table id="tb-products" class="table table-sm table-bordered table-striped table-vcenter" >
+                <table id="tb-products" class="table table-borderless table-striped table-fixed table-vcenter w-100">
                     <thead class="text-uppercase">
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                            <th>Price (KES) </th>
-                            <th>Status </th>
-                            <th>Actions</th>
-                        </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th class="product-type d-flex w-100 align-items-center justify-content-between">
+                            <span>Type</span>
+                            <span title="Filter" data-toggle="dropdown" class="cursor-pointer product-type-filter">
+                                    <i class="fa fa-filter"></i>
+                                </span>
+                            <div class="dropdown-menu" id="product-type-filter-list">
+                                @foreach($product_types as $type)
+                                    <div class="dropdown-item">
+                                        <label class="css-control css-control-primary css-checkbox">
+                                            <input type="checkbox" class="css-control-input" value="{{ $type }}" checked="">
+                                            <span class="css-control-indicator"></span> {{ $type }} </label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </th>
+                        <th>Description</th>
+                        <th>Price (KES)</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
 
-            <!-- END Products Table -->
+                <!-- END Products Table -->
             </div>
         </div>
         <!-- END Products -->

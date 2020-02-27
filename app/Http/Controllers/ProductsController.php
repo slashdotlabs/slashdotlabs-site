@@ -19,51 +19,15 @@ class ProductsController extends Controller
 
     public function index(Request $request)
     {
+        $products = Product::latest()->get();
         if ($request->ajax()) {
-            $data = Product::latest()->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    if ($row->suspended == 0) {
-                        $buttons =
-                            '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="' . $row->id . '">
-                                     Edit
-                                 </button>
-                                &emsp;
-                                <button type="button" class="btn btn-sm btn-outline-dark suspend-product" data-id="' . $row->id . '" >
-                                    Suspend
-                                </button>
-                            </div>';
-                        return $buttons;
-                    } else {
-                        $buttons =
-                            '<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-primary edit-product" data-id="' . $row->id . '">
-                                     Edit
-                                 </button>
-                                &emsp;
-                                <button type="button" class="btn btn-sm btn-outline-dark restore-product" data-id="' . $row->id . '" >
-                                    Restore
-                                </button>
-                            </div>';
-                        return $buttons;
-
-                    }
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+            return response()->json($products);
         }
-        $domains = Product::where('product_type', 'domain');
-        $hosting = Product::where('product_type', 'hosting');
-        $ssl_certificates = Product::where('product_type', 'ssl_certificate');
-
-        return view('admin.products',
-            [
-                'domains' => $domains,
-                'hosting' => $hosting,
-                'ssl_certificates' => $ssl_certificates,
-            ]);
+        $counts = $products->countBy(function ($product) {
+            return $product->product_type;
+        })->toArray();
+        $product_types = $products->pluck('product_type')->unique()->values()->toArray();
+        return view('admin.products', compact(['counts', 'product_types']));
     }
 
     public function store(Request $request)

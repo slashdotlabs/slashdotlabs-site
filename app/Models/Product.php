@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Throwable;
 
 class Product extends Model
 {
     protected $guarded = [];
+    protected $appends = ['status_badge', 'action'];
+    protected $casts = [
+        'suspended' => 'boolean'
+    ];
 
     public function order_item()
     {
@@ -38,5 +43,20 @@ class Product extends Model
     public function scopeActive($query)
     {
         return $query->where('suspended', false);
+    }
+
+    public function getStatusBadgeAttribute()
+    {
+        return $this->suspended ? '<span class="badge badge-warning">Suspended</span>'
+            : '<span class="badge badge-success">Active</span>';
+    }
+
+    /**
+     * @return array|string
+     * @throws Throwable
+     */
+    public function getActionAttribute()
+    {
+        return view('components.products-action', ['product' => $this])->render();
     }
 }

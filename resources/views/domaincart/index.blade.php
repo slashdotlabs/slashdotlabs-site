@@ -1,9 +1,6 @@
 <?php include(app_path("Domaincart/cwcconf.php")); ?>
 
 @extends('layouts.master_dashboard')
-@section("css_before")
-    <link href="{{ asset("css/domaincart.css")  }}" rel="stylesheet" type="text/css">
-@endsection
 
 @section('js_after')
     {{--    Page JS plugins --}}

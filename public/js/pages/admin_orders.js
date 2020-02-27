@@ -121,8 +121,9 @@ $(function () {
     }, {
       data: 'status_badge'
     }, {
-      data: function data(order) {
-        return order['customer']['full_name'];
+      data: function data(_ref) {
+        var customer = _ref.customer;
+        return customer['full_name'];
       }
     }, {
       data: 'total_amount'

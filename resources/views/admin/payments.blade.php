@@ -47,10 +47,9 @@
             </div>
             <div class="block-content">
                 <!-- Payments Table -->
-                    <table id="tb-payments" class="table table-bordered table-striped table-vcenter">
+                    <table id="tb-payments" class="table table-borderless table-striped table-vcenter">
                         <thead class="text-uppercase">
                         <tr>
-                            <th>#</th>
                             <th>Customer Name</th>
                             <th>Order</th>
                             <th>channel</th>

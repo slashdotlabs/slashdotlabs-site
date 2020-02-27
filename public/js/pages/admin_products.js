@@ -108,51 +108,65 @@ $(function () {
   var tbProducts = $('#tb-products');
   var dtProducts = tbProducts.DataTable({
     ajax: {
+      scrollX: true,
       url: "".concat(baseURL, "/admin/products"),
       method: 'GET',
-      dataSrc: 'data'
+      dataSrc: ''
     },
     columns: [{
-      data: 'DT_RowIndex',
-      name: 'DT_RowIndex'
-    }, {
       data: 'product_name',
       name: 'product_name'
     }, {
       data: 'product_type',
-      name: 'product_type'
+      name: 'product_type',
+      orderable: false
     }, {
       data: 'product_description',
       name: 'product_description'
     }, {
       data: 'price',
-      name: 'price'
+      name: 'price',
+      "class": 'text-nowrap'
     }, {
-      data: 'suspended',
-      name: 'suspended'
+      data: 'status_badge',
+      name: 'status_badge'
     }, {
       data: 'action',
-      name: 'action'
+      name: 'action',
+      "class": 'text-nowrap'
     }],
     columnDefs: [{
-      targets: [1, 2, 3],
+      targets: [2, 3, 4],
       "class": 'text-left'
     }, {
-      targets: [0, 4],
-      "class": 'text-right'
-    }, {
-      targets: [5, 6],
+      targets: [4, 5],
       "class": 'text-center'
     }, {
-      targets: 6,
-      orderable: false
-    }, {
       targets: 5,
-      render: function render(data, type, row) {
-        return data == '1' ? "<span class=\"badge badge-warning\">Suspended</span>" : "<span class=\"badge badge-success\">Active</span>";
-      } //TODO: render buttons based on suspended value edit/suspend and edit/restore - remove from controller
-
+      orderable: false
     }]
+  }); // Filtering products
+
+  $("#product-type-filter-list input[type=checkbox]").on('click', function (event) {
+    var _this = $(event.target); // get checked values
+
+
+    var checked = _this.closest('#product-type-filter-list').find('input[type=checkbox]:checked').map(function (index, el) {
+      return el.value;
+    }).toArray();
+
+    if (checked.length === 0) {
+      //select all
+      _this.closest('#product-type-filter-list').find('input[type=checkbox]').each(function (index, el) {
+        return $(el).prop('checked', true);
+      });
+
+      checked = _this.closest('#product-type-filter-list').find('input[type=checkbox]:checked').map(function (index, el) {
+        return el.value;
+      }).toArray();
+    }
+
+    dtProducts.column('product_type:name').search(checked.join('|'), true).draw();
   }); //Show Add Product Modal
 
   $('#createNewProduct').click(function () {
