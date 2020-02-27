@@ -17,10 +17,11 @@ class AdminDashboardController extends Controller
 
     public function index()
     {
-        $users = (array) User::getQuery()->selectRaw("count(*) as users")->first();
-        $products = (array) Product::getQuery()->selectRaw("count(*) as products")->first();
-        $orders = (array) Order::getQuery()->selectRaw("count(*) as orders")->first();
-        $counts  = array_merge($users, $products, $orders);
+        $counts = [
+            'users' => User::count(),
+            'products' => Product::count(),
+            'orders' => Order::count(),
+        ];
 
         return view('admin.dashboard', compact(['counts']));
     }
