@@ -6,19 +6,26 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Collection;
 
-class CredentialsEmailNotification extends Notification implements ShouldQueue
+class ProductExpiringNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    /** @var Collection */
+    public $expiring_items;
+
 
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param Collection $expiring_items
      */
-    public function __construct()
+    public function __construct(Collection $expiring_items)
     {
-        //
+        $this->expiring_items = $expiring_items;
+
+        $this->queue = "emails";
     }
 
     /**
@@ -40,10 +47,12 @@ class CredentialsEmailNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $count = config('auth.passwords.' . config('auth.defaults.passwords') . '.expire');
-        $broker = app('auth.password');
-        $url = route('password.reset', ['token' => $broker->createToken($notifiable), 'email' => $notifiable->email]);
-        return (new MailMessage)->markdown('mail.user.credentials', ['url' => $url, 'count' => $count]);
+        // TODO: handling renewals
+        return (new MailMessage)->markdown('mail.product.expiring', [
+            'customer' => $notifiable,
+            'expiring_items' => $this->expiring_items,
+            'renew_url' => url('/products/renew')
+        ]);
     }
 
     /**

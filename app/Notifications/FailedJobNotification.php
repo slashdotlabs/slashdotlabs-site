@@ -3,22 +3,27 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Queue\Events\JobFailed;
 
-class CredentialsEmailNotification extends Notification implements ShouldQueue
+class FailedJobNotification extends Notification
 {
     use Queueable;
+    /**
+     * @var JobFailed
+     */
+    private $event;
 
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param JobFailed $event
      */
-    public function __construct()
+    public function __construct(JobFailed $event)
     {
-        //
+
+        $this->event = $event;
     }
 
     /**
@@ -40,10 +45,7 @@ class CredentialsEmailNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $count = config('auth.passwords.' . config('auth.defaults.passwords') . '.expire');
-        $broker = app('auth.password');
-        $url = route('password.reset', ['token' => $broker->createToken($notifiable), 'email' => $notifiable->email]);
-        return (new MailMessage)->markdown('mail.user.credentials', ['url' => $url, 'count' => $count]);
+        return (new MailMessage)->markdown('mail.admin.failed_jobs', compact(['event']));
     }
 
     /**

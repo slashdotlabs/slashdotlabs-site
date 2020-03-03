@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="py-20 text-center">
-                            <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="{{ $users->count() }}">0</div>
+                            <div class="font-size-h2 font-w700 mb-0 text-white" data-toggle="countTo" data-to="{{ $counts['users'] }}">0</div>
                             <div class="font-size-sm font-w600 text-uppercase text-white-op">System Users</div>
                         </div>
                     </div>

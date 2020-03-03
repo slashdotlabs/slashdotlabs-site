@@ -12,7 +12,7 @@ class Product extends Model
     protected $appends = ['status_badge', 'action'];
     protected $casts = [
         'suspended' => 'boolean'
-    ];
+        ];
 
     public function order_item()
     {

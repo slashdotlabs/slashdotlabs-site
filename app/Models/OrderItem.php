@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,7 +11,8 @@ class OrderItem extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
-    protected $appends = ['item_status'];
+    protected $appends = ['item_status','datediff'];
+    protected $dates = ['expiry_date'];
 
     public function order()
     {
@@ -38,5 +40,19 @@ class OrderItem extends Model
         } else {
             return 'active';
         }
+    }
+
+    public function scopeAlmostExpiring(Builder $query)
+    {
+        $now = now();
+        return $query->select('*')
+            ->selectRaw("DATEDIFF(expiry_date, '{$now}') as datediff")
+            ->whereRaw("DATEDIFF(expiry_date, '{$now}') = 30")
+            ->orWhereRaw("DATEDIFF(expiry_date, '{$now}') = 5");
+    }
+
+    public function getDatediffAttribute()
+    {
+        return Carbon::now()->diffInDays($this->expiry_date);
     }
 }

@@ -12,7 +12,7 @@ class SendUserCredentialsEmailListener
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param AdminRegisterUserEvent $event
      * @return void
      */
     public function handle(AdminRegisterUserEvent $event)

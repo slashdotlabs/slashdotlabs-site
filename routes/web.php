@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\OrderItem;
+use App\Notifications\ProductExpiringNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
