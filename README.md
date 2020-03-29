@@ -9,6 +9,7 @@ Internal tool that supplements the domain and hosting selling
 - Domain Cart integration
 
 ## Improvemnts
+- [ ] Consider moving this to a separate repo
 - [ ] Automate account creation for the domains and hosting accounts
 - [x] Customer reminders close to product expiry dates
 - [ ] Asset caching optimization
